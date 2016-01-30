@@ -1,18 +1,17 @@
-
-package org.team2168.commands;
-
-import edu.wpi.first.wpilibj.command.Command;
+package org.team2168.commands.drivetrain;
 
 import org.team2168.Robot;
+
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class ExampleCommand extends Command {
+public class DriveWithJoysticks extends Command {
 
-    public ExampleCommand() {
+    public DriveWithJoysticks() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.exampleSubsystem);
+        requires(Robot.drivetrain);
     }
 
     // Called just before this Command runs the first time
@@ -21,6 +20,9 @@ public class ExampleCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	
+    	Robot.drivetrain.driveLeft(Robot.oi.driverJoystick.getLeftStickRaw_Y());
+    	Robot.drivetrain.driveRight(Robot.oi.driverJoystick.getRightStickRaw_Y());
     }
 
     // Make this return true when this Command no longer needs to run execute()
