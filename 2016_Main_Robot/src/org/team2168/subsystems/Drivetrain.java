@@ -88,7 +88,67 @@ public class Drivetrain extends Subsystem {
 		driveLeft(leftSpeed);
 		driveRight(rightSpeed);
 	}
-
+	
+	/**
+	 * Takes in a double speed and sets it to the first left motor
+	 * @param speed is a double from 1 to -1
+	 */
+	public void left1Drive(double speed){
+		if(RobotMap.reverseLeft)
+			speed = -speed;
+		leftMotor1.set(speed);
+	}
+	
+	/**
+	 * Takes in a double speed and sets it to the second left motor
+	 * @param speed is a double from 1 to -1
+	 */
+	public void left2Drive(double speed){
+		if(RobotMap.reverseLeft)
+			speed = -speed;
+		leftMotor2.set(speed);
+	}
+	
+	/**
+	 * Takes in a double speed and sets it to the third left motor
+	 * @param speed is a double from 1 to -1
+	 */
+	public void left3Drive(double speed){
+		if(RobotMap.reverseLeft)
+			speed = -speed;
+		leftMotor3.set(speed);
+	}
+	
+	/**
+	 * Takes in a double speed and sets it to the first right motor
+	 * @param speed is a double from 1 to -1
+	 */
+	public void right1Drive(double speed){
+		if(RobotMap.reverseRight)
+			speed = -speed;
+		rightMotor1.set(speed);
+	}
+	
+	/**
+	 * Takes in a double speed and sets it to the second right motor
+	 * @param speed is a double from 1 to -1
+	 */
+	public void right2Drive(double speed){
+		if(RobotMap.reverseRight)
+			speed = -speed;
+		rightMotor2.set(speed);
+	}
+	
+	/**
+	 * Takes in a double speed and sets it to the third right motor
+	 * @param speed is a double from 1 to -1
+	 */
+	public void right3Drive(double speed){
+		if(RobotMap.reverseRight)
+			speed = -speed;
+		rightMotor3.set(speed);
+	}
+	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
