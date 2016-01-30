@@ -18,6 +18,7 @@ public class RobotMap {
 	
 	// Joysticks
 	public static final int DRIVER_JOYSTICK = 0;
+	public static final int OPERATOR_JOYSTICK = 1;
 	
 	// PWM (0 to 9)
 	public static final int RIGHT_DRIVE_TRAIN_1 = 0;
@@ -27,9 +28,14 @@ public class RobotMap {
 	public static final int LEFT_DRIVE_TRAIN_2 = 4;
 	public static final int LEFT_DRIVE_TRAIN_3 = 5;
 	
+	public static final int shooterWheel1= 6;
+	public static final int shooterWheel2= 7;
+	
+	
 	
 	// Drivetrain parameters
 	public static boolean reverseRight = true;
 	public static boolean reverseLeft = false;
+	
 	
 }

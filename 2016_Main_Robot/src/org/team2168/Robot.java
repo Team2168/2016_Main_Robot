@@ -7,6 +7,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.team2168.subsystems.Drivetrain;
+import org.team2168.subsystems.Shooter;
+
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -22,7 +24,8 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	
 	public static Drivetrain drivetrain;
-
+	public static Shooter shooter;
+	
     Command autonomousCommand;
     SendableChooser chooser;
 
@@ -33,7 +36,7 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	
     	drivetrain = Drivetrain.getInstance();
-    	
+    	shooter = Shooter.getInstance();
         chooser = new SendableChooser();		
         
         oi = OI.getInstance();
