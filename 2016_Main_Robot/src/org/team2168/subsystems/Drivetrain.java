@@ -70,7 +70,7 @@ public class Drivetrain extends Subsystem {
 	 */
 	public void driveRight(double speed){
 		
-		if(RobotMap.reverseLeft)
+		if(RobotMap.reverseRight)
 			speed = -speed;
 		
 		rightMotor1.set(speed);
