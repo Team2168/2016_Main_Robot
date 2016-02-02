@@ -14,8 +14,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Intake extends Subsystem {
     
-	private Victor intakeWheel;
-	private Victor intakeIndex;
+	private Victor intakeWheel1;
+	private Victor intakeWheel2;
 	
 	private DoubleSolenoid intakePiston;
 	
@@ -27,9 +27,9 @@ public class Intake extends Subsystem {
 	 */
 	private Intake()
 	{
-		intakePiston = new DoubleSolenoid(RobotMap.intakeWheel2, RobotMap.intakeWheel1);
-		intakeWheel = new Victor(RobotMap.intakeWheel1);
-		intakeIndex = new Victor(RobotMap.intakeWheel2);
+		intakePiston = new DoubleSolenoid(RobotMap.INTAKE_WHEEL_2, RobotMap.INTAKE_WHEEL_1);
+		intakeWheel1 = new Victor(RobotMap.INTAKE_WHEEL_1);
+		intakeWheel2 = new Victor(RobotMap.INTAKE_WHEEL_2);
 	}
 	
 	/**
@@ -39,8 +39,8 @@ public class Intake extends Subsystem {
 	 */
 	public void driveIntake(double speed)
 	{
-		intakeWheel.set(speed);
-		intakeIndex.set(speed);
+		intakeWheel1.set(speed);
+		intakeWheel2.set(speed);
 	}
 	
 	/**
@@ -50,7 +50,10 @@ public class Intake extends Subsystem {
 	 */
 	public void driveIntakeWheel1(double speed)
 	{
-		intakeWheel.set(speed);
+		if(RobotMap.reverseWheel1)
+			speed = -speed;
+			
+		intakeWheel1.set(speed);
 	}
 	
 	/**
@@ -60,7 +63,11 @@ public class Intake extends Subsystem {
 	 */
 	public void driveIntakeWheel2(double speed)
 	{
-		intakeIndex.set(speed);
+		if(RobotMap.reverseWheel2)
+			speed = -speed;
+			
+		intakeWheel2.set(speed);
+	
 	}
 	
 	/**

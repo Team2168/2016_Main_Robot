@@ -27,10 +27,8 @@ public class RobotMap {
 	public static final int LEFT_DRIVE_TRAIN_1 = 3;
 	public static final int LEFT_DRIVE_TRAIN_2 = 4;
 	public static final int LEFT_DRIVE_TRAIN_3 = 5;
-	
-	///Solendods//////
-		public static final int intakeWheel1 = 6;
-		public static final int intakeWheel2 = 7;
+	public static final int INTAKE_WHEEL_1 = 6;
+	public static final int INTAKE_WHEEL_2 = 7;
 	
 	// Drivetrain parameters
 	public static boolean reverseRight = true;
@@ -38,5 +36,7 @@ public class RobotMap {
 	
 	///Intake parameters//
 	public static final double intakeSpeedConstant = 0.5;
+	public static final boolean reverseWheel1 = true;
+	public static final boolean reverseWheel2 = false;
 	
 }
