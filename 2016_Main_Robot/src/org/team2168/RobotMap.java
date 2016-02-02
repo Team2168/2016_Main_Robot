@@ -26,7 +26,7 @@ public class RobotMap {
 	public static final int LEFT_DRIVE_TRAIN_1 = 3;
 	public static final int LEFT_DRIVE_TRAIN_2 = 4;
 	public static final int LEFT_DRIVE_TRAIN_3 = 5;
-	
+	public static final int SHOOTER_HOOD_1 = 6;
 	
 	// Drivetrain parameters
 	public static boolean reverseRight = true;
