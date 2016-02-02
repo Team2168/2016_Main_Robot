@@ -1,5 +1,6 @@
 package org.team2168;
 
+import org.team2168.commands.Intake.IntakeWithJoystick;
 import org.team2168.utils.F310;
 
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -37,12 +38,13 @@ public class OI {
     // button.whenReleased(new ExampleCommand());
 	
 	public F310 driverJoystick;
-	
+	public F310 operatorJoystick;
 	public static OI instance = null;
 	
 	private OI(){
-		
 		driverJoystick = new F310(RobotMap.DRIVER_JOYSTICK);
+		operatorJoystick = new F310(RobotMap.operatorJoystick);
+		operatorJoystick.ButtonA().whenPressed(new IntakeWithJoystick());
 	}
 	
 	public static OI getInstance(){
