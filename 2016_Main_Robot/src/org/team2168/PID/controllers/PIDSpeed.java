@@ -972,10 +972,10 @@ public class PIDSpeed implements TCPMessageInterface {
 			// setSIZE(Integer.valueOf(message[11]).intValue());
 			
 			
-			 if(Boolean.valueOf(message[4]).booleanValue())
-				 new DriveRightPIDSpeed(Double.valueOf(message[3]).doubleValue()).start();
-			 else
-				 new DrivePIDPause().start();
+	//		 if(Boolean.valueOf(message[4]).booleanValue())
+	//			 new DriveRightPIDSpeed(Double.valueOf(message[3]).doubleValue()).start();
+	//		 else
+	//			 new DrivePIDPause().start();
 			
 			
 		} catch (NumberFormatException e) {

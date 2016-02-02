@@ -25,9 +25,9 @@ public class IMU implements PIDSensorInterface {
 	
 public static double getAccPitch() {
 	
-	double X = Robot.accel.getX();
-	double Y = Robot.accel.getY();
-	double Z = Robot.accel.getZ();
+//	double X = Robot.accel.getX();
+//	double Y = Robot.accel.getY();
+//	double Z = Robot.accel.getZ();
 	
 
 	return Math.atan2(Y,Z) *180 /Math.PI;
@@ -36,9 +36,9 @@ public static double getAccPitch() {
 public static double getAccRoll()
 {
 	
-	double X = Robot.accel.getX();
-	double Y = Robot.accel.getY();
-	double Z = Robot.accel.getZ();
+//	double X = Robot.accel.getX();
+//	double Y = Robot.accel.getY();
+//	double Z = Robot.accel.getZ();
 	
 return Math.atan2(-X, Math.sqrt(Y*Y + Z*Z)) * 180/Math.PI;
 
