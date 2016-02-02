@@ -28,8 +28,8 @@ public class RobotMap {
 	public static final int LEFT_DRIVE_TRAIN_2 = 4;
 	public static final int LEFT_DRIVE_TRAIN_3 = 5;
 	
-	public static final int shooterWheel1= 6;
-	public static final int shooterWheel2= 7;
+	public static final int SHOOTER_WHEEL_1= 6;
+	public static final int SHOOTER_WHEEL_2= 7;
 	
 	
 	
