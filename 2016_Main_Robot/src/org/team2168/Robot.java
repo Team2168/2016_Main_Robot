@@ -7,6 +7,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.team2168.subsystems.Drivetrain;
+import org.team2168.subsystems.Index;
+
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -23,6 +25,8 @@ public class Robot extends IterativeRobot {
 	
 	public static Drivetrain drivetrain;
 
+	public static Index index;
+	
     Command autonomousCommand;
     SendableChooser chooser;
 
@@ -33,8 +37,9 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	
     	drivetrain = Drivetrain.getInstance();
-    	
+    	index = index.getInstance();
         chooser = new SendableChooser();		
+        
         
         oi = OI.getInstance();
         
