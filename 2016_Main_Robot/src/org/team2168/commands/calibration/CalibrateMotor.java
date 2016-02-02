@@ -3,6 +3,7 @@ package org.team2168.commands.calibration;
 import org.team2168.Robot;
 import org.team2168.RobotMap;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -12,9 +13,21 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class CalibrateMotor extends Command {
 
+	private double motorSpeed;
+	
+	private double runTime = 3.0;
+	
+	private double direction = 1.0;
+	
 	private double startPosition;
+	private double startTime;
 	
 	private int motorNumber;
+	
+	private String status;
+	
+	//TODO find change is position desired
+	private double minPositionChange = 1.0;
 	
 	/**
 	 * This constructor takes in the port number of any motor on the
@@ -31,25 +44,37 @@ public class CalibrateMotor extends Command {
     	   motorPWMPort == RobotMap.RIGHT_DRIVE_TRAIN_2 ||
     	   motorPWMPort == RobotMap.RIGHT_DRIVE_TRAIN_3) {
     		requires(Robot.drivetrain);
+    		//TODO set this to the speed we want
+    		motorSpeed = 1.0;
     		this.motorNumber = motorPWMPort;
     	}
     	
 //    	if(motorPWMPort == RobotMap.SHOOTER_WHEEL_1 ||
 //    	   motorPWMPort == RobotMap.SHOOTER_WHEEL_2) {
 //    		requires(Robot.shooter);
+//    		//TODO set this to the speed we want
+//			motorSpeed = 1.0;
 //    		this.motorNumber = motorPWMPort;
 //    	}
 //    	
 //    	if(motorPWMPort == RobotMap.INTAKE_WHEEL_1 ||
 //    	   motorPWMPort == RobotMap.INTAKE_WHEEL_2) {
 //    		requires(Robot.intake)
+//			//TODO set this to the speed we want
+//    		motorSpeed = 1.0;
 //    		this.motorNumber = motorPWMPort;
 //    	}
 //    	
 //    	if(motorPWMPort == RobotMap.INDEX_WHEEL) {
 //    		requires(Robot.index);
+//    		//TODO set this to the speed we want
+//    		motorSpeed = 1.0;
 //    		this.motorNumber = motorPWMPort;
 //    	}
+    	
+    	if(!forward) {
+    		direction = -direction;
+    	}
     	
     }
 
@@ -59,7 +84,7 @@ public class CalibrateMotor extends Command {
      */
     private double getPosition(){
     	double motorPosition = 0.0;
-    	
+
     	//TODO Change returnValue to 0.0 for subsystems without encoders
 //    	switch(motorNumber) {
 //    		case RobotMap.LEFT_DRIVE_TRAIN_1:
@@ -90,20 +115,77 @@ public class CalibrateMotor extends Command {
     	return motorPosition;
     }
     
+    /**
+     * When the command is started, the position of the motor and
+     * the current time are determined  
+     */
     protected void initialize() {
     	startPosition = getPosition();
+    	startTime = Timer.getFPGATimestamp();
     }
 
+    /**
+     * Runs the motor selected at the given speed
+     * @param double speed from 1 to -1
+     */
+    protected void setSpeed(double speed) {
+    	switch(motorNumber) {
+    		case RobotMap.LEFT_DRIVE_TRAIN_1:
+    			 Robot.drivetrain.left1Drive(speed);
+    			 break;
+    		case RobotMap.LEFT_DRIVE_TRAIN_2:
+    			 Robot.drivetrain.left1Drive(speed);
+    			 break;
+    		case RobotMap.LEFT_DRIVE_TRAIN_3:
+    			 Robot.drivetrain.left1Drive(speed);
+    			 break;
+    		case RobotMap.RIGHT_DRIVE_TRAIN_1:
+   			 	 Robot.drivetrain.right1Drive(speed);
+   			 	 break;
+    		case RobotMap.RIGHT_DRIVE_TRAIN_2:
+    			 Robot.drivetrain.right1Drive(speed);
+    			 break;
+    		case RobotMap.RIGHT_DRIVE_TRAIN_3:
+    			 Robot.drivetrain.right1Drive(speed);
+    			 break;
+//    		case RobotMap.SHOOTER_WHEEL_1:
+//   			 Robot.shooter.driveShooter1(speed);
+//   			 break;
+//   		case RobotMap.SHOOTER_WHEEL_2:
+//   			 Robot.shooter.driveShooter2(speed);
+//				 break;
+//   		case RobotMap.INTAKE_WHEEL_1:
+//   			 Robot.intake.driveIntake1(speed);
+//   			 break;
+//   		case RobotMap.INTAKE_WHEEL2:
+//   			 Robot.intake.driveIntake2(speed);
+//				 break;
+//   		case RobotMap.INDEX_WHEEL:
+//   			 Robot.index.driveIndex(speed);
+//	    		 break;
+    		default:
+    			 break;
+    	}
+    }
     
+    /**
+     * Runs the motor at the appropriate speed in the direction given
+     */
     protected void execute() {
+    	setSpeed(motorSpeed * direction);
     }
 
-    // Make this return true when this Command no longer needs to run execute()
+    /**
+     * Returns true when the motor has run for the alloted time
+     */
     protected boolean isFinished() {
-        return false;
+    	return (Timer.getFPGATimestamp() - startTime) > runTime;
     }
 
-    // Called once after isFinished returns true
+    /**
+     * Determines the distance the motor turned and prints to the
+     * SmartDashboard how far it turned after isFinished returns true
+     */
     protected void end() {
     	
     	String motorName = null;
@@ -111,6 +193,13 @@ public class CalibrateMotor extends Command {
     	double positionChange;
     	
     	positionChange = getPosition() - startPosition;
+    	if(positionChange >= minPositionChange) {
+    		status = "Pass";
+    	}
+    	
+    	if(positionChange < minPositionChange) {
+    		status = "Fail";
+    	}
     	
     	switch(motorNumber){
     		case RobotMap.LEFT_DRIVE_TRAIN_1:
@@ -151,13 +240,15 @@ public class CalibrateMotor extends Command {
     	}
     	
     	//TODO Change to SmartDashboard output
-    	System.out.println(motorName + "motor moved a distance of" + positionChange);
+    	System.out.println(motorName + "finished with a " + status);
     	
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
+    /**
+     * Stops the motor if the command is interrupted
+     */
     protected void interrupted() {
+    	setSpeed(0.0);
     }
     
 }
