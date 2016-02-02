@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class SetHoodWheelPosition extends Command {
+public class SetHoodMotorAngle extends Command {
 
-    public SetHoodWheelPosition() {
+    public SetHoodMotorAngle() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.shooterhood);
     }
@@ -24,12 +24,15 @@ public class SetHoodWheelPosition extends Command {
      */
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.shooterhood.setPosition(RobotMap.DRIVE_HOOD_MOTOR);
+    	Robot.shooterhood.setAngle(RobotMap.SHOOTER_HOOD_ANGLE);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        if (Robot.shooterhood.getAngle() == RobotMap.SHOOTER_HOOD_ANGLE)
+        	return true;
+        else
+        	return false;
     }
 
     // Called once after isFinished returns true

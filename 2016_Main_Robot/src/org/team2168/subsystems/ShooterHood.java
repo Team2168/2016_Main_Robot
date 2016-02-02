@@ -1,7 +1,7 @@
 package org.team2168.subsystems;
 
 import org.team2168.RobotMap;
-import org.team2168.commands.shooterhood.SetHoodWheelPosition;
+import org.team2168.commands.shooterhood.SetHoodMotorAngle;
 
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -41,26 +41,25 @@ public class ShooterHood extends Subsystem {
    }
    
    /**
-    * Takes in a given position and moves motor to that position
-    * @param pos is a double from 1 to -1
+    * Takes in a given angle and moves motor to that angle
+    * @param degrees is a double from 0 to 180
     */
-   public void setPosition(double pos)
+   public void setAngle(double degrees)
    {   
-	   hoodMotor1.setPosition(pos);
+	   hoodMotor1.setAngle(degrees);
    }
    
    /**
-    * Gets the servo motor's current position
-    * @param pos is a double from 1 to -1
+    * Finds the motor's current angle
     */
-   public void getPosition(double pos)
+   public double getAngle()
    {
-	   hoodMotor1.getPosition();
+	   return hoodMotor1.getAngle();
    }
    
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        setDefaultCommand(new SetHoodWheelPosition());
+        setDefaultCommand(new SetHoodMotorAngle());
     }
 }
 

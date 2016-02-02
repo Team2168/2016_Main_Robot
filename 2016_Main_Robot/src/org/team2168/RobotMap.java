@@ -33,6 +33,6 @@ public class RobotMap {
 	public static boolean reverseRight = true;
 	public static boolean reverseLeft = false;
 	
-	//ShooterHood positions (To be determined)
-	public static final double DRIVE_HOOD_MOTOR = 0;
+	//ShooterHood angle (To be determined)
+	public static final double SHOOTER_HOOD_ANGLE = 0;
 }
