@@ -1,24 +1,37 @@
 package org.team2168.subsystems;
 
 import org.team2168.RobotMap;
+import org.team2168.commands.shooterhood.SetHoodWheelPosition;
 
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *
+ *ShooterHood subsystem
+ *@author Harris Jilani
  */
 public class ShooterHood extends Subsystem {
-    
+   
+	/**
+	 * ShooterHood member variable
+	 */
    private Servo hoodMotor1;
    
    private static ShooterHood instance = null;
    
+   
+   /**
+    * Default constructor for ShooterHood subsystem
+    */
    private ShooterHood(){
 	   
 	   hoodMotor1 = new Servo(RobotMap.SHOOTER_HOOD_1);
    }
 
+   /**
+	 * Returns ShooterHood singleton object
+	 * @return is the current shooterhood object
+	 */
    public static ShooterHood getInstance()
    {
 	   if(instance == null)
@@ -28,26 +41,26 @@ public class ShooterHood extends Subsystem {
    }
    
    /**
-    * Sets the servo motor to a assigned position
-    * @param double pos
+    * Takes in a given position and moves motor to that position
+    * @param pos is a double from 1 to -1
     */
-   private void setPosition(double pos)
+   public void setPosition(double pos)
    {   
 	   hoodMotor1.setPosition(pos);
    }
    
    /**
-    * Gets the servo motor current position
-    * @param double pos
+    * Gets the servo motor's current position
+    * @param pos is a double from 1 to -1
     */
-   private void getPosition(double pos)
+   public void getPosition(double pos)
    {
 	   hoodMotor1.getPosition();
    }
    
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new SetHoodWheelPosition());
     }
 }
 
