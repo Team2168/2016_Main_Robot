@@ -50,6 +50,7 @@ public class RobotMap {
 	
 	//Channels 10-25 on MXP
 	
+	public static final int SHOOTER_HOOD_1 = 7;
 	
 	
 	//Analog Input Channels////////////////////////////////////////////////////
@@ -89,6 +90,7 @@ public class RobotMap {
 	/*************************************************************************
 	 *                         Hood PARAMETERS
 	 *************************************************************************/
+	public static final double SHOOTER_HOOD_ANGLE = 0;
 	
 	/*************************************************************************
 	 *                         Vision PARAMETERS
