@@ -22,16 +22,19 @@ public class RobotMap {
 	// Joysticks/////////////////////////////////////////////////////////////
 	public static final int DRIVER_JOYSTICK = 0;
 	public static final int OPERATOR_JOYSTICK = 1;
+
 	
-	// PWM (0 to 9)
+	// PWM (0 to 9) on RoboRio//////////////////////////////////////////////////
 	public static final int RIGHT_DRIVE_TRAIN_1 = 0;
 	public static final int RIGHT_DRIVE_TRAIN_2 = 1;
 	public static final int RIGHT_DRIVE_TRAIN_3 = 2;
 	public static final int LEFT_DRIVE_TRAIN_1 = 3;
 	public static final int LEFT_DRIVE_TRAIN_2 = 4;
 	public static final int LEFT_DRIVE_TRAIN_3 = 5;
-	public static final int SHOOTER_WHEEL_1= 6;
-	public static final int SHOOTER_WHEEL_2= 7;
+	public static final int SHOOTER_WHEEL_FWD= 6;
+	public static final int SHOOTER_WHEEL_AFT= 7;
+	public static final int INTAKE_WHEEL_LEFT = 8;
+	public static final int INTAKE_WHEEL_RIGHT = 9;
 	
 	//PDP Channels/////////////////////////////////////////////////////////////
 	
@@ -42,6 +45,8 @@ public class RobotMap {
 	//Digital IO Channels//////////////////////////////////////////////////////
 	//Channels 0-9 on RoboRio
 	
+
+
 	
 	//Channels 10-25 on MXP
 	
@@ -62,15 +67,20 @@ public class RobotMap {
 	public static boolean reverseRight = true;
 	public static boolean reverseLeft = false;
 	
+
 	/*************************************************************************
 	 *                         Shooter PARAMETERS
 	 *************************************************************************/
-	public static final boolean reverseShooterWheel1= false;
-	public static final boolean reverseShooterWheel2= false;
+	public static final boolean REVERSE_SHOOTER_WHEEL_FWD= false;
+	public static final boolean REVERSE_SHOOTER_WHEEL_AFT= false;
 
 	/*************************************************************************
 	 *                         Intake PARAMETERS
 	 *************************************************************************/
+	///Intake parameters//
+	public static final double INTAKE_SPEED_CONSTANT = 0.5;
+	public static final boolean REVERSE_INTAKE_WHEEL_RIGHT = true;
+	public static final boolean REVERSE_INTAKE_WHEEL_LEFT = false;
 	
 	/*************************************************************************
 	 *                         Indexer PARAMETERS
@@ -100,6 +110,6 @@ public class RobotMap {
 	public static final int TCPServerRightDrivetrainSpeed = 1182;
 	public static final int TCPServerLeftDrivetrainSpeed = 1183;
 
-	
+
 	
 }

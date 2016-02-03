@@ -15,8 +15,8 @@ public class Shooter extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
-	private Talon shooter1;
-	private Talon shooter2;
+	private Talon shooterFWD;
+	private Talon shooterAFT;
 	
 	static Shooter instance = null;
 		
@@ -27,8 +27,8 @@ public class Shooter extends Subsystem {
 	
 	private Shooter ()
 	{
-		shooter1 = new Talon (RobotMap.SHOOTER_WHEEL_1);
-		shooter2 = new Talon (RobotMap.SHOOTER_WHEEL_2);
+		shooterFWD = new Talon (RobotMap.SHOOTER_WHEEL_FWD);
+		shooterAFT = new Talon (RobotMap.SHOOTER_WHEEL_AFT);
 	}
 	
 	/**
@@ -52,8 +52,8 @@ public class Shooter extends Subsystem {
 	 */
 	public void driveShooter(double speed)
 	{
-		shooter1.set(speed);
-		shooter2.set(speed);
+		driveFWDShooterWheel(speed);
+		driveAFTShooterWheel(speed);
 		
 	}
 	
@@ -62,12 +62,12 @@ public class Shooter extends Subsystem {
 	 * @param speed -1 to 1
 	 * @author Krystina
 	 */
-	public void driveShooterWheel1(double speed)
+	public void driveFWDShooterWheel(double speed)
 	{
-		if(RobotMap.reverseShooterWheel1)
+		if(RobotMap.REVERSE_SHOOTER_WHEEL_FWD)
 			speed = -speed;
 		
-		shooter1.set(speed);
+		shooterFWD.set(speed);
 	}
 	
 	/**
@@ -75,12 +75,12 @@ public class Shooter extends Subsystem {
 	 * @param speed -1 to 1
 	 * @author Krystina
 	 */
-	public void driveShooterWheel2(double speed)
+	public void driveAFTShooterWheel(double speed)
 	{
-		if(RobotMap.reverseShooterWheel2)
+		if(RobotMap.REVERSE_SHOOTER_WHEEL_AFT)
 			speed = -speed;
 			
-		shooter2.set(speed);
+		shooterAFT.set(speed);
 	}
 	
     public void initDefaultCommand() {
