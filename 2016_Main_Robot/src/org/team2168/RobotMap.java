@@ -16,7 +16,10 @@ public class RobotMap {
     // public static int rangefinderPort = 1;
     // public static int rangefinderModule = 1;
 	
-	// Joysticks
+	/*************************************************************************
+	 *                              ROBORIO WIRING MAP
+	 *************************************************************************/
+	// Joysticks/////////////////////////////////////////////////////////////
 	public static final int DRIVER_JOYSTICK = 0;
 	public static final int OPERATOR_JOYSTICK = 1;
 	
@@ -27,17 +30,76 @@ public class RobotMap {
 	public static final int LEFT_DRIVE_TRAIN_1 = 3;
 	public static final int LEFT_DRIVE_TRAIN_2 = 4;
 	public static final int LEFT_DRIVE_TRAIN_3 = 5;
-	
 	public static final int SHOOTER_WHEEL_1= 6;
 	public static final int SHOOTER_WHEEL_2= 7;
 	
-	//Shooter parameters
-	public static final boolean reverseShooterWheel1= true;
-	public static final boolean reverseShooterWheel2= false;
+	//PDP Channels/////////////////////////////////////////////////////////////
 	
-	// Drivetrain parameters
+	//Solenoid Channels////////////////////////////////////////////////////////
+	
+	//Relay Channels///////////////////////////////////////////////////////////
+	
+	//Digital IO Channels//////////////////////////////////////////////////////
+	//Channels 0-9 on RoboRio
+	
+	
+	//Channels 10-25 on MXP
+	
+	
+	
+	//Analog Input Channels////////////////////////////////////////////////////
+	
+	
+	//Channels 4-7 on MXP
+	
+	
+	//CAN Device IDs///////////////////////////////////////////////////////////
+	
+	
+	/*************************************************************************
+	 *                         DRIVETRAIN PARAMETERS
+	 *************************************************************************/
 	public static boolean reverseRight = true;
 	public static boolean reverseLeft = false;
+	
+	/*************************************************************************
+	 *                         Shooter PARAMETERS
+	 *************************************************************************/
+	public static final boolean reverseShooterWheel1= false;
+	public static final boolean reverseShooterWheel2= false;
+
+	/*************************************************************************
+	 *                         Intake PARAMETERS
+	 *************************************************************************/
+	
+	/*************************************************************************
+	 *                         Indexer PARAMETERS
+	 *************************************************************************/
+	
+	/*************************************************************************
+	 *                         Hood PARAMETERS
+	 *************************************************************************/
+	
+	/*************************************************************************
+	 *                         Vision PARAMETERS
+	 *************************************************************************/
+	
+	/*************************************************************************
+	 *                         PID PARAMETERS
+	 *************************************************************************/
+	
+	
+	
+	
+	
+	/****************************************************************
+	 *                TCP Servers  (ONLY FOR DEBUGGING)             *
+	 ****************************************************************/
+	public static final int TCPServerDrivetrainPos = 1180;
+	public static final int TCPServerRotateController = 1181;
+	public static final int TCPServerRightDrivetrainSpeed = 1182;
+	public static final int TCPServerLeftDrivetrainSpeed = 1183;
+
 	
 	
 }

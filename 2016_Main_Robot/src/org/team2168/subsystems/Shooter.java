@@ -7,7 +7,8 @@ import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *
+ * Shooter Subsystem 
+ * @author Krystina
  */
 public class Shooter extends Subsystem {
     
@@ -21,7 +22,7 @@ public class Shooter extends Subsystem {
 		
 	/**
 	 * Private singleton constructor for Shooter_Superman
-	 * @author Krystina
+	 * 
 	 */
 	
 	private Shooter ()
@@ -32,6 +33,7 @@ public class Shooter extends Subsystem {
 	
 	/**
 	 * singleton object for Shooter_Superman
+	 * @return rerturns the shooter singleton object
 	 * @author Krystina
 	 */
 	

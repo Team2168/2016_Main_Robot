@@ -41,12 +41,20 @@ public class OI {
 	
 	public static OI instance = null;
 	
+	/**
+	 * Private constructor for singleton class which instantiates the OI object
+	 */
 	private OI(){
 		
 		driverJoystick = new F310(RobotMap.DRIVER_JOYSTICK);
 		operatorJoystick = new F310(RobotMap.OPERATOR_JOYSTICK);
 	}
 	
+	/**
+	 * 
+	 * Returns Operator Interface singleton object
+	 * @return is the current OI object
+	 */
 	public static OI getInstance(){
 		
 		if(instance == null)
