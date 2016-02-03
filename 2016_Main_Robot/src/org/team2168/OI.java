@@ -37,12 +37,14 @@ public class OI {
     // button.whenReleased(new ExampleCommand());
 	
 	public F310 driverJoystick;
+	public F310 operatorJoystick;
 	
 	public static OI instance = null;
 	
 	private OI(){
 		
 		driverJoystick = new F310(RobotMap.DRIVER_JOYSTICK);
+		operatorJoystick = new F310(RobotMap.OPERATOR_JOYSTICK);
 	}
 	
 	public static OI getInstance(){
