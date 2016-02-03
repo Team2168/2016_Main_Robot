@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  * Runs a motor forward and backwards and prints results to the SmartDashboard
  * for controls testing
- * 
+ * @author Ben Waid
  */
 public class CalibrateMotor extends Command {
 
@@ -49,16 +49,16 @@ public class CalibrateMotor extends Command {
     		this.motorNumber = motorPWMPort;
     	}
     	
-//    	if(motorPWMPort == RobotMap.SHOOTER_WHEEL_1 ||
-//    	   motorPWMPort == RobotMap.SHOOTER_WHEEL_2) {
+//    	if(motorPWMPort == RobotMap.SHOOTER_WHEEL_FWD ||
+//    	   motorPWMPort == RobotMap.SHOOTER_WHEEL_AFT) {
 //    		requires(Robot.shooter);
 //    		//TODO set this to the speed we want
 //			motorSpeed = 1.0;
 //    		this.motorNumber = motorPWMPort;
 //    	}
 //    	
-//    	if(motorPWMPort == RobotMap.INTAKE_WHEEL_1 ||
-//    	   motorPWMPort == RobotMap.INTAKE_WHEEL_2) {
+//    	if(motorPWMPort == RobotMap.INTAKE_WHEEL_LEFT ||
+//    	   motorPWMPort == RobotMap.INTAKE_WHEEL_RIGHT) {
 //    		requires(Robot.intake)
 //			//TODO set this to the speed we want
 //    		motorSpeed = 1.0;
@@ -97,11 +97,11 @@ public class CalibrateMotor extends Command {
 //    		case RobotMap.RIGHT_DRIVE_TRAIN_3:
 //    			motorPosition = Robot.drivetrain.getRightPosition();
 //    			break;
-//    		case RobotMap.SHOOTER_WHEEL_1:
-//    		case RobotMap.SHOOTER_WHEEL_2:
+//    		case RobotMap.SHOOTER_WHEEL_LEFT:
+//    		case RobotMap.SHOOTER_WHEEL_AFT:
 //    			motorPosition = Robot.shooter.getPosition();
 //				break;
-//    		case RobotMap.INTAKE_WHEEL_1:
+//    		case RobotMap.INTAKE_WHEEL_RIGHT:
 //    		case RobotMap.INTAKE_WHEEL2:
 //    			motorPosition = Robot.intake.getPosition();
 //				break;
@@ -148,16 +148,16 @@ public class CalibrateMotor extends Command {
     		case RobotMap.RIGHT_DRIVE_TRAIN_3:
     			 Robot.drivetrain.right1Drive(speed);
     			 break;
-//    		case RobotMap.SHOOTER_WHEEL_1:
+//    		case RobotMap.SHOOTER_WHEEL_FWD:
 //   			 Robot.shooter.driveShooter1(speed);
 //   			 break;
-//   		case RobotMap.SHOOTER_WHEEL_2:
+//   		case RobotMap.SHOOTER_WHEEL_AFT:
 //   			 Robot.shooter.driveShooter2(speed);
 //				 break;
-//   		case RobotMap.INTAKE_WHEEL_1:
+//   		case RobotMap.INTAKE_WHEEL_LEFT:
 //   			 Robot.intake.driveIntake1(speed);
 //   			 break;
-//   		case RobotMap.INTAKE_WHEEL2:
+//   		case RobotMap.INTAKE_WHEEL_RIGHT:
 //   			 Robot.intake.driveIntake2(speed);
 //				 break;
 //   		case RobotMap.INDEX_WHEEL:
@@ -220,16 +220,16 @@ public class CalibrateMotor extends Command {
     		case RobotMap.RIGHT_DRIVE_TRAIN_3:
     			 motorName = "Right Drivetrain 3";
     			 break;
-//    		case RobotMap.SHOOTER_WHEEL_1:
+//    		case RobotMap.SHOOTER_WHEEL_FWD:
 //    			 motorName = "Shooter Wheel 1";
 //    			 break;
-//    		case RobotMap.SHOOTER_WHEEL_2:
+//    		case RobotMap.SHOOTER_WHEEL_AFT:
 //    			 motorName = "Shooter Wheel 2";
 //				 break;
-//    		case RobotMap.INTAKE_WHEEL_1:
+//    		case RobotMap.INTAKE_WHEEL_LEFT:
 //    			 motorName = "Intake Wheel 1";
 //    			 break;
-//    		case RobotMap.INTAKE_WHEEL2:
+//    		case RobotMap.INTAKE_WHEEL_RIGHT:
 //    			 motorName = "Intake Wheel 2";
 //				break;
 //    		case RobotMap.INDEX_WHEEL:
