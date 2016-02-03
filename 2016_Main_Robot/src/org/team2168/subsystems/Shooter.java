@@ -62,6 +62,9 @@ public class Shooter extends Subsystem {
 	 */
 	public void driveShooterWheel1(double speed)
 	{
+		if(RobotMap.reverseShooterWheel1)
+			speed = -speed;
+		
 		shooter1.set(speed);
 	}
 	
@@ -72,6 +75,9 @@ public class Shooter extends Subsystem {
 	 */
 	public void driveShooterWheel2(double speed)
 	{
+		if(RobotMap.reverseShooterWheel2)
+			speed = -speed;
+			
 		shooter2.set(speed);
 	}
 	

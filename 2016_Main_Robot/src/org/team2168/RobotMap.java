@@ -31,7 +31,9 @@ public class RobotMap {
 	public static final int SHOOTER_WHEEL_1= 6;
 	public static final int SHOOTER_WHEEL_2= 7;
 	
-	
+	//Shooter parameters
+	public static final boolean reverseShooterWheel1= true;
+	public static final boolean reverseShooterWheel2= false;
 	
 	// Drivetrain parameters
 	public static boolean reverseRight = true;
