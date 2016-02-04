@@ -8,13 +8,18 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class SetHoodMotorAngle extends Command {
+public class DriveShooterHoodToAngle extends Command {
 
-    public SetHoodMotorAngle() {
+	double angle;
+	
+	public DriveShooterHoodToAngle(double inputAngle) {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.shooterhood);
+        
+        angle = inputAngle;
     }
 
+    
     // Called just before this Command runs the first time
     protected void initialize() {
     }
@@ -24,12 +29,12 @@ public class SetHoodMotorAngle extends Command {
      */
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.shooterhood.setAngle(RobotMap.SHOOTER_HOOD_ANGLE);
+    	Robot.shooterhood.setAngle(angle);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if (Robot.shooterhood.getAngle() == RobotMap.SHOOTER_HOOD_ANGLE)
+        if (Robot.shooterhood.getAngle() == angle)
         	return true;
         else
         	return false;
