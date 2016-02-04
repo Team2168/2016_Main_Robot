@@ -6,7 +6,7 @@ import org.team2168.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Drives the indexer using the right joystick on the operator controller
  */
 public class DriveIndexerWithJoysticks extends Command {
 
