@@ -23,9 +23,8 @@ public class ShooterHood extends Subsystem {
    /**
     * Default constructor for ShooterHood subsystem
     */
-   private ShooterHood(){
-	   
-	   hoodMotor1 = new Servo(RobotMap.SHOOTER_HOOD_1);
+   private ShooterHood() {
+	   hoodMotor1 = new Servo(RobotMap.SHOOTER_HOOD_SERVO);
    }
 
    /**
