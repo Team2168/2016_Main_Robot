@@ -2,7 +2,6 @@ package org.team2168.subsystems;
 
 import org.team2168.RobotMap;
 
-
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -50,7 +49,8 @@ public class ShooterHood extends Subsystem {
    }
    
    /**
-    * Finds the motor's current angle
+    * Finds the motor's current angle 
+    * @return is the value of the angle
     */
    public double getAngle()
    {
