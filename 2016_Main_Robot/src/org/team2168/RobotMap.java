@@ -33,24 +33,25 @@ public class RobotMap {
 	public static final int LEFT_DRIVE_TRAIN_3 = 5;
 	public static final int SHOOTER_WHEEL_FWD= 6;
 	public static final int SHOOTER_WHEEL_AFT= 7;
-	public static final int INTAKE_WHEEL_LEFT = 8;
-	public static final int INTAKE_WHEEL_RIGHT = 9;
-	
+	public static final int SHOOTER_HOOD_SERVO = 9;
+
+	//Channels 10-25 on MXP
+	public static final int INTAKE_WHEEL_LEFT = 10;
+	public static final int INTAKE_WHEEL_RIGHT = 11;
+
+
 	//PDP Channels/////////////////////////////////////////////////////////////
 	
 	//Solenoid Channels////////////////////////////////////////////////////////
+	public static final int INTAKE_EXTEND = 0;
+	public static final int INTAKE_RETRACT = 1;
+	
 	
 	//Relay Channels///////////////////////////////////////////////////////////
 	
 	//Digital IO Channels//////////////////////////////////////////////////////
 	//Channels 0-9 on RoboRio
-	
 
-
-	
-	//Channels 10-25 on MXP
-	
-	public static final int SHOOTER_HOOD_1 = 7;
 	
 	
 	//Analog Input Channels////////////////////////////////////////////////////
@@ -67,7 +68,6 @@ public class RobotMap {
 	 *************************************************************************/
 	public static boolean reverseRight = true;
 	public static boolean reverseLeft = false;
-	
 
 	/*************************************************************************
 	 *                         Shooter PARAMETERS
@@ -78,7 +78,6 @@ public class RobotMap {
 	/*************************************************************************
 	 *                         Intake PARAMETERS
 	 *************************************************************************/
-	///Intake parameters//
 	public static final double INTAKE_SPEED_CONSTANT = 0.5;
 	public static final boolean REVERSE_INTAKE_WHEEL_RIGHT = true;
 	public static final boolean REVERSE_INTAKE_WHEEL_LEFT = false;
