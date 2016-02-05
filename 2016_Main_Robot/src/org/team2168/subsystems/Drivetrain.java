@@ -2,6 +2,7 @@ package org.team2168.subsystems;
 
 import org.team2168.RobotMap;
 import org.team2168.commands.drivetrain.DriveWithJoysticks;
+import org.team2168.utils.BNO055;
 
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -11,31 +12,32 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * @author Peter Dentch
  */
 public class Drivetrain extends Subsystem {
-    
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
+	
+	private static Drivetrain instance = null;
 	
 	// Drivetrain member variables, the motor controllers
-	private Talon leftMotor1;
-	private Talon leftMotor2;
-	private Talon leftMotor3;
-	private Talon rightMotor1;
-	private Talon rightMotor2;
-	private Talon rightMotor3;
+	private static Talon leftMotor1;
+	private static Talon leftMotor2;
+	private static Talon leftMotor3;
+	private static Talon rightMotor1;
+	private static Talon rightMotor2;
+	private static Talon rightMotor3;
 	
-	static Drivetrain instance = null;
+	private static BNO055 imu;
 	
 	/**
 	 * Default constructors for the Drivetrain subsystem
 	 */
 	private Drivetrain(){
-		
 		leftMotor1 = new Talon(RobotMap.LEFT_DRIVE_TRAIN_1);
 		leftMotor2 = new Talon(RobotMap.LEFT_DRIVE_TRAIN_2);
 		leftMotor3 = new Talon(RobotMap.LEFT_DRIVE_TRAIN_3);
 		rightMotor1 = new Talon(RobotMap.RIGHT_DRIVE_TRAIN_1);
 		rightMotor2 = new Talon(RobotMap.RIGHT_DRIVE_TRAIN_2);
 		rightMotor3 = new Talon(RobotMap.RIGHT_DRIVE_TRAIN_3);
+		
+		imu = BNO055.getInstance(BNO055.opmode_t.OPERATION_MODE_IMUPLUS,
+				BNO055.vector_type_t.VECTOR_EULER);
 	}
 	
 	/**
@@ -153,6 +155,21 @@ public class Drivetrain extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         setDefaultCommand(new DriveWithJoysticks());
+    }
+
+    /**
+     * Get the heading of the robot
+     * @return heading in degrees (doesn't roll over at 360)
+     */
+    public static double getHeading() {
+    	return imu.getHeading();
+    }
+    
+    /**
+     * Reset the heading of the IMU
+     */
+    public static void reset() {
+    	imu.resetHeading();
     }
 }
 
