@@ -1,6 +1,7 @@
 
 package org.team2168;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -24,43 +25,46 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
-
 	public static OI oi;
-	
+
 	public static Drivetrain drivetrain;
-	public static Shooter shooter;
 	public static Intake intake;
+	public static Indexer indexer;
+	public static Shooter shooter;
 	public static ShooterHood shooterhood;
 
-	public static Indexer indexer;
-	
     Command autonomousCommand;
     SendableChooser chooser;
+    
+    Compressor comp;
 
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
     public void robotInit() {
-    	
+        chooser = new SendableChooser();
+        
     	drivetrain = Drivetrain.getInstance();
     	shooter = Shooter.getInstance();
     	shooterhood = ShooterHood.getInstance();
     	intake = Intake.getInstance();
     	indexer = Indexer.getInstance();
 
-        chooser = new SendableChooser();
         oi = OI.getInstance();
         
-       // chooser.addDefault("Default Auto", new ExampleCommand());
-       //chooser.addObject("My Auto", new MyAutoCommand());
+//        chooser.addDefault("Default Auto", new ExampleCommand());
+//        chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
         
+        comp = new Compressor();
+        comp.start();
+
         System.out.println("Robot Done Loading");
     }
 	
 	/**
-     * This function is called once each time the robot enters Disabled mode.
+     * This method is called once each time the robot enters Disabled mode.
      * You can use it to reset any subsystem information you want to clear when
 	 * the robot is disabled.
      */
@@ -68,6 +72,9 @@ public class Robot extends IterativeRobot {
 
     }
 	
+    /**
+     * This method is called repeatedly while the robot is disabled.
+     */
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 	}
@@ -100,12 +107,15 @@ public class Robot extends IterativeRobot {
     }
 
     /**
-     * This function is called periodically during autonomous
+     * This method is called periodically during autonomous
      */
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
     }
 
+    /**
+     * Called once when the robot enters the teloperated mode.
+     */
     public void teleopInit() {
 		// This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to 
@@ -115,14 +125,14 @@ public class Robot extends IterativeRobot {
     }
 
     /**
-     * This function is called periodically during operator control
+     * This method is called periodically during operator control
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
     }
     
     /**
-     * This function is called periodically during test mode
+     * This method is called periodically during test mode
      */
     public void testPeriodic() {
         LiveWindow.run();

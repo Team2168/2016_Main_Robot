@@ -37,10 +37,10 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
 	
-	public F310 driverJoystick;
-	public F310 operatorJoystick;
+	public static F310 driverJoystick;
+	public static F310 operatorJoystick;
 
-	public static OI instance = null;
+	private static OI instance = null;
 	
 	/**
 	 * Private constructor for singleton class which instantiates the OI object
