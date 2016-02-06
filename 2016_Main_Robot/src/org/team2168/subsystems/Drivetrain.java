@@ -79,37 +79,34 @@ public class Drivetrain extends Subsystem {
 	
 	/**
 	 * Takes in a double speed and sets it to the left motors
-	 * @param speed is a double from 1 to -1
+	 * @param speed is a double from 1 to -1,
+	 * with positive values being forward, negative values being backward, and zero being stationary
 	 */
 	public void driveLeft(double speed){
 		
-		if(RobotMap.REVERSE_LEFT)
-			speed = -speed;
-		
-		leftMotor1.set(speed);
-		leftMotor2.set(speed);
-		leftMotor3.set(speed);
+		setLeftMotor1(speed);
+		setLeftMotor2(speed);
+		setLeftMotor3(speed);
 	}
 	
 	/**
 	 * Takes in a double speed and sets it to the right motors
-	 * @param speed is a double from 1 to -1
+	 * @param speed is a double from 1 to -1, 
+	 * with positive values being forward, negative values being backward, and zero being stationary
 	 */
 	public void driveRight(double speed){
 		
-		if(RobotMap.REVERSE_RIGHT)
-			speed = -speed;
-		
-		rightMotor1.set(speed);
-		rightMotor2.set(speed);
-		rightMotor3.set(speed);
+		setRightMotor1(speed);
+		setRightMotor2(speed);
+		setRightMotor3(speed);
 	}
 	
 	/**
 	 * Takes in the speed for the left and speed for the right and sets them to their
 	 * respective side motors 
-	 * @param leftSpeed is a double from 1 to -1
-	 * @param rightSpeed is a double from 1 to -1
+	 * @param leftSpeed is a double from 1 to -1,
+	 * @param rightSpeed is a double from 1 to -1,
+	 * with positive values being forward, negative values being backward, and zero being stationary
 	 */
 	public void tankDrive(double leftSpeed, double rightSpeed){
 		
@@ -119,9 +116,10 @@ public class Drivetrain extends Subsystem {
 	
 	/**
 	 * Takes in a double speed and sets it to the first left motor
-	 * @param speed is a double from 1 to -1
+	 * @param speed is a double from 1 to -1,
+	 * with positive values being forward, negative values being backward, and zero being stationary
 	 */
-	public void left1Drive(double speed){
+	public void setLeftMotor1(double speed){
 		if(RobotMap.REVERSE_LEFT)
 			speed = -speed;
 		leftMotor1.set(speed);
@@ -129,9 +127,10 @@ public class Drivetrain extends Subsystem {
 	
 	/**
 	 * Takes in a double speed and sets it to the second left motor
-	 * @param speed is a double from 1 to -1
+	 * @param speed is a double from 1 to -1,
+	 * with positive values being forward, negative values being backward, and zero being stationary
 	 */
-	public void left2Drive(double speed){
+	public void setLeftMotor2(double speed){
 		if(RobotMap.REVERSE_LEFT)
 			speed = -speed;
 		leftMotor2.set(speed);
@@ -139,9 +138,10 @@ public class Drivetrain extends Subsystem {
 	
 	/**
 	 * Takes in a double speed and sets it to the third left motor
-	 * @param speed is a double from 1 to -1
+	 * @param speed is a double from 1 to -1,
+	 * with positive values being forward, negative values being backward, and zero being stationary
 	 */
-	public void left3Drive(double speed){
+	public void setLeftMotor3(double speed){
 		if(RobotMap.REVERSE_LEFT)
 			speed = -speed;
 		leftMotor3.set(speed);
@@ -149,9 +149,10 @@ public class Drivetrain extends Subsystem {
 	
 	/**
 	 * Takes in a double speed and sets it to the first right motor
-	 * @param speed is a double from 1 to -1
+	 * @param speed is a double from 1 to -1,
+	 * with positive values being forward, negative values being backward, and zero being stationary
 	 */
-	public void right1Drive(double speed){
+	public void setRightMotor1(double speed){
 		if(RobotMap.REVERSE_RIGHT)
 			speed = -speed;
 		rightMotor1.set(speed);
@@ -159,9 +160,10 @@ public class Drivetrain extends Subsystem {
 	
 	/**
 	 * Takes in a double speed and sets it to the second right motor
-	 * @param speed is a double from 1 to -1
+	 * @param speed is a double from 1 to -1,
+	 * with positive values being forward, negative values being backward, and zero being stationary
 	 */
-	public void right2Drive(double speed){
+	public void setRightMotor2(double speed){
 		if(RobotMap.REVERSE_RIGHT)
 			speed = -speed;
 		rightMotor2.set(speed);
@@ -169,9 +171,10 @@ public class Drivetrain extends Subsystem {
 	
 	/**
 	 * Takes in a double speed and sets it to the third right motor
-	 * @param speed is a double from 1 to -1
+	 * @param speed is a double from 1 to -1,
+	 * with positive values being forward, negative values being backward, and zero being stationary
 	 */
-	public void right3Drive(double speed){
+	public void setRightMotor3(double speed){
 		if(RobotMap.REVERSE_RIGHT)
 			speed = -speed;
 		rightMotor3.set(speed);
@@ -179,7 +182,8 @@ public class Drivetrain extends Subsystem {
 	
 	/**
 	 * Gets the distance traveled by the left wheels
-	 * @return distance traveled in feet
+	 * @return distance traveled in feet,
+	 * with positive values being forward and negative values being backward
 	 */
 	public double getLeftPosition(){
 		return drivetrainLeftEncoder.getPos();
@@ -187,7 +191,8 @@ public class Drivetrain extends Subsystem {
 	
 	/**
 	 * Gets the distance traveled by the right wheels
-	 * @return distance traveled in feet
+	 * @return distance traveled in feet,
+	 * with positive values being forward and negative values being backward
 	 */
 	public double getRightPosition(){
 		return drivetrainRightEncoder.getPos();
@@ -195,7 +200,8 @@ public class Drivetrain extends Subsystem {
 	
 	/**
 	 * Gets the distance traveled by the chassis
-	 * @return the average distance in inches traveled by the left and right wheels
+	 * @return the average distance in inches traveled by the left and right wheels,
+	 * with positive values being forward and negative values being backward
 	 */
 	public double getAverageDistance(){
 		return (getLeftPosition() + getRightPosition()) / 2.0;
