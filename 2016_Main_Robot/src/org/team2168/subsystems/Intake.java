@@ -27,7 +27,7 @@ public class Intake extends Subsystem {
 	 */
 	private Intake()
 	{
-		intakePiston = new DoubleSolenoid(RobotMap.INTAKE_WHEEL_LEFT, RobotMap.INTAKE_WHEEL_RIGHT);
+		intakePiston = new DoubleSolenoid(RobotMap.INTAKE_EXTEND, RobotMap.INTAKE_RETRACT);
 		intakeWheelLeft = new Victor(RobotMap.INTAKE_WHEEL_LEFT);
 		intakeWheelRight = new Victor(RobotMap.INTAKE_WHEEL_RIGHT);
 	}
