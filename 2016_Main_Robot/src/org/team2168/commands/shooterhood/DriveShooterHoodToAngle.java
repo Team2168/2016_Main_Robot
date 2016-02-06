@@ -6,30 +6,43 @@ import org.team2168.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ *This command sets the angle of the DriveShooterHood motor
+ *@author Harris Jilani
  */
-public class SetHoodMotorAngle extends Command {
+public class DriveShooterHoodToAngle extends Command {
 
-    public SetHoodMotorAngle() {
+	double angle;
+	
+	/**
+	 * This is the constructor which sets inputAngle to the double angle
+	 * @param takes in inputAngle
+	 */
+	public DriveShooterHoodToAngle(double inputAngle) {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.shooterhood);
+        
+        angle = inputAngle;
     }
 
+    
     // Called just before this Command runs the first time
     protected void initialize() {
     }
     
     /**
-     * takes in a value for the motor's position and moves motor to said position
+     * takes in a double angle for the motor's position and moves motor to said position
      */
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.shooterhood.setAngle(RobotMap.SHOOTER_HOOD_ANGLE);
+    	Robot.shooterhood.setAngle(angle);
     }
 
+    /**
+     * when the angle of the motor equals the set angle, the command terminates
+     */
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if (Robot.shooterhood.getAngle() == RobotMap.SHOOTER_HOOD_ANGLE)
+        if (Robot.shooterhood.getAngle() == angle)
         	return true;
         else
         	return false;
