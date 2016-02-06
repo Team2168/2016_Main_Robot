@@ -1,5 +1,6 @@
 package org.team2168;
 
+import org.team2168.commands.Intake.IntakeWithJoystick;
 import org.team2168.utils.F310;
 
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -38,14 +39,27 @@ public class OI {
 	
 	public F310 driverJoystick;
 	public F310 operatorJoystick;
+
 	public static OI instance = null;
 	
+	/**
+	 * Private constructor for singleton class which instantiates the OI object
+	 */
 	private OI(){
-		
 		driverJoystick = new F310(RobotMap.DRIVER_JOYSTICK);
 		operatorJoystick = new F310(RobotMap.OPERATOR_JOYSTICK);
+
+		//Driver Joystick Buttons
+
+
+		//Operator Joystick Buttons
+		operatorJoystick.ButtonA().whenPressed(new IntakeWithJoystick());
 	}
 	
+	/**
+	 * Returns Operator Interface singleton object
+	 * @return is the current OI object
+	 */
 	public static OI getInstance(){
 		
 		if(instance == null)
@@ -53,6 +67,4 @@ public class OI {
 		
 		return instance;
 	}
-	
 }
-
