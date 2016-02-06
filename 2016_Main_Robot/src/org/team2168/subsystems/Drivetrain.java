@@ -1,7 +1,6 @@
 package org.team2168.subsystems;
 
 import org.team2168.RobotMap;
-import org.team2168.PID.sensors.ADXRS453Gyro;
 import org.team2168.PID.sensors.AverageEncoder;
 import org.team2168.commands.drivetrain.DriveWithJoysticks;
 import org.team2168.utils.BNO055;
@@ -14,10 +13,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * @author Peter Dentch
  */
 public class Drivetrain extends Subsystem {
-	
-	
-	
-	// Drivetrain member variables, the motor controllers
 	private static Talon leftMotor1;
 	private static Talon leftMotor2;
 	private static Talon leftMotor3;
@@ -25,7 +20,6 @@ public class Drivetrain extends Subsystem {
 	private static Talon rightMotor2;
 	private static Talon rightMotor3;
 	
-
 	private static BNO055 imu;
 
 	public AverageEncoder drivetrainLeftEncoder;
@@ -45,7 +39,6 @@ public class Drivetrain extends Subsystem {
 		rightMotor2 = new Talon(RobotMap.RIGHT_DRIVE_TRAIN_2);
 		rightMotor3 = new Talon(RobotMap.RIGHT_DRIVE_TRAIN_3);
 		
-
 		imu = BNO055.getInstance(BNO055.opmode_t.OPERATION_MODE_IMUPLUS,
 				BNO055.vector_type_t.VECTOR_EULER);
 
@@ -70,7 +63,6 @@ public class Drivetrain extends Subsystem {
 				RobotMap.DRIVE_SPEED_RETURN_TYPE,
 				RobotMap.DRIVE_POS_RETURN_TYPE,
 				RobotMap.DRIVE_AVG_ENCODER_VAL);
-
 	}
 	
 	/**
@@ -78,7 +70,6 @@ public class Drivetrain extends Subsystem {
 	 * @return is the current drivetrain object
 	 */
 	public static Drivetrain getInstance(){
-		
 		if(instance == null)
 			instance = new Drivetrain();
 		
@@ -91,7 +82,6 @@ public class Drivetrain extends Subsystem {
 	 * with positive values being forward, negative values being backward, and zero being stationary
 	 */
 	public void driveLeft(double speed){
-		
 		setLeftMotor1(speed);
 		setLeftMotor2(speed);
 		setLeftMotor3(speed);
@@ -103,7 +93,6 @@ public class Drivetrain extends Subsystem {
 	 * with positive values being forward, negative values being backward, and zero being stationary
 	 */
 	public void driveRight(double speed){
-		
 		setRightMotor1(speed);
 		setRightMotor2(speed);
 		setRightMotor3(speed);
@@ -117,7 +106,6 @@ public class Drivetrain extends Subsystem {
 	 * with positive values being forward, negative values being backward, and zero being stationary
 	 */
 	public void tankDrive(double leftSpeed, double rightSpeed){
-		
 		driveLeft(leftSpeed);
 		driveRight(rightSpeed);
 	}
@@ -251,10 +239,26 @@ public class Drivetrain extends Subsystem {
     }
     
     /**
-     * Reset the heading of the IMU
+     * Reset the heading of the IMU to zero degrees
      */
     public static void reset() {
     	imu.resetHeading();
+    }
+    
+    /**
+     * 
+     * @return the robots pitch +/- 180 degrees
+     */
+    public static double getPitchAngle() {
+    	return imu.getVector()[2];
+    }
+    
+    /**
+     * 
+     * @return the robots roll +/- 90 degrees
+     */
+    public static double getRollAngle() {
+    	return imu.getVector()[1];
     }
 }
 
