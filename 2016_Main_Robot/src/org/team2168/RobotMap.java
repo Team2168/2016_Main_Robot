@@ -66,6 +66,7 @@ public class RobotMap{
 	/*************************************************************************
 	 *                         DRIVETRAIN PARAMETERS
 	 *************************************************************************/
+
 	
 	public static final boolean REVERSE_RIGHT = true;
 	public static final boolean REVERSE_LEFT = false;
