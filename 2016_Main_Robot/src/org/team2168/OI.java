@@ -49,18 +49,14 @@ public class OI {
 		driverJoystick = new F310(RobotMap.DRIVER_JOYSTICK);
 		operatorJoystick = new F310(RobotMap.OPERATOR_JOYSTICK);
 
-		
 		//Driver Joystick Buttons
-		
-		
-		
+
+
 		//Operator Joystick Buttons
 		operatorJoystick.ButtonA().whenPressed(new IntakeWithJoystick());
-
 	}
 	
 	/**
-	 * 
 	 * Returns Operator Interface singleton object
 	 * @return is the current OI object
 	 */
@@ -71,6 +67,4 @@ public class OI {
 		
 		return instance;
 	}
-	
 }
-

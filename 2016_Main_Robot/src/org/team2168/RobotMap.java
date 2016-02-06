@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.CounterBase;
  * the wiring easier and significantly reduces the number of magic numbers
  * floating around.
  */
-public class RobotMap{
+public class RobotMap {
 
 	/*************************************************************************
 	 *                              ROBORIO WIRING MAP
@@ -28,6 +28,7 @@ public class RobotMap{
 	public static final int LEFT_DRIVE_TRAIN_3 = 5;
 	public static final int SHOOTER_WHEEL_FWD= 6;
 	public static final int SHOOTER_WHEEL_AFT= 7;
+	public static final int INDEX_WHEEL = 8;
 	public static final int SHOOTER_HOOD_SERVO = 9;
 
 	//Channels 10-25 on MXP
@@ -36,11 +37,11 @@ public class RobotMap{
 
 
 	//PDP Channels/////////////////////////////////////////////////////////////
-	
+
+
 	//Solenoid Channels////////////////////////////////////////////////////////
 	public static final int INTAKE_EXTEND = 0;
 	public static final int INTAKE_RETRACT = 1;
-	
 
 
 	//Digital IO Channels//////////////////////////////////////////////////////
@@ -66,11 +67,9 @@ public class RobotMap{
 	/*************************************************************************
 	 *                         DRIVETRAIN PARAMETERS
 	 *************************************************************************/
+	public static final boolean DT_REVERSE_RIGHT = true;
+	public static final boolean DT_REVERSE_LEFT = false;
 
-	public static final boolean REVERSE_RIGHT = true;
-	public static final boolean REVERSE_LEFT = false;
-
-	
 	private static final int DRIVE_PULSE_PER_ROTATION = 256; //encoder ticks per rotation
 	private static final double DRIVE_GEAR_RATIO = 24.0/15.0; //ratio between wheel
 	private static final double DRIVE_WHEEL_DIAMETER = 6;
@@ -95,34 +94,36 @@ public class RobotMap{
 	public static final boolean REVERSE_SHOOTER_WHEEL_FWD= false;
 	public static final boolean REVERSE_SHOOTER_WHEEL_AFT= false;
 
+
 	/*************************************************************************
 	 *                         Intake PARAMETERS
 	 *************************************************************************/
 	public static final double INTAKE_SPEED_CONSTANT = 0.5;
 	public static final boolean REVERSE_INTAKE_WHEEL_RIGHT = true;
 	public static final boolean REVERSE_INTAKE_WHEEL_LEFT = false;
-	
+
+
 	/*************************************************************************
 	 *                         Indexer PARAMETERS
 	 *************************************************************************/
-	
+
+
 	/*************************************************************************
 	 *                         Hood PARAMETERS
 	 *************************************************************************/
 	public static final double SHOOTER_HOOD_ANGLE = 0;
 	
+	
 	/*************************************************************************
 	 *                         Vision PARAMETERS
 	 *************************************************************************/
-	
+
+
 	/*************************************************************************
 	 *                         PID PARAMETERS
 	 *************************************************************************/
-	
-	
-	
-	
-	
+
+
 	/****************************************************************
 	 *                TCP Servers  (ONLY FOR DEBUGGING)             *
 	 ****************************************************************/
@@ -130,7 +131,4 @@ public class RobotMap{
 	public static final int TCPServerRotateController = 1181;
 	public static final int TCPServerRightDrivetrainSpeed = 1182;
 	public static final int TCPServerLeftDrivetrainSpeed = 1183;
-
-
-
-	}
+}
