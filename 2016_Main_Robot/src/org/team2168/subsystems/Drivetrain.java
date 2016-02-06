@@ -116,7 +116,7 @@ public class Drivetrain extends Subsystem {
 	 * with positive values being forward, negative values being backward, and zero being stationary
 	 */
 	public void setLeftMotor1(double speed){
-		if(RobotMap.REVERSE_LEFT)
+		if(RobotMap.DT_REVERSE_LEFT)
 			speed = -speed;
 		leftMotor1.set(speed);
 	}
@@ -127,7 +127,7 @@ public class Drivetrain extends Subsystem {
 	 * with positive values being forward, negative values being backward, and zero being stationary
 	 */
 	public void setLeftMotor2(double speed){
-		if(RobotMap.REVERSE_LEFT)
+		if(RobotMap.DT_REVERSE_LEFT)
 			speed = -speed;
 		leftMotor2.set(speed);
 	}
@@ -138,7 +138,7 @@ public class Drivetrain extends Subsystem {
 	 * with positive values being forward, negative values being backward, and zero being stationary
 	 */
 	public void setLeftMotor3(double speed){
-		if(RobotMap.REVERSE_LEFT)
+		if(RobotMap.DT_REVERSE_LEFT)
 			speed = -speed;
 		leftMotor3.set(speed);
 	}
@@ -149,7 +149,7 @@ public class Drivetrain extends Subsystem {
 	 * with positive values being forward, negative values being backward, and zero being stationary
 	 */
 	public void setRightMotor1(double speed){
-		if(RobotMap.REVERSE_RIGHT)
+		if(RobotMap.DT_REVERSE_RIGHT)
 			speed = -speed;
 		rightMotor1.set(speed);
 	}
@@ -160,7 +160,7 @@ public class Drivetrain extends Subsystem {
 	 * with positive values being forward, negative values being backward, and zero being stationary
 	 */
 	public void setRightMotor2(double speed){
-		if(RobotMap.REVERSE_RIGHT)
+		if(RobotMap.DT_REVERSE_RIGHT)
 			speed = -speed;
 		rightMotor2.set(speed);
 	}
@@ -171,7 +171,7 @@ public class Drivetrain extends Subsystem {
 	 * with positive values being forward, negative values being backward, and zero being stationary
 	 */
 	public void setRightMotor3(double speed){
-		if(RobotMap.REVERSE_RIGHT)
+		if(RobotMap.DT_REVERSE_RIGHT)
 			speed = -speed;
 		rightMotor3.set(speed);
 	}
