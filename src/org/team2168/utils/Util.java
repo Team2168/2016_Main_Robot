@@ -71,7 +71,7 @@ public class Util {
 	 * string at each occurrence of the given delimiter.
 	 */
 	public static String[] split(String input, String delimiter) {
-		Vector node = new Vector();
+		Vector<String> node = new Vector<String>();
 		int index = input.indexOf(delimiter);
 		while (index >= 0) {
 			node.addElement(input.substring(0, index));
