@@ -22,6 +22,13 @@ public class Intake extends Subsystem {
 	private static Intake instance = null;
 	
 	/**
+	 * Values used for motor calibration
+	 * Changed to true when calibration passes
+	 */
+	public static boolean intakeLeftPass = false;
+	public static boolean intakeRightPass = false;
+	
+	/**
 	 * private constructor for the Singleton intake subsystem
 	 * @author jkaroul
 	 */

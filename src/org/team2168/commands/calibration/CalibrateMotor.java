@@ -24,7 +24,6 @@ public class CalibrateMotor extends Command {
 	
 	private int motorNumber;
 	
-	private String status;
 	
 	//TODO find change is position desired
 	private double minPositionChange = 1.0;
@@ -131,38 +130,38 @@ public class CalibrateMotor extends Command {
     protected void setSpeed(double speed) {
     	switch(motorNumber) {
     		case RobotMap.LEFT_DRIVE_TRAIN_1:
-    			 Robot.drivetrain.left1Drive(speed);
+    			 Robot.drivetrain.setLeftMotor1(speed);
     			 break;
     		case RobotMap.LEFT_DRIVE_TRAIN_2:
-    			 Robot.drivetrain.left1Drive(speed);
+    			 Robot.drivetrain.setLeftMotor2(speed);
     			 break;
     		case RobotMap.LEFT_DRIVE_TRAIN_3:
-    			 Robot.drivetrain.left1Drive(speed);
+    			 Robot.drivetrain.setLeftMotor3(speed);
     			 break;
     		case RobotMap.RIGHT_DRIVE_TRAIN_1:
-   			 	 Robot.drivetrain.right1Drive(speed);
+   			 	 Robot.drivetrain.setRightMotor1(speed);
    			 	 break;
     		case RobotMap.RIGHT_DRIVE_TRAIN_2:
-    			 Robot.drivetrain.right1Drive(speed);
+    			 Robot.drivetrain.setRightMotor2(speed);
     			 break;
     		case RobotMap.RIGHT_DRIVE_TRAIN_3:
-    			 Robot.drivetrain.right1Drive(speed);
+    			 Robot.drivetrain.setRightMotor3(speed);
     			 break;
-//    		case RobotMap.SHOOTER_WHEEL_FWD:
-//   			 Robot.shooter.driveShooter1(speed);
-//   			 break;
-//   		case RobotMap.SHOOTER_WHEEL_AFT:
-//   			 Robot.shooter.driveShooter2(speed);
-//				 break;
-//   		case RobotMap.INTAKE_WHEEL_LEFT:
-//   			 Robot.intake.driveIntake1(speed);
-//   			 break;
-//   		case RobotMap.INTAKE_WHEEL_RIGHT:
-//   			 Robot.intake.driveIntake2(speed);
-//				 break;
-//   		case RobotMap.INDEX_WHEEL:
-//   			 Robot.index.driveIndex(speed);
-//	    		 break;
+    		case RobotMap.SHOOTER_WHEEL_FWD:
+    			 Robot.shooter.driveFWDShooterWheel(speed);
+    			 break;
+    		case RobotMap.SHOOTER_WHEEL_AFT:
+    			 Robot.shooter.driveAFTShooterWheel(speed);
+				 break;
+    		case RobotMap.INTAKE_WHEEL_LEFT:
+    			 Robot.intake.driveIntakeWheelLeft(speed);
+    			 break;
+    		case RobotMap.INTAKE_WHEEL_RIGHT:
+    			 Robot.intake.driveIntakeWheelRight(speed);
+				 break;
+    		case RobotMap.INDEX_WHEEL:
+    			 Robot.indexer.setSpeed(speed);
+	    		 break;
     		default:
     			 break;
     	}
@@ -188,59 +187,59 @@ public class CalibrateMotor extends Command {
      */
     protected void end() {
     	
-    	String motorName = null;
-    	
+    	boolean pass;
     	double positionChange;
     	
     	positionChange = getPosition() - startPosition;
-    	if(positionChange >= minPositionChange) {
-    		status = "Pass";
-    	}
-    	
-    	if(positionChange < minPositionChange) {
-    		status = "Fail";
-    	}
     	
     	switch(motorNumber){
     		case RobotMap.LEFT_DRIVE_TRAIN_1:
-    			 motorName = "Left Drivetrain 1";
-    			 break;
+    		    pass = (positionChange >= minPositionChange);
+    		    Robot.drivetrain.leftMotor1Pass = pass;
+    			break;
     		case RobotMap.LEFT_DRIVE_TRAIN_2:
-    			 motorName = "Left Drivetrain 2";
-    			 break;
+    			pass = (positionChange >= minPositionChange);
+    			Robot.drivetrain.leftMotor2Pass = pass;
+    			break;
     		case RobotMap.LEFT_DRIVE_TRAIN_3:
-    			 motorName = "Left Drivetrain 3";
-    			 break;
+    			pass = (positionChange >= minPositionChange);
+    			Robot.drivetrain.leftMotor3Pass = pass;
+    			break;
     		case RobotMap.RIGHT_DRIVE_TRAIN_1:
-    			 motorName = "Right Drivetrain 1";
-    			 break;
+    			pass = (positionChange >= minPositionChange);
+    			Robot.drivetrain.rightMotor1Pass = pass;
+    			break;
     		case RobotMap.RIGHT_DRIVE_TRAIN_2:
-    			 motorName = "Right Drivetrain 2";
-    			 break;
+    			pass = (positionChange >= minPositionChange);
+    			Robot.drivetrain.rightMotor2Pass = pass;
+    			break;
     		case RobotMap.RIGHT_DRIVE_TRAIN_3:
-    			 motorName = "Right Drivetrain 3";
-    			 break;
-//    		case RobotMap.SHOOTER_WHEEL_FWD:
-//    			 motorName = "Shooter Wheel 1";
-//    			 break;
-//    		case RobotMap.SHOOTER_WHEEL_AFT:
-//    			 motorName = "Shooter Wheel 2";
-//				 break;
-//    		case RobotMap.INTAKE_WHEEL_LEFT:
-//    			 motorName = "Intake Wheel 1";
-//    			 break;
-//    		case RobotMap.INTAKE_WHEEL_RIGHT:
-//    			 motorName = "Intake Wheel 2";
-//				break;
-//    		case RobotMap.INDEX_WHEEL:
-//    			 motorName = "Index Wheel";
-//	    		break;
+    			pass = (positionChange >= minPositionChange);
+    			Robot.drivetrain.rightMotor3Pass = pass;
+    			break;
+    		case RobotMap.SHOOTER_WHEEL_FWD:
+    			pass = (positionChange >= minPositionChange);
+    			Robot.shooter.shooterFWDPass = pass;
+    			break;
+    		case RobotMap.SHOOTER_WHEEL_AFT:
+    			pass = (positionChange >= minPositionChange);
+    			Robot.shooter.shooterAFTPass = pass;
+				break;
+    		case RobotMap.INTAKE_WHEEL_LEFT:
+    			pass = (positionChange >= minPositionChange);
+    			Robot.intake.intakeLeftPass = pass;
+    			break;
+    		case RobotMap.INTAKE_WHEEL_RIGHT:
+    			pass = (positionChange >= minPositionChange);
+    			Robot.intake.intakeRightPass = pass;
+				break;
+    		case RobotMap.INDEX_WHEEL:
+    			pass = (positionChange >= minPositionChange);
+    			Robot.indexer.indexerPass = pass;
+	    		break;
     		default:
     			break;
     	}
-    	
-    	//TODO Change to SmartDashboard output
-    	System.out.println(motorName + "finished with a " + status);
     	
     }
 

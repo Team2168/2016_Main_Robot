@@ -14,6 +14,12 @@ public class Indexer extends Subsystem {
 
 	private Victor roller;
 	private static Indexer instance = null;
+	
+	/**
+	 * Values used for motor calibration
+	 * Changed to true when calibration passes
+	 */
+	public static boolean indexerPass = false;
 
 	/**
 	 * Default constructors for Index subsystem 	

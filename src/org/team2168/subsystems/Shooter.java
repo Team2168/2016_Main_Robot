@@ -19,6 +19,13 @@ public class Shooter extends Subsystem {
 	private Talon shooterAFT;
 	
 	static Shooter instance = null;
+	
+	/**
+	 * Values used for motor calibration
+	 * Changed to true when calibration passes
+	 */
+	public static boolean shooterFWDPass = false;
+	public static boolean shooterAFTPass = false;
 		
 	/**
 	 * Private singleton constructor for Shooter_Superman
