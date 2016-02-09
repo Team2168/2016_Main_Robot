@@ -9,11 +9,14 @@ import edu.wpi.first.wpilibj.command.Command;
  * Command for the wheel intake
  * @author jkaroul
  */
-public class IntakeWithConstant extends Command {
+public class DriveIntakeWithConstant extends Command {
 
-    public IntakeWithConstant() {
+	double speed;
+	
+    public DriveIntakeWithConstant(double inputSpeed) {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.intake);
+        speed = inputSpeed;
     }
 
     // Called just before this Command runs the first time
@@ -22,7 +25,7 @@ public class IntakeWithConstant extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intake.driveIntake(RobotMap.intakeSpeedConstant);
+		Robot.intake.driveIntake(speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
