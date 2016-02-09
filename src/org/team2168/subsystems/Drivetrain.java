@@ -54,8 +54,8 @@ public class Drivetrain extends Subsystem {
 				RobotMap.DRIVE_AVG_ENCODER_VAL);
 		
 		drivetrainRightEncoder = new AverageEncoder(
-				RobotMap.DRIVE_TRAIN_LEFT_ENCODER_A,
-				RobotMap.DRIVE_TRAIN_LEFT_ENCODER_B,
+				RobotMap.DRIVE_TRAIN_RIGHT_ENCODER_A,
+				RobotMap.DRIVE_TRAIN_RIGHT_ENCODER_B,
 				RobotMap.DRIVE_ENCODER_PULSE_PER_ROT,
 				RobotMap.DRIVE_ENCODER_DIST_PER_TICK,
 				RobotMap.RIGHT_DRIVE_TRAIN_ENCODER_REVERSE,

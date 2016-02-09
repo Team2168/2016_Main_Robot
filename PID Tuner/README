@@ -1,6 +1,8 @@
+# Tested 2/7/2016 and fully functional. (Versions of code must be as outlined)
+
 To run the UI:
 
-- Install Node.js version 0.8.2 (from nodejs.org)
+- Install Node.js version 0.8.2 (from nodejs.org previous releases section)
 - Set the NPM certs `with npm config set ca=""`
 - Install socket.io (open cmd and type `npm install socket.io@0.9.11` without quotes)
 - Install express (open cmd and type `npm install express@2.5.1` without quotes)
