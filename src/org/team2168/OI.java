@@ -54,6 +54,8 @@ public class OI {
 
 		//Operator Joystick Buttons
 		operatorJoystick.ButtonA().whenPressed(new IntakeWithJoystick());
+		operatorJoystick.ButtonB().whenPressed(new IncrementShooterHood(true));
+		operatorJoystick.ButtonX().whenPressed(new IncrementShooterHood(false));
 	}
 	
 	/**
