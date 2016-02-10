@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *This command increments the driver hood by 10 degrees in the direction given
+ *true is forward, false is backwards
  *@author Ben Waid
  */
 public class IncrementShooterHood extends Command {
@@ -19,7 +20,6 @@ public class IncrementShooterHood extends Command {
 	 * @param takes in inputAngle
 	 */
 	public IncrementShooterHood(boolean forward) {
-        // Use requires() here to declare subsystem dependencies
         requires(Robot.shooterhood);
         
         if(!forward) {
@@ -29,8 +29,6 @@ public class IncrementShooterHood extends Command {
         }
     }
 
-    
-    // Called just before this Command runs the first time
     protected void initialize() {
     }
     
@@ -42,9 +40,8 @@ public class IncrementShooterHood extends Command {
     }
 
     /**
-     * when the angle of the motor matches the given angle
+     * When the angle of the motor matches the given angle the command ends
      */
-    // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         if (Robot.shooterhood.getAngle() == endAngle)
         	return true;
