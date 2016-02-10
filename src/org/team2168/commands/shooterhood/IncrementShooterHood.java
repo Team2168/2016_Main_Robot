@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
  *This command increments the driver hood by 10 degrees in the direction given
  *@author Ben Waid
  */
-public class DriveShooterHoodToAngle extends Command {
+public class IncrementShooterHood extends Command {
 
 	private double direction = 10.0;
 	private double endAngle;
@@ -18,7 +18,7 @@ public class DriveShooterHoodToAngle extends Command {
 	 * This is the constructor which sets inputAngle to the double angle
 	 * @param takes in inputAngle
 	 */
-	public DriveShooterHoodToAngle(boolean forward) {
+	public IncrementShooterHood(boolean forward) {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.shooterhood);
         
