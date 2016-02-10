@@ -12,20 +12,20 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * This is an intake system.
  * @author jkaroul
  */
-public class Intake extends Subsystem {
+public class IntakeRoller extends Subsystem {
     
 	private Victor intakeWheel1;
 	private Victor intakeWheel2;
 	
 	private DoubleSolenoid intakePiston;
 	
-	private static Intake instance = null;
+	private static IntakeRoller instance = null;
 	
 	/**
 	 * private constructor for the Singleton intake subsystem
 	 * @author jkaroul
 	 */
-	private Intake()
+	private IntakeRoller()
 	{
 		intakePiston = new DoubleSolenoid(RobotMap.INTAKE_WHEEL_2, RobotMap.INTAKE_WHEEL_1);
 		intakeWheel1 = new Victor(RobotMap.INTAKE_WHEEL_1);
@@ -76,54 +76,14 @@ public class Intake extends Subsystem {
 	 * @author jkaroul
 	 */
 	
-	public static Intake getInstance()
+	public static IntakeRoller getInstance()
 	{
 		if(instance == null)
-			instance = new Intake();
+			instance = new IntakeRoller();
 		
 		return instance;
 	}
 	
-	/**
-	 * extends the intake piston to the down position
-	 * @author jkaroul
-	 */
-	
-	public void extendIntake()
-	{
-		intakePiston.set(Value.kForward);
-	}
-	
-	/**
-	 * retracts the intake piston to the up position
-	 * @author jkaroul
-	 */
-	public void retractIntake()
-	{
-		intakePiston.set(Value.kReverse);
-	}
-	
-	/**
-	 * returns true if the intake piston has been extended
-	 * @return true when kForward false otherwise
-	 * @author jkaroul
-	 */
-	
-	public boolean isIntakeExtended()
-	{
-		return intakePiston.get() == Value.kForward;
-	}
-	
-	/**
-	 * Returns true if the intake piston has been retracted 
-	 * @return true when kReverse, false otherwise
-	 * @author jkaroul
-	 */
-	
-	public boolean isIntakeRetracted()
-	{
-		return intakePiston.get() ==  Value.kReverse;
-	}
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 

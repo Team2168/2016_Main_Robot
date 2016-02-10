@@ -7,7 +7,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.team2168.subsystems.Drivetrain;
-import org.team2168.subsystems.Intake;
+import org.team2168.subsystems.IntakePosition;
+import org.team2168.subsystems.IntakeRoller;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -25,7 +26,9 @@ public class Robot extends IterativeRobot {
 	
 	public static Drivetrain drivetrain;
 	
-	public static Intake intake;
+	public static IntakeRoller intakeRoller;
+	
+	public static IntakePosition intakePosition;
 
     Command autonomousCommand;
     SendableChooser chooser;
@@ -40,7 +43,9 @@ public class Robot extends IterativeRobot {
     	
         chooser = new SendableChooser();		
         
-        intake = Intake.getInstance();
+        intakeRoller = IntakeRoller.getInstance();
+        
+        intakePosition = IntakePosition.getInstance();
         
         oi = OI.getInstance();
         

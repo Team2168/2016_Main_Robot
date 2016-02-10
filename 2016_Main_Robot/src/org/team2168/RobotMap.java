@@ -34,9 +34,12 @@ public class RobotMap {
 	public static boolean reverseRight = true;
 	public static boolean reverseLeft = false;
 	
-	///Intake parameters//
+	// Intake parameters//
 	public static final double intakeSpeedConstant = 0.5;
 	public static final boolean reverseWheel1 = true;
 	public static final boolean reverseWheel2 = false;
 	
+	// Solenoids
+	public static final int intakeRetract = 0;
+	public static final int intakeExtend = 1;
 }
