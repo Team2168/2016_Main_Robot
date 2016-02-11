@@ -11,6 +11,8 @@ import org.team2168.subsystems.Drivetrain;
 import org.team2168.subsystems.Shooter;
 import org.team2168.subsystems.ShooterHood;
 import org.team2168.subsystems.Intake;
+import org.team2168.subsystems.IntakePosition;
+import org.team2168.subsystems.IntakeRoller;
 import org.team2168.subsystems.Indexer;
 
 
@@ -32,6 +34,8 @@ public class Robot extends IterativeRobot {
 	public static Indexer indexer;
 	public static Shooter shooter;
 	public static ShooterHood shooterhood;
+	public static IntakeRoller intakeRoller;
+	public static IntakePosition intakePosition;
 
     Command autonomousCommand;
     SendableChooser chooser;
@@ -50,6 +54,8 @@ public class Robot extends IterativeRobot {
     	shooterhood = ShooterHood.getInstance();
     	intake = Intake.getInstance();
     	indexer = Indexer.getInstance();
+    	intakeRoller = IntakeRoller.getInstance();
+        intakePosition = IntakePosition.getInstance();
 
         oi = OI.getInstance();
         

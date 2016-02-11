@@ -1,5 +1,6 @@
 package org.team2168;
 
+import org.team2168.commands.Intake.IntakeWithConstant;
 import org.team2168.commands.Intake.IntakeWithJoystick;
 import org.team2168.utils.F310;
 
@@ -53,7 +54,8 @@ public class OI {
 
 
 		//Operator Joystick Buttons
-		operatorJoystick.ButtonA().whenPressed(new IntakeWithJoystick());
+		//TODO calibrate value
+		operatorJoystick.ButtonA().whenPressed(new IntakeWithConstant(1.0));
 	}
 	
 	/**

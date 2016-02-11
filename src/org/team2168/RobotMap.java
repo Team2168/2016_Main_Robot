@@ -32,8 +32,8 @@ public class RobotMap {
 	public static final int SHOOTER_HOOD_SERVO = 9;
 
 	//Channels 10-25 on MXP
-	public static final int INTAKE_WHEEL_LEFT = 10;
-	public static final int INTAKE_WHEEL_RIGHT = 11;
+	public static final int INTAKE_WHEEL_1 = 10;
+	public static final int INTAKE_WHEEL_2 = 11;
 
 
 	//PDP Channels/////////////////////////////////////////////////////////////
@@ -99,8 +99,8 @@ public class RobotMap {
 	 *                         Intake PARAMETERS
 	 *************************************************************************/
 	public static final double INTAKE_SPEED_CONSTANT = 0.5;
-	public static final boolean REVERSE_INTAKE_WHEEL_RIGHT = true;
-	public static final boolean REVERSE_INTAKE_WHEEL_LEFT = false;
+	public static final boolean REVERSE_INTAKE_WHEEL_1 = true;
+	public static final boolean REVERSE_INTAKE_WHEEL_2 = false;
 
 
 	/*************************************************************************
