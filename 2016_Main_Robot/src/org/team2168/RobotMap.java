@@ -58,6 +58,7 @@ public class RobotMap {
 	
 	//Analog Input Channels////////////////////////////////////////////////////
 	//Channels 0-1 on Roborio
+	public static final int SHOOTER_DISTANCE_SENSOR = 0;
 	
 	//Channels 4-7 on MXP
 	
@@ -114,6 +115,9 @@ public class RobotMap {
 	public static final double MIN_SHOOTER_SPEED = 0.2;
 	public static final double SHOOTER_AUTO_NORMAL_SPEED = 0.5;
 	public static final double SHOOTER_WHEEL_BASE = 2; //units must match PositionReturnType (feet)
+	//TODO get correct values
+	public static final double SHOOTER_BOULDER_STOP_VOLTAGE = 1.0;
+	public static final double SHOOTER_CONSTANT_SPEED = 1.0;
 
 
 
@@ -133,7 +137,6 @@ public class RobotMap {
 	/*************************************************************************
 	 *                         Hood PARAMETERS
 	 *************************************************************************/
-	
 	
 	
 	/*************************************************************************
