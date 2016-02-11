@@ -46,6 +46,11 @@ public class RobotMap {
 
 	//Digital IO Channels//////////////////////////////////////////////////////
 	//Channels 0-9 on RoboRio
+
+	public static final int SHOOTER_AFT_ENCODER_A = 0;
+	public static final int SHOOTER_AFT_ENCODER_B = 1;
+	public static final int SHOOTER_FWD_ENCODER_A = 2;
+	public static final int SHOOTER_FWD_ENCODER_B = 3;
 	public static final int DRIVE_TRAIN_RIGHT_ENCODER_A = 6;
 	public static final int DRIVE_TRAIN_RIGHT_ENCODER_B = 7;
 	public static final int DRIVE_TRAIN_LEFT_ENCODER_A = 8;
@@ -54,6 +59,7 @@ public class RobotMap {
 	
 	//Analog Input Channels////////////////////////////////////////////////////
 	//Channels 0-1 on Roborio
+	public static final int SHOOTER_DISTANCE_SENSOR = 0;
 	
 	//Channels 4-7 on MXP
 	
@@ -92,7 +98,25 @@ public class RobotMap {
 	 *                         Shooter PARAMETERS
 	 *************************************************************************/
 	public static final boolean REVERSE_SHOOTER_WHEEL_FWD= false;
-	public static final boolean REVERSE_SHOOTER_WHEEL_AFT= false;
+	public static final boolean REVERSE_SHOOTER_WHEEL_AFT= false;private static final int SHOOTER_PULSE_PER_ROTATION = 256; //encoder ticks per rotation
+	private static final double SHOOTER_GEAR_RATIO = 24.0/15.0; //ratio between wheel
+	private static final double SHOOTER_WHEEL_DIAMETER = 6;
+	public static final int SHOOTER_ENCODER_PULSE_PER_ROT = (int) (SHOOTER_PULSE_PER_ROTATION * SHOOTER_GEAR_RATIO); //pulse per rotation * gear ratio
+	public static final double SHOOTER_ENCODER_DIST_PER_TICK = (Math.PI * SHOOTER_WHEEL_DIAMETER / SHOOTER_ENCODER_PULSE_PER_ROT);
+	public static final CounterBase.EncodingType SHOOTER_ENCODING_TYPE = CounterBase.EncodingType.k4X; //count rising and falling edges on
+	public static final AverageEncoder.PositionReturnType SHOOTER_POS_RETURN_TYPE = AverageEncoder.PositionReturnType.FEET;
+	public static final AverageEncoder.SpeedReturnType SHOOTER_SPEED_RETURN_TYPE = AverageEncoder.SpeedReturnType.FPS;
+	public static final int SHOOTER_ENCODER_MIN_RATE = 0;
+	public static final int SHOOTER_ENCODER_MIN_PERIOD = 1;
+	public static final boolean AFT_SHOOTER_ENCODER_REVERSE = false;
+	public static final boolean FWD_SHOOTER_ENCODER_REVERSE = true;
+	public static final int SHOOTER_AVG_ENCODER_VAL = 5;
+	public static final double MIN_SHOOTER_SPEED = 0.2;
+	public static final double SHOOTER_AUTO_NORMAL_SPEED = 0.5;
+	public static final double SHOOTER_WHEEL_BASE = 2; //units must match PositionReturnType (feet)
+	//TODO get correct values
+	public static final double SHOOTER_BOULDER_STOP_VOLTAGE = 1.0;
+	public static final double SHOOTER_CONSTANT_SPEED = 1.0;
 
 
 	/*************************************************************************

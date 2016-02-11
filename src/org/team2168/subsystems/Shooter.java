@@ -1,8 +1,12 @@
 package org.team2168.subsystems;
 
+import org.team2168.Robot;
 import org.team2168.RobotMap;
+import org.team2168.PID.sensors.AverageEncoder;
 import org.team2168.commands.shooter.DriveShooterWithJoysticks;
+import org.team2168.utils.Util;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -17,6 +21,14 @@ public class Shooter extends Subsystem {
 	
 	private Talon shooterFWD;
 	private Talon shooterAFT;
+	private static AnalogInput shooterDistanceSensor;
+	private static AverageEncoder shooterFWDEncoder;
+	private static AverageEncoder shooterAFTEncoder;
+	
+	//TODO calibrate values
+	private final static double MIN_SENSOR_VOLTAGE = 0.5;
+	private final static double IR_SENSOR_AVG_GAIN = 0.5;
+	private static double averagedBoulderDistance = 0.0;
 	
 	static Shooter instance = null;
 		
@@ -29,6 +41,25 @@ public class Shooter extends Subsystem {
 	{
 		shooterFWD = new Talon (RobotMap.SHOOTER_WHEEL_FWD);
 		shooterAFT = new Talon (RobotMap.SHOOTER_WHEEL_AFT);
+		shooterDistanceSensor = new AnalogInput(RobotMap.SHOOTER_DISTANCE_SENSOR);
+		shooterFWDEncoder = new AverageEncoder(RobotMap.SHOOTER_FWD_ENCODER_A, 
+											   RobotMap.SHOOTER_FWD_ENCODER_B, 
+											   RobotMap.SHOOTER_ENCODER_PULSE_PER_ROT,
+											   RobotMap.SHOOTER_ENCODER_DIST_PER_TICK,
+											   RobotMap.FWD_SHOOTER_ENCODER_REVERSE,
+											   RobotMap.SHOOTER_ENCODING_TYPE,
+											   RobotMap.SHOOTER_SPEED_RETURN_TYPE,
+											   RobotMap.SHOOTER_POS_RETURN_TYPE,
+											   RobotMap.SHOOTER_AVG_ENCODER_VAL);
+		shooterAFTEncoder = new AverageEncoder(RobotMap.SHOOTER_AFT_ENCODER_A, 
+				   							   RobotMap.SHOOTER_AFT_ENCODER_B, 
+				   							   RobotMap.SHOOTER_ENCODER_PULSE_PER_ROT,
+				   							   RobotMap.SHOOTER_ENCODER_DIST_PER_TICK,
+				   							   RobotMap.AFT_SHOOTER_ENCODER_REVERSE,
+				   							   RobotMap.SHOOTER_ENCODING_TYPE,
+				   							   RobotMap.SHOOTER_SPEED_RETURN_TYPE,
+				   							   RobotMap.SHOOTER_POS_RETURN_TYPE,
+				   							   RobotMap.SHOOTER_AVG_ENCODER_VAL);
 	}
 	
 	/**
@@ -81,6 +112,80 @@ public class Shooter extends Subsystem {
 			speed = -speed;
 			
 		shooterAFT.set(speed);
+	}
+	
+	/**
+	 * Gets distance traveled by aft motor
+	 * @return
+	 */
+	public double getAFTPosition()
+	{
+		return shooterAFTEncoder.getPos();
+	}
+	
+	/**
+	 * Gets distance traveled by forward motor
+	 * @return double
+	 */
+	public double getFWDPosition()
+	{
+		return shooterFWDEncoder.getPos();
+	}
+	
+	/**
+	 * Gets average distance traveled by both motors
+	 * @return
+	 */
+	public double getAverageDistance()
+	{
+		return(getAFTPosition() + getFWDPosition())/2;
+	}
+	
+	/**
+	 * zeros the position traveled by aft motors
+	 */
+	public void resetAFTPosition()
+	{
+		shooterAFTEncoder.reset();
+	}
+	
+	/**
+	 * zeros the position traveled by forward motors
+	 */
+	public void resetFWDPosition()
+	{
+		shooterFWDEncoder.reset();
+	}
+	
+	/**
+	 * resets position of both motors
+	 */
+	public void resetPosition()
+	{
+		resetAFTPosition();
+		resetFWDPosition();
+	}
+	
+	public boolean isBoulderPresent() {
+		return Robot.shooter.getAveragedRawBoulderDistance() > MIN_SENSOR_VOLTAGE;
+	}
+	
+	/**
+	 * Returns the raw voltage from the shooter distance sensor
+	 * @return double voltage
+	 */
+	private double getRawBoulderDistance() {
+		return Util.max(MIN_SENSOR_VOLTAGE, shooterDistanceSensor.getVoltage());
+	}
+	
+	/**
+	 * Note, this method should be called from a loop to prevent data from getting stale.
+	 * @return the average voltage from the shooter distance sensor
+	 */
+	public double getAveragedRawBoulderDistance() {
+		averagedBoulderDistance = Util.runningAverage(getRawBoulderDistance(),
+				averagedBoulderDistance, IR_SENSOR_AVG_GAIN);
+		return averagedBoulderDistance;
 	}
 	
     public void initDefaultCommand() {
