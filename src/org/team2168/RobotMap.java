@@ -98,7 +98,8 @@ public class RobotMap {
 	 *                         Shooter PARAMETERS
 	 *************************************************************************/
 	public static final boolean REVERSE_SHOOTER_WHEEL_FWD= false;
-	public static final boolean REVERSE_SHOOTER_WHEEL_AFT= false;private static final int SHOOTER_PULSE_PER_ROTATION = 256; //encoder ticks per rotation
+	public static final boolean REVERSE_SHOOTER_WHEEL_AFT= true;
+	private static final int SHOOTER_PULSE_PER_ROTATION = 256; //encoder ticks per rotation
 	private static final double SHOOTER_GEAR_RATIO = 24.0/15.0; //ratio between wheel
 	private static final double SHOOTER_WHEEL_DIAMETER = 6;
 	public static final int SHOOTER_ENCODER_PULSE_PER_ROT = (int) (SHOOTER_PULSE_PER_ROTATION * SHOOTER_GEAR_RATIO); //pulse per rotation * gear ratio
