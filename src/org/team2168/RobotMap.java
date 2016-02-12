@@ -71,11 +71,13 @@ public class RobotMap {
 	/*************************************************************************
 	 *                         DRIVETRAIN PARAMETERS
 	 *************************************************************************/
+	//TODO check if the reverse values match the physical robot
 	public static final boolean DT_REVERSE_RIGHT = true;
 	public static final boolean DT_REVERSE_LEFT = false;
 
 	private static final int DRIVE_PULSE_PER_ROTATION = 256; //encoder ticks per rotation
-	private static final double DRIVE_GEAR_RATIO = 24.0/15.0; //ratio between wheel
+	//TODO find ratio
+	private static final double DRIVE_GEAR_RATIO = 24.0/15.0; //ratio between wheel over encoder
 	private static final double DRIVE_WHEEL_DIAMETER = 6;
 	public static final int DRIVE_ENCODER_PULSE_PER_ROT = (int) (DRIVE_PULSE_PER_ROTATION * DRIVE_GEAR_RATIO); //pulse per rotation * gear ratio
 	public static final double DRIVE_ENCODER_DIST_PER_TICK = (Math.PI * DRIVE_WHEEL_DIAMETER / DRIVE_ENCODER_PULSE_PER_ROT);
@@ -95,11 +97,14 @@ public class RobotMap {
 	/*************************************************************************
 	 *                         Shooter PARAMETERS
 	 *************************************************************************/
+	//TODO check if the reverse values match the physical robot
 	public static final boolean REVERSE_SHOOTER_WHEEL_FWD= false;
 	public static final boolean REVERSE_SHOOTER_WHEEL_AFT= true;
-	private static final int SHOOTER_PULSE_PER_ROTATION = 256; //encoder ticks per rotation
-	private static final double SHOOTER_GEAR_RATIO = 24.0/15.0; //ratio between wheel
-	private static final double SHOOTER_WHEEL_DIAMETER = 6;
+	
+	private static final int SHOOTER_PULSE_PER_ROTATION = 1; //encoder ticks per rotation
+	//TODO find ratio
+	private static final double SHOOTER_GEAR_RATIO = 1.0/1.0; //ratio between wheel over encoder
+	private static final double SHOOTER_WHEEL_DIAMETER = 4;
 	public static final int SHOOTER_ENCODER_PULSE_PER_ROT = (int) (SHOOTER_PULSE_PER_ROTATION * SHOOTER_GEAR_RATIO); //pulse per rotation * gear ratio
 	public static final double SHOOTER_ENCODER_DIST_PER_TICK = (Math.PI * SHOOTER_WHEEL_DIAMETER / SHOOTER_ENCODER_PULSE_PER_ROT);
 	public static final CounterBase.EncodingType SHOOTER_ENCODING_TYPE = CounterBase.EncodingType.k4X; //count rising and falling edges on
@@ -114,8 +119,8 @@ public class RobotMap {
 	public static final double SHOOTER_AUTO_NORMAL_SPEED = 0.5;
 	public static final double SHOOTER_WHEEL_BASE = 2; //units must match PositionReturnType (feet)
 	//TODO get correct values
-	public static final double SHOOTER_BOULDER_STOP_VOLTAGE = 1.0;
-	public static final double SHOOTER_CONSTANT_SPEED = 1.0;
+	public static final double SHOOTER_BOULDER_STOP_VOLTAGE = 0.2;
+	public static final double SHOOTER_CONSTANT_SPEED = 0.2;
 
 
 	/*************************************************************************
