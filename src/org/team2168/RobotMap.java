@@ -47,10 +47,8 @@ public class RobotMap {
 	//Digital IO Channels//////////////////////////////////////////////////////
 	//Channels 0-9 on RoboRio
 
-	public static final int SHOOTER_AFT_ENCODER_A = 0;
-	public static final int SHOOTER_AFT_ENCODER_B = 1;
-	public static final int SHOOTER_FWD_ENCODER_A = 2;
-	public static final int SHOOTER_FWD_ENCODER_B = 3;
+	public static final int SHOOTER_ENCODER_A = 0;
+	public static final int SHOOTER_ENCODER_B = 1;
 	public static final int DRIVE_TRAIN_RIGHT_ENCODER_A = 6;
 	public static final int DRIVE_TRAIN_RIGHT_ENCODER_B = 7;
 	public static final int DRIVE_TRAIN_LEFT_ENCODER_A = 8;

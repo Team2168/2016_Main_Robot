@@ -23,7 +23,7 @@ public class Shooter extends Subsystem {
 	private Talon shooterAFT;
 	private static AnalogInput shooterDistanceSensor;
 	private static AverageEncoder shooterFWDEncoder;
-	private static AverageEncoder shooterAFTEncoder;
+	private static AverageEncoder shooterEncoder;
 	
 	//TODO calibrate values
 	private final static double MIN_SENSOR_VOLTAGE = 0.5;
@@ -42,17 +42,8 @@ public class Shooter extends Subsystem {
 		shooterFWD = new Talon (RobotMap.SHOOTER_WHEEL_FWD);
 		shooterAFT = new Talon (RobotMap.SHOOTER_WHEEL_AFT);
 		shooterDistanceSensor = new AnalogInput(RobotMap.SHOOTER_DISTANCE_SENSOR);
-		shooterFWDEncoder = new AverageEncoder(RobotMap.SHOOTER_FWD_ENCODER_A, 
-											   RobotMap.SHOOTER_FWD_ENCODER_B, 
-											   RobotMap.SHOOTER_ENCODER_PULSE_PER_ROT,
-											   RobotMap.SHOOTER_ENCODER_DIST_PER_TICK,
-											   RobotMap.FWD_SHOOTER_ENCODER_REVERSE,
-											   RobotMap.SHOOTER_ENCODING_TYPE,
-											   RobotMap.SHOOTER_SPEED_RETURN_TYPE,
-											   RobotMap.SHOOTER_POS_RETURN_TYPE,
-											   RobotMap.SHOOTER_AVG_ENCODER_VAL);
-		shooterAFTEncoder = new AverageEncoder(RobotMap.SHOOTER_AFT_ENCODER_A, 
-				   							   RobotMap.SHOOTER_AFT_ENCODER_B, 
+		shooterEncoder = new AverageEncoder(RobotMap.SHOOTER_ENCODER_A, 
+				   							   RobotMap.SHOOTER_ENCODER_B, 
 				   							   RobotMap.SHOOTER_ENCODER_PULSE_PER_ROT,
 				   							   RobotMap.SHOOTER_ENCODER_DIST_PER_TICK,
 				   							   RobotMap.AFT_SHOOTER_ENCODER_REVERSE,
@@ -118,53 +109,20 @@ public class Shooter extends Subsystem {
 	 * Gets distance traveled by aft motor
 	 * @return
 	 */
-	public double getAFTPosition()
+	public double getPosition()
 	{
-		return shooterAFTEncoder.getPos();
+		return shooterEncoder.getPos();
 	}
 	
-	/**
-	 * Gets distance traveled by forward motor
-	 * @return double
-	 */
-	public double getFWDPosition()
-	{
-		return shooterFWDEncoder.getPos();
-	}
 	
 	/**
-	 * Gets average distance traveled by both motors
-	 * @return
-	 */
-	public double getAverageDistance()
-	{
-		return(getAFTPosition() + getFWDPosition())/2;
-	}
-	
-	/**
-	 * zeros the position traveled by aft motors
-	 */
-	public void resetAFTPosition()
-	{
-		shooterAFTEncoder.reset();
-	}
-	
-	/**
-	 * zeros the position traveled by forward motors
-	 */
-	public void resetFWDPosition()
-	{
-		shooterFWDEncoder.reset();
-	}
-	
-	/**
-	 * resets position of both motors
+	 * zeros the position traveled by motors
 	 */
 	public void resetPosition()
 	{
-		resetAFTPosition();
-		resetFWDPosition();
+		shooterEncoder.reset();
 	}
+	
 	
 	public boolean isBoulderPresent() {
 		return Robot.shooter.getAveragedRawBoulderDistance() > MIN_SENSOR_VOLTAGE;
