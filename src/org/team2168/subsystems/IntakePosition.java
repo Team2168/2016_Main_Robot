@@ -20,7 +20,7 @@ public class IntakePosition extends Subsystem {
 	 */
 	private IntakePosition()
 	{
-		intakePiston = new DoubleSolenoid(RobotMap.intakeRetract, RobotMap.intakeExtend);
+		intakePiston = new DoubleSolenoid(RobotMap.INTAKE_RETRACT, RobotMap.INTAKE_EXTEND);
 	}
 	
 	/**

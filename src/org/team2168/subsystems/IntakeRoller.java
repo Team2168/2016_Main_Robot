@@ -50,7 +50,7 @@ public class IntakeRoller extends Subsystem {
 	 */
 	public void driveIntakeWheel1(double speed)
 	{
-		if(RobotMap.reverseWheel1)
+		if(RobotMap.REVERSE_INTAKE_WHEEL_1)
 			speed = -speed;
 			
 		intakeWheel1.set(speed);
@@ -63,7 +63,7 @@ public class IntakeRoller extends Subsystem {
 	 */
 	public void driveIntakeWheel2(double speed)
 	{
-		if(RobotMap.reverseWheel2)
+		if(RobotMap.REVERSE_INTAKE_WHEEL_2)
 			speed = -speed;
 			
 		intakeWheel2.set(speed);
