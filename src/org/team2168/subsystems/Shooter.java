@@ -21,14 +21,14 @@ public class Shooter extends Subsystem {
 	
 	private Talon shooterFWD;
 	private Talon shooterAFT;
-	private static AnalogInput shooterDistanceSensor;
-	private static AverageEncoder shooterFWDEncoder;
-	private static AverageEncoder shooterEncoder;
+	private AnalogInput shooterDistanceSensor;
+	private AverageEncoder shooterFWDEncoder;
+	private AverageEncoder shooterEncoder;
 	
 	//TODO calibrate values
-	private final static double MIN_SENSOR_VOLTAGE = 0.5;
-	private final static double IR_SENSOR_AVG_GAIN = 0.5;
-	private static double averagedBoulderDistance = 0.0;
+	private final double MIN_SENSOR_VOLTAGE = 0.5;
+	private final double IR_SENSOR_AVG_GAIN = 0.5;
+	private double averagedBoulderDistance = 0.0;
 	
 	static Shooter instance = null;
 		
