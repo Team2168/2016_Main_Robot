@@ -151,9 +151,49 @@ public class RobotMap {
 
 
 	/*************************************************************************
-	 *                         PID PARAMETERS
+	 *                            PID Parameters
 	 *************************************************************************/
+	//period to run PID loops on drive train
+	public static final long driveTrainPIDPeriod = 20;//70ms loop
+	public static final int drivetrainPIDArraySize = 50;
 
+	//PID Gains for Left & Right Speed and Position
+	//Bandwidth =
+	//Phase Margin =
+	public static final double driveTrainLeftSpeedP =  0.4779;
+	public static final double driveTrainLeftSpeedI =  1.0526;
+	public static final double driveTrainLeftSpeedD =  0.0543;
+
+	public static final double driveTrainRightSpeedP = 0.4779;
+	public static final double driveTrainRightSpeedI = 1.0526;
+	public static final double driveTrainRightSpeedD = 0.0543;
+
+	public static final double driveTrainLeftPositionP = 0.2;
+	public static final double driveTrainLeftPositionI = 0.0001412646174233;
+	public static final double driveTrainLeftPositionD = 0.0074778888124088;
+
+	public static final double driveTrainRightPositionP = 0.2;
+	public static final double driveTrainRightPositionI = 0.0001412646174233;
+	public static final double driveTrainRightPositionD = 0.0074778888124088;
+
+	public static final double rotatePositionP = 0.045;
+	public static final double rotatePositionI = 0.001;
+	public static final double rotatePositionD = 0.0064778888124088;
+
+	double pTurn = 0.001;
+	double iTurn = 0.00001;
+	double pDrive = 0;
+
+	public static final double liftPUp = 0.12;
+	public static final double liftIUp = 0.0120;
+	public static final double liftDUp = 0.0002573;
+
+	public static final double liftPDw = 0.12;
+	public static final double liftIDw = 0.05;
+	public static final double liftDDw = 0.02573;
+
+
+	public static final long liftPIDPeriod = 20; //100ms
 
 	/****************************************************************
 	 *                TCP Servers  (ONLY FOR DEBUGGING)             *

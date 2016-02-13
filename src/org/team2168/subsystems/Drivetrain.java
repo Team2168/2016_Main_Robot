@@ -1,9 +1,14 @@
 package org.team2168.subsystems;
 
 import org.team2168.RobotMap;
+import org.team2168.PID.controllers.PIDPosition;
+import org.team2168.PID.controllers.PIDSpeed;
 import org.team2168.PID.sensors.AverageEncoder;
+import org.team2168.PID.sensors.BNOHeading;
+import org.team2168.PID.sensors.IMU;
 import org.team2168.commands.drivetrain.DriveWithJoysticks;
 import org.team2168.utils.BNO055;
+import org.team2168.utils.TCPSocketSender;
 
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -20,10 +25,34 @@ public class Drivetrain extends Subsystem {
 	private static Talon rightMotor2;
 	private static Talon rightMotor3;
 	
-	private static BNO055 imu;
+	private static BNO055 gyro;
+	private static BNOHeading stupidPIDSensorGyro;
+	public IMU imu;
 
 	public AverageEncoder drivetrainLeftEncoder;
 	public AverageEncoder drivetrainRightEncoder;
+	
+	//declare position/speed controllers
+	public PIDPosition driveTrainPosController;
+	public PIDPosition rotateController;
+
+	//declare speed controllers
+	public PIDSpeed rightSpeedController;
+	public PIDSpeed leftSpeedController;
+
+	//output voltage...ONLY FOR DEBUGGING PURPOSES, SHOULD BE REMOVED FOR COMPITITION
+	private volatile double leftMotor1Voltage;
+	private volatile double leftMotor2Voltage;
+	private volatile double leftMotor3Voltage;
+	private volatile double rightMotor1Voltage;
+	private volatile double rightMotor2Voltage;
+	private volatile double rightMotor3Voltage;
+
+	//declare TCP severs...ONLY FOR DEBUGGING PURPOSES, SHOULD BE REMOVED FOR COMPITITION
+	TCPSocketSender TCPdrivePosController;
+	TCPSocketSender TCPrightSpeedController;
+	TCPSocketSender TCPleftSpeedController;
+	TCPSocketSender TCProtateController;
 	
 	private static Drivetrain instance = null;
 
@@ -39,9 +68,8 @@ public class Drivetrain extends Subsystem {
 		rightMotor2 = new Talon(RobotMap.RIGHT_DRIVE_TRAIN_2);
 		rightMotor3 = new Talon(RobotMap.RIGHT_DRIVE_TRAIN_3);
 		
-		imu = BNO055.getInstance(BNO055.opmode_t.OPERATION_MODE_IMUPLUS,
-				BNO055.vector_type_t.VECTOR_EULER);
 
+		
 		drivetrainLeftEncoder = new AverageEncoder(
 				RobotMap.DRIVE_TRAIN_LEFT_ENCODER_A,
 				RobotMap.DRIVE_TRAIN_LEFT_ENCODER_B,
@@ -63,6 +91,79 @@ public class Drivetrain extends Subsystem {
 				RobotMap.DRIVE_SPEED_RETURN_TYPE,
 				RobotMap.DRIVE_POS_RETURN_TYPE,
 				RobotMap.DRIVE_AVG_ENCODER_VAL);
+		
+		gyro = BNO055.getInstance(BNO055.opmode_t.OPERATION_MODE_IMUPLUS,
+				BNO055.vector_type_t.VECTOR_EULER);
+		stupidPIDSensorGyro = new BNOHeading(gyro);
+		
+		imu = new IMU(drivetrainLeftEncoder,drivetrainRightEncoder,RobotMap.WHEEL_BASE);
+
+
+		
+		
+		//DriveStraight Controller
+				rotateController = new PIDPosition(
+						"RotationController",
+						RobotMap.rotatePositionP,
+						RobotMap.rotatePositionI,
+						RobotMap.rotatePositionD,
+						stupidPIDSensorGyro,
+						RobotMap.driveTrainPIDPeriod);
+
+				driveTrainPosController = new PIDPosition(
+						"driveTrainPosController",
+						RobotMap.driveTrainRightPositionP,
+						RobotMap.driveTrainRightPositionI,
+						RobotMap.driveTrainRightPositionD,
+						imu,
+						RobotMap.driveTrainPIDPeriod);
+
+				//Spawn new PID Controller
+				rightSpeedController = new PIDSpeed(
+						"RightSpeedController",
+						RobotMap.driveTrainRightSpeedP,
+						RobotMap.driveTrainRightSpeedI,
+						RobotMap.driveTrainRightSpeedD,
+						drivetrainRightEncoder,
+						RobotMap.driveTrainPIDPeriod);
+
+				leftSpeedController = new PIDSpeed(
+						"LeftSpeedController",
+						RobotMap.driveTrainLeftSpeedP,
+						RobotMap.driveTrainLeftSpeedI,
+						RobotMap.driveTrainLeftSpeedD,
+						drivetrainLeftEncoder,
+						RobotMap.driveTrainPIDPeriod);
+
+
+				//add min and max output defaults and set array size
+				rightSpeedController.setSIZE(RobotMap.drivetrainPIDArraySize);
+				leftSpeedController.setSIZE(RobotMap.drivetrainPIDArraySize);
+				driveTrainPosController.setSIZE(RobotMap.drivetrainPIDArraySize);
+				rotateController.setSIZE(RobotMap.drivetrainPIDArraySize);
+
+				//start controller threads
+				rightSpeedController.startThread();
+				leftSpeedController.startThread();
+				driveTrainPosController.startThread();
+				rotateController.startThread();
+
+				
+				
+				
+				
+				//start TCP Servers for DEBUGING ONLY
+				TCPdrivePosController = new TCPSocketSender(RobotMap.TCPServerDrivetrainPos, driveTrainPosController);
+				TCPdrivePosController.start();
+
+				TCPrightSpeedController = new TCPSocketSender(RobotMap.TCPServerRightDrivetrainSpeed, rightSpeedController);
+				TCPrightSpeedController.start();
+
+				TCPleftSpeedController = new TCPSocketSender(RobotMap.TCPServerLeftDrivetrainSpeed, leftSpeedController);
+				TCPleftSpeedController.start();
+
+				TCProtateController = new TCPSocketSender(RobotMap.TCPServerRotateController, rotateController);
+				TCProtateController.start();
 	}
 	
 	/**
@@ -235,14 +336,14 @@ public class Drivetrain extends Subsystem {
      * @return heading in degrees (doesn't roll over at 360)
      */
     public static double getHeading() {
-    	return imu.getHeading();
+    	return gyro.getHeading();
     }
     
     /**
      * Reset the heading of the IMU to zero degrees
      */
     public static void reset() {
-    	imu.resetHeading();
+    	gyro.resetHeading();
     }
     
     /**
@@ -250,7 +351,7 @@ public class Drivetrain extends Subsystem {
      * @return the robots pitch +/- 180 degrees
      */
     public static double getPitchAngle() {
-    	return imu.getVector()[2];
+    	return gyro.getVector()[2];
     }
     
     /**
@@ -258,7 +359,7 @@ public class Drivetrain extends Subsystem {
      * @return the robots roll +/- 90 degrees
      */
     public static double getRollAngle() {
-    	return imu.getVector()[1];
+    	return gyro.getVector()[1];
     }
 }
 
