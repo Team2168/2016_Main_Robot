@@ -21,7 +21,7 @@ public class ShooterHood extends Subsystem {
 	 */
 	private ShooterHood() {
 		hoodServo = new Servo(RobotMap.SHOOTER_HOOD_SERVO);
-		
+		hoodServo.setBounds(1950, 0, 0, 0, 1050);
 	}
 
 	/**
@@ -41,7 +41,6 @@ public class ShooterHood extends Subsystem {
 	 */
 	public void setAngle(double degrees) {   
 		hoodServo.setAngle(degrees);
-		hoodServo.setBounds(1950, 8, 1500, 8, 1050);
 	}
 	
 	/**
