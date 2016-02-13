@@ -1,7 +1,6 @@
-package org.team2168.commands.Intake;
+package org.team2168.commands.intakeroller;
 
 import org.team2168.Robot;
-import org.team2168.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -9,11 +8,14 @@ import edu.wpi.first.wpilibj.command.Command;
  * Command for the wheel intake
  * @author jkaroul
  */
-public class IntakeWithJoystick extends Command {
+public class IntakeWithConstant extends Command {
 
-    public IntakeWithJoystick() {
+	double speed;
+	
+    public IntakeWithConstant(double inputSpeed) {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.intake);
+        requires(Robot.intakeRoller);
+        speed = inputSpeed;
     }
 
     // Called just before this Command runs the first time
@@ -22,7 +24,7 @@ public class IntakeWithJoystick extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intake.driveIntake(Robot.oi.operatorJoystick.getLeftStickRaw_Y());
+		Robot.intake.driveIntake(speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()

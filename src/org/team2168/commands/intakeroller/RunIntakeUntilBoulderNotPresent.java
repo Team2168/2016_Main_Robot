@@ -1,17 +1,18 @@
-package org.team2168.commands.IntakePosition;
+package org.team2168.commands.intakeroller;
 
 import org.team2168.Robot;
+import org.team2168.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Command that extends the position of the Intake.
+ * Runs the intake until a boulder is detected to be present
+ * @author Ben Waid
  */
-public class IntakeExtend extends Command {
+public class RunIntakeUntilBoulderNotPresent extends Command {
 
-    public IntakeExtend() {
-        // Use requires() here to declare subsystem dependencies
-        requires(Robot.intakePosition);
+    public RunIntakeUntilBoulderNotPresent() {
+        requires(Robot.shooter);
     }
 
     // Called just before this Command runs the first time
@@ -20,16 +21,18 @@ public class IntakeExtend extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intakePosition.extendIntake();
+    	if(Robot.intakeRoller.isBoulderPresent())
+    		Robot.intakeRoller.driveIntake(RobotMap.SHOOTER_CONSTANT_SPEED);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.intakePosition.isIntakeExtended();
+        	return !Robot.intakeRoller.isBoulderPresent();
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.intakeRoller.driveIntake(0);
     }
 
     // Called when another command which requires one or more of the same

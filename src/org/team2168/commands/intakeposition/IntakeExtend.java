@@ -1,15 +1,15 @@
-package org.team2168.commands.IntakePosition;
+package org.team2168.commands.intakeposition;
 
 import org.team2168.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Command which retracts the 
+ * Command that extends the position of the Intake.
  */
-public class IntakeRetract extends Command {
+public class IntakeExtend extends Command {
 
-    public IntakeRetract() {
+    public IntakeExtend() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.intakePosition);
     }
@@ -20,12 +20,12 @@ public class IntakeRetract extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intakePosition.retractIntake();
+    	Robot.intakePosition.extendIntake();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.intakePosition.isIntakeRetracted();
+        return Robot.intakePosition.isIntakeExtended();
     }
 
     // Called once after isFinished returns true

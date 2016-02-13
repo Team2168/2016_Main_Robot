@@ -1,7 +1,7 @@
 package org.team2168.subsystems;
 
 import org.team2168.RobotMap;
-import org.team2168.commands.Intake.IntakeWithJoystick;
+import org.team2168.commands.intakeroller.IntakeWithJoystick;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;

@@ -1,4 +1,4 @@
-package org.team2168.commands.Intake;
+package org.team2168.commands.indexer;
 
 import org.team2168.Robot;
 import org.team2168.RobotMap;
@@ -6,17 +6,13 @@ import org.team2168.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Command for the wheel intake
- * @author jkaroul
+ * Drives the indexer using the right joystick on the operator controller
  */
-public class IntakeWithConstant extends Command {
+public class DriveIndexerWithJoysticks extends Command {
 
-	double speed;
-	
-    public IntakeWithConstant(double inputSpeed) {
+    public DriveIndexerWithJoysticks() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.intake);
-        speed = inputSpeed;
+         requires(Robot.indexer);
     }
 
     // Called just before this Command runs the first time
@@ -25,7 +21,7 @@ public class IntakeWithConstant extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-		Robot.intake.driveIntake(speed);
+    	Robot.indexer.setSpeed(Robot.oi.operatorJoystick.getRightStickRaw_Y());
     }
 
     // Make this return true when this Command no longer needs to run execute()

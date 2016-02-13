@@ -1,10 +1,12 @@
 package org.team2168.subsystems;
 
+import org.team2168.Robot;
 import org.team2168.RobotMap;
-import org.team2168.commands.Intake.IntakeWithJoystick;
+import org.team2168.PID.sensors.AverageEncoder;
+import org.team2168.commands.intakeroller.IntakeWithJoystick;
+import org.team2168.utils.Util;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -16,8 +18,12 @@ public class IntakeRoller extends Subsystem {
     
 	private Victor intakeWheel1;
 	private Victor intakeWheel2;
+	private AnalogInput intakeDistanceSensor;
 	
-	private DoubleSolenoid intakePiston;
+	//TODO calibrate values
+		private final double MIN_SENSOR_VOLTAGE = 0.5;
+		private final double IR_SENSOR_AVG_GAIN = 0.5;
+		private double averagedBoulderDistance = 0.0;
 	
 	private static IntakeRoller instance = null;
 	
@@ -27,9 +33,9 @@ public class IntakeRoller extends Subsystem {
 	 */
 	private IntakeRoller()
 	{
-		intakePiston = new DoubleSolenoid(RobotMap.INTAKE_WHEEL_2, RobotMap.INTAKE_WHEEL_1);
 		intakeWheel1 = new Victor(RobotMap.INTAKE_WHEEL_1);
 		intakeWheel2 = new Victor(RobotMap.INTAKE_WHEEL_2);
+		intakeDistanceSensor = new AnalogInput(RobotMap.INTAKE_DISTANCE_SENSOR);
 	}
 	
 	/**
@@ -84,8 +90,31 @@ public class IntakeRoller extends Subsystem {
 		return instance;
 	}
 	
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
+	/**
+	 * Returns true if boulder is within range of the sensor
+	 * @return boolean true if boulder is present
+	 */
+	public boolean isBoulderPresent() {
+		return Robot.intakeRoller.getAveragedRawBoulderDistance() > MIN_SENSOR_VOLTAGE;
+	}
+	
+	/**
+	 * Returns the raw voltage from the shooter distance sensor
+	 * @return double voltage
+	 */
+	private double getRawBoulderDistance() {
+		return Util.max(MIN_SENSOR_VOLTAGE, intakeDistanceSensor.getVoltage());
+	}
+	
+	/**
+	 * Note, this method should be called from a loop to prevent data from getting stale.
+	 * @return the average voltage from the shooter distance sensor
+	 */
+	public double getAveragedRawBoulderDistance() {
+		averagedBoulderDistance = Util.runningAverage(getRawBoulderDistance(),
+				averagedBoulderDistance, IR_SENSOR_AVG_GAIN);
+		return averagedBoulderDistance;
+	}
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
