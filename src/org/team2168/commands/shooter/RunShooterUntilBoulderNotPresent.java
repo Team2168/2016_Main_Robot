@@ -21,7 +21,6 @@ public class RunShooterUntilBoulderNotPresent extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Robot.shooter.isBoulderPresent())
     		Robot.shooter.driveShooter(RobotMap.SHOOTER_CONSTANT_SPEED);
     }
 
@@ -32,7 +31,6 @@ public class RunShooterUntilBoulderNotPresent extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.shooter.driveShooter(0);
     }
 
     // Called when another command which requires one or more of the same
