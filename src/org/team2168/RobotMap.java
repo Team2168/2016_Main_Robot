@@ -26,14 +26,14 @@ public class RobotMap {
 	public static final int LEFT_DRIVE_TRAIN_1 = 3;
 	public static final int LEFT_DRIVE_TRAIN_2 = 4;
 	public static final int LEFT_DRIVE_TRAIN_3 = 5;
-	public static final int SHOOTER_WHEEL_FWD= 6;
-	public static final int SHOOTER_WHEEL_AFT= 7;
+	public static final int INTAKE_WHEEL_1= 6;
+	public static final int INTAKE_WHEEL_2= 7;
 	public static final int INDEX_WHEEL = 8;
 	public static final int SHOOTER_HOOD_SERVO = 9;
 
 	//Channels 10-25 on MXP
-	public static final int INTAKE_WHEEL_1 = 10;
-	public static final int INTAKE_WHEEL_2 = 11;
+	public static final int SHOOTER_WHEEL_FWD = 10;
+	public static final int SHOOTER_WHEEL_AFT= 11;
 
 
 	//PDP Channels/////////////////////////////////////////////////////////////
