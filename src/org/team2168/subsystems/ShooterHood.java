@@ -19,7 +19,7 @@ public class ShooterHood extends Subsystem {
 	 */
 	private ShooterHood() {
 		hoodServo = new Servo(RobotMap.SHOOTER_HOOD_SERVO);
-		hoodServo.setBounds(1950, 8, 1500, 8, 1050); 
+		hoodServo.setBounds(1950, 1504, 1500, 1496, 1050); 
 	}
 
 	/**
