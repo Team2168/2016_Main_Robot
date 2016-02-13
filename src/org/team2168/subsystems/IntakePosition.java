@@ -2,6 +2,7 @@ package org.team2168.subsystems;
 
 import org.team2168.RobotMap;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -12,6 +13,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class IntakePosition extends Subsystem {
     
 	private DoubleSolenoid intakePiston;
+	private DigitalInput intakePositionSensor1;
+	private DigitalInput intakePositionSensor2;
 	
 	private static IntakePosition instance = null;
 	
@@ -21,6 +24,8 @@ public class IntakePosition extends Subsystem {
 	private IntakePosition()
 	{
 		intakePiston = new DoubleSolenoid(RobotMap.INTAKE_RETRACT, RobotMap.INTAKE_EXTEND);
+		intakePositionSensor1 = new DigitalInput(RobotMap.INTAKE_POSITION_SENSOR_1);
+		intakePositionSensor2 = new DigitalInput(RobotMap.INTAKE_POSITION_SENSOR_2);
 	}
 	
 	/**
@@ -57,7 +62,7 @@ public class IntakePosition extends Subsystem {
 	 */
 	public boolean isIntakeExtended()
 	{
-		return intakePiston.get() == Value.kForward;
+		return !intakePositionSensor1.get() && !intakePositionSensor2.get();
 	}
 	
 	/**
@@ -66,11 +71,8 @@ public class IntakePosition extends Subsystem {
 	 */
 	public boolean isIntakeRetracted()
 	{
-		return intakePiston.get() ==  Value.kReverse;
+		return intakePositionSensor1.get() && intakePositionSensor2.get();
 	}
-	
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
