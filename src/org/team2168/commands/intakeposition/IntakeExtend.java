@@ -1,19 +1,17 @@
-package org.team2168.commands.Intake;
+package org.team2168.commands.intakeposition;
 
 import org.team2168.Robot;
-import org.team2168.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Command for the wheel intake
- * @author jkaroul
+ * Command that extends the position of the Intake.
  */
-public class IntakeWithConstant extends Command {
+public class IntakeExtend extends Command {
 
-    public IntakeWithConstant() {
+    public IntakeExtend() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.intake);
+        requires(Robot.intakePosition);
     }
 
     // Called just before this Command runs the first time
@@ -22,12 +20,12 @@ public class IntakeWithConstant extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intake.driveIntake(RobotMap.INTAKE_SPEED_CONSTANT);
+    	Robot.intakePosition.extendIntake();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return Robot.intakePosition.isIntakeExtended();
     }
 
     // Called once after isFinished returns true
