@@ -21,7 +21,7 @@ public class ShooterHood extends Subsystem {
 	 */
 	private ShooterHood() {
 		hoodServo = new Servo(RobotMap.SHOOTER_HOOD_SERVO);
-		hoodServo.setBounds(1950, 0, 0, 0, 1050);
+		hoodServo.setBounds(1950, 1504, 1500, 1496, 1050); 
 	}
 
 	/**
@@ -41,11 +41,12 @@ public class ShooterHood extends Subsystem {
 	 */
 	public void setAngle(double degrees) {   
 		hoodServo.setAngle(degrees);
+		
 	}
 	
 	/**
 	 * Finds the motor's current angle. Note this doesn't reflect the true
-	 *   position of the hood, but the last positio nthe hood was commanded to.
+	 *   position of the hood, but the last position the hood was commanded to.
 	 *   It will not account for the time it takes for the mechanism to get to
 	 *   its destination position. Therefore this method SHOULD NOT be used to
 	 *   qualify a command has completed moving the hood.
@@ -54,7 +55,7 @@ public class ShooterHood extends Subsystem {
 	public double getAngle() {
 		return hoodServo.getAngle();
 	}
-   
+  		
 	/**
 	 * Set the default command for a subsystem here.
 	 */
