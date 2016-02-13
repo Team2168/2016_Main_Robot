@@ -1,6 +1,8 @@
 package org.team2168.subsystems;
 
 import org.team2168.RobotMap;
+import org.team2168.commands.shooter.DriveShooterWithJoysticks;
+import org.team2168.commands.shooterhood.DriveShooterHoodWithJoysticks;
 
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -58,6 +60,6 @@ public class ShooterHood extends Subsystem {
 	 * Set the default command for a subsystem here.
 	 */
 	public void initDefaultCommand() {
-		//None
+		setDefaultCommand(new DriveShooterHoodWithJoysticks());
 	}
 }
