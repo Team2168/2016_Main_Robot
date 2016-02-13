@@ -46,6 +46,9 @@ public class RobotMap {
 
 	//Digital IO Channels//////////////////////////////////////////////////////
 	//Channels 0-9 on RoboRio
+
+	public static final int SHOOTER_ENCODER_A = 0;
+	public static final int SHOOTER_ENCODER_B = 1;
 	public static final int DRIVE_TRAIN_RIGHT_ENCODER_A = 6;
 	public static final int DRIVE_TRAIN_RIGHT_ENCODER_B = 7;
 	public static final int DRIVE_TRAIN_LEFT_ENCODER_A = 8;
@@ -54,6 +57,7 @@ public class RobotMap {
 	
 	//Analog Input Channels////////////////////////////////////////////////////
 	//Channels 0-1 on Roborio
+	public static final int SHOOTER_DISTANCE_SENSOR = 0;
 	public static final int INTAKE_DISTANCE_SENSOR = 1;
 	public static final int INTAKE_POSITION_SENSOR_1 = 2;
 	public static final int INTAKE_POSITION_SENSOR_2 = 3;
@@ -70,11 +74,13 @@ public class RobotMap {
 	/*************************************************************************
 	 *                         DRIVETRAIN PARAMETERS
 	 *************************************************************************/
+	//TODO check if the reverse values match the physical robot
 	public static final boolean DT_REVERSE_RIGHT = true;
 	public static final boolean DT_REVERSE_LEFT = false;
 
 	private static final int DRIVE_PULSE_PER_ROTATION = 256; //encoder ticks per rotation
-	private static final double DRIVE_GEAR_RATIO = 24.0/15.0; //ratio between wheel
+	//TODO find ratio
+	private static final double DRIVE_GEAR_RATIO = 24.0/15.0; //ratio between wheel over encoder
 	private static final double DRIVE_WHEEL_DIAMETER = 6;
 	public static final int DRIVE_ENCODER_PULSE_PER_ROT = (int) (DRIVE_PULSE_PER_ROTATION * DRIVE_GEAR_RATIO); //pulse per rotation * gear ratio
 	public static final double DRIVE_ENCODER_DIST_PER_TICK = (Math.PI * DRIVE_WHEEL_DIAMETER / DRIVE_ENCODER_PULSE_PER_ROT);
@@ -96,7 +102,7 @@ public class RobotMap {
 	 *************************************************************************/
 	//TODO check if the reverse values match the physical robot
 	public static final boolean REVERSE_SHOOTER_WHEEL_FWD= false;
-	public static final boolean REVERSE_SHOOTER_WHEEL_AFT= false;
+	public static final boolean REVERSE_SHOOTER_WHEEL_AFT= true;
 	
 	private static final int SHOOTER_PULSE_PER_ROTATION = 1; //encoder ticks per rotation
 	//TODO find ratio
