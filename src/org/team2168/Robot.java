@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.team2168.subsystems.Drivetrain;
 import org.team2168.subsystems.Shooter;
 import org.team2168.subsystems.ShooterHood;
-import org.team2168.subsystems.Intake;
 import org.team2168.subsystems.IntakePosition;
 import org.team2168.subsystems.IntakeRoller;
 import org.team2168.subsystems.Indexer;
@@ -30,7 +29,6 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 
 	public static Drivetrain drivetrain;
-	public static Intake intake;
 	public static Indexer indexer;
 	public static Shooter shooter;
 	public static ShooterHood shooterhood;
@@ -52,7 +50,6 @@ public class Robot extends IterativeRobot {
     	drivetrain = Drivetrain.getInstance();
     	shooter = Shooter.getInstance();
     	shooterhood = ShooterHood.getInstance();
-    	intake = Intake.getInstance();
     	indexer = Indexer.getInstance();
     	intakeRoller = IntakeRoller.getInstance();
         intakePosition = IntakePosition.getInstance();
