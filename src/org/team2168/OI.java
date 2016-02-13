@@ -1,6 +1,7 @@
 package org.team2168;
 
 import org.team2168.commands.Intake.IntakeWithJoystick;
+import org.team2168.commands.shooterhood.IncrementShooterHood;
 import org.team2168.utils.F310;
 
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -54,6 +55,8 @@ public class OI {
 
 		//Operator Joystick Buttons
 		operatorJoystick.ButtonA().whenPressed(new IntakeWithJoystick());
+		operatorJoystick.ButtonB().whenPressed(new IncrementShooterHood(true));
+		operatorJoystick.ButtonX().whenPressed(new IncrementShooterHood(false));
 	}
 	
 	/**
