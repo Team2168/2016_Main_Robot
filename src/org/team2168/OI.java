@@ -1,6 +1,7 @@
 package org.team2168;
 
-import org.team2168.commands.Intake.IntakeWithJoystick;
+import org.team2168.commands.intakeroller.IntakeWithConstant;
+import org.team2168.commands.intakeroller.IntakeWithJoystick;
 import org.team2168.utils.F310;
 
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -53,7 +54,8 @@ public class OI {
 
 
 		//Operator Joystick Buttons
-		operatorJoystick.ButtonA().whenPressed(new IntakeWithJoystick());
+		//TODO calibrate value
+		operatorJoystick.ButtonA().whenPressed(new IntakeWithConstant(RobotMap.INTAKE_SPEED_CONSTANT));
 	}
 	
 	/**
