@@ -55,7 +55,7 @@ public class OI {
 
 		//Operator Joystick Buttons
 		//TODO calibrate value
-		operatorJoystick.ButtonA().whenPressed(new IntakeWithConstant(1.0));
+		operatorJoystick.ButtonA().whenPressed(new IntakeWithConstant(RobotMap.INTAKE_SPEED_CONSTANT));
 	}
 	
 	/**
