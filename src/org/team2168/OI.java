@@ -39,6 +39,71 @@ public class OI {
 	
 	public static F310 driverJoystick;
 	public static F310 operatorJoystick;
+	
+	public static final double MIN_DRIVE_SPEED = 0.222;
+	public static double joystickScale[][] = {
+		/* Scaled output of the joystick from its input */	
+		{1.00, 1.00}, 
+		{0.90, 0.68}, 
+		{0.50, 0.32}, 
+		{0.06, MIN_DRIVE_SPEED},
+		{0.06, 0.00}, 
+		{0.00, 0.00}, 
+		{-0.06, 0.00}, 
+		{-0.06, -MIN_DRIVE_SPEED},
+		{-0.50, -0.32},
+		{-0.90, -0.68},
+		{-1.00, -1.00}
+	};
+	
+	///////////////////
+	// Driver Joystick
+	///////////////////
+	
+	private double interpolate(double input){
+		double retVal = 0.0;
+		boolean done = false;
+		double m, b;
+		
+		// Keeping input between 1 and -1
+		if(input > 1.0)
+			input = 1.0;
+		else if(input < -1.0)
+			input = -1.0;
+		
+		// Find the two points in the array which the input falls between
+		// Starts at i = 1 since points can't fall out of the array
+		for(int i = 1; !done && i < joystickScale.length; i++){
+			if(input >= joystickScale[i][0]){
+				// Found the point that falls in the array, between index i and i - 1
+				// Calculate the equation for the line y = m*x + b
+				m = (joystickScale[i][0] - joystickScale[i - 1][1])/(joystickScale[i][0] - joystickScale[i - 1][0]);
+				b = joystickScale[i][1] - (m * joystickScale[i][0]);
+				retVal = m * input + b;
+				
+				// It's finished, don't continue to loop
+				done = true;
+			}
+		}
+		
+		return retVal;
+	}
+	
+	private double falconClaw(double inputSpeed, double brake){
+		return
+	}
+	
+	public double getbaseDriverLeftAxis(){
+		double leftSpeed = interpolate(baseDriver.getRawAxis(leftJoyAxis));
+		
+		// If the trigger (brake) is pressed, use falcon claw method
+		if(baseDriver.getRawAxis(3) < -0.01)
+			leftSpeed = falconClaw(leftSpeed, baseDriver.getRawAxis(triggerAxis));
+		
+		// Flip sign so up on joystick is a positive value (forward motion) 
+		return -leftSpeed;
+	}
+	
 
 	private static OI instance = null;
 	
