@@ -37,8 +37,8 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
 	
-	public static F310 driverJoystick;
-	public static F310 operatorJoystick;
+	public  F310 driverJoystick;
+	public  F310 operatorJoystick;
 	
 	public static final double MIN_DRIVE_SPEED = 0.222;
 	public static double joystickScale[][] = {
@@ -60,6 +60,14 @@ public class OI {
 	// Driver Joystick
 	///////////////////
 	
+	/**
+	 * A method to modify the joystick values using linear interpolation
+	 * It augments the joystick value going to the motor controllers to widen
+	 * the region of "fine" control while still allowing full speed
+	 * 
+	 * @param input The value to augment
+	 * @return The adjusted value
+	 */
 	private double interpolate(double input){
 		double retVal = 0.0;
 		boolean done = false;
@@ -89,16 +97,29 @@ public class OI {
 		return retVal;
 	}
 	
+	/**
+	 * Electronic braking - code-named "Falcon Claw"
+	 * The more the "brake" is pulled, the slower output speed
+	 * 
+	 * @param inputSpeed The input value to scale back based on brake input (1 to -1)
+	 * @param brake The brake input value (0 to -1)
+	 * @return The adjusted value
+	 */
 	private double falconClaw(double inputSpeed, double brake){
-		return
+		return ((1 - ((-MIN_DRIVE_SPEED + 1) * Math.abs(brake))) * inputSpeed);
 	}
 	
+	/**
+	 * Get the adjusted left joystick value
+	 * @return The driver's left joystick value
+	 */
 	public double getbaseDriverLeftAxis(){
-		double leftSpeed = interpolate(baseDriver.getRawAxis(leftJoyAxis));
+		
+		double leftSpeed = interpolate(Robot.oi.driverJoystick.getLeftStickRaw_Y());
 		
 		// If the trigger (brake) is pressed, use falcon claw method
-		if(baseDriver.getRawAxis(3) < -0.01)
-			leftSpeed = falconClaw(leftSpeed, baseDriver.getRawAxis(triggerAxis));
+		if(Robot.oi.driverJoystick.getLeftStickRaw_Y() < -0.01)
+			leftSpeed = falconClaw(leftSpeed, Robot.oi.driverJoystick.getLeftStickRaw_Y());
 		
 		// Flip sign so up on joystick is a positive value (forward motion) 
 		return -leftSpeed;
