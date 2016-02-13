@@ -22,11 +22,6 @@ public class ShooterHood extends Subsystem {
 		hoodServo.setBounds(1950, 8, 1500, 8, 1050); 
 	}
 
-	
-	
-	
-	
-	
 	/**
 	 * Returns ShooterHood singleton object
 	 * @return is the current shooterhood object
@@ -58,8 +53,7 @@ public class ShooterHood extends Subsystem {
 	public double getAngle() {
 		return hoodServo.getAngle();
 	}
-  	
-	
+  		
 	/**
 	 * Set the default command for a subsystem here.
 	 */
