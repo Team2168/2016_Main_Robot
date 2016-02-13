@@ -32,8 +32,8 @@ public class RobotMap {
 	public static final int SHOOTER_HOOD_SERVO = 9;
 
 	//Channels 10-25 on MXP
-	public static final int INTAKE_WHEEL_LEFT = 10;
-	public static final int INTAKE_WHEEL_RIGHT = 11;
+	public static final int INTAKE_WHEEL_1 = 10;
+	public static final int INTAKE_WHEEL_2 = 11;
 
 
 	//PDP Channels/////////////////////////////////////////////////////////////
@@ -46,6 +46,9 @@ public class RobotMap {
 
 	//Digital IO Channels//////////////////////////////////////////////////////
 	//Channels 0-9 on RoboRio
+
+	public static final int SHOOTER_ENCODER_A = 0;
+	public static final int SHOOTER_ENCODER_B = 1;
 	public static final int DRIVE_TRAIN_RIGHT_ENCODER_A = 6;
 	public static final int DRIVE_TRAIN_RIGHT_ENCODER_B = 7;
 	public static final int DRIVE_TRAIN_LEFT_ENCODER_A = 8;
@@ -54,6 +57,10 @@ public class RobotMap {
 	
 	//Analog Input Channels////////////////////////////////////////////////////
 	//Channels 0-1 on Roborio
+	public static final int SHOOTER_DISTANCE_SENSOR = 0;
+	public static final int INTAKE_DISTANCE_SENSOR = 1;
+	public static final int INTAKE_POSITION_SENSOR_1 = 2;
+	public static final int INTAKE_POSITION_SENSOR_2 = 3;
 	
 	//Channels 4-7 on MXP
 	
@@ -67,11 +74,13 @@ public class RobotMap {
 	/*************************************************************************
 	 *                         DRIVETRAIN PARAMETERS
 	 *************************************************************************/
+	//TODO check if the reverse values match the physical robot
 	public static final boolean DT_REVERSE_RIGHT = true;
 	public static final boolean DT_REVERSE_LEFT = false;
 
 	private static final int DRIVE_PULSE_PER_ROTATION = 256; //encoder ticks per rotation
-	private static final double DRIVE_GEAR_RATIO = 24.0/15.0; //ratio between wheel
+	//TODO find ratio
+	private static final double DRIVE_GEAR_RATIO = 24.0/15.0; //ratio between wheel over encoder
 	private static final double DRIVE_WHEEL_DIAMETER = 6;
 	public static final int DRIVE_ENCODER_PULSE_PER_ROT = (int) (DRIVE_PULSE_PER_ROTATION * DRIVE_GEAR_RATIO); //pulse per rotation * gear ratio
 	public static final double DRIVE_ENCODER_DIST_PER_TICK = (Math.PI * DRIVE_WHEEL_DIAMETER / DRIVE_ENCODER_PULSE_PER_ROT);
@@ -91,16 +100,38 @@ public class RobotMap {
 	/*************************************************************************
 	 *                         Shooter PARAMETERS
 	 *************************************************************************/
+	//TODO check if the reverse values match the physical robot
 	public static final boolean REVERSE_SHOOTER_WHEEL_FWD= false;
-	public static final boolean REVERSE_SHOOTER_WHEEL_AFT= false;
+	public static final boolean REVERSE_SHOOTER_WHEEL_AFT= true;
+	
+	private static final int SHOOTER_PULSE_PER_ROTATION = 1; //encoder ticks per rotation
+	//TODO find ratio
+	private static final double SHOOTER_GEAR_RATIO = 1.0/1.0; //ratio between wheel over encoder
+	private static final double SHOOTER_WHEEL_DIAMETER = 4;
+	public static final int SHOOTER_ENCODER_PULSE_PER_ROT = (int) (SHOOTER_PULSE_PER_ROTATION * SHOOTER_GEAR_RATIO); //pulse per rotation * gear ratio
+	public static final double SHOOTER_ENCODER_DIST_PER_TICK = (Math.PI * SHOOTER_WHEEL_DIAMETER / SHOOTER_ENCODER_PULSE_PER_ROT);
+	public static final CounterBase.EncodingType SHOOTER_ENCODING_TYPE = CounterBase.EncodingType.k4X; //count rising and falling edges on
+	public static final AverageEncoder.PositionReturnType SHOOTER_POS_RETURN_TYPE = AverageEncoder.PositionReturnType.FEET;
+	public static final AverageEncoder.SpeedReturnType SHOOTER_SPEED_RETURN_TYPE = AverageEncoder.SpeedReturnType.FPS;
+	public static final int SHOOTER_ENCODER_MIN_RATE = 0;
+	public static final int SHOOTER_ENCODER_MIN_PERIOD = 1;
+	public static final boolean AFT_SHOOTER_ENCODER_REVERSE = false;
+	public static final boolean FWD_SHOOTER_ENCODER_REVERSE = true;
+	public static final int SHOOTER_AVG_ENCODER_VAL = 5;
+	public static final double MIN_SHOOTER_SPEED = 0.2;
+	public static final double SHOOTER_AUTO_NORMAL_SPEED = 0.5;
+	public static final double SHOOTER_WHEEL_BASE = 2; //units must match PositionReturnType (feet)
+	//TODO get correct values
+	public static final double SHOOTER_BOULDER_STOP_VOLTAGE = 0.2;
+	public static final double SHOOTER_CONSTANT_SPEED = 0.2;
 
 
 	/*************************************************************************
 	 *                         Intake PARAMETERS
 	 *************************************************************************/
-	public static final double INTAKE_SPEED_CONSTANT = 0.5;
-	public static final boolean REVERSE_INTAKE_WHEEL_RIGHT = true;
-	public static final boolean REVERSE_INTAKE_WHEEL_LEFT = false;
+	public static final double INTAKE_SPEED_CONSTANT = 0.2;
+	public static final boolean REVERSE_INTAKE_WHEEL_1 = true;
+	public static final boolean REVERSE_INTAKE_WHEEL_2 = false;
 
 
 	/*************************************************************************
@@ -131,4 +162,11 @@ public class RobotMap {
 	public static final int TCPServerRotateController = 1181;
 	public static final int TCPServerRightDrivetrainSpeed = 1182;
 	public static final int TCPServerLeftDrivetrainSpeed = 1183;
+	
+	/********************************************
+	 * 				Kevin Parameters			*
+	 * *****************************************/
+	public static final boolean KEVIN_IS_DA_BOMB = true;
+	public static final boolean GUYANA_HAS_SUNK = false;
+	
 }

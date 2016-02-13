@@ -1,4 +1,4 @@
-package org.team2168.commands.Intake;
+package org.team2168.commands.intakeroller;
 
 import org.team2168.Robot;
 import org.team2168.RobotMap;
@@ -6,14 +6,13 @@ import org.team2168.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Command for the wheel intake
- * @author jkaroul
+ * Runs the intake until a boulder is detected to be present
+ * @author Ben Waid
  */
-public class IntakeWithJoystick extends Command {
+public class RunIntakeUntilBoulderNotPresent extends Command {
 
-    public IntakeWithJoystick() {
-        // Use requires() here to declare subsystem dependencies
-        requires(Robot.intake);
+    public RunIntakeUntilBoulderNotPresent() {
+        requires(Robot.shooter);
     }
 
     // Called just before this Command runs the first time
@@ -22,16 +21,18 @@ public class IntakeWithJoystick extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intake.driveIntake(Robot.oi.operatorJoystick.getLeftStickRaw_Y());
+    	if(Robot.intakeRoller.isBoulderPresent())
+    		Robot.intakeRoller.driveIntake(RobotMap.SHOOTER_CONSTANT_SPEED);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        	return !Robot.intakeRoller.isBoulderPresent();
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.intakeRoller.driveIntake(0);
     }
 
     // Called when another command which requires one or more of the same
