@@ -1,18 +1,17 @@
-package org.team2168.commands.Indexer;
+package org.team2168.commands.intakeposition;
 
 import org.team2168.Robot;
-import org.team2168.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Drives the indexer using the right joystick on the operator controller
+ * Command that extends the position of the Intake.
  */
-public class DriveIndexerWithJoysticks extends Command {
+public class IntakeExtend extends Command {
 
-    public DriveIndexerWithJoysticks() {
+    public IntakeExtend() {
         // Use requires() here to declare subsystem dependencies
-         requires(Robot.indexer);
+        requires(Robot.intakePosition);
     }
 
     // Called just before this Command runs the first time
@@ -21,12 +20,12 @@ public class DriveIndexerWithJoysticks extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.indexer.setSpeed(Robot.oi.operatorJoystick.getRightStickRaw_Y());
+    	Robot.intakePosition.extendIntake();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return Robot.intakePosition.isIntakeExtended();
     }
 
     // Called once after isFinished returns true

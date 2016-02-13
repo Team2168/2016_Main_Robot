@@ -1,7 +1,7 @@
 package org.team2168.subsystems;
 
 import org.team2168.RobotMap;
-import org.team2168.commands.Indexer.DriveIndexerWithJoysticks;
+import org.team2168.commands.indexer.DriveIndexerWithJoysticks;
 
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
