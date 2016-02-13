@@ -23,7 +23,7 @@ public class IntakeWithJoystick extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intakeRoller.driveIntake(OI.operatorJoystick.getLeftStickRaw_Y());
+    	Robot.intakeRoller.driveIntake(Robot.oi.operatorJoystick.getLeftStickRaw_Y());
     }
 
     // Make this return true when this Command no longer needs to run execute()
