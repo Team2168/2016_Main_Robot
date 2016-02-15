@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
+import org.team2168.PID.sensors.TCPCamSensor;
 import org.team2168.subsystems.Drivetrain;
 import org.team2168.subsystems.Shooter;
 import org.team2168.subsystems.ShooterHood;
@@ -34,7 +35,8 @@ public class Robot extends IterativeRobot {
 	public static ShooterHood shooterhood;
 	public static IntakeRoller intakeRoller;
 	public static IntakePosition intakePosition;
-
+	public static TCPCamSensor tcpCamSensor;
+	
     Command autonomousCommand;
     SendableChooser chooser;
     
@@ -46,7 +48,6 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
         chooser = new SendableChooser();
-        
     	drivetrain = Drivetrain.getInstance();
     	shooter = Shooter.getInstance();
     	shooterhood = ShooterHood.getInstance();
@@ -54,6 +55,8 @@ public class Robot extends IterativeRobot {
     	intakeRoller = IntakeRoller.getInstance();
         intakePosition = IntakePosition.getInstance();
 
+        tcpCamSensor = new TCPCamSensor(41234, 0);
+        
         oi = OI.getInstance();
         
 //        chooser.addDefault("Default Auto", new ExampleCommand());
@@ -63,6 +66,8 @@ public class Robot extends IterativeRobot {
         comp = new Compressor();
         comp.start();
 
+        
+        
         System.out.println("Robot Done Loading");
     }
 	
