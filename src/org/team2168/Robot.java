@@ -55,7 +55,7 @@ public class Robot extends IterativeRobot {
     	intakeRoller = IntakeRoller.getInstance();
         intakePosition = IntakePosition.getInstance();
 
-        tcpCamSensor = new TCPCamSensor(41234);
+        tcpCamSensor = new TCPCamSensor(41234, 0);
         
         oi = OI.getInstance();
         

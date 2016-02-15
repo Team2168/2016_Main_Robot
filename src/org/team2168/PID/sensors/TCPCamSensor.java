@@ -44,9 +44,6 @@ public class TCPCamSensor {
 	private Thread t2;
 	private Thread t3;
 
-	// Address Variable
-	private String addressIn;
-
 	private long requestPeriod;
 	
 	private int size;
@@ -75,7 +72,6 @@ public class TCPCamSensor {
 
 		// setup socket to listen on
 		this.port = port;
-		addressIn = "socket://:" + port;
 
 		ds = DriverStation.getInstance();
 
