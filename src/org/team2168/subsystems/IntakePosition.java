@@ -58,20 +58,22 @@ public class IntakePosition extends Subsystem {
 	
 	/**
 	 * Returns true if the intake piston has been extended
-	 * @return true when kForward, false otherwise
+	 * Sensor returns false when active, so the inverse is taken to return true
+	 * @return true when intake is down and sensor reads false, returns false otherwise
 	 */
 	public boolean isIntakeExtended()
 	{
-		return !intakePositionSensor1.get() && !intakePositionSensor2.get();
+		return !intakePositionSensor1.get();
 	}
 	
 	/**
-	 * Returns true if the intake piston has been retracted 
-	 * @return true when kReverse, false otherwise
+	 * Returns true if the intake piston has been retracted
+	 * Sensor returns false when active, so the inverse is taken to return true
+	 * @return true when intake is up and sensor reads false, returns false otherwise
 	 */
 	public boolean isIntakeRetracted()
 	{
-		return intakePositionSensor1.get() && intakePositionSensor2.get();
+		return !intakePositionSensor2.get();
 	}
 
     public void initDefaultCommand() {
