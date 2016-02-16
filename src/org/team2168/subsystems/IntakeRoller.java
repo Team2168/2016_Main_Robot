@@ -108,7 +108,7 @@ public class IntakeRoller extends Subsystem {
 	 * Returns the raw voltage from the shooter distance sensor
 	 * @return double voltage
 	 */
-	private double getRawBoulderDistance() {
+	public double getRawBoulderDistance() {
 		return Util.max(MIN_SENSOR_VOLTAGE, intakeDistanceSensor.getVoltage());
 	}
 	

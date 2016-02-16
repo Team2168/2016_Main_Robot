@@ -12,6 +12,7 @@ import org.team2168.commands.pneumatics.StartCompressor;
 import org.team2168.subsystems.Drivetrain;
 import org.team2168.subsystems.Shooter;
 import org.team2168.subsystems.ShooterHood;
+import org.team2168.utils.PowerDistribution;
 import org.team2168.subsystems.IntakePosition;
 import org.team2168.subsystems.IntakeRoller;
 import org.team2168.subsystems.Pneumatics;
@@ -40,6 +41,8 @@ public class Robot extends IterativeRobot {
 	public static TCPCamSensor tcpCamSensor;
 	public static Pneumatics pneumatics;
 	
+	public static PowerDistribution pdp;
+	
     Command autonomousCommand;
     SendableChooser chooser;
     
@@ -60,6 +63,9 @@ public class Robot extends IterativeRobot {
         pneumatics = Pneumatics.getInstance();
 
         tcpCamSensor = new TCPCamSensor(41234, 0);
+
+		pdp = new PowerDistribution(RobotMap.PDPThreadPeriod);
+		pdp.startThread();
         
         oi = OI.getInstance();
         
