@@ -13,8 +13,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class IntakePosition extends Subsystem {
     
 	private DoubleSolenoid intakePiston;
-	private DigitalInput intakePositionSensor1;
-	private DigitalInput intakePositionSensor2;
+	private DigitalInput intakePositionSensorDown;
+	private DigitalInput intakePositionSensorUp;
 	
 	private static IntakePosition instance = null;
 	
@@ -24,8 +24,8 @@ public class IntakePosition extends Subsystem {
 	private IntakePosition()
 	{
 		intakePiston = new DoubleSolenoid(RobotMap.INTAKE_RETRACT, RobotMap.INTAKE_EXTEND);
-		intakePositionSensor1 = new DigitalInput(RobotMap.INTAKE_POSITION_SENSOR_1);
-		intakePositionSensor2 = new DigitalInput(RobotMap.INTAKE_POSITION_SENSOR_2);
+		intakePositionSensorDown = new DigitalInput(RobotMap.INTAKE_POSITION_SENSOR_1);
+		intakePositionSensorUp = new DigitalInput(RobotMap.INTAKE_POSITION_SENSOR_2);
 	}
 	
 	/**
@@ -63,7 +63,7 @@ public class IntakePosition extends Subsystem {
 	 */
 	public boolean isIntakeExtended()
 	{
-		return !intakePositionSensor1.get();
+		return !intakePositionSensorDown.get();
 	}
 	
 	/**
@@ -73,7 +73,7 @@ public class IntakePosition extends Subsystem {
 	 */
 	public boolean isIntakeRetracted()
 	{
-		return !intakePositionSensor2.get();
+		return !intakePositionSensorUp.get();
 	}
 
     public void initDefaultCommand() {
