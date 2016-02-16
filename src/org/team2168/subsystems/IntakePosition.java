@@ -24,8 +24,8 @@ public class IntakePosition extends Subsystem {
 	private IntakePosition()
 	{
 		intakePiston = new DoubleSolenoid(RobotMap.INTAKE_RETRACT, RobotMap.INTAKE_EXTEND);
-		intakePositionSensorDown = new DigitalInput(RobotMap.INTAKE_POSITION_SENSOR_1);
-		intakePositionSensorUp = new DigitalInput(RobotMap.INTAKE_POSITION_SENSOR_2);
+		intakePositionSensorDown = new DigitalInput(RobotMap.INTAKE_POSITION_SENSOR_DOWN);
+		intakePositionSensorUp = new DigitalInput(RobotMap.INTAKE_POSITION_SENSOR_UP);
 	}
 	
 	/**

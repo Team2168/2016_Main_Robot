@@ -55,8 +55,8 @@ public class RobotMap {
 	//Analog Input Channels////////////////////////////////////////////////////
 	//Channels 0-1 on Roborio
 	public static final int INTAKE_DISTANCE_SENSOR = 1;
-	public static final int INTAKE_POSITION_SENSOR_1 = 2;
-	public static final int INTAKE_POSITION_SENSOR_2 = 3;
+	public static final int INTAKE_POSITION_SENSOR_DOWN = 2;
+	public static final int INTAKE_POSITION_SENSOR_UP = 3;
 	
 	//Channels 4-7 on MXP
 	
