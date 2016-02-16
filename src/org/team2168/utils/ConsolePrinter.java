@@ -61,25 +61,25 @@ public class ConsolePrinter {
 
 	public void print() {
 		if (RobotMap.PRINT_SD_DEBUG_DATA) {
-			SmartDashboard.putData("Autonomous Mode Chooser", Robot.autoChooser);
+//			SmartDashboard.putData("Autonomous Mode Chooser", Robot.autoChooser);
 			SmartDashboard.putNumber("gameClock", (int)DriverStation.getInstance().getMatchTime());
 			
 			SmartDashboard.putNumber("Left Encoder Distance",Drivetrain.getInstance().getLeftPosition());
 			SmartDashboard.putNumber("Right Encoder Distance:",Drivetrain.getInstance().getRightPosition());
-			SmartDashboard.putBoolean("isPracticeBot", Robot.isPracticeRobot());
+//			SmartDashboard.putBoolean("isPracticeBot", Robot.isPracticeRobot());
 
-			SmartDashboard.putNumber("GYRO Driftrate:", Robot.drivetrain.gyroSPI.driftRate);
-			SmartDashboard.putNumber("GYRO Rate:", Robot.drivetrain.gyroSPI.getRate());
+//			SmartDashboard.putNumber("GYRO Driftrate:", Robot.drivetrain.gyroSPI.driftRate);
+//			SmartDashboard.putNumber("GYRO Rate:", Robot.drivetrain.gyroSPI.getRate());
 			SmartDashboard.putNumber("GYRO Angle SPI:", Robot.drivetrain.getHeading());
-			SmartDashboard.putNumber("GYRO reInits:", Robot.gyroReinits);
-			SmartDashboard.putBoolean("Gyro Cal Status", !Robot.gyroCalibrating);
-			SmartDashboard.putNumber("GYRO Status:", Robot.drivetrain.gyroSPI.getStatus());
-			SmartDashboard.putNumber("GYRO Temp:", Robot.drivetrain.gyroSPI.getTemp());
-
-
-			SmartDashboard.putNumber("Accel X:", Robot.accel.getX());
-			SmartDashboard.putNumber("Accel Y:", Robot.accel.getY());
-			SmartDashboard.putNumber("Accel Z:", Robot.accel.getZ());
+//			SmartDashboard.putNumber("GYRO reInits:", Robot.gyroReinits);
+//			SmartDashboard.putBoolean("Gyro Cal Status", !Robot.gyroCalibrating);
+//			SmartDashboard.putNumber("GYRO Status:", Robot.drivetrain.gyroSPI.getStatus());
+//			SmartDashboard.putNumber("GYRO Temp:", Robot.drivetrain.gyroSPI.getTemp());
+//
+//
+//			SmartDashboard.putNumber("Accel X:", Robot.accel.getX());
+//			SmartDashboard.putNumber("Accel Y:", Robot.accel.getY());
+//			SmartDashboard.putNumber("Accel Z:", Robot.accel.getZ());
 
 //			SmartDashboard.putNumber("DTRight1MotorVoltage", Robot.drivetrain.getRight1MotorVoltage());
 //			SmartDashboard.putNumber("DTRight2MotorVoltage", Robot.drivetrain.getRight2MotorVoltage());
@@ -111,7 +111,7 @@ public class ConsolePrinter {
 			
 			SmartDashboard.putNumber("ShooterMotorCurrent", Robot.pdp.getChannelCurrent(RobotMap.SHOOTER_MOTOR_PDP));
 
-			SmartDashboard.putString("AutoName", Robot.getAutoName());
+//			SmartDashboard.putString("AutoName", Robot.getAutoName());
 
 			SmartDashboard.putNumber("Left Stick Raw Value", OI.getInstance().driverJoystick.getLeftStickRaw_Y());
 			SmartDashboard.putNumber("Right Stick Raw Value", OI.getInstance().driverJoystick.getRightStickRaw_Y());
@@ -141,7 +141,7 @@ public class ConsolePrinter {
 			SmartDashboard.putBoolean("Intake Exetended", Robot.intakePosition.isIntakeExtended());
 			SmartDashboard.putBoolean("Intake REtracted", Robot.intakePosition.isIntakeRetracted());
 			
-			SmartDashboard.putBoolean("autoMode", Robot.isAutoMode());
+//			SmartDashboard.putBoolean("autoMode", Robot.isAutoMode());
 			
 			// Open Intake LED Input 1
 			// Close Intake LED Input 2
@@ -152,27 +152,25 @@ public class ConsolePrinter {
 			// Open Retainer LED Input 5
 			// Close Retainer LED Input 6
 			
-			SmartDashboard.putBoolean("Left Drive Motor 1 Pass", Robot.drivetrain.leftMotor1Pass);
-			SmartDashboard.putBoolean("Left Drive Motor 2 Pass", Robot.drivetrain.leftMotor2Pass);
-			SmartDashboard.putBoolean("Left Drive Motor 3 Pass", Robot.drivetrain.leftMotor3Pass);
-			SmartDashboard.putBoolean("Right Drive Motor 1 Pass", Robot.drivetrain.rightMotor1Pass);
-			SmartDashboard.putBoolean("Right Drive Motor 2 Pass", Robot.drivetrain.rightMotor2Pass);
-			SmartDashboard.putBoolean("Right Drive Motor 3 Pass", Robot.drivetrain.rightMotor3Pass);
-			SmartDashboard.putBoolean("Indexer Motor Pass", Robot.indexer.indexerPass);
-			SmartDashboard.putBoolean("Intake Left Motor Pass", Robot.intakeRoller.intakeLeftPass);
-			SmartDashboard.putBoolean("Intake Right Motor Pass", Robot.intakeRoller.intakeRightPass);
-			SmartDashboard.putBoolean("Shooter FWD Motor Pass", Robot.shooter.shooterFWDPass);
-			SmartDashboard.putBoolean("Shooter AFT Motor Pass", Robot.shooter.shooterAFTPass);
+//			SmartDashboard.putBoolean("Left Drive Motor 1 Pass", Robot.drivetrain.leftMotor1Pass);
+//			SmartDashboard.putBoolean("Left Drive Motor 2 Pass", Robot.drivetrain.leftMotor2Pass);
+//			SmartDashboard.putBoolean("Left Drive Motor 3 Pass", Robot.drivetrain.leftMotor3Pass);
+//			SmartDashboard.putBoolean("Right Drive Motor 1 Pass", Robot.drivetrain.rightMotor1Pass);
+//			SmartDashboard.putBoolean("Right Drive Motor 2 Pass", Robot.drivetrain.rightMotor2Pass);
+//			SmartDashboard.putBoolean("Right Drive Motor 3 Pass", Robot.drivetrain.rightMotor3Pass);
+//			SmartDashboard.putBoolean("Indexer Motor Pass", Robot.indexer.indexerPass);
+//			SmartDashboard.putBoolean("Intake Left Motor Pass", Robot.intakeRoller.intakeLeftPass);
+//			SmartDashboard.putBoolean("Intake Right Motor Pass", Robot.intakeRoller.intakeRightPass);
+//			SmartDashboard.putBoolean("Shooter FWD Motor Pass", Robot.shooter.shooterFWDPass);
+//			SmartDashboard.putBoolean("Shooter AFT Motor Pass", Robot.shooter.shooterAFTPass);
 			
 			
 			//file log
 			log.println(Timer.getFPGATimestamp() + "\t" +
 					System.currentTimeMillis() + "\t" +
 					
-					DriverStation.getInstance().isDisabled() + "\t" +
-					DriverStation.getInstance().isEnabled() + "\t" +
 					DriverStation.getInstance().isAutonomous() + "\t" +
-					Robot.getAutoName() + "\t" + 
+//					Robot.getAutoName() + "\t" + 
 					DriverStation.getInstance().isOperatorControl() + "\t" +
 					DriverStation.getInstance().isFMSAttached() + "\t" +
 					DriverStation.getInstance().getMatchTime() + "\t" +
@@ -195,20 +193,20 @@ public class ConsolePrinter {
 					Robot.pdp.getChannelCurrent(RobotMap.DRIVETRAIN_RIGHT_MOTOR_2_PDP) + "\t" +
 					Robot.pdp.getChannelCurrent(RobotMap.DRIVETRAIN_RIGHT_MOTOR_3_PDP) + "\t" +
 
-					Robot.drivetrain.gyroSPI.getRate() + "\t" +
-					Robot.drivetrain.gyroSPI.getPos() + "\t" +
+//					Robot.drivetrain.gyroSPI.getRate() + "\t" +
+//					Robot.drivetrain.gyroSPI.getPos() + "\t" +
 
 					Robot.drivetrain.drivetrainLeftEncoder.getPos() + "\t" +
 					Robot.drivetrain.drivetrainLeftEncoder.getRate() + "\t" +
 
 					Robot.drivetrain.drivetrainRightEncoder.getPos() + "\t" +
-					Robot.drivetrain.drivetrainRightEncoder.getRate() + "\t" +
+					Robot.drivetrain.drivetrainRightEncoder.getRate() + "\t" //+
 
-					Robot.accel.getX() + "\t" +
-					Robot.accel.getY() + "\t" +
-					Robot.accel.getZ() + "\t" +
-					IMU.getAccPitch() + "\t" +
-					IMU.getAccRoll() + "\t" +
+//					Robot.accel.getX() + "\t" +
+//					Robot.accel.getY() + "\t" +
+//					Robot.accel.getZ() + "\t" +
+//					IMU.getAccPitch() + "\t" +
+//					IMU.getAccRoll() + "\t" +
 					);
 			log.flush();
 
