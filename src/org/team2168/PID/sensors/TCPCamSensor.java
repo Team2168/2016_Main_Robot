@@ -233,115 +233,115 @@ public class TCPCamSensor {
 	}
 
 
-private void stopThreads()
-{
-	sendEnable = false;
-	recvEnable = false;
-}
-
-public int getMessageLength()
-{
+	private void stopThreads()
+	{
+		sendEnable = false;
+		recvEnable = false;
+	}
 	
-	return size;
-}
-
-public String[] getMessage()
-{
-
-	return dataReceived;
-}
-
-//These are specific to the game, modify for each year
-public boolean isMatchStart()
-{
-
-	int message = Integer.valueOf(dataReceived[0]).intValue();
+	public int getMessageLength()
+	{
+		
+		return size;
+	}
 	
-	if (message == 1)
-		return true;
-	else
-		return false;
+	public String[] getMessage()
+	{
+	
+		return dataReceived;
+	}
+	
+	//These are specific to the game, modify for each year
+	public boolean isMatchStart()
+	{
+	
+		int message = Integer.valueOf(dataReceived[0]).intValue();
+		
+		if (message == 1)
+			return true;
+		else
+			return false;
+		
+		
+	}
+	
+	public boolean isValidFrame()
+	{
+	
+		int message = Integer.valueOf(dataReceived[1]).intValue();
+		
+		if (message == 1)
+			return true;
+		else
+			return false;
+		
+		
+	}
+	
+	public boolean isHotInView()
+	{
+		int message = Integer.valueOf(dataReceived[2]).intValue();
+		
+		if (message == 1)
+			return true;
+		else
+			return false;
+	}
+	
+	public int LeftOrRightHot()
+	{
+		return Integer.valueOf(dataReceived[5]).intValue();
+	}
 	
 	
-}
-
-public boolean isValidFrame()
-{
-
-	int message = Integer.valueOf(dataReceived[1]).intValue();
+	public double getDitance()
+	{
+		double dist = Double.valueOf(dataReceived[6]).doubleValue();
+		
+		if (Double.isNaN(dist) || Double.isInfinite(dist))
+			return 0.0;
+		else
+			return dist;
+		
+	}
 	
-	if (message == 1)
-		return true;
-	else
-		return false;
+	public double getCount()
+	{
+		int count = Integer.valueOf(dataReceived[7]).intValue();
+		
+		if (Double.isNaN(count) || Double.isInfinite(count))
+			return 0;
+		else
+			return count;
+		
+	}
 	
+	public boolean isCameraConnected()
+	{
+		int message = Integer.valueOf(dataReceived[3]).intValue();
+		
+		if (message == 1)
+			return true;
+		else
+			return false;
+		
+	}
 	
-}
-
-public boolean isHotInView()
-{
-	int message = Integer.valueOf(dataReceived[2]).intValue();
+	public boolean isProcessingTreadRunning()
+	{
+		int message = Integer.valueOf(dataReceived[4]).intValue();
+		
+		if (message == 1)
+			return true;
+		else
+			return false;
 	
-	if (message == 1)
-		return true;
-	else
-		return false;
-}
-
-public int LeftOrRightHot()
-{
-	return Integer.valueOf(dataReceived[5]).intValue();
-}
-
-
-public double getDitance()
-{
-	double dist = Double.valueOf(dataReceived[6]).doubleValue();
+	}
 	
-	if (Double.isNaN(dist) || Double.isInfinite(dist))
-		return 0.0;
-	else
-		return dist;
+	public boolean isClientConnected()
+	{
+		return clientConnected;
 	
-}
-
-public double getCount()
-{
-	int count = Integer.valueOf(dataReceived[7]).intValue();
-	
-	if (Double.isNaN(count) || Double.isInfinite(count))
-		return 0;
-	else
-		return count;
-	
-}
-
-public boolean isCameraConnected()
-{
-	int message = Integer.valueOf(dataReceived[3]).intValue();
-	
-	if (message == 1)
-		return true;
-	else
-		return false;
-	
-}
-
-public boolean isProcessingTreadRunning()
-{
-	int message = Integer.valueOf(dataReceived[4]).intValue();
-	
-	if (message == 1)
-		return true;
-	else
-		return false;
-
-}
-
-public boolean isClientConnected()
-{
-	return clientConnected;
-
-}
+	}
 
 }
