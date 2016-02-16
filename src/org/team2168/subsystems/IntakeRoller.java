@@ -34,7 +34,13 @@ public class IntakeRoller extends Subsystem {
 	private IntakeRoller()
 	{
 		intakeWheel1 = new Victor(RobotMap.INTAKE_WHEEL_1);
+		intakeWheel1.setExpiration(0.1);
+		intakeWheel1.setSafetyEnabled(true);
+		
 		intakeWheel2 = new Victor(RobotMap.INTAKE_WHEEL_2);
+		intakeWheel2.setExpiration(0.1);
+		intakeWheel2.setSafetyEnabled(true);
+		
 		intakeDistanceSensor = new AnalogInput(RobotMap.INTAKE_DISTANCE_SENSOR);
 	}
 	

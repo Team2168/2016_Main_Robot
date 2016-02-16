@@ -20,6 +20,8 @@ public class Indexer extends Subsystem {
 	 */
 	private Indexer() {
 		roller = new Victor(RobotMap.INDEX_WHEEL);
+		roller.setExpiration(0.1);
+		roller.setSafetyEnabled(true);
 	}
 
 	/**

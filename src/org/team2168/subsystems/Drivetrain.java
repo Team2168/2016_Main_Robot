@@ -62,12 +62,28 @@ public class Drivetrain extends Subsystem {
 	 */
 	private Drivetrain(){
 		leftMotor1 = new Talon(RobotMap.LEFT_DRIVE_TRAIN_1);
-		leftMotor2 = new Talon(RobotMap.LEFT_DRIVE_TRAIN_2);
-		leftMotor3 = new Talon(RobotMap.LEFT_DRIVE_TRAIN_3);
-		rightMotor1 = new Talon(RobotMap.RIGHT_DRIVE_TRAIN_1);
-		rightMotor2 = new Talon(RobotMap.RIGHT_DRIVE_TRAIN_2);
-		rightMotor3 = new Talon(RobotMap.RIGHT_DRIVE_TRAIN_3);
+		leftMotor1.setExpiration(0.1);
+		leftMotor1.setSafetyEnabled(true);
 		
+		leftMotor2 = new Talon(RobotMap.LEFT_DRIVE_TRAIN_2);
+		leftMotor2.setExpiration(0.1);
+		leftMotor2.setSafetyEnabled(true);
+		
+		leftMotor3 = new Talon(RobotMap.LEFT_DRIVE_TRAIN_3);
+		leftMotor3.setExpiration(0.1);
+		leftMotor3.setSafetyEnabled(true);
+		
+		rightMotor1 = new Talon(RobotMap.RIGHT_DRIVE_TRAIN_1);
+		rightMotor1.setExpiration(0.1);
+		rightMotor1.setSafetyEnabled(true);
+		
+		rightMotor2 = new Talon(RobotMap.RIGHT_DRIVE_TRAIN_2);
+		rightMotor2.setExpiration(0.1);
+		rightMotor2.setSafetyEnabled(true);
+		
+		rightMotor3 = new Talon(RobotMap.RIGHT_DRIVE_TRAIN_3);
+		rightMotor3.setExpiration(0.1);
+		rightMotor3.setSafetyEnabled(true);
 
 		
 		drivetrainLeftEncoder = new AverageEncoder(
