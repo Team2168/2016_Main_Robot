@@ -42,6 +42,8 @@ public class RobotMap {
 	//Solenoid Channels////////////////////////////////////////////////////////
 	public static final int INTAKE_EXTEND = 0;
 	public static final int INTAKE_RETRACT = 1;
+	public static final int DRIVETRAIN_HIGH_GEAR = 2;
+	public static final int DRIVETRAIN_LOW_GEAR = 3;
 
 
 	//Digital IO Channels//////////////////////////////////////////////////////
