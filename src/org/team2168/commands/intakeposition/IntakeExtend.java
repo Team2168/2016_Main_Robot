@@ -5,7 +5,8 @@ import org.team2168.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Command that extends the position of the Intake.
+ * Command that extends the position of the Intake
+ * This command should be called with a timeout in case the sensor fails
  */
 public class IntakeExtend extends Command {
 
