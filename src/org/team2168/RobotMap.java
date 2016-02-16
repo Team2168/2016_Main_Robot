@@ -28,7 +28,7 @@ public class RobotMap {
 	public static final int LEFT_DRIVE_TRAIN_3 = 5;
 	public static final int INTAKE_WHEEL_1= 6;
 	public static final int INTAKE_WHEEL_2= 7;
-	public static final int INDEX_WHEEL = 8;
+	public static final int INDEXER_WHEEL = 8;
 	public static final int SHOOTER_HOOD_SERVO = 9;
 
 	//Channels 10-25 on MXP
@@ -57,7 +57,7 @@ public class RobotMap {
 	
 	//Analog Input Channels////////////////////////////////////////////////////
 	//Channels 0-1 on Roborio
-	public static final int SHOOTER_DISTANCE_SENSOR = 0;
+	public static final int INDEXER_DISTANCE_SENSOR = 0;
 	public static final int INTAKE_DISTANCE_SENSOR = 1;
 	public static final int INTAKE_POSITION_SENSOR_1 = 2;
 	public static final int INTAKE_POSITION_SENSOR_2 = 3;
@@ -137,7 +137,7 @@ public class RobotMap {
 	/*************************************************************************
 	 *                         Indexer PARAMETERS
 	 *************************************************************************/
-
+	public static final double INDEXER_SPEED_CONSTANT = 0.2;
 
 	/*************************************************************************
 	 *                         Hood PARAMETERS
