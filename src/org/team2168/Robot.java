@@ -2,6 +2,7 @@
 package org.team2168;
 
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -39,6 +40,7 @@ public class Robot extends IterativeRobot {
 	public static IntakePosition intakePosition;
 	public static TCPCamSensor tcpCamSensor;
 	public static Pneumatics pneumatics;
+	public static I2C i2c;
 	
     Command autonomousCommand;
     SendableChooser chooser;
@@ -58,6 +60,8 @@ public class Robot extends IterativeRobot {
     	intakeRoller = IntakeRoller.getInstance();
         intakePosition = IntakePosition.getInstance();
         pneumatics = Pneumatics.getInstance();
+        
+        i2c = new I2C(RobotMap.i2cPort, RobotMap.i2cAddress);
 
         tcpCamSensor = new TCPCamSensor(41234, 0);
         
@@ -139,6 +143,7 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        updateLED();
     }
     
     /**
@@ -146,5 +151,22 @@ public class Robot extends IterativeRobot {
      */
     public void testPeriodic() {
         LiveWindow.run();
+    }
+    
+    private static void updateLED() {
+    	byte[] data = new byte[8];
+    	if (intakePosition.isIntakeRetracted()) {
+    		data[0] = (byte) 255; //red
+    		data[1] = (byte) 0; //green
+    		data[2] = (byte) 0; //blue
+    		data[3] = (byte) 1; //pattern
+    	}
+    	else {
+    		data[0] = (byte) 0; //red
+    		data[1] = (byte) 0; //green
+    		data[2] = (byte) 255; //blue
+    		data[3] = (byte) 1; //pattern
+    	}
+    	i2c.writeBulk(data);
     }
 }

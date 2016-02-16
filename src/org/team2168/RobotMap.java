@@ -2,6 +2,7 @@ package org.team2168;
 
 import org.team2168.PID.sensors.AverageEncoder;
 import edu.wpi.first.wpilibj.CounterBase;
+import edu.wpi.first.wpilibj.I2C;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -209,9 +210,16 @@ public class RobotMap {
 	public static final int TCPServerLeftDrivetrainSpeed = 1183;
 	
 	/********************************************
+	 * 				Lights I2C					*
+	 * *****************************************/
+	public static final I2C.Port i2cPort = I2C.Port.kMXP;
+	public static final int i2cAddress = 29; //probably change this
+	
+	/********************************************
 	 * 				Kevin Parameters			*
 	 * *****************************************/
 	public static final boolean KEVIN_IS_DA_BOMB = true;
 	public static final boolean GUYANA_HAS_SUNK = false;
+	
 	
 }
