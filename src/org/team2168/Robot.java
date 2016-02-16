@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.team2168.subsystems.Drivetrain;
 import org.team2168.subsystems.Shooter;
 import org.team2168.subsystems.ShooterHood;
+import org.team2168.utils.PowerDistribution;
 import org.team2168.subsystems.Intake;
 import org.team2168.subsystems.Indexer;
 
@@ -32,6 +33,8 @@ public class Robot extends IterativeRobot {
 	public static Indexer indexer;
 	public static Shooter shooter;
 	public static ShooterHood shooterhood;
+	
+	public static PowerDistribution pdp;
 
     Command autonomousCommand;
     SendableChooser chooser;
@@ -56,6 +59,9 @@ public class Robot extends IterativeRobot {
 //        chooser.addDefault("Default Auto", new ExampleCommand());
 //        chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
+        
+        pdp = new PowerDistribution(RobotMap.PDPThreadPeriod);
+		pdp.startThread();
         
         comp = new Compressor();
         comp.start();

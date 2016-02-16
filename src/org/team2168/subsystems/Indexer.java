@@ -25,7 +25,7 @@ public class Indexer extends Subsystem {
 	 * Default constructors for Index subsystem 	
 	 */
 	private Indexer() {
-		roller = new Victor(RobotMap.INDEX_WHEEL);
+		roller = new Victor(RobotMap.INDEXER_WHEEL);
 	}
 
 	/**

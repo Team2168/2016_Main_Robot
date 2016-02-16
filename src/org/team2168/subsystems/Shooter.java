@@ -1,8 +1,12 @@
 package org.team2168.subsystems;
 
+import org.team2168.Robot;
 import org.team2168.RobotMap;
+import org.team2168.PID.sensors.AverageEncoder;
 import org.team2168.commands.shooter.DriveShooterWithJoysticks;
+import org.team2168.utils.Util;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -17,8 +21,7 @@ public class Shooter extends Subsystem {
 	
 	private Talon shooterFWD;
 	private Talon shooterAFT;
-	
-	static Shooter instance = null;
+	private AverageEncoder shooterEncoder;
 	
 	/**
 	 * Values used for motor calibration
@@ -26,6 +29,8 @@ public class Shooter extends Subsystem {
 	 */
 	public static boolean shooterFWDPass = false;
 	public static boolean shooterAFTPass = false;
+	
+	static Shooter instance = null;
 		
 	/**
 	 * Private singleton constructor for Shooter_Superman
@@ -35,7 +40,23 @@ public class Shooter extends Subsystem {
 	private Shooter ()
 	{
 		shooterFWD = new Talon (RobotMap.SHOOTER_WHEEL_FWD);
+		shooterFWD.setExpiration(0.1);
+		shooterFWD.setSafetyEnabled(true);
+		
 		shooterAFT = new Talon (RobotMap.SHOOTER_WHEEL_AFT);
+		shooterAFT.setExpiration(0.1);
+		shooterAFT.setSafetyEnabled(true);
+		
+
+		shooterEncoder = new AverageEncoder(RobotMap.SHOOTER_ENCODER_A, 
+				   							   RobotMap.SHOOTER_ENCODER_B, 
+				   							   RobotMap.SHOOTER_ENCODER_PULSE_PER_ROT,
+				   							   RobotMap.SHOOTER_ENCODER_DIST_PER_TICK,
+				   							   RobotMap.AFT_SHOOTER_ENCODER_REVERSE,
+				   							   RobotMap.SHOOTER_ENCODING_TYPE,
+				   							   RobotMap.SHOOTER_SPEED_RETURN_TYPE,
+				   							   RobotMap.SHOOTER_POS_RETURN_TYPE,
+				   							   RobotMap.SHOOTER_AVG_ENCODER_VAL);
 	}
 	
 	/**
@@ -89,6 +110,25 @@ public class Shooter extends Subsystem {
 			
 		shooterAFT.set(speed);
 	}
+	
+	/**
+	 * Gets distance traveled by aft motor
+	 * @return
+	 */
+	public double getPosition()
+	{
+		return shooterEncoder.getPos();
+	}
+	
+	
+	/**
+	 * zeros the position traveled by motors
+	 */
+	public void resetPosition()
+	{
+		shooterEncoder.reset();
+	}
+	
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.

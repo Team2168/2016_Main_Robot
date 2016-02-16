@@ -35,8 +35,8 @@ public class Intake extends Subsystem {
 	private Intake()
 	{
 		intakePiston = new DoubleSolenoid(RobotMap.INTAKE_EXTEND, RobotMap.INTAKE_RETRACT);
-		intakeWheelLeft = new Victor(RobotMap.INTAKE_WHEEL_LEFT);
-		intakeWheelRight = new Victor(RobotMap.INTAKE_WHEEL_RIGHT);
+		intakeWheelLeft = new Victor(RobotMap.INTAKE_WHEEL_1);
+		intakeWheelRight = new Victor(RobotMap.INTAKE_WHEEL_2);
 	}
 	
 	/**
@@ -71,7 +71,7 @@ public class Intake extends Subsystem {
 	 */
 	public void driveIntakeWheelLeft(double speed)
 	{
-		if(RobotMap.REVERSE_INTAKE_WHEEL_LEFT)
+		if(RobotMap.REVERSE_INTAKE_WHEEL_1)
 			speed = -speed;
 			
 		intakeWheelLeft.set(speed);
@@ -84,7 +84,7 @@ public class Intake extends Subsystem {
 	 */
 	public void driveIntakeWheelRight(double speed)
 	{
-		if(RobotMap.REVERSE_INTAKE_WHEEL_RIGHT)
+		if(RobotMap.REVERSE_INTAKE_WHEEL_2)
 			speed = -speed;
 			
 		intakeWheelRight.set(speed);

@@ -30,20 +30,20 @@ public class CalibrateAllMotors extends CommandGroup {
     	addSequential(new CalibrateMotor(RobotMap.RIGHT_DRIVE_TRAIN_3, REVERSE));
     	
     	//Shooter calibration
-//    	addSequential(new CalibrateMotor(RobotMap.SHOOTER_WHEEL_FWD, FORWARD));
-//    	addSequential(new CalibrateMotor(RobotMap.SHOOTER_WHEEL_FWD, REVERSE));
-//    	addSequential(new CalibrateMotor(RobotMap.SHOOTER_WHEEL_AFT, FORWARD));
-//    	addSequential(new CalibrateMotor(RobotMap.SHOOTER_WHEEL_AFT, REVERSE));
+    	addSequential(new CalibrateMotor(RobotMap.SHOOTER_WHEEL_FWD, FORWARD));
+    	addSequential(new CalibrateMotor(RobotMap.SHOOTER_WHEEL_FWD, REVERSE));
+    	addSequential(new CalibrateMotor(RobotMap.SHOOTER_WHEEL_AFT, FORWARD));
+    	addSequential(new CalibrateMotor(RobotMap.SHOOTER_WHEEL_AFT, REVERSE));
     	
     	//Intake calibration
-//    	addSequential(new CalibrateMotor(RobotMap.INTAKE_WHEEL_LEFT, FORWARD));
-//    	addSequential(new CalibrateMotor(RobotMap.INTAKE_WHEEL_LEFT, REVERSE));
-//    	addSequential(new CalibrateMotor(RobotMap.INTAKE_WHEEL_RIGHT, FORWARD));
-//    	addSequential(new CalibrateMotor(RobotMap.INTAKE_WHEEL_RIGHT, REVERSE));
+    	addSequential(new CalibrateMotor(RobotMap.INTAKE_WHEEL_1, FORWARD));
+    	addSequential(new CalibrateMotor(RobotMap.INTAKE_WHEEL_1, REVERSE));
+    	addSequential(new CalibrateMotor(RobotMap.INTAKE_WHEEL_2, FORWARD));
+    	addSequential(new CalibrateMotor(RobotMap.INTAKE_WHEEL_2, REVERSE));
     	
     	//Index calibration
-//    	addSequential(new CalibrateMotor(RobotMap.INDEX_WHEEL, FORWARD));
-//    	addSequential(new CalibrateMotor(RobotMap.INDEX_WHEEL, REVERSE));
+    	addSequential(new CalibrateMotor(RobotMap.INDEXER_WHEEL, FORWARD));
+    	addSequential(new CalibrateMotor(RobotMap.INDEXER_WHEEL, REVERSE));
     	
     }
 }
