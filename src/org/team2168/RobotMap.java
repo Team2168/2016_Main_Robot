@@ -51,6 +51,8 @@ public class RobotMap {
 
 	public static final int SHOOTER_ENCODER_A = 0;
 	public static final int SHOOTER_ENCODER_B = 1;
+	public static final int INTAKE_POSITION_SENSOR_1 = 2;
+	public static final int INTAKE_POSITION_SENSOR_2 = 3;
 	public static final int DRIVE_TRAIN_RIGHT_ENCODER_A = 6;
 	public static final int DRIVE_TRAIN_RIGHT_ENCODER_B = 7;
 	public static final int DRIVE_TRAIN_LEFT_ENCODER_A = 8;
@@ -61,8 +63,7 @@ public class RobotMap {
 	//Channels 0-1 on Roborio
 	public static final int INDEXER_DISTANCE_SENSOR = 0;
 	public static final int INTAKE_DISTANCE_SENSOR = 1;
-	public static final int INTAKE_POSITION_SENSOR_1 = 2;
-	public static final int INTAKE_POSITION_SENSOR_2 = 3;
+	public static final int PRESSURE_SENSOR = 3;
 	
 	//Channels 4-7 on MXP
 	
