@@ -41,9 +41,9 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
 	
-	public F310 driverJoystick;
-	public F310 operatorJoystick;
-
+	public  F310 driverJoystick;
+	public  F310 operatorJoystick;
+		
 	private static OI instance = null;
 	
 	/**
@@ -91,4 +91,95 @@ public class OI {
 		
 		return instance;
 	}
+	
+	///////////////////////////////////////////////////////////////
+	// Driver Joystick
+	///////////////////////////////////////////////////////////////
+	
+	public static final double MIN_DRIVE_SPEED = 0.222;
+	
+	/**
+	 * A function to modify the joystick values using exponential growth.
+	 * Its purpose is to augment the driver joystick value going to the motor controllers
+	 * for better control and smoother acceleration while approaching full speed
+	 * @param input the value to augment
+	 * @return the adjusted value
+	 */
+	public static double exponentialize(double input){
+		
+		double retVal = 0.0;
+		
+		// making sure the input is between 1 and -1 (the range of the joystick output)
+		if(input > 1)
+			input = 1;
+		if(input < -1)
+			input = -1;
+		
+		// Accounting for the joystick input values that wouldn't normally start the motor,
+		// making it so that the minimum output of the joystick (after zero) will set the motors to their minimum speed
+		if(input < 0.06 && input > -0.06)
+			retVal = input;
+		
+		// Though in the function when x = 0.06 y = 0.222 (the minimum drive speed of the motors),
+		// when x = 1 y = 0.995 (close enough to 1, the maximum drive speed of the motors),
+		// so it is justifiable to simply set the output to the input when the input is 1 or -1
+		else if(Math.abs(input) == 1)
+			retVal = input;
+		
+		// Plugging in the input to the equation, using the absolute value of the input because
+		// only the positive section of the equation applies to the intended input values
+		else retVal = (1.3285 * Math.pow(Math.abs(input), 3))
+				- (0.6665 * Math.pow(Math.abs(input), 2))
+				+ (0.1337 * Math.abs(input))
+				+ 0.2161;
+		
+		// Sets the output to negative if the input is negative and the output is not already set to -1 or 0,
+		// effectively reflecting the line of the equation over both the x and y axes to use for the negative inputs
+		if(input < 0.00 && (retVal != -1.00 && input != 0.00))
+			retVal = -retVal;
+		
+		return retVal;
+	}
+	
+	/**
+	 * Electronic braking - a.k.a. "Falcon Claw"
+	 * The more the "brake" is pulled, the slower the output speed
+	 * @param inputSpeed The input value to scale back based on the brake input (1 to -1)
+	 * @param brake The brake input value (0 to -1)
+	 * @return The adjusted value
+	 */
+	private static double falconClaw(double inputSpeed, double brake){
+		return ((1 - ((-MIN_DRIVE_SPEED + 1) * Math.abs(brake))) * inputSpeed);
+	}
+	
+	/**
+	 * Get the adjusted left joystick value when braking
+	 * @return The driver's adjusted left joystick value
+	 */
+	public double getLeftBrakingSpeed(){
+		
+		double leftSpeed = exponentialize(driverJoystick.getLeftStickRaw_Y());
+		
+		// If the trigger (brake) is pressed, use falcon claw method
+		if(driverJoystick.getLeftTriggerAxisRaw() > 0.00)
+			leftSpeed = falconClaw(leftSpeed, driverJoystick.getLeftTriggerAxisRaw());
+		 
+		return leftSpeed;
+	}
+	
+	/**
+	 * Get the adjusted right joystick value when braking
+	 * @return The driver's adjusted right joystick value
+	 */
+	public double getRightBrakingSpeed(){
+		
+		double rightSpeed = exponentialize(driverJoystick.getRightStickRaw_Y());
+		
+		// If the trigger (brake) is pressed, use falcon claw method
+		if(driverJoystick.getRightTriggerAxisRaw() > 0.00)
+			rightSpeed = falconClaw(rightSpeed, driverJoystick.getRightTriggerAxisRaw());
+		
+		return rightSpeed;
+	}
+	
 }
