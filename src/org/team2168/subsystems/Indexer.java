@@ -29,8 +29,13 @@ public class Indexer extends Subsystem {
 	 * Default constructors for Index subsystem 	
 	 */
 	private Indexer() {
+
 		indexerRoller = new Victor(RobotMap.INDEXER_WHEEL);
 		indexerDistanceSensor = new AnalogInput(RobotMap.INDEXER_DISTANCE_SENSOR);
+
+		indexerRoller.setExpiration(0.1);
+		indexerRoller.setSafetyEnabled(true);
+
 	}
 
 	/**

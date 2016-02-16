@@ -33,7 +33,14 @@ public class Shooter extends Subsystem {
 	private Shooter ()
 	{
 		shooterFWD = new Talon (RobotMap.SHOOTER_WHEEL_FWD);
+		shooterFWD.setExpiration(0.1);
+		shooterFWD.setSafetyEnabled(true);
+		
 		shooterAFT = new Talon (RobotMap.SHOOTER_WHEEL_AFT);
+		shooterAFT.setExpiration(0.1);
+		shooterAFT.setSafetyEnabled(true);
+		
+
 		shooterEncoder = new AverageEncoder(RobotMap.SHOOTER_ENCODER_A, 
 				   							   RobotMap.SHOOTER_ENCODER_B, 
 				   							   RobotMap.SHOOTER_ENCODER_PULSE_PER_ROT,
