@@ -1,7 +1,10 @@
 package org.team2168;
 
+import org.team2168.commands.intakeposition.IntakeExtend;
+import org.team2168.commands.intakeposition.IntakeRetract;
 import org.team2168.commands.intakeroller.IntakeWithConstant;
 import org.team2168.commands.intakeroller.IntakeWithJoystick;
+import org.team2168.commands.shooter.DriveShooterWithConstant;
 import org.team2168.utils.F310;
 
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -50,12 +53,31 @@ public class OI {
 		driverJoystick = new F310(RobotMap.DRIVER_JOYSTICK);
 		operatorJoystick = new F310(RobotMap.OPERATOR_JOYSTICK);
 
-		//Driver Joystick Buttons
+		/********************************************
+		 *         Driver Joystick Buttons          *
+		 ********************************************/
+		//TODO create commands for commented out buttons
+		//operatorJoystick.ButtonLeftTrigger().whileActive(new FalconClawLeft());
+		//operatorJoystick.ButtonRightTrigger().whileActive(new FalconClawRight());
+		//operatorJoystick.ButtonLeftBumper().whileActive(new LowGear());
+		//operatorJoystick.ButtonRightBumper().whileActive(new HighGear());
 
-
-		//Operator Joystick Buttons
-		//TODO calibrate value
-		operatorJoystick.ButtonA().whenPressed(new IntakeWithConstant(RobotMap.INTAKE_SPEED_CONSTANT));
+		/********************************************
+		 *        Operator Joystick Buttons         *
+		 ********************************************/
+		//TODO calibrate values and create commands for commented out buttons
+		operatorJoystick.ButtonA().whileHeld(new DriveShooterWithConstant(RobotMap.SHOOTER_CONSTANT_SPEED));
+		//operatorJoystick.ButtonB().whenPressed(new HoodTowerPreset());
+		//operatorJoystick.ButtonX().whenPressed(new HoodDefensePreset());
+		//operatorJoystick.ButtonY().whenPressed(new Hood???Preset());
+		operatorJoystick.ButtonLeftDPad().whenPressed(new IntakeRetract());
+		operatorJoystick.ButtonRightDPad().whenPressed(new IntakeExtend());
+		//operatorJoystick.ButtonBack().whenPressed(new StowForLowBar());
+		//operatorJoystick.ButtonStart().whenPressed(new VisionPosition());
+		operatorJoystick.ButtonLeftTrigger().whileHeld(new IntakeWithConstant(RobotMap.INTAKE_SPEED_CONSTANT));
+		operatorJoystick.ButtonRightTrigger().whileHeld(new IntakeWithConstant(-RobotMap.INTAKE_SPEED_CONSTANT));
+		//operatorJoystick.ButtonLeftBumper().whileHeld(new DriveIndexerWithConstant(RobotMap.INDEXER_SPEED_CONSTANT));
+		//operatorJoystick.ButtonRightBumper().whileHeld(new DriveIndexerWithConstant(-RobotMap.INDEXER_SPEED_CONSTANT));
 	}
 	
 	/**
