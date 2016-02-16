@@ -23,11 +23,10 @@ public class DriveShooterHoodWithJoysticks extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	//we get the left and right trigger from the bumpers
-    	//note new for 2015, they both return a value from 0 to 1, so we call
-    	//left negative and negate and add that to the last set value
-    	Robot.shooterhood.setAngle(Robot.shooterhood.getAngle() + (RobotMap.HOOD_JOYSTICK_MULTIPLIER*(-Robot.oi.operatorJoystick.getLeftTriggerAxisRaw()+
-    			Robot.oi.operatorJoystick.getRightTriggerAxisRaw())));
+    	//Takes current angle of servo and adds to it based on how far
+    	//the right joystick is pushed
+    	//TODO calibrate HOOD_JOYSTICK_MULTIPLIER value
+    	Robot.shooterhood.setAngle(Robot.shooterhood.getAngle() + (RobotMap.HOOD_JOYSTICK_MULTIPLIER*(Robot.oi.operatorJoystick.getRightStickRaw_Y())));
     	
     }
 
