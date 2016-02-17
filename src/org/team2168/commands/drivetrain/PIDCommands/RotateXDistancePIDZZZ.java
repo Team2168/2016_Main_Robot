@@ -57,6 +57,7 @@ public class RotateXDistancePIDZZZ extends Command {
 		if (!absolute)
 			this.setPoint = this.setPoint + Robot.drivetrain.getHeading();
 		Robot.drivetrain.rotateController.reset();
+		setPoint = Robot.drivetrain.getHeading() - Robot.tcpCamSensor.getRotationAngle();
 		Robot.drivetrain.rotateController.setSetPoint(setPoint);
 		Robot.drivetrain.rotateController.setMaxPosOutput(maxSpeed);
 		Robot.drivetrain.rotateController.setMaxNegOutput(-maxSpeed);
@@ -71,7 +72,7 @@ public class RotateXDistancePIDZZZ extends Command {
     // Called repeatedly when this Command is scheduled to run
     
 	protected void execute() {
-		
+		setPoint = setPoint = Robot.drivetrain.getHeading() - Robot.tcpCamSensor.getRotationAngle();
 		Robot.drivetrain.tankDrive(Robot.drivetrain.rotateController.getControlOutput(),-Robot.drivetrain.rotateController.getControlOutput());
 	
 		
@@ -81,8 +82,8 @@ public class RotateXDistancePIDZZZ extends Command {
     
 	protected boolean isFinished() {
 		//TODO Should the command be stopped????????!?!?!?!?!? after PID is tuned
-    	return Robot.drivetrain.rotateController.isFinished();
-		//return false;
+    	//return Robot.drivetrain.rotateController.isFinished();
+		return false;
     }
 
     // Called once after isFinished returns true

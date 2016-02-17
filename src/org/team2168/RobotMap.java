@@ -17,7 +17,7 @@ public class RobotMap {
 	// Joysticks/////////////////////////////////////////////////////////////
 	public static final int DRIVER_JOYSTICK = 0;
 	public static final int OPERATOR_JOYSTICK = 1;
-
+	public static final int COMMANDS_TEST_JOYSTICK = 4;
 	
 	// PWM (0 to 9) on RoboRio//////////////////////////////////////////////////
 	public static final int RIGHT_DRIVE_TRAIN_1 = 0;
@@ -76,7 +76,7 @@ public class RobotMap {
 	 *************************************************************************/
 	//TODO check if the reverse values match the physical robot
 	public static final boolean DT_REVERSE_RIGHT = true;
-	public static final boolean DT_REVERSE_LEFT = false;
+	public static final boolean DT_REVERSE_LEFT = true;
 
 	private static final int DRIVE_PULSE_PER_ROTATION = 256; //encoder ticks per rotation
 	//TODO find ratio

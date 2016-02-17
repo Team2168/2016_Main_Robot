@@ -1,5 +1,7 @@
 package org.team2168;
 
+import org.team2168.commands.drivetrain.PIDCommands.DrivePIDPause;
+import org.team2168.commands.drivetrain.PIDCommands.RotateXDistancePIDZZZ;
 import org.team2168.commands.intakeroller.IntakeWithConstant;
 import org.team2168.commands.intakeroller.IntakeWithJoystick;
 import org.team2168.utils.F310;
@@ -40,6 +42,7 @@ public class OI {
 	
 	public F310 driverJoystick;
 	public F310 operatorJoystick;
+	public F310 commandsTestJoystick;
 
 	private static OI instance = null;
 	
@@ -49,6 +52,7 @@ public class OI {
 	private OI(){
 		driverJoystick = new F310(RobotMap.DRIVER_JOYSTICK);
 		operatorJoystick = new F310(RobotMap.OPERATOR_JOYSTICK);
+		commandsTestJoystick = new F310(RobotMap.COMMANDS_TEST_JOYSTICK);
 
 		//Driver Joystick Buttons
 
@@ -56,6 +60,13 @@ public class OI {
 		//Operator Joystick Buttons
 		//TODO calibrate value
 		operatorJoystick.ButtonA().whenPressed(new IntakeWithConstant(RobotMap.INTAKE_SPEED_CONSTANT));
+		
+		
+		
+		
+		commandsTestJoystick.ButtonY().whenPressed(new RotateXDistancePIDZZZ(0, 0.325, 0.1, 4));
+		commandsTestJoystick.ButtonB().whenPressed(new DrivePIDPause());
+		
 	}
 	
 	/**
