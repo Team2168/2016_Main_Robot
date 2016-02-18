@@ -22,7 +22,7 @@ public class ShooterHood extends Subsystem {
 	double currentAngle;
 	double startTime;
 	double currentTime;
-	final double degreesPerSecond = 90;
+	final static double DEGREES_PER_SECOND = 90;
 
 	/**
 	 * Default constructor for ShooterHood subsystem
@@ -47,11 +47,13 @@ public class ShooterHood extends Subsystem {
 	 * Takes in a given angle and moves motor to that angle
 	 * @param degrees angle from 0.0 to 180.0
 	 */
-	public void setAngle(double degrees) {   
-		startAngle = hoodServo.getAngle();
-		startTime = Timer.getFPGATimestamp();
-		hoodServo.setAngle(degrees);
+	public void setAngle(double degrees) {  
 		
+		if(startAngle != degrees) {
+			hoodServo.setAngle(degrees); 
+			startAngle = hoodServo.getAngle();
+			startTime = Timer.getFPGATimestamp();
+		}
 	}
 	
 	/**
@@ -66,10 +68,10 @@ public class ShooterHood extends Subsystem {
 		double angleDifference = endAngle - startAngle;
 		double timeDifference = Timer.getFPGATimestamp() - startTime;
 		if(angleDifference > 0)
-			currentAngle = (startAngle + (timeDifference * degreesPerSecond)) ;
-		if(angleDifference < 0)
-			currentAngle = (startAngle - (timeDifference * degreesPerSecond));
-		if(angleDifference == 0)
+			currentAngle = (startAngle + (timeDifference * DEGREES_PER_SECOND));
+		else if(angleDifference < 0)
+			currentAngle = (startAngle - (timeDifference * DEGREES_PER_SECOND));
+		else
 			currentAngle = endAngle;
 		return currentAngle;
 	}
