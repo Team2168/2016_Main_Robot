@@ -17,7 +17,7 @@ public class RobotMap {
 	// Joysticks/////////////////////////////////////////////////////////////
 	public static final int DRIVER_JOYSTICK = 0;
 	public static final int OPERATOR_JOYSTICK = 1;
-
+	public static final int COMMANDS_TEST_JOYSTICK = 4;
 	
 	// PWM (0 to 9) on RoboRio//////////////////////////////////////////////////
 	public static final int RIGHT_DRIVE_TRAIN_1 = 0;

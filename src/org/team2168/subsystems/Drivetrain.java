@@ -377,5 +377,13 @@ public class Drivetrain extends Subsystem {
     public static double getRollAngle() {
     	return gyro.getVector()[1];
     }
+    
+	/**
+	 * Get the distance traveled by the chassis.
+	 * @return the average distance in inches traveled by the left and right wheels
+	 */
+	public double getAveragedDistance() {
+		return (getLeftPosition() + getRightPosition()) / 2.0;
+	}
 }
 
