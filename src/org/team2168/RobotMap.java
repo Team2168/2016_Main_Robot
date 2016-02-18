@@ -48,7 +48,6 @@ public class RobotMap {
 
 	//Digital IO Channels//////////////////////////////////////////////////////
 	//Channels 0-9 on RoboRio
-
 	public static final int SHOOTER_ENCODER_A = 0;
 	public static final int SHOOTER_ENCODER_B = 1;
 	public static final int INTAKE_POSITION_SENSOR_UP = 2;
@@ -107,7 +106,7 @@ public class RobotMap {
 	 *************************************************************************/
 	//TODO check if the reverse values match the physical robot
 	public static final boolean REVERSE_SHOOTER_WHEEL_FWD= false;
-	public static final boolean REVERSE_SHOOTER_WHEEL_AFT= true;
+	public static final boolean REVERSE_SHOOTER_WHEEL_AFT= false;
 	
 	private static final int SHOOTER_PULSE_PER_ROTATION = 1; //encoder ticks per rotation
 	//TODO find ratio
