@@ -34,8 +34,8 @@ public class Shooter extends Subsystem {
 		shooterAFT.setSafetyEnabled(true);
 		
 
-		shooterEncoder = new AverageEncoder(RobotMap.SHOOTER_ENCODER_A, 
-				   							   RobotMap.SHOOTER_ENCODER_B, 
+		shooterEncoder = new AverageEncoder(RobotMap.SHOOTER_ENCODER, 
+				   							   RobotMap.SHOOTER_ENCODER, 
 				   							   RobotMap.SHOOTER_ENCODER_PULSE_PER_ROT,
 				   							   RobotMap.SHOOTER_ENCODER_DIST_PER_TICK,
 				   							   RobotMap.AFT_SHOOTER_ENCODER_REVERSE,
