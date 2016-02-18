@@ -48,8 +48,8 @@ public class RobotMap {
 
 	//Digital IO Channels//////////////////////////////////////////////////////
 	//Channels 0-9 on RoboRio
-	public static final int SHOOTER_ENCODER_A = 0;
-	public static final int SHOOTER_ENCODER_B = 1;
+	public static final int SHOOTER_ENCODER = 0;
+	//public static final int SHOOTER_ENCODER_B = 1;
 	public static final int INTAKE_POSITION_SENSOR_UP = 2;
 	public static final int INTAKE_POSITION_SENSOR_DOWN = 3;
 	public static final int DRIVE_TRAIN_RIGHT_ENCODER_A = 6;
@@ -119,8 +119,7 @@ public class RobotMap {
 	public static final AverageEncoder.SpeedReturnType SHOOTER_SPEED_RETURN_TYPE = AverageEncoder.SpeedReturnType.FPS;
 	public static final int SHOOTER_ENCODER_MIN_RATE = 0;
 	public static final int SHOOTER_ENCODER_MIN_PERIOD = 1;
-	public static final boolean AFT_SHOOTER_ENCODER_REVERSE = false;
-	public static final boolean FWD_SHOOTER_ENCODER_REVERSE = true;
+	public static final boolean SHOOTER_ENCODER_REVERSE = false;
 	public static final int SHOOTER_AVG_ENCODER_VAL = 5;
 	public static final double MIN_SHOOTER_SPEED = 0.2;
 	public static final double SHOOTER_AUTO_NORMAL_SPEED = 0.5;
