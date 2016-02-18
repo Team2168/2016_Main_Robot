@@ -38,7 +38,7 @@ public class Shooter extends Subsystem {
 				   							   RobotMap.SHOOTER_ENCODER, 
 				   							   RobotMap.SHOOTER_ENCODER_PULSE_PER_ROT,
 				   							   RobotMap.SHOOTER_ENCODER_DIST_PER_TICK,
-				   							   RobotMap.AFT_SHOOTER_ENCODER_REVERSE,
+				   							   RobotMap.SHOOTER_ENCODER_REVERSE,
 				   							   RobotMap.SHOOTER_ENCODING_TYPE,
 				   							   RobotMap.SHOOTER_SPEED_RETURN_TYPE,
 				   							   RobotMap.SHOOTER_POS_RETURN_TYPE,
