@@ -157,54 +157,48 @@ public class RobotMap {
 	 *                            PID Parameters
 	 *************************************************************************/
 	//period to run PID loops on drive train
-	public static final long driveTrainPIDPeriod = 20;//70ms loop
-	public static final int drivetrainPIDArraySize = 50;
+	public static final long DRIVE_TRAIN_PID_PERIOD = 20;//70ms loop
+	public static final int DRIVE_TRAIN_PID_ARRAY_SIZE = 50;
 
 	//PID Gains for Left & Right Speed and Position
 	//Bandwidth =
 	//Phase Margin =
-	public static final double driveTrainLeftSpeedP =  0.4779;
-	public static final double driveTrainLeftSpeedI =  1.0526;
-	public static final double driveTrainLeftSpeedD =  0.0543;
+	public static final double DRIVE_TRAIN_LEFT_SPEED_P =  0.4779;
+	public static final double DRIVE_TRAIN_LEFT_SPEED_I =  1.0526;
+	public static final double DRIVE_TRAIN_LEFT_SPEED_D =  0.0543;
 
-	public static final double driveTrainRightSpeedP = 0.4779;
-	public static final double driveTrainRightSpeedI = 1.0526;
-	public static final double driveTrainRightSpeedD = 0.0543;
+	public static final double DRIVE_TRAIN_RIGHT_SPEED_P = 0.4779;
+	public static final double DRIVE_TRAIN_RIGHT_SPEED_I = 1.0526;
+	public static final double DRIVE_TRAIN_RIGHT_SPEED_D = 0.0543;
 
-	public static final double driveTrainLeftPositionP = 0.2;
-	public static final double driveTrainLeftPositionI = 0.0001412646174233;
-	public static final double driveTrainLeftPositionD = 0.0074778888124088;
+	public static final double DRIVE_TRAIN_LEFT_POSITION_P = 0.2;
+	public static final double DRIVE_TRAIN_LEFT_POSITION_I = 0.0001412646174233;
+	public static final double DRIVE_TRAIN_LEFT_POSITION_D = 0.0074778888124088;
 
-	public static final double driveTrainRightPositionP = 0.2;
-	public static final double driveTrainRightPositionI = 0.0001412646174233;
-	public static final double driveTrainRightPositionD = 0.0074778888124088;
+	public static final double DRIVE_TRAIN_RIGHT_POSITION_P = 0.2;
+	public static final double DRIVE_TRAIN_RIGHT_POSITION_I = 0.0001412646174233;
+	public static final double DRIVE_TRAIN_RIGHT_POSITION_D = 0.0074778888124088;
 
-	public static final double rotatePositionP = 0.045;
-	public static final double rotatePositionI = 0.001;
-	public static final double rotatePositionD = 0.0064778888124088;
+	public static final double ROTATE_POSITION_P = 0.045;
+	public static final double ROTATE_POSITION_I = 0.001;
+	public static final double ROTATE_POSITION_D = 0.0064778888124088;
 
-	double pTurn = 0.001;
-	double iTurn = 0.00001;
-	double pDrive = 0;
+	//Shooter PID Speed
+	//Bandwidth =
+	//Phase Margin =
+	public static final double SHOOTER_SPEED_P = 0.4779;
+	public static final double SHOOTER_SPEED_I = 1.0526;
+	public static final double SHOOTER_SPEED_D = 0.0543;
 
-	public static final double liftPUp = 0.12;
-	public static final double liftIUp = 0.0120;
-	public static final double liftDUp = 0.0002573;
-
-	public static final double liftPDw = 0.12;
-	public static final double liftIDw = 0.05;
-	public static final double liftDDw = 0.02573;
-
-
-	public static final long liftPIDPeriod = 20; //100ms
 
 	/****************************************************************
 	 *                TCP Servers  (ONLY FOR DEBUGGING)             *
 	 ****************************************************************/
-	public static final int TCPServerDrivetrainPos = 1180;
-	public static final int TCPServerRotateController = 1181;
-	public static final int TCPServerRightDrivetrainSpeed = 1182;
-	public static final int TCPServerLeftDrivetrainSpeed = 1183;
+	public static final int TCP_SERVER_DRIVE_TRAIN_POS = 1180;
+	public static final int TCP_SERVER_ROTATE_CONTROLLER = 1181;
+	public static final int TCO_SERVER_RIGHT_DRIVE_TRAIN_SPEED = 1182;
+	public static final int TCP_SERVER_LEFT_DRIVE_TRAIN_SPEED = 1183;
+	public static final int TCP_SERVER_SHOOTER_SPEED = 1184;
 	
 	/********************************************
 	 * 				Kevin Parameters			*

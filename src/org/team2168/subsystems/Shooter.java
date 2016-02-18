@@ -2,8 +2,10 @@ package org.team2168.subsystems;
 
 import org.team2168.Robot;
 import org.team2168.RobotMap;
+import org.team2168.PID.controllers.PIDSpeed;
 import org.team2168.PID.sensors.AverageEncoder;
 import org.team2168.commands.shooter.DriveShooterWithJoysticks;
+import org.team2168.utils.TCPSocketSender;
 import org.team2168.utils.Util;
 
 import edu.wpi.first.wpilibj.AnalogInput;
@@ -20,6 +22,12 @@ public class Shooter extends Subsystem {
 	private AverageEncoder shooterEncoder;
 	
 	static Shooter instance = null;
+	
+	//declare speed controllers
+	public PIDSpeed shooterSpeedController;
+	
+	//declare TCP severs...ONLY FOR DEBUGGING PURPOSES, SHOULD BE REMOVED FOR COMPITITION
+	TCPSocketSender TCPShooterController;
 		
 	/**
 	 * Private singleton constructor for the Shooter subsystem
@@ -43,6 +51,24 @@ public class Shooter extends Subsystem {
 				   							   RobotMap.SHOOTER_SPEED_RETURN_TYPE,
 				   							   RobotMap.SHOOTER_POS_RETURN_TYPE,
 				   							   RobotMap.SHOOTER_AVG_ENCODER_VAL);
+		
+		//Spawn new PID Controller
+		shooterSpeedController = new PIDSpeed(
+				"ShooterSpeedController",
+				RobotMap.SHOOTER_SPEED_P,
+				RobotMap.SHOOTER_SPEED_I,
+				RobotMap.SHOOTER_SPEED_D,
+				shooterEncoder,
+				RobotMap.DRIVE_TRAIN_PID_PERIOD);
+		
+		shooterSpeedController.setSIZE(RobotMap.DRIVE_TRAIN_PID_ARRAY_SIZE);
+
+		//start controller threads
+		shooterSpeedController.startThread();
+		
+		
+		TCPShooterController = new TCPSocketSender(RobotMap.TCP_SERVER_SHOOTER_SPEED, shooterSpeedController);
+		TCPShooterController.start();
 	}
 	
 	/**
