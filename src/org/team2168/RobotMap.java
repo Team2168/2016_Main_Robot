@@ -84,7 +84,7 @@ public class RobotMap {
 
 	private static final int DRIVE_PULSE_PER_ROTATION = 256; //encoder ticks per rotation
 	//TODO find ratio
-	private static final double DRIVE_GEAR_RATIO = 24.0/15.0; //ratio between wheel over encoder
+	private static final double DRIVE_GEAR_RATIO = 1.0/1.0; //ratio between wheel over encoder
 	private static final double DRIVE_WHEEL_DIAMETER = 6;
 	public static final int DRIVE_ENCODER_PULSE_PER_ROT = (int) (DRIVE_PULSE_PER_ROTATION * DRIVE_GEAR_RATIO); //pulse per rotation * gear ratio
 	public static final double DRIVE_ENCODER_DIST_PER_TICK = (Math.PI * DRIVE_WHEEL_DIAMETER / DRIVE_ENCODER_PULSE_PER_ROT);
