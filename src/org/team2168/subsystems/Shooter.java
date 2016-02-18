@@ -15,10 +15,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * @author Krystina
  */
 public class Shooter extends Subsystem {
-    
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
-	
 	private Talon shooterFWD;
 	private Talon shooterAFT;
 	private AverageEncoder shooterEncoder;
@@ -26,12 +22,9 @@ public class Shooter extends Subsystem {
 	static Shooter instance = null;
 		
 	/**
-	 * Private singleton constructor for Shooter_Superman
-	 * 
+	 * Private singleton constructor for the Shooter subsystem
 	 */
-	
-	private Shooter ()
-	{
+	private Shooter () {
 		shooterFWD = new Talon (RobotMap.SHOOTER_WHEEL_FWD);
 		shooterFWD.setExpiration(0.1);
 		shooterFWD.setSafetyEnabled(true);
@@ -57,9 +50,7 @@ public class Shooter extends Subsystem {
 	 * @return rerturns the shooter singleton object
 	 * @author Krystina
 	 */
-	
-	public static Shooter getInstance()
-	{
+	public static Shooter getInstance() {
 		if (instance == null)
 			instance = new Shooter();
 		
@@ -71,8 +62,7 @@ public class Shooter extends Subsystem {
 	 * @param speed -1 to 1 if given a positive value the ball will move inward. If negative the ball will move outward.
 	 * @author Krystina
 	 */
-	public void driveShooter(double speed)
-	{
+	public void driveShooter(double speed) {
 		driveFWDShooterWheel(speed);
 		driveAFTShooterWheel(speed);
 		
@@ -83,8 +73,7 @@ public class Shooter extends Subsystem {
 	 * @param speed -1 to 1
 	 * @author Krystina
 	 */
-	public void driveFWDShooterWheel(double speed)
-	{
+	public void driveFWDShooterWheel(double speed) {
 		if(RobotMap.REVERSE_SHOOTER_WHEEL_FWD)
 			speed = -speed;
 		
@@ -96,8 +85,7 @@ public class Shooter extends Subsystem {
 	 * @param speed -1 to 1
 	 * @author Krystina
 	 */
-	public void driveAFTShooterWheel(double speed)
-	{
+	public void driveAFTShooterWheel(double speed) {
 		if(RobotMap.REVERSE_SHOOTER_WHEEL_AFT)
 			speed = -speed;
 			
@@ -105,20 +93,18 @@ public class Shooter extends Subsystem {
 	}
 	
 	/**
-	 * Gets distance traveled by aft motor
-	 * @return
+	 * Gets the speed of the shooter wheel
+	 * @return speed in RPM
 	 */
-	public double getPosition()
-	{
-		return shooterEncoder.getPos();
+	public double getSpeed() {
+		return shooterEncoder.getRate();
 	}
 	
 	
 	/**
 	 * zeros the position traveled by motors
 	 */
-	public void resetPosition()
-	{
+	public void resetPosition() {
 		shooterEncoder.reset();
 	}
 	
