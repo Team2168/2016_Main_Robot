@@ -2,6 +2,7 @@
 package org.team2168;
 
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -41,6 +42,8 @@ public class Robot extends IterativeRobot {
 	public static TCPCamSensor tcpCamSensor;
 	public static Pneumatics pneumatics;
 	
+	public static DriverStation driverstation;
+	
 	public static PowerDistribution pdp;
 	
     Command autonomousCommand;
@@ -61,6 +64,8 @@ public class Robot extends IterativeRobot {
     	intakeRoller = IntakeRoller.getInstance();
         intakePosition = IntakePosition.getInstance();
         pneumatics = Pneumatics.getInstance();
+        
+        driverstation = DriverStation.getInstance();
 
         tcpCamSensor = new TCPCamSensor(41234, 0);
 

@@ -70,7 +70,7 @@ public class ConsolePrinter {
 
 //			SmartDashboard.putNumber("GYRO Driftrate:", Robot.drivetrain.gyroSPI.driftRate);
 //			SmartDashboard.putNumber("GYRO Rate:", Robot.drivetrain.gyroSPI.getRate());
-			SmartDashboard.putNumber("GYRO Angle SPI:", Robot.drivetrain.getHeading());
+			SmartDashboard.putNumber("GYRO Angle:", Robot.drivetrain.getHeading());
 //			SmartDashboard.putNumber("GYRO reInits:", Robot.gyroReinits);
 //			SmartDashboard.putBoolean("Gyro Cal Status", !Robot.gyroCalibrating);
 //			SmartDashboard.putNumber("GYRO Status:", Robot.drivetrain.gyroSPI.getStatus());
@@ -94,7 +94,7 @@ public class ConsolePrinter {
 			SmartDashboard.putNumber("pcmCurrent", Robot.pdp.getChannelCurrent(RobotMap.PCM_POWER));
 
 			SmartDashboard.putNumber("Raw Intake IR", Robot.intakeRoller.getRawBoulderDistance());
-			SmartDashboard.putNumber("Raw Indexer IR", Robot.intakeRoller.getRawBoulderDistance());
+			SmartDashboard.putNumber("Raw Indexer IR", Robot.indexer.getRawBoulderDistance());
 
 			SmartDashboard.putNumber("DTRight1MotorCurrent", Robot.pdp.getChannelCurrent(RobotMap.DRIVETRAIN_RIGHT_MOTOR_1_PDP));
 			SmartDashboard.putNumber("DTRight2MotorCurrent", Robot.pdp.getChannelCurrent(RobotMap.DRIVETRAIN_RIGHT_MOTOR_2_PDP));
@@ -169,13 +169,13 @@ public class ConsolePrinter {
 			log.println(Timer.getFPGATimestamp() + "\t" +
 					System.currentTimeMillis() + "\t" +
 					
-					DriverStation.getInstance().isAutonomous() + "\t" +
+					Robot.driverstation.isAutonomous() + "\t" +
 //					Robot.getAutoName() + "\t" + 
-					DriverStation.getInstance().isOperatorControl() + "\t" +
-					DriverStation.getInstance().isFMSAttached() + "\t" +
-					DriverStation.getInstance().getMatchTime() + "\t" +
-					DriverStation.getInstance().getBatteryVoltage() + "\t" +
-					DriverStation.getInstance().isBrownedOut() + "\t" +  
+					Robot.driverstation.isOperatorControl() + "\t" +
+					Robot.driverstation.isFMSAttached() + "\t" +
+					Robot.driverstation.getMatchTime() + "\t" +
+					Robot.driverstation.getBatteryVoltage() + "\t" +
+					Robot.driverstation.isBrownedOut() + "\t" +  
 					
 //					Robot.drivetrain.getLeft1MotorVoltage() + "\t" +
 //					Robot.drivetrain.getLeft2MotorVoltage() + "\t" +
