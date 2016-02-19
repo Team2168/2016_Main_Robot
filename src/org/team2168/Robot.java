@@ -139,6 +139,10 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        
+        SmartDashboard.putNumber("Shooterer RPM", shooter.getSpeed());
+        SmartDashboard.putBoolean("Shooter Positive?", shooter.isSpeedPositive());
+        SmartDashboard.putNumber("Counter RPM", shooter.counterRate());
     }
     
     /**

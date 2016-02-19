@@ -29,7 +29,7 @@ public class AverageEncoder extends Encoder implements PIDSensorInterface {
 
     int PPR;
     double distPerTick;
-
+    
     /**
      * Constructor for end point average class
      *

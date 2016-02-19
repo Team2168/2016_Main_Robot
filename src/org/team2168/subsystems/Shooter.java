@@ -9,6 +9,7 @@ import org.team2168.utils.TCPSocketSender;
 import org.team2168.utils.Util;
 
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -19,16 +20,17 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Shooter extends Subsystem {
 	private Talon shooterFWD;
 	private Talon shooterAFT;
-	private AverageEncoder shooterEncoder;
+//	private AverageEncoder shooterEncoder;
+	private Counter shooterCounter;
 	
 	static Shooter instance = null;
 	
 	//declare speed controllers
-	public PIDSpeed shooterSpeedController;
+//	public PIDSpeed shooterSpeedController;
 	
 	//declare TCP severs...ONLY FOR DEBUGGING PURPOSES, SHOULD BE REMOVED FOR COMPITITION
-	TCPSocketSender TCPShooterController;
-		
+//	TCPSocketSender TCPShooterController;
+	
 	/**
 	 * Private singleton constructor for the Shooter subsystem
 	 */
@@ -42,33 +44,39 @@ public class Shooter extends Subsystem {
 		shooterAFT.setSafetyEnabled(true);
 		
 
-		shooterEncoder = new AverageEncoder(RobotMap.SHOOTER_ENCODER, 
-				   							   RobotMap.SHOOTER_ENCODER, 
-				   							   RobotMap.SHOOTER_ENCODER_PULSE_PER_ROT,
-				   							   RobotMap.SHOOTER_ENCODER_DIST_PER_TICK,
-				   							   RobotMap.SHOOTER_ENCODER_REVERSE,
-				   							   RobotMap.SHOOTER_ENCODING_TYPE,
-				   							   RobotMap.SHOOTER_SPEED_RETURN_TYPE,
-				   							   RobotMap.SHOOTER_POS_RETURN_TYPE,
-				   							   RobotMap.SHOOTER_AVG_ENCODER_VAL);
+//		shooterEncoder = new AverageEncoder(RobotMap.SHOOTER_ENCODER_A, 
+//				   							   RobotMap.SHOOTER_ENCODER_B, 
+//				   							   RobotMap.SHOOTER_ENCODER_PULSE_PER_ROT,
+//				   							   RobotMap.SHOOTER_ENCODER_DIST_PER_TICK,
+//				   							   RobotMap.SHOOTER_ENCODER_REVERSE,
+//				   							   RobotMap.SHOOTER_ENCODING_TYPE,
+//				   							   RobotMap.SHOOTER_SPEED_RETURN_TYPE,
+//				   							   RobotMap.SHOOTER_POS_RETURN_TYPE,
+//				   							   RobotMap.SHOOTER_AVG_ENCODER_VAL);
+		
+		shooterCounter = new Counter(RobotMap.SHOOTER_ENCODER_A);
+		
+		shooterCounter.setUpSourceEdge(true, false);//X1 encoding
+		shooterCounter.setSamplesToAverage(RobotMap.SHOOTER_AVG_ENCODER_VAL);
+		shooterCounter.setDistancePerPulse(RobotMap.SHOOTER_ENCODER_DIST_PER_TICK);
 		
 		//Spawn new PID Controller
-		shooterSpeedController = new PIDSpeed(
-				"ShooterSpeedController",
-				RobotMap.SHOOTER_SPEED_P,
-				RobotMap.SHOOTER_SPEED_I,
-				RobotMap.SHOOTER_SPEED_D,
-				shooterEncoder,
-				RobotMap.DRIVE_TRAIN_PID_PERIOD);
+//		shooterSpeedController = new PIDSpeed(
+//				"ShooterSpeedController",
+//				RobotMap.SHOOTER_SPEED_P,
+//				RobotMap.SHOOTER_SPEED_I,
+//				RobotMap.SHOOTER_SPEED_D,
+//				shooterEncoder,
+//				RobotMap.DRIVE_TRAIN_PID_PERIOD);
 		
-		shooterSpeedController.setSIZE(RobotMap.DRIVE_TRAIN_PID_ARRAY_SIZE);
-
-		//start controller threads
-		shooterSpeedController.startThread();
-		
-		
-		TCPShooterController = new TCPSocketSender(RobotMap.TCP_SERVER_SHOOTER_SPEED, shooterSpeedController);
-		TCPShooterController.start();
+//		shooterSpeedController.setSIZE(RobotMap.DRIVE_TRAIN_PID_ARRAY_SIZE);
+//
+//		//start controller threads
+//		shooterSpeedController.startThread();
+//		
+//		
+//		TCPShooterController = new TCPSocketSender(RobotMap.TCP_SERVER_SHOOTER_SPEED, shooterSpeedController);
+//		TCPShooterController.start();
 	}
 	
 	/**
@@ -123,15 +131,23 @@ public class Shooter extends Subsystem {
 	 * @return speed in RPM
 	 */
 	public double getSpeed() {
-		return shooterEncoder.getRate();
+		return 0;//shooterEncoder.getRate();
 	}
 	
+	public boolean isSpeedPositive(){
+		return false;//shooterEncoder.getRate() > 0;
+	}
+	
+	public double counterRate() {
+		
+		return shooterCounter.getRate();
+	}
 	
 	/**
 	 * zeros the position traveled by motors
 	 */
 	public void resetPosition() {
-		shooterEncoder.reset();
+		//shooterEncoder.reset();
 	}
 	
 	
