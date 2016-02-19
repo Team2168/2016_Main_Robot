@@ -4,6 +4,7 @@ import org.team2168.commands.intakeposition.IntakeExtend;
 import org.team2168.commands.intakeposition.IntakeRetract;
 import org.team2168.commands.drivetrain.PIDCommands.DrivePIDPause;
 import org.team2168.commands.drivetrain.PIDCommands.RotateXDistancePIDZZZ;
+import org.team2168.commands.intakeroller.IntakeSingleBall;
 import org.team2168.commands.intakeroller.IntakeWithConstant;
 import org.team2168.commands.shooter.DriveShooterWithConstant;
 import org.team2168.utils.F310;
@@ -77,7 +78,8 @@ public class OI {
 		//operatorJoystick.ButtonBack().whenPressed(new StowForLowBar());
 		//operatorJoystick.ButtonStart().whenPressed(new VisionPosition());
 		operatorJoystick.ButtonLeftTrigger().whileHeld(new IntakeWithConstant(RobotMap.INTAKE_SPEED_CONSTANT));
-		operatorJoystick.ButtonRightTrigger().whileHeld(new IntakeWithConstant(-RobotMap.INTAKE_SPEED_CONSTANT));
+			//operatorJoystick.ButtonRightTrigger().whileHeld(new IntakeWithConstant(-RobotMap.INTAKE_SPEED_CONSTANT));
+		operatorJoystick.ButtonRightTrigger().whileHeld(new IntakeSingleBall());
 		//operatorJoystick.ButtonLeftBumper().whileHeld(new DriveIndexerWithConstant(RobotMap.INDEXER_SPEED_CONSTANT));
 		//operatorJoystick.ButtonRightBumper().whileHeld(new DriveIndexerWithConstant(-RobotMap.INDEXER_SPEED_CONSTANT));
 
