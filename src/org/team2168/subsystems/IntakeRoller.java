@@ -46,7 +46,7 @@ public class IntakeRoller extends Subsystem {
 	
 	/**
 	 * takes in a double as a speed and sets it too the intake wheel motors
-	 * @param speed is of type double from 1 to -1
+	 * @param speed is of type double from 1 to -1. Positive is in, negative is out
 	 * @author jkaroul
 	 */
 	public void driveIntake(double speed)
@@ -57,7 +57,7 @@ public class IntakeRoller extends Subsystem {
 	
 	/**
 	 * takes in a double as a speed and sets it too the intake wheel motor 1
-	 * @param speed is of type double from 1 to -1
+	 * @param speed is of type double from 1 to -1. Positive is in, negative is out
 	 * @author jkaroul
 	 */
 	public void driveIntakeWheel1(double speed)
@@ -70,7 +70,7 @@ public class IntakeRoller extends Subsystem {
 	
 	/**
 	 * takes in a double as a speed and sets it too the intake wheel motor 2
-	 * @param speed is of type double from 1 to -1
+	 * @param speed is of type double from 1 to -1. Positive is in, negative is out
 	 * @author jkaroul
 	 */
 	public void driveIntakeWheel2(double speed)
