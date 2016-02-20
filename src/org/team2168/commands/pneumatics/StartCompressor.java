@@ -1,25 +1,17 @@
-package org.team2168.commands.shooter;
+package org.team2168.commands.pneumatics;
 
 import org.team2168.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *This command drives both shooter wheels with a constant
- *@author Krystina
+ * Starts the compressor
+ * @author Ben Waid
  */
-public class DriveShooterWithConstant extends Command {
+public class StartCompressor extends Command {
 
-	/**
-	 * Constructor takes in any speed and applies it to the shooter
-	 * @author Krystina
-	 */
-	private double speed;
-    public DriveShooterWithConstant(double inputSpeed) {
-        // Use requires() here to declare subsystem dependencies
-        requires(Robot.shooter);
-        speed = inputSpeed;
-        
+    public StartCompressor() {
+        requires(Robot.pneumatics);
     }
 
     // Called just before this Command runs the first time
@@ -28,17 +20,16 @@ public class DriveShooterWithConstant extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.shooter.driveShooter(speed);
+    	Robot.pneumatics.startCompressor();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.shooter.driveShooter(0.0);
     }
 
     // Called when another command which requires one or more of the same

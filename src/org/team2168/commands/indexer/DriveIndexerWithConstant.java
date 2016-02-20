@@ -1,18 +1,19 @@
-package org.team2168.commands.shooter;
+package org.team2168.commands.indexer;
 
 import org.team2168.Robot;
-import org.team2168.RobotMap;
-
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Runs the shooter until a boulder is detected to be present
- * @author Ben Waid
+ *
  */
-public class RunShooterUntilBoulderPresent extends Command {
+public class DriveIndexerWithConstant extends Command {
 
-    public RunShooterUntilBoulderPresent() {
-        requires(Robot.shooter);
+	double speed;
+	
+    public DriveIndexerWithConstant(double inputSpeed) {
+        // Use requires() here to declare subsystem dependencies
+        requires(Robot.indexer);
+        speed = inputSpeed;
     }
 
     // Called just before this Command runs the first time
@@ -21,16 +22,17 @@ public class RunShooterUntilBoulderPresent extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    		Robot.shooter.driveShooter(RobotMap.SHOOTER_CONSTANT_SPEED);
+    	Robot.indexer.setSpeed(speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        	return Robot.shooter.isBoulderPresent();
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.indexer.setSpeed(0.0);
     }
 
     // Called when another command which requires one or more of the same
