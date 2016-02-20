@@ -2,8 +2,8 @@
 
 To run the UI:
 
-- Install Node.js version 0.8.2 (from nodejs.org previous releases section)
-- Set the NPM certs `with npm config set ca=""`
+- Install Node.js version 0.8.2 (from nodejs.org previous releases section, select the MSI version from https://nodejs.org/download/release/v0.8.2/)
+- Set the NPM certs with `npm config set ca=""`
 - Install socket.io (open cmd and type `npm install socket.io@0.9.11` without quotes)
 - Install express (open cmd and type `npm install express@2.5.1` without quotes)
 - Install carrier (open cmd and type `npm install carrier@0.1.8` without quotes)

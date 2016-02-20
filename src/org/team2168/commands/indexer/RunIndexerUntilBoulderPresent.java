@@ -1,4 +1,4 @@
-package org.team2168.commands.shooter;
+package org.team2168.commands.indexer;
 
 import org.team2168.Robot;
 import org.team2168.RobotMap;
@@ -6,13 +6,13 @@ import org.team2168.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Runs the shooter until a boulder is detected to not be present
+ * Runs the indexer until a boulder is detected to be present
  * @author Ben Waid
  */
-public class RunShooterUntilBoulderNotPresent extends Command {
+public class RunIndexerUntilBoulderPresent extends Command {
 
-    public RunShooterUntilBoulderNotPresent() {
-        requires(Robot.shooter);
+    public RunIndexerUntilBoulderPresent() {
+        requires(Robot.indexer);
     }
 
     // Called just before this Command runs the first time
@@ -21,12 +21,13 @@ public class RunShooterUntilBoulderNotPresent extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    		Robot.shooter.driveShooter(RobotMap.SHOOTER_CONSTANT_SPEED);
+    	if(!Robot.indexer.isBoulderPresent())
+    		Robot.indexer.setSpeed(RobotMap.INDEXER_SPEED_CONSTANT);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        	return !Robot.shooter.isBoulderPresent();
+        	return Robot.indexer.isBoulderPresent();
     }
 
     // Called once after isFinished returns true

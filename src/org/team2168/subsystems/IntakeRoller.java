@@ -3,7 +3,6 @@ package org.team2168.subsystems;
 import org.team2168.Robot;
 import org.team2168.RobotMap;
 import org.team2168.PID.sensors.AverageEncoder;
-import org.team2168.commands.intakeroller.IntakeWithJoystick;
 import org.team2168.utils.Util;
 
 import edu.wpi.first.wpilibj.AnalogInput;
@@ -22,6 +21,7 @@ public class IntakeRoller extends Subsystem {
 	
 	//TODO calibrate values
 		private final double MIN_SENSOR_VOLTAGE = 0.5;
+		private final double BOULDER_PRESENT_VOLTAGE = 2.6;
 		private final double IR_SENSOR_AVG_GAIN = 0.5;
 		private double averagedBoulderDistance = 0.0;
 	
@@ -34,13 +34,19 @@ public class IntakeRoller extends Subsystem {
 	private IntakeRoller()
 	{
 		intakeWheel1 = new Victor(RobotMap.INTAKE_WHEEL_1);
+		intakeWheel1.setExpiration(0.1);
+		intakeWheel1.setSafetyEnabled(true);
+		
 		intakeWheel2 = new Victor(RobotMap.INTAKE_WHEEL_2);
+		intakeWheel2.setExpiration(0.1);
+		intakeWheel2.setSafetyEnabled(true);
+		
 		intakeDistanceSensor = new AnalogInput(RobotMap.INTAKE_DISTANCE_SENSOR);
 	}
 	
 	/**
 	 * takes in a double as a speed and sets it too the intake wheel motors
-	 * @param speed is of type double from 1 to -1
+	 * @param speed is of type double from 1 to -1. Positive is in, negative is out
 	 * @author jkaroul
 	 */
 	public void driveIntake(double speed)
@@ -51,7 +57,7 @@ public class IntakeRoller extends Subsystem {
 	
 	/**
 	 * takes in a double as a speed and sets it too the intake wheel motor 1
-	 * @param speed is of type double from 1 to -1
+	 * @param speed is of type double from 1 to -1. Positive is in, negative is out
 	 * @author jkaroul
 	 */
 	public void driveIntakeWheel1(double speed)
@@ -64,7 +70,7 @@ public class IntakeRoller extends Subsystem {
 	
 	/**
 	 * takes in a double as a speed and sets it too the intake wheel motor 2
-	 * @param speed is of type double from 1 to -1
+	 * @param speed is of type double from 1 to -1. Positive is in, negative is out
 	 * @author jkaroul
 	 */
 	public void driveIntakeWheel2(double speed)
@@ -95,7 +101,7 @@ public class IntakeRoller extends Subsystem {
 	 * @return boolean true if boulder is present
 	 */
 	public boolean isBoulderPresent() {
-		return Robot.intakeRoller.getAveragedRawBoulderDistance() > MIN_SENSOR_VOLTAGE;
+		return Robot.intakeRoller.getAveragedRawBoulderDistance() > BOULDER_PRESENT_VOLTAGE;
 	}
 	
 	/**
@@ -118,6 +124,5 @@ public class IntakeRoller extends Subsystem {
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        setDefaultCommand(new IntakeWithJoystick());
     }
 }
