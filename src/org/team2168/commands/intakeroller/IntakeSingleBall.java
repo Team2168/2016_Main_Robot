@@ -1,6 +1,7 @@
 package org.team2168.commands.intakeroller;
 
-import org.team2168.commands.indexer.RunIndexerUntilBoulderPresent;
+import org.team2168.RobotMap;
+import org.team2168.commands.indexer.DriveIndexerWithConstant;
 import org.team2168.commands.intakeposition.IntakeExtend;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -11,26 +12,13 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class IntakeSingleBall extends CommandGroup {
     
     public  IntakeSingleBall() {
-        // Add Commands here:
-        // e.g. addSequential(new Command1());
-        //      addSequential(new Command2());
-        // these will run in order.
-    
-
-        // To run multiple commands at the same time,
-        // use addParallel()
-        // e.g. addParallel(new Command1());
-        //      addSequential(new Command2());
-        // Command1 and Command2 will run in parallel.
-
-        // A command group will require all of the subsystems that each member
-        // would require.
-        // e.g. if Command1 requires chassis, and Command2 requires arm,
-        // a CommandGroup containing them would require both the chassis and the
-        // arm.
-    	
     	addSequential(new IntakeExtend());
-    	addSequential(new RunIndexerUntilBoulderPresent());
+    	addSequential(new RunIntakeUntilBoulderPresent(RobotMap.INTAKE_SPEED_CONSTANT));
+    	addSequential(new RunIntakeUntilBoulderNotPresent(RobotMap.INTAKE_SPEED_CONSTANT));
+    	addSequential(new IntakeWithConstant(0.0));
     	
+    	//Jog the indexer to engage the ball
+    	addSequential(new DriveIndexerWithConstant(RobotMap.INDEXER_SPEED_CONSTANT), 0.1);
+    	addSequential(new DriveIndexerWithConstant(0.0));
     }
 }
