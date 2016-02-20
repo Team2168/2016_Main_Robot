@@ -133,7 +133,7 @@ public class RobotMap {
 	/*************************************************************************
 	 *                         Intake PARAMETERS
 	 *************************************************************************/
-	public static final double INTAKE_SPEED_CONSTANT = 0.2;
+	public static final double INTAKE_SPEED_CONSTANT = 0.7;
 	public static final boolean REVERSE_INTAKE_WHEEL_1 = true;
 	public static final boolean REVERSE_INTAKE_WHEEL_2 = false;
 
@@ -141,7 +141,7 @@ public class RobotMap {
 	/*************************************************************************
 	 *                         Indexer PARAMETERS
 	 *************************************************************************/
-	public static final double INDEXER_SPEED_CONSTANT = 0.2;
+	public static final double INDEXER_SPEED_CONSTANT = 0.5;
 
 	/*************************************************************************
 	 *                         Hood PARAMETERS
