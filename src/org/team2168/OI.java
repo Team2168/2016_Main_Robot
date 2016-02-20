@@ -72,16 +72,16 @@ public class OI {
 		//operatorJoystick.ButtonB().whenPressed(new HoodTowerPreset());
 		//operatorJoystick.ButtonX().whenPressed(new HoodDefensePreset());
 		//operatorJoystick.ButtonY().whenPressed(new Hood???Preset());
-		operatorJoystick.ButtonLeftDPad().whenPressed(new IntakeExtend());
-		operatorJoystick.ButtonRightDPad().whenPressed(new IntakeRetract());
+		operatorJoystick.ButtonLeftDPad().whenPressed(new IntakeRetract());
+		operatorJoystick.ButtonRightDPad().whenPressed(new IntakeExtend());
 		operatorJoystick.ButtonBack().whenPressed(new StowForLowBar());
 		
 		//operatorJoystick.ButtonStart().whenPressed(new VisionPosition());
 		operatorJoystick.ButtonLeftTrigger().whileHeld(new IntakeWithConstant(-RobotMap.INTAKE_SPEED_CONSTANT));
 		operatorJoystick.ButtonRightTrigger().whileHeld(new IntakeWithConstant(RobotMap.INTAKE_SPEED_CONSTANT));
 //		operatorJoystick.ButtonRightTrigger().whileHeld(new IntakeSingleBall());
-		operatorJoystick.ButtonLeftBumper().whileHeld(new DriveIndexerWithConstant(RobotMap.INDEXER_SPEED_CONSTANT));
-		operatorJoystick.ButtonRightBumper().whileHeld(new DriveIndexerWithConstant(-RobotMap.INDEXER_SPEED_CONSTANT));
+		operatorJoystick.ButtonLeftBumper().whileHeld(new DriveIndexerWithConstant(-RobotMap.INDEXER_SPEED_CONSTANT));
+		operatorJoystick.ButtonRightBumper().whileHeld(new DriveIndexerWithConstant(RobotMap.INDEXER_SPEED_CONSTANT));
 
 		
 		/********************************************
