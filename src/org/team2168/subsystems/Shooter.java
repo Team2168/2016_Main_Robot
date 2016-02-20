@@ -53,6 +53,7 @@ public class Shooter extends Subsystem {
 //				   							   RobotMap.SHOOTER_SPEED_RETURN_TYPE,
 //				   							   RobotMap.SHOOTER_POS_RETURN_TYPE,
 //				   							   RobotMap.SHOOTER_AVG_ENCODER_VAL);
+
 		
 		shooterCounter = new Counter(RobotMap.SHOOTER_ENCODER_A);
 		

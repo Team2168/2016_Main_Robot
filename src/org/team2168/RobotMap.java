@@ -40,8 +40,8 @@ public class RobotMap {
 
 
 	//Solenoid Channels////////////////////////////////////////////////////////
-	public static final int INTAKE_EXTEND = 0;
-	public static final int INTAKE_RETRACT = 1;
+	public static final int INTAKE_RETRACT = 0;
+	public static final int INTAKE_EXTEND = 1;
 	public static final int DRIVETRAIN_HIGH_GEAR = 2;
 	public static final int DRIVETRAIN_LOW_GEAR = 3;
 
@@ -52,14 +52,14 @@ public class RobotMap {
 	public static final int SHOOTER_ENCODER_B = 1;
 	public static final int INTAKE_POSITION_SENSOR_UP = 2;
 	public static final int INTAKE_POSITION_SENSOR_DOWN = 3;
-	public static final int DRIVE_TRAIN_RIGHT_ENCODER_A = 6;
-	public static final int DRIVE_TRAIN_RIGHT_ENCODER_B = 7;
-	public static final int DRIVE_TRAIN_LEFT_ENCODER_A = 8;
-	public static final int DRIVE_TRAIN_LEFT_ENCODER_B = 9;
+	public static final int DRIVE_TRAIN_LEFT_ENCODER_A = 6;
+	public static final int DRIVE_TRAIN_LEFT_ENCODER_B = 7;
+	public static final int DRIVE_TRAIN_RIGHT_ENCODER_A = 8;
+	public static final int DRIVE_TRAIN_RIGHT_ENCODER_B = 9;
 	
 	
 	//Analog Input Channels////////////////////////////////////////////////////
-	//Channels 0-1 on Roborio
+	//Channels 0-3 on Roborio
 	public static final int INDEXER_DISTANCE_SENSOR = 0;
 	public static final int INTAKE_DISTANCE_SENSOR = 1;
 	public static final int PRESSURE_SENSOR = 3;
@@ -132,7 +132,7 @@ public class RobotMap {
 	/*************************************************************************
 	 *                         Intake PARAMETERS
 	 *************************************************************************/
-	public static final double INTAKE_SPEED_CONSTANT = 0.2;
+	public static final double INTAKE_SPEED_CONSTANT = 0.7;
 	public static final boolean REVERSE_INTAKE_WHEEL_1 = true;
 	public static final boolean REVERSE_INTAKE_WHEEL_2 = false;
 
@@ -140,7 +140,7 @@ public class RobotMap {
 	/*************************************************************************
 	 *                         Indexer PARAMETERS
 	 *************************************************************************/
-	public static final double INDEXER_SPEED_CONSTANT = 0.2;
+	public static final double INDEXER_SPEED_CONSTANT = 0.5;
 
 	/*************************************************************************
 	 *                         Hood PARAMETERS
