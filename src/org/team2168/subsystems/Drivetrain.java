@@ -63,12 +63,28 @@ public class Drivetrain extends Subsystem {
 	 */
 	private Drivetrain(){
 		leftMotor1 = new Talon(RobotMap.LEFT_DRIVE_TRAIN_1);
-		leftMotor2 = new Talon(RobotMap.LEFT_DRIVE_TRAIN_2);
-		leftMotor3 = new Talon(RobotMap.LEFT_DRIVE_TRAIN_3);
-		rightMotor1 = new Talon(RobotMap.RIGHT_DRIVE_TRAIN_1);
-		rightMotor2 = new Talon(RobotMap.RIGHT_DRIVE_TRAIN_2);
-		rightMotor3 = new Talon(RobotMap.RIGHT_DRIVE_TRAIN_3);
+		leftMotor1.setExpiration(0.1);
+		leftMotor1.setSafetyEnabled(true);
 		
+		leftMotor2 = new Talon(RobotMap.LEFT_DRIVE_TRAIN_2);
+		leftMotor2.setExpiration(0.1);
+		leftMotor2.setSafetyEnabled(true);
+		
+		leftMotor3 = new Talon(RobotMap.LEFT_DRIVE_TRAIN_3);
+		leftMotor3.setExpiration(0.1);
+		leftMotor3.setSafetyEnabled(true);
+		
+		rightMotor1 = new Talon(RobotMap.RIGHT_DRIVE_TRAIN_1);
+		rightMotor1.setExpiration(0.1);
+		rightMotor1.setSafetyEnabled(true);
+		
+		rightMotor2 = new Talon(RobotMap.RIGHT_DRIVE_TRAIN_2);
+		rightMotor2.setExpiration(0.1);
+		rightMotor2.setSafetyEnabled(true);
+		
+		rightMotor3 = new Talon(RobotMap.RIGHT_DRIVE_TRAIN_3);
+		rightMotor3.setExpiration(0.1);
+		rightMotor3.setSafetyEnabled(true);
 
 		
 		drivetrainLeftEncoder = new AverageEncoder(
@@ -105,43 +121,43 @@ public class Drivetrain extends Subsystem {
 		//DriveStraight Controller
 				rotateController = new PIDPosition(
 						"RotationController",
-						RobotMap.rotatePositionP,
-						RobotMap.rotatePositionI,
-						RobotMap.rotatePositionD,
+						RobotMap.ROTATE_POSITION_P,
+						RobotMap.ROTATE_POSITION_I,
+						RobotMap.ROTATE_POSITION_D,
 						stupidPIDSensorGyro,
-						RobotMap.driveTrainPIDPeriod);
+						RobotMap.DRIVE_TRAIN_PID_PERIOD);
 
 				driveTrainPosController = new PIDPosition(
 						"driveTrainPosController",
-						RobotMap.driveTrainRightPositionP,
-						RobotMap.driveTrainRightPositionI,
-						RobotMap.driveTrainRightPositionD,
+						RobotMap.DRIVE_TRAIN_RIGHT_POSITION_P,
+						RobotMap.DRIVE_TRAIN_RIGHT_POSITION_I,
+						RobotMap.DRIVE_TRAIN_RIGHT_POSITION_D,
 						imu,
-						RobotMap.driveTrainPIDPeriod);
+						RobotMap.DRIVE_TRAIN_PID_PERIOD);
 
 				//Spawn new PID Controller
 				rightSpeedController = new PIDSpeed(
 						"RightSpeedController",
-						RobotMap.driveTrainRightSpeedP,
-						RobotMap.driveTrainRightSpeedI,
-						RobotMap.driveTrainRightSpeedD,
+						RobotMap.DRIVE_TRAIN_RIGHT_SPEED_P,
+						RobotMap.DRIVE_TRAIN_RIGHT_SPEED_I,
+						RobotMap.DRIVE_TRAIN_RIGHT_SPEED_D,
 						drivetrainRightEncoder,
-						RobotMap.driveTrainPIDPeriod);
+						RobotMap.DRIVE_TRAIN_PID_PERIOD);
 
 				leftSpeedController = new PIDSpeed(
 						"LeftSpeedController",
-						RobotMap.driveTrainLeftSpeedP,
-						RobotMap.driveTrainLeftSpeedI,
-						RobotMap.driveTrainLeftSpeedD,
+						RobotMap.DRIVE_TRAIN_LEFT_SPEED_P,
+						RobotMap.DRIVE_TRAIN_LEFT_SPEED_I,
+						RobotMap.DRIVE_TRAIN_LEFT_SPEED_D,
 						drivetrainLeftEncoder,
-						RobotMap.driveTrainPIDPeriod);
+						RobotMap.DRIVE_TRAIN_PID_PERIOD);
 
 
 				//add min and max output defaults and set array size
-				rightSpeedController.setSIZE(RobotMap.drivetrainPIDArraySize);
-				leftSpeedController.setSIZE(RobotMap.drivetrainPIDArraySize);
-				driveTrainPosController.setSIZE(RobotMap.drivetrainPIDArraySize);
-				rotateController.setSIZE(RobotMap.drivetrainPIDArraySize);
+				rightSpeedController.setSIZE(RobotMap.DRIVE_TRAIN_PID_ARRAY_SIZE);
+				leftSpeedController.setSIZE(RobotMap.DRIVE_TRAIN_PID_ARRAY_SIZE);
+				driveTrainPosController.setSIZE(RobotMap.DRIVE_TRAIN_PID_ARRAY_SIZE);
+				rotateController.setSIZE(RobotMap.DRIVE_TRAIN_PID_ARRAY_SIZE);
 
 				//start controller threads
 				rightSpeedController.startThread();
@@ -154,16 +170,16 @@ public class Drivetrain extends Subsystem {
 				
 				
 				//start TCP Servers for DEBUGING ONLY
-				TCPdrivePosController = new TCPSocketSender(RobotMap.TCPServerDrivetrainPos, driveTrainPosController);
+				TCPdrivePosController = new TCPSocketSender(RobotMap.TCP_SERVER_DRIVE_TRAIN_POS, driveTrainPosController);
 				TCPdrivePosController.start();
 
-				TCPrightSpeedController = new TCPSocketSender(RobotMap.TCPServerRightDrivetrainSpeed, rightSpeedController);
+				TCPrightSpeedController = new TCPSocketSender(RobotMap.TCO_SERVER_RIGHT_DRIVE_TRAIN_SPEED, rightSpeedController);
 				TCPrightSpeedController.start();
 
-				TCPleftSpeedController = new TCPSocketSender(RobotMap.TCPServerLeftDrivetrainSpeed, leftSpeedController);
+				TCPleftSpeedController = new TCPSocketSender(RobotMap.TCP_SERVER_LEFT_DRIVE_TRAIN_SPEED, leftSpeedController);
 				TCPleftSpeedController.start();
 
-				TCProtateController = new TCPSocketSender(RobotMap.TCPServerRotateController, rotateController);
+				TCProtateController = new TCPSocketSender(RobotMap.TCP_SERVER_ROTATE_CONTROLLER, rotateController);
 				TCProtateController.start();
 	}
 	
@@ -296,6 +312,7 @@ public class Drivetrain extends Subsystem {
 		return drivetrainRightEncoder.getPos();
 	}
 	
+	
 	/**
 	 * Gets the distance traveled by the chassis
 	 * @return the average distance in inches traveled by the left and right wheels,
@@ -362,5 +379,4 @@ public class Drivetrain extends Subsystem {
     public static double getRollAngle() {
     	return gyro.getVector()[1];
     }
-    
 }

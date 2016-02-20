@@ -13,8 +13,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class IntakePosition extends Subsystem {
     
 	private DoubleSolenoid intakePiston;
-	private DigitalInput intakePositionSensor1;
-	private DigitalInput intakePositionSensor2;
+	private DigitalInput intakePositionSensorDown;
+	private DigitalInput intakePositionSensorUp;
 	
 	private static IntakePosition instance = null;
 	
@@ -24,8 +24,8 @@ public class IntakePosition extends Subsystem {
 	private IntakePosition()
 	{
 		intakePiston = new DoubleSolenoid(RobotMap.INTAKE_RETRACT, RobotMap.INTAKE_EXTEND);
-		intakePositionSensor1 = new DigitalInput(RobotMap.INTAKE_POSITION_SENSOR_1);
-		intakePositionSensor2 = new DigitalInput(RobotMap.INTAKE_POSITION_SENSOR_2);
+		intakePositionSensorDown = new DigitalInput(RobotMap.INTAKE_POSITION_SENSOR_DOWN);
+		intakePositionSensorUp = new DigitalInput(RobotMap.INTAKE_POSITION_SENSOR_UP);
 	}
 	
 	/**
@@ -58,20 +58,22 @@ public class IntakePosition extends Subsystem {
 	
 	/**
 	 * Returns true if the intake piston has been extended
-	 * @return true when kForward, false otherwise
+	 * Sensor returns false when active, so the inverse is taken to return true
+	 * @return true when intake is down and sensor reads false, returns false otherwise
 	 */
 	public boolean isIntakeExtended()
 	{
-		return !intakePositionSensor1.get() && !intakePositionSensor2.get();
+		return !intakePositionSensorDown.get();
 	}
 	
 	/**
-	 * Returns true if the intake piston has been retracted 
-	 * @return true when kReverse, false otherwise
+	 * Returns true if the intake piston has been retracted
+	 * Sensor returns false when active, so the inverse is taken to return true
+	 * @return true when intake is up and sensor reads false, returns false otherwise
 	 */
 	public boolean isIntakeRetracted()
 	{
-		return intakePositionSensor1.get() && intakePositionSensor2.get();
+		return !intakePositionSensorUp.get();
 	}
 
     public void initDefaultCommand() {

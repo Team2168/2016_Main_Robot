@@ -7,11 +7,14 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
+import org.team2168.PID.sensors.TCPCamSensor;
+import org.team2168.commands.pneumatics.StartCompressor;
 import org.team2168.subsystems.Drivetrain;
 import org.team2168.subsystems.Shooter;
 import org.team2168.subsystems.ShooterHood;
 import org.team2168.subsystems.IntakePosition;
 import org.team2168.subsystems.IntakeRoller;
+import org.team2168.subsystems.Pneumatics;
 import org.team2168.subsystems.Indexer;
 
 
@@ -34,7 +37,9 @@ public class Robot extends IterativeRobot {
 	public static ShooterHood shooterhood;
 	public static IntakeRoller intakeRoller;
 	public static IntakePosition intakePosition;
-
+	public static TCPCamSensor tcpCamSensor;
+	public static Pneumatics pneumatics;
+	
     Command autonomousCommand;
     SendableChooser chooser;
     
@@ -46,23 +51,25 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
         chooser = new SendableChooser();
-        
     	drivetrain = Drivetrain.getInstance();
     	shooter = Shooter.getInstance();
     	shooterhood = ShooterHood.getInstance();
     	indexer = Indexer.getInstance();
     	intakeRoller = IntakeRoller.getInstance();
         intakePosition = IntakePosition.getInstance();
+        pneumatics = Pneumatics.getInstance();
 
+        tcpCamSensor = new TCPCamSensor(41234, 0);
+        
         oi = OI.getInstance();
         
 //        chooser.addDefault("Default Auto", new ExampleCommand());
 //        chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
         
-        comp = new Compressor();
-        comp.start();
-
+        new StartCompressor();
+        
+        
         System.out.println("Robot Done Loading");
     }
 	
@@ -80,6 +87,16 @@ public class Robot extends IterativeRobot {
      */
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
+
+        SmartDashboard.putNumber("Drivetrain Left Position", drivetrain.getLeftPosition());
+        SmartDashboard.putNumber("Drivetrain Right Position", drivetrain.getRightPosition());
+        SmartDashboard.putBoolean("Boulder in Intake", intakeRoller.isBoulderPresent());
+        SmartDashboard.putBoolean("Boulder in Indexer", indexer.isBoulderPresent());
+        SmartDashboard.putNumber("Shooter Speed", shooter.getSpeed());
+        SmartDashboard.putBoolean("Intake up", intakePosition.isIntakeRetracted());
+        SmartDashboard.putBoolean("Intake down", intakePosition.isIntakeExtended());
+        SmartDashboard.putNumber("Boulder Distance Intake", intakeRoller.getAveragedRawBoulderDistance());
+        SmartDashboard.putNumber("Boulder Distance Indexer", indexer.getAveragedRawBoulderDistance());
 	}
 
 	/**

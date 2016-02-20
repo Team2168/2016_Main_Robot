@@ -10,9 +10,12 @@ import edu.wpi.first.wpilibj.command.Command;
  * @author Ben Waid
  */
 public class RunIntakeUntilBoulderPresent extends Command {
-
-    public RunIntakeUntilBoulderPresent() {
-        requires(Robot.shooter);
+	
+	double speed;
+	
+    public RunIntakeUntilBoulderPresent(double speed) {
+    	requires(Robot.shooter);
+    	this.speed = speed;
     }
 
     // Called just before this Command runs the first time
@@ -21,18 +24,17 @@ public class RunIntakeUntilBoulderPresent extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(!Robot.intakeRoller.isBoulderPresent())
-    		Robot.intakeRoller.driveIntake(RobotMap.SHOOTER_CONSTANT_SPEED);
+		Robot.intakeRoller.driveIntake(speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        	return Robot.intakeRoller.isBoulderPresent();
+    	return Robot.intakeRoller.isBoulderPresent();
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.intakeRoller.driveIntake(0);
+    	Robot.intakeRoller.driveIntake(0.0);
     }
 
     // Called when another command which requires one or more of the same

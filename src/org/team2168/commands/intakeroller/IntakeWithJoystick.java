@@ -1,8 +1,6 @@
 package org.team2168.commands.intakeroller;
 
-import org.team2168.OI;
 import org.team2168.Robot;
-import org.team2168.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
