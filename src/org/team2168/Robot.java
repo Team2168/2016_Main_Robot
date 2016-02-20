@@ -91,6 +91,16 @@ public class Robot extends IterativeRobot {
      */
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
+
+        SmartDashboard.putNumber("Drivetrain Left Position", drivetrain.getLeftPosition());
+        SmartDashboard.putNumber("Drivetrain Right Position", drivetrain.getRightPosition());
+        SmartDashboard.putBoolean("Boulder in Intake", intakeRoller.isBoulderPresent());
+        SmartDashboard.putBoolean("Boulder in Indexer", indexer.isBoulderPresent());
+        SmartDashboard.putNumber("Shooter Speed", shooter.getSpeed());
+        SmartDashboard.putBoolean("Intake up", intakePosition.isIntakeRetracted());
+        SmartDashboard.putBoolean("Intake down", intakePosition.isIntakeExtended());
+        SmartDashboard.putNumber("Boulder Distance Intake", intakeRoller.getAveragedRawBoulderDistance());
+        SmartDashboard.putNumber("Boulder Distance Indexer", indexer.getAveragedRawBoulderDistance());
 	}
 
 	/**
