@@ -1,14 +1,12 @@
 package org.team2168;
 
-import org.team2168.commands.intakeposition.IntakeExtend;
-import org.team2168.commands.intakeposition.IntakeRetract;
-import org.team2168.commands.drivetrain.PIDCommands.DrivePIDPause;
-import org.team2168.commands.drivetrain.PIDCommands.RotateXDistancePIDZZZ;
-import org.team2168.commands.indexer.DriveIndexerWithConstant;
-import org.team2168.commands.intakeroller.IntakeSingleBall;
-import org.team2168.commands.intakeroller.IntakeWithConstant;
-import org.team2168.commands.pneumatics.StowForLowBar;
-import org.team2168.commands.shooter.DriveShooterWithConstant;
+import org.team2168.commands.drivetrain.*;
+import org.team2168.commands.drivetrain.PIDCommands.*;
+import org.team2168.commands.indexer.*;
+import org.team2168.commands.intakeposition.*;
+import org.team2168.commands.intakeroller.*;
+import org.team2168.commands.pneumatics.*;
+import org.team2168.commands.shooter.*;
 import org.team2168.utils.F310;
 
 /**
@@ -45,7 +43,7 @@ public class OI {
 	
 	public F310 driverJoystick;
 	public F310 operatorJoystick;
-	public F310 commandsTestJoystick;
+	//public F310 commandsTestJoystick;
 
 	private static OI instance = null;
 	
@@ -55,13 +53,12 @@ public class OI {
 	private OI(){
 		driverJoystick = new F310(RobotMap.DRIVER_JOYSTICK);
 		operatorJoystick = new F310(RobotMap.OPERATOR_JOYSTICK);
-		commandsTestJoystick = new F310(RobotMap.COMMANDS_TEST_JOYSTICK);
+		//commandsTestJoystick = new F310(RobotMap.COMMANDS_TEST_JOYSTICK);
 
 		/********************************************
 		 *         Driver Joystick Buttons          *
 		 ********************************************/
 		//TODO create commands for commented out buttons
-
 		//operatorJoystick.ButtonLeftBumper().whileActive(new LowGear());
 		//operatorJoystick.ButtonRightBumper().whileActive(new HighGear());
 
@@ -70,7 +67,8 @@ public class OI {
 		 *        Operator Joystick Buttons         *
 		 ********************************************/
 		//TODO calibrate values and create commands for commented out buttons
-		operatorJoystick.ButtonA().whileHeld(new DriveShooterWithConstant(RobotMap.SHOOTER_CONSTANT_SPEED));
+		operatorJoystick.ButtonA().whileHeld(new DriveIndexerWithConstant(RobotMap.INDEXER_SPEED_CONSTANT));
+		operatorJoystick.ButtonA().whileHeld(new IntakeWithConstant(RobotMap.INTAKE_SPEED_CONSTANT));
 		//operatorJoystick.ButtonB().whenPressed(new HoodTowerPreset());
 		//operatorJoystick.ButtonX().whenPressed(new HoodDefensePreset());
 		//operatorJoystick.ButtonY().whenPressed(new Hood???Preset());
@@ -89,8 +87,8 @@ public class OI {
 		/********************************************
 		 *        Command Test  Joystick Buttons         *
 		 ********************************************/
-		commandsTestJoystick.ButtonY().whenPressed(new RotateXDistancePIDZZZ(0, 0.325, 0.1, 4));
-		commandsTestJoystick.ButtonB().whenPressed(new DrivePIDPause());
+//		commandsTestJoystick.ButtonY().whenPressed(new RotateXDistancePIDZZZ(0, 0.325, 0.1, 4));
+//		commandsTestJoystick.ButtonB().whenPressed(new DrivePIDPause());
 		
 	}
 	
