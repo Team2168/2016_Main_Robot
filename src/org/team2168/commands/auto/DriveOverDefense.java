@@ -1,6 +1,5 @@
 package org.team2168.commands.auto;
 
-import org.team2168.Robot;
 import org.team2168.commands.drivetrain.DriveWithConstant;
 import org.team2168.commands.intakeposition.IntakeExtend;
 
@@ -13,7 +12,7 @@ public class DriveOverDefense extends CommandGroup {
     
     public  DriveOverDefense() {
     	addSequential(new IntakeExtend());
-        addSequential(new DriveWithConstant(0.3, 0.3), 10.0);
+        addSequential(new DriveWithConstant(0.6, 0.6), 3.0);
         addSequential(new DriveWithConstant(0, 0));
     }
 }
