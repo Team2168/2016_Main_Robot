@@ -2,12 +2,11 @@ package org.team2168;
 
 import org.team2168.commands.intakeposition.IntakeExtend;
 import org.team2168.commands.intakeposition.IntakeRetract;
+import org.team2168.commands.drivetrain.PIDCommands.DrivePIDPause;
+import org.team2168.commands.drivetrain.PIDCommands.RotateXDistancePIDZZZ;
 import org.team2168.commands.intakeroller.IntakeWithConstant;
-import org.team2168.commands.intakeroller.IntakeWithJoystick;
 import org.team2168.commands.shooter.DriveShooterWithConstant;
 import org.team2168.utils.F310;
-
-import edu.wpi.first.wpilibj.buttons.Button;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -43,6 +42,7 @@ public class OI {
 	
 	public F310 driverJoystick;
 	public F310 operatorJoystick;
+	public F310 commandsTestJoystick;
 
 	private static OI instance = null;
 	
@@ -52,6 +52,7 @@ public class OI {
 	private OI(){
 		driverJoystick = new F310(RobotMap.DRIVER_JOYSTICK);
 		operatorJoystick = new F310(RobotMap.OPERATOR_JOYSTICK);
+		commandsTestJoystick = new F310(RobotMap.COMMANDS_TEST_JOYSTICK);
 
 		/********************************************
 		 *         Driver Joystick Buttons          *
@@ -61,6 +62,7 @@ public class OI {
 		//operatorJoystick.ButtonRightTrigger().whileActive(new FalconClawRight());
 		//operatorJoystick.ButtonLeftBumper().whileActive(new LowGear());
 		//operatorJoystick.ButtonRightBumper().whileActive(new HighGear());
+
 
 		/********************************************
 		 *        Operator Joystick Buttons         *
@@ -78,6 +80,14 @@ public class OI {
 		operatorJoystick.ButtonRightTrigger().whileHeld(new IntakeWithConstant(-RobotMap.INTAKE_SPEED_CONSTANT));
 		//operatorJoystick.ButtonLeftBumper().whileHeld(new DriveIndexerWithConstant(RobotMap.INDEXER_SPEED_CONSTANT));
 		//operatorJoystick.ButtonRightBumper().whileHeld(new DriveIndexerWithConstant(-RobotMap.INDEXER_SPEED_CONSTANT));
+
+		
+		/********************************************
+		 *        Command Test  Joystick Buttons         *
+		 ********************************************/
+		commandsTestJoystick.ButtonY().whenPressed(new RotateXDistancePIDZZZ(0, 0.325, 0.1, 4));
+		commandsTestJoystick.ButtonB().whenPressed(new DrivePIDPause());
+		
 	}
 	
 	/**

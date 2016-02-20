@@ -2,8 +2,10 @@ package org.team2168.subsystems;
 
 import org.team2168.Robot;
 import org.team2168.RobotMap;
+import org.team2168.PID.controllers.PIDSpeed;
 import org.team2168.PID.sensors.AverageEncoder;
 import org.team2168.commands.shooter.DriveShooterWithJoysticks;
+import org.team2168.utils.TCPSocketSender;
 import org.team2168.utils.Util;
 
 import edu.wpi.first.wpilibj.AnalogInput;
@@ -15,23 +17,22 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * @author Krystina
  */
 public class Shooter extends Subsystem {
-    
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
-	
 	private Talon shooterFWD;
 	private Talon shooterAFT;
 	private AverageEncoder shooterEncoder;
 	
 	static Shooter instance = null;
+	
+	//declare speed controllers
+	public PIDSpeed shooterSpeedController;
+	
+	//declare TCP severs...ONLY FOR DEBUGGING PURPOSES, SHOULD BE REMOVED FOR COMPITITION
+	TCPSocketSender TCPShooterController;
 		
 	/**
-	 * Private singleton constructor for Shooter_Superman
-	 * 
+	 * Private singleton constructor for the Shooter subsystem
 	 */
-	
-	private Shooter ()
-	{
+	private Shooter () {
 		shooterFWD = new Talon (RobotMap.SHOOTER_WHEEL_FWD);
 		shooterFWD.setExpiration(0.1);
 		shooterFWD.setSafetyEnabled(true);
@@ -45,11 +46,29 @@ public class Shooter extends Subsystem {
 				   							   RobotMap.SHOOTER_ENCODER_B, 
 				   							   RobotMap.SHOOTER_ENCODER_PULSE_PER_ROT,
 				   							   RobotMap.SHOOTER_ENCODER_DIST_PER_TICK,
-				   							   RobotMap.AFT_SHOOTER_ENCODER_REVERSE,
+				   							   RobotMap.SHOOTER_ENCODER_REVERSE,
 				   							   RobotMap.SHOOTER_ENCODING_TYPE,
 				   							   RobotMap.SHOOTER_SPEED_RETURN_TYPE,
 				   							   RobotMap.SHOOTER_POS_RETURN_TYPE,
 				   							   RobotMap.SHOOTER_AVG_ENCODER_VAL);
+		
+		//Spawn new PID Controller
+		shooterSpeedController = new PIDSpeed(
+				"ShooterSpeedController",
+				RobotMap.SHOOTER_SPEED_P,
+				RobotMap.SHOOTER_SPEED_I,
+				RobotMap.SHOOTER_SPEED_D,
+				shooterEncoder,
+				RobotMap.DRIVE_TRAIN_PID_PERIOD);
+		
+		shooterSpeedController.setSIZE(RobotMap.DRIVE_TRAIN_PID_ARRAY_SIZE);
+
+		//start controller threads
+		shooterSpeedController.startThread();
+		
+		
+		TCPShooterController = new TCPSocketSender(RobotMap.TCP_SERVER_SHOOTER_SPEED, shooterSpeedController);
+		TCPShooterController.start();
 	}
 	
 	/**
@@ -57,9 +76,7 @@ public class Shooter extends Subsystem {
 	 * @return rerturns the shooter singleton object
 	 * @author Krystina
 	 */
-	
-	public static Shooter getInstance()
-	{
+	public static Shooter getInstance() {
 		if (instance == null)
 			instance = new Shooter();
 		
@@ -71,8 +88,7 @@ public class Shooter extends Subsystem {
 	 * @param speed -1 to 1 if given a positive value the ball will move inward. If negative the ball will move outward.
 	 * @author Krystina
 	 */
-	public void driveShooter(double speed)
-	{
+	public void driveShooter(double speed) {
 		driveFWDShooterWheel(speed);
 		driveAFTShooterWheel(speed);
 		
@@ -83,8 +99,7 @@ public class Shooter extends Subsystem {
 	 * @param speed -1 to 1
 	 * @author Krystina
 	 */
-	public void driveFWDShooterWheel(double speed)
-	{
+	public void driveFWDShooterWheel(double speed) {
 		if(RobotMap.REVERSE_SHOOTER_WHEEL_FWD)
 			speed = -speed;
 		
@@ -96,8 +111,7 @@ public class Shooter extends Subsystem {
 	 * @param speed -1 to 1
 	 * @author Krystina
 	 */
-	public void driveAFTShooterWheel(double speed)
-	{
+	public void driveAFTShooterWheel(double speed) {
 		if(RobotMap.REVERSE_SHOOTER_WHEEL_AFT)
 			speed = -speed;
 			
@@ -105,20 +119,18 @@ public class Shooter extends Subsystem {
 	}
 	
 	/**
-	 * Gets distance traveled by aft motor
-	 * @return
+	 * Gets the speed of the shooter wheel
+	 * @return speed in RPM
 	 */
-	public double getPosition()
-	{
-		return shooterEncoder.getPos();
+	public double getSpeed() {
+		return shooterEncoder.getRate();
 	}
 	
 	
 	/**
 	 * zeros the position traveled by motors
 	 */
-	public void resetPosition()
-	{
+	public void resetPosition() {
 		shooterEncoder.reset();
 	}
 	

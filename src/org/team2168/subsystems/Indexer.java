@@ -22,6 +22,7 @@ public class Indexer extends Subsystem {
 	
 	//TODO calibrate values
 	private final double MIN_SENSOR_VOLTAGE = 0.5;
+	private final double BOULDER_PRESENT_VOLTAGE = 2.6;
 	private final double IR_SENSOR_AVG_GAIN = 0.5;
 	private double averagedBoulderDistance = 0.0;
 
@@ -59,7 +60,7 @@ public class Indexer extends Subsystem {
 	}
 	
 	public boolean isBoulderPresent() {
-		return Robot.indexer.getAveragedRawBoulderDistance() > MIN_SENSOR_VOLTAGE;
+		return Robot.indexer.getAveragedRawBoulderDistance() > BOULDER_PRESENT_VOLTAGE;
 	}
 	
 	/**
