@@ -1,25 +1,19 @@
-package org.team2168.commands.shooter;
+package org.team2168.commands.indexer;
 
 import org.team2168.Robot;
-
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *This command drives both shooter wheels with a constant
- *@author Krystina
+ *
  */
-public class DriveShooterWithConstant extends Command {
+public class DriveIndexerWithConstant extends Command {
 
-	/**
-	 * Constructor takes in any speed and applies it to the shooter
-	 * @author Krystina
-	 */
-	private double speed;
-    public DriveShooterWithConstant(double inputSpeed) {
+	double speed;
+	
+    public DriveIndexerWithConstant(double inputSpeed) {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.shooter);
+        requires(Robot.indexer);
         speed = inputSpeed;
-        
     }
 
     // Called just before this Command runs the first time
@@ -28,7 +22,7 @@ public class DriveShooterWithConstant extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.shooter.driveShooter(speed);
+    	Robot.indexer.setSpeed(speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -38,7 +32,7 @@ public class DriveShooterWithConstant extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.shooter.driveShooter(0.0);
+    	Robot.indexer.setSpeed(0.0);
     }
 
     // Called when another command which requires one or more of the same
