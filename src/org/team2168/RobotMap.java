@@ -48,8 +48,8 @@ public class RobotMap {
 
 	//Digital IO Channels//////////////////////////////////////////////////////
 	//Channels 0-9 on RoboRio
-	public static final int SHOOTER_ENCODER = 0;
-	//public static final int SHOOTER_ENCODER_B = 1;
+	public static final int SHOOTER_ENCODER_A = 0;
+	public static final int SHOOTER_ENCODER_B = 1;
 	public static final int INTAKE_POSITION_SENSOR_UP = 2;
 	public static final int INTAKE_POSITION_SENSOR_DOWN = 3;
 	public static final int DRIVE_TRAIN_RIGHT_ENCODER_A = 6;
@@ -132,7 +132,7 @@ public class RobotMap {
 	/*************************************************************************
 	 *                         Intake PARAMETERS
 	 *************************************************************************/
-	public static final double INTAKE_SPEED_CONSTANT = 0.2;
+	public static final double INTAKE_SPEED_CONSTANT = 0.7;
 	public static final boolean REVERSE_INTAKE_WHEEL_1 = true;
 	public static final boolean REVERSE_INTAKE_WHEEL_2 = false;
 
@@ -140,7 +140,7 @@ public class RobotMap {
 	/*************************************************************************
 	 *                         Indexer PARAMETERS
 	 *************************************************************************/
-	public static final double INDEXER_SPEED_CONSTANT = 0.2;
+	public static final double INDEXER_SPEED_CONSTANT = 0.5;
 
 	/*************************************************************************
 	 *                         Hood PARAMETERS
