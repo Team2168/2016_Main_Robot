@@ -103,4 +103,102 @@ public class OI {
 		
 		return instance;
 	}
+	
+	// The minimum speed of the drivetrain, should be tweaked 
+    // for using different individual drivetrains 
+    public static final double MIN_DRIVE_SPEED = 0.222;
+    
+    // An array of speeds of the drivetrain for a given joystick input,
+    // used to manipulate the line equations of the interpolate method
+    public static double joystickScale[][] = {
+    		{1.00, 1.00},
+    		{0.90, 0.68},
+    		{0.50, 0.32},
+    		{0.06, MIN_DRIVE_SPEED},
+    		{0.06, 0.00},
+    		{0.00, 0.00},
+    		{-0.06, 0.00},
+    		{-0.06, -MIN_DRIVE_SPEED},
+    		{-0.50, -0.32},
+    		{-0.90, -0.68},
+    		{-1.00, -1.00},
+    };
+    
+    /**
+     * A method to modify the joystick values using linear interpolation.
+     * The objective is to augment the joystick value going to the motor controllers
+     * to improve acceleration and control while still allowing full speed
+     * @param input The value to augment
+     * @return The augmented value
+     */
+    private double interpolate(double input){
+    	double retVal = 0.0;
+    	boolean done = false;
+    	double m, b;
+    	
+    	// Making sure the input is between 1 and -1
+    	if(input > 1.0)
+    		input = 1.0;
+    	else if(input < -1.0)
+    		input = -1.0;
+    	
+    	// Find the two points in the array between which the input falls,
+    	// Starts with i = 1 since we can't have a point fall outside the array
+    	for(int i = 1; !done && i < joystickScale.length; i++){
+    		if(input >= joystickScale[i][0]){
+    			// if this returns true, points in the array between which the input falls were found. 
+    			// Now calculate the equation for the line that connects those points, and plug the input in to get retVal
+    			m = (joystickScale[i][1] - joystickScale[i - 1][1])/(joystickScale[i][0] - joystickScale[i - 1][0]);
+    			b = joystickScale[i][1] - (m * joystickScale[i][0]);
+    			retVal = m * input + b;
+    			
+    			// retVal was found, break out of the loop
+    			done = true;
+    		}
+    	}
+    	
+    	return retVal;
+    }
+    
+    /**
+     * Electronic braking, aka "Falcon Claw"
+     * The more the "brake" is pulled, the slower the output speed
+     * @param inputSpeed The input value to scale back based on brake input (1 to -1)
+     * @param brake The brake input value (0 to -1)
+     * @return The adjusted value
+     */
+    private double falconClaw(double inputSpeed, double brake){
+    	return ((1 - ((-MIN_DRIVE_SPEED + 1) * Math.abs(brake))) * inputSpeed);
+    }
+    
+    /**
+     * Gets the left joystick value with braking adjustment
+     * @return The driver's left joystick value
+     */
+    public double getLeftSpeed(){
+    	 
+    	double leftSpeed = interpolate(Robot.oi.driverJoystick.getLeftStickRaw_Y());
+    	
+    	// If the trigger (brake) is pressed, use falcon claw method
+    	if(Math.abs(Robot.oi.driverJoystick.getRightTriggerAxisRaw() - Robot.oi.driverJoystick.getLeftTriggerAxisRaw()) > 0.05)
+    		leftSpeed = falconClaw(leftSpeed, Robot.oi.driverJoystick.getLeftTriggerAxisRaw());
+    	
+    	return leftSpeed;
+    }
+    
+    /**
+     * Gets the right joystick value with braking adjustment
+     * @return The driver's right joystick value
+     */
+    public double getRightSpeed(){
+    	
+    	double rightSpeed = interpolate(Robot.oi.driverJoystick.getRightStickRaw_Y());
+    	
+    	// if the trigger (brake) is pressed, use falcon claw method
+    	if(Math.abs(Robot.oi.driverJoystick.getLeftTriggerAxisRaw() - Robot.oi.driverJoystick.getRightTriggerAxisRaw()) > 0.05)
+    		rightSpeed = falconClaw(rightSpeed, Robot.oi.driverJoystick.getRightTriggerAxisRaw());
+    	
+    	return rightSpeed;
+    }
+      
 }
