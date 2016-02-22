@@ -141,6 +141,8 @@ public class RobotMap {
 	 *                         Indexer PARAMETERS
 	 *************************************************************************/
 	public static final double INDEXER_SPEED_CONSTANT = 0.5;
+	public static final double INDEXER_SPIT_SPEED_CONSTANT = -1.0;
+	public static final boolean REVERSE_INDEXER_MOTOR = true;
 
 	/*************************************************************************
 	 *                         Hood PARAMETERS
