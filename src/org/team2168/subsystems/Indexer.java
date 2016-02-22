@@ -55,6 +55,10 @@ public class Indexer extends Subsystem {
 	 *              negative, will move the ball outwards. 
 	 */
 	public void setSpeed(double speed) {
+		
+		if(RobotMap.REVERSE_INDEXER_MOTOR)
+			speed = -speed;
+			
 		indexerRoller.set(speed);
 	}
 	

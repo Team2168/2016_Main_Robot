@@ -9,6 +9,10 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.team2168.PID.sensors.TCPCamSensor;
+import org.team2168.commands.auto.DoNothing;
+import org.team2168.commands.auto.DriveOverDefense;
+import org.team2168.commands.auto.ReachDefense;
+import org.team2168.commands.auto.ShootFromSpyBox;
 import org.team2168.commands.pneumatics.StartCompressor;
 import org.team2168.subsystems.Drivetrain;
 import org.team2168.subsystems.Shooter;
@@ -74,8 +78,11 @@ public class Robot extends IterativeRobot {
         
         oi = OI.getInstance();
         
-//        chooser.addDefault("Default Auto", new ExampleCommand());
-//        chooser.addObject("My Auto", new MyAutoCommand());
+        chooser.addDefault("Default: Do Nothing", new DoNothing());
+        chooser.addObject("Shoot from Spy Box", new ShootFromSpyBox());
+        chooser.addObject("Drive Over Defense", new DriveOverDefense());
+        chooser.addObject("Reach Defense", new ReachDefense());
+        
         SmartDashboard.putData("Auto mode", chooser);
         
         new StartCompressor();
