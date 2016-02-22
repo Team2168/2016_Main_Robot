@@ -1,5 +1,6 @@
 package org.team2168.commands.Indexer;
 
+import org.team2168.OI;
 import org.team2168.Robot;
 import org.team2168.RobotMap;
 
@@ -21,7 +22,7 @@ public class DriveIndexerWithJoysticks extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.indexer.setSpeed(Robot.oi.operatorJoystick.getRightStickRaw_Y());
+    	Robot.indexer.setSpeed(OI.operatorJoystick.getRightStickRaw_Y());
     }
 
     // Make this return true when this Command no longer needs to run execute()
