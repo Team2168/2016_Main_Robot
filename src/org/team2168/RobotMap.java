@@ -37,7 +37,17 @@ public class RobotMap {
 
 
 	//PDP Channels/////////////////////////////////////////////////////////////
-
+	public final static int DRIVETRAIN_RIGHT_MOTOR_1_PDP = 0;
+	public final static int DRIVETRAIN_RIGHT_MOTOR_2_PDP = 1;
+	public final static int DRIVETRAIN_RIGHT_MOTOR_3_PDP = 2;
+	public final static int DRIVETRAIN_LEFT_MOTOR_1_PDP = 3;
+	public final static int DRIVETRAIN_LEFT_MOTOR_2_PDP = 4;
+	public final static int DRIVETRAIN_LEFT_MOTOR_3_PDP = 5;
+	public final static int INTAKE_MOTOR_1_PDP = 6;
+	public final static int INTAKE_MOTOR_2_PDP = 7;
+	public final static int INDEXER_MOTOR_PDP = 8;
+	public final static int SHOOTER_MOTOR_PDP = 9;
+	public final static int PCM_POWER = 10;
 
 	//Solenoid Channels////////////////////////////////////////////////////////
 	public static final int INTAKE_RETRACT = 0;
@@ -153,10 +163,14 @@ public class RobotMap {
 	/*************************************************************************
 	 *                         Vision PARAMETERS
 	 *************************************************************************/
-
+	
+	/*************************************************************************
+	 *                            PDP PARAMETERS
+	 *************************************************************************/
+	public final static long PDPThreadPeriod = 20;
 
 	/*************************************************************************
-	 *                            PID Parameters
+	 *                            PID PARAMETERS
 	 *************************************************************************/
 	//period to run PID loops on drive train
 	public static final long DRIVE_TRAIN_PID_PERIOD = 20;//70ms loop
@@ -202,9 +216,14 @@ public class RobotMap {
 	public static final int TCP_SERVER_LEFT_DRIVE_TRAIN_SPEED = 1183;
 	public static final int TCP_SERVER_SHOOTER_SPEED = 1184;
 	
+	/******************************************************************
+	 *                    ConsolePrinter PARAMETERS                   *
+	 ******************************************************************/
+	public static final boolean PRINT_SD_DEBUG_DATA = true;
+	
 	/********************************************
-	 * 				Kevin Parameters			*
-	 * *****************************************/
+	 * 				Kevin PARAMETERS			*
+	 ********************************************/
 	public static final boolean KEVIN_IS_DA_BOMB = true;
 	public static final boolean GUYANA_HAS_SUNK = false;
 	

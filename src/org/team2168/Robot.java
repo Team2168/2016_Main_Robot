@@ -2,6 +2,7 @@
 package org.team2168;
 
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -16,6 +17,7 @@ import org.team2168.commands.pneumatics.StartCompressor;
 import org.team2168.subsystems.Drivetrain;
 import org.team2168.subsystems.Shooter;
 import org.team2168.subsystems.ShooterHood;
+import org.team2168.utils.PowerDistribution;
 import org.team2168.subsystems.IntakePosition;
 import org.team2168.subsystems.IntakeRoller;
 import org.team2168.subsystems.Pneumatics;
@@ -44,6 +46,10 @@ public class Robot extends IterativeRobot {
 	public static TCPCamSensor tcpCamSensor;
 	public static Pneumatics pneumatics;
 	
+	public static DriverStation driverstation;
+	
+	public static PowerDistribution pdp;
+	
     Command autonomousCommand;
     SendableChooser chooser;
     
@@ -62,8 +68,13 @@ public class Robot extends IterativeRobot {
     	intakeRoller = IntakeRoller.getInstance();
         intakePosition = IntakePosition.getInstance();
         pneumatics = Pneumatics.getInstance();
+        
+        driverstation = DriverStation.getInstance();
 
         tcpCamSensor = new TCPCamSensor(41234, 0);
+
+		pdp = new PowerDistribution(RobotMap.PDPThreadPeriod);
+		pdp.startThread();
         
         oi = OI.getInstance();
         
@@ -94,16 +105,6 @@ public class Robot extends IterativeRobot {
      */
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
-
-        SmartDashboard.putNumber("Drivetrain Left Position", drivetrain.getLeftPosition());
-        SmartDashboard.putNumber("Drivetrain Right Position", drivetrain.getRightPosition());
-        SmartDashboard.putBoolean("Boulder in Intake", intakeRoller.isBoulderPresent());
-        SmartDashboard.putBoolean("Boulder in Indexer", indexer.isBoulderPresent());
-        SmartDashboard.putNumber("Shooter Speed", shooter.getSpeed());
-        SmartDashboard.putBoolean("Intake up", intakePosition.isIntakeRetracted());
-        SmartDashboard.putBoolean("Intake down", intakePosition.isIntakeExtended());
-        SmartDashboard.putNumber("Boulder Distance Intake", intakeRoller.getAveragedRawBoulderDistance());
-        SmartDashboard.putNumber("Boulder Distance Indexer", indexer.getAveragedRawBoulderDistance());
 	}
 
 	/**
@@ -118,16 +119,12 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
         autonomousCommand = (Command) chooser.getSelected();
         
-		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
-		switch(autoSelected) {
-		case "My Auto":
-			autonomousCommand = new MyAutoCommand();
-			break;
-		case "Default Auto":
-		default:
-			autonomousCommand = new ExampleCommand();
-			break;
-		} */
+        chooser.addDefault("Default: Do Nothing", new DoNothing());
+        chooser.addObject("Shoot from Spy Box", new ShootFromSpyBox());
+        chooser.addObject("Drive Over Defense", new DriveOverDefense());
+        chooser.addObject("Reach Defense", new ReachDefense());
+        
+        SmartDashboard.putData("Auto mode", chooser);
     	
     	// schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();

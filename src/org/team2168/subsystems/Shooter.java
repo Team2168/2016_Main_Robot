@@ -21,6 +21,13 @@ public class Shooter extends Subsystem {
 	private Talon shooterAFT;
 	private AverageEncoder shooterEncoder;
 	
+	/**
+	 * Values used for motor calibration
+	 * Changed to true when calibration passes
+	 */
+	public static boolean shooterFWDPass = false;
+	public static boolean shooterAFTPass = false;
+	
 	static Shooter instance = null;
 	
 	//declare speed controllers
@@ -116,6 +123,15 @@ public class Shooter extends Subsystem {
 			speed = -speed;
 			
 		shooterAFT.set(speed);
+	}
+	
+	/**
+	 * Gets distance traveled by aft motor
+	 * @return
+	 */
+	public double getPosition()
+	{
+		return shooterEncoder.getPos();
 	}
 	
 	/**

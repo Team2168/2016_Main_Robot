@@ -28,6 +28,13 @@ public class IntakeRoller extends Subsystem {
 	private static IntakeRoller instance = null;
 	
 	/**
+	 * Values used for motor calibration
+	 * Changed to true when calibration passes
+	 */
+	public static boolean intakeLeftPass = false;
+	public static boolean intakeRightPass = false;
+	
+	/**
 	 * private constructor for the Singleton intake subsystem
 	 * @author jkaroul
 	 */
@@ -108,7 +115,7 @@ public class IntakeRoller extends Subsystem {
 	 * Returns the raw voltage from the shooter distance sensor
 	 * @return double voltage
 	 */
-	private double getRawBoulderDistance() {
+	public double getRawBoulderDistance() {
 		return Util.max(MIN_SENSOR_VOLTAGE, intakeDistanceSensor.getVoltage());
 	}
 	
