@@ -12,10 +12,7 @@ import java.util.TimerTask;
 import org.team2168.OI;
 import org.team2168.Robot;
 import org.team2168.RobotMap;
-import org.team2168.subsystems.Drivetrain;
-import org.team2168.subsystems.Indexer;
-import org.team2168.subsystems.IntakeRoller;
-import org.team2168.subsystems.Shooter;
+import org.team2168.subsystems.*;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Timer;
@@ -144,6 +141,8 @@ public class ConsolePrinter {
 	        SmartDashboard.putBoolean("Intake down", Robot.intakePosition.isIntakeExtended());
 	        SmartDashboard.putNumber("Boulder Distance Intake", Robot.intakeRoller.getAveragedRawBoulderDistance());
 	        SmartDashboard.putNumber("Boulder Distance Indexer", Robot.indexer.getAveragedRawBoulderDistance());
+	        
+	        SmartDashboard.putNumber("Robot Pressure", Robot.pneumatics.getPSI());
 			
 			
 			//file log
