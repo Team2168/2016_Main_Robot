@@ -2,6 +2,7 @@ package org.team2168.commands.calibration;
 
 import org.team2168.Robot;
 import org.team2168.RobotMap;
+import org.team2168.subsystems.Drivetrain;
 import org.team2168.subsystems.Indexer;
 import org.team2168.subsystems.IntakeRoller;
 import org.team2168.subsystems.Shooter;
@@ -198,27 +199,27 @@ public class CalibrateMotor extends Command {
     	switch(motorNumber){
     		case RobotMap.LEFT_DRIVE_TRAIN_1:
     		    pass = (positionChange >= minPositionChange);
-    		    Robot.drivetrain.leftMotor1Pass = pass;
+    		    Drivetrain.leftMotor1Pass = pass;
     			break;
     		case RobotMap.LEFT_DRIVE_TRAIN_2:
     			pass = (positionChange >= minPositionChange);
-    			Robot.drivetrain.leftMotor2Pass = pass;
+    			Drivetrain.leftMotor2Pass = pass;
     			break;
     		case RobotMap.LEFT_DRIVE_TRAIN_3:
     			pass = (positionChange >= minPositionChange);
-    			Robot.drivetrain.leftMotor3Pass = pass;
+    			Drivetrain.leftMotor3Pass = pass;
     			break;
     		case RobotMap.RIGHT_DRIVE_TRAIN_1:
     			pass = (positionChange >= minPositionChange);
-    			Robot.drivetrain.rightMotor1Pass = pass;
+    			Drivetrain.rightMotor1Pass = pass;
     			break;
     		case RobotMap.RIGHT_DRIVE_TRAIN_2:
     			pass = (positionChange >= minPositionChange);
-    			Robot.drivetrain.rightMotor2Pass = pass;
+    			Drivetrain.rightMotor2Pass = pass;
     			break;
     		case RobotMap.RIGHT_DRIVE_TRAIN_3:
     			pass = (positionChange >= minPositionChange);
-    			Robot.drivetrain.rightMotor3Pass = pass;
+    			Drivetrain.rightMotor3Pass = pass;
     			break;
     		case RobotMap.SHOOTER_WHEEL_FWD:
     			pass = (positionChange >= minPositionChange);
