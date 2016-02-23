@@ -116,11 +116,11 @@ public class RobotMap {
 	public static final double SHOOTER_ENCODER_DIST_PER_TICK = (Math.PI * SHOOTER_WHEEL_DIAMETER / SHOOTER_ENCODER_PULSE_PER_ROT);
 	public static final CounterBase.EncodingType SHOOTER_ENCODING_TYPE = CounterBase.EncodingType.k1X; //count only the rising edge
 	public static final AverageEncoder.PositionReturnType SHOOTER_POS_RETURN_TYPE = AverageEncoder.PositionReturnType.FEET;
-	public static final AverageEncoder.SpeedReturnType SHOOTER_SPEED_RETURN_TYPE = AverageEncoder.SpeedReturnType.FPS;
+	public static final AverageEncoder.SpeedReturnType SHOOTER_SPEED_RETURN_TYPE = AverageEncoder.SpeedReturnType.RPM;
 	public static final int SHOOTER_ENCODER_MIN_RATE = 0;
 	public static final int SHOOTER_ENCODER_MIN_PERIOD = 1;
 	public static final boolean SHOOTER_ENCODER_REVERSE = false;
-	public static final int SHOOTER_AVG_ENCODER_VAL = 5;
+	public static final int SHOOTER_AVG_ENCODER_VAL = 1;
 	public static final double MIN_SHOOTER_SPEED = 0.2;
 	public static final double SHOOTER_AUTO_NORMAL_SPEED = 0.5;
 	public static final double SHOOTER_WHEEL_BASE = 2; //units must match PositionReturnType (feet)

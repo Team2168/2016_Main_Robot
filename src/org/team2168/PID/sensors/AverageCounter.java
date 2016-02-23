@@ -1,5 +1,6 @@
 package org.team2168.PID.sensors;
 
+import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Timer;
 
@@ -12,7 +13,7 @@ import edu.wpi.first.wpilibj.Timer;
  * @author Kevin Harrilal, Team 2168 Aluminum Falcons
  *
  */
-public class AverageEncoder extends Encoder implements PIDSensorInterface {
+public class AverageCounter extends Counter implements PIDSensorInterface {
     private int averagorSize;
     private double[] averagorArray;
     private int arrayPos = 0; // Next array position to put values to be
@@ -36,10 +37,10 @@ public class AverageEncoder extends Encoder implements PIDSensorInterface {
      * @param n
      *            the size of end point average
      */
-    public AverageEncoder(int channelA, int channelB, int PPR,
+    public AverageCounter(int channelA, int channelB, int PPR,
             double distPerTick, boolean reverseDirection,
             EncodingType encoderType, int averageN) {
-        super(channelA, channelB, reverseDirection, encoderType);
+        super(channelA);
 
         this.averagorSize = averageN;
         this.averagorArray = new double[averagorSize];
@@ -59,7 +60,7 @@ public class AverageEncoder extends Encoder implements PIDSensorInterface {
 
     }
 
-    public AverageEncoder(int channelA, int channelB, int PPR,
+    public AverageCounter(int channelA, int channelB, int PPR,
             double distPerTick, boolean reverseDirection,
             EncodingType encoderType, SpeedReturnType speedReturnType,
             PositionReturnType posReturnType, int averageN) {
@@ -137,7 +138,9 @@ public class AverageEncoder extends Encoder implements PIDSensorInterface {
     public double getRate() {
         // getRate
         timeNow = Timer.getFPGATimestamp();
-        countNow = super.getDistance();
+        //countNow = super.getDistance();
+        countNow = super.get();
+        
         rate = (countNow - countBefore) / (timeNow - oldTime); // inch per seconds
         oldTime = timeNow;
         countBefore = countNow;
@@ -151,8 +154,9 @@ public class AverageEncoder extends Encoder implements PIDSensorInterface {
             putData(rate / 12); // feet per second
             break;
         case SpeedReturnType.RPM_val:
-            putData(( rate * 60 ) / (PPR * distPerTick)); // ticks per minute... rpm
-            break;
+            //putData(( rate * 60 ) / (PPR * distPerTick)); // ticks per minute... rpm
+        	putData(rate * 60);
+        	break;
         case SpeedReturnType.PERIOD_val:
             putData(super.getPeriod()); // ticks per minute... rpm
             break;
@@ -160,10 +164,10 @@ public class AverageEncoder extends Encoder implements PIDSensorInterface {
             // should be unreachable
             putData(0);
             break;
-
         }
-
-        return getAverage(); // ticks per minute... rpm    	
+        
+        
+        return getAverage(); // ticks per minute... rpm   
     }
 
     public double getPos() {

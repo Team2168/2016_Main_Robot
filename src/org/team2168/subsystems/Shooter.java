@@ -3,6 +3,7 @@ package org.team2168.subsystems;
 import org.team2168.Robot;
 import org.team2168.RobotMap;
 import org.team2168.PID.controllers.PIDSpeed;
+import org.team2168.PID.sensors.AverageCounter;
 import org.team2168.PID.sensors.AverageEncoder;
 import org.team2168.commands.shooter.DriveShooterWithJoysticks;
 import org.team2168.utils.TCPSocketSender;
@@ -19,7 +20,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Shooter extends Subsystem {
 	private Talon shooterFWD;
 	private Talon shooterAFT;
-	private AverageEncoder shooterEncoder;
+	private AverageCounter shooterEncoder;
 	
 	static Shooter instance = null;
 	
@@ -42,14 +43,14 @@ public class Shooter extends Subsystem {
 		shooterAFT.setSafetyEnabled(true);
 		
 
-		shooterEncoder = new AverageEncoder(RobotMap.SHOOTER_ENCODER_A, 
+		shooterEncoder = new AverageCounter(RobotMap.SHOOTER_ENCODER_A, 
 				   							   RobotMap.SHOOTER_ENCODER_B, 
 				   							   RobotMap.SHOOTER_ENCODER_PULSE_PER_ROT,
 				   							   RobotMap.SHOOTER_ENCODER_DIST_PER_TICK,
 				   							   RobotMap.SHOOTER_ENCODER_REVERSE,
 				   							   RobotMap.SHOOTER_ENCODING_TYPE,
-				   							   RobotMap.SHOOTER_SPEED_RETURN_TYPE,
-				   							   RobotMap.SHOOTER_POS_RETURN_TYPE,
+				   							   AverageCounter.SpeedReturnType.RPM,
+				   							   AverageCounter.PositionReturnType.FEET,
 				   							   RobotMap.SHOOTER_AVG_ENCODER_VAL);
 		
 		//Spawn new PID Controller
