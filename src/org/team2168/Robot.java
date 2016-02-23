@@ -105,16 +105,6 @@ public class Robot extends IterativeRobot {
      */
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
-
-        SmartDashboard.putNumber("Drivetrain Left Position", drivetrain.getLeftPosition());
-        SmartDashboard.putNumber("Drivetrain Right Position", drivetrain.getRightPosition());
-        SmartDashboard.putBoolean("Boulder in Intake", intakeRoller.isBoulderPresent());
-        SmartDashboard.putBoolean("Boulder in Indexer", indexer.isBoulderPresent());
-        SmartDashboard.putNumber("Shooter Speed", shooter.getSpeed());
-        SmartDashboard.putBoolean("Intake up", intakePosition.isIntakeRetracted());
-        SmartDashboard.putBoolean("Intake down", intakePosition.isIntakeExtended());
-        SmartDashboard.putNumber("Boulder Distance Intake", intakeRoller.getAveragedRawBoulderDistance());
-        SmartDashboard.putNumber("Boulder Distance Indexer", indexer.getAveragedRawBoulderDistance());
 	}
 
 	/**
@@ -129,16 +119,12 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
         autonomousCommand = (Command) chooser.getSelected();
         
-		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
-		switch(autoSelected) {
-		case "My Auto":
-			autonomousCommand = new MyAutoCommand();
-			break;
-		case "Default Auto":
-		default:
-			autonomousCommand = new ExampleCommand();
-			break;
-		} */
+        chooser.addDefault("Default: Do Nothing", new DoNothing());
+        chooser.addObject("Shoot from Spy Box", new ShootFromSpyBox());
+        chooser.addObject("Drive Over Defense", new DriveOverDefense());
+        chooser.addObject("Reach Defense", new ReachDefense());
+        
+        SmartDashboard.putData("Auto mode", chooser);
     	
     	// schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();

@@ -14,6 +14,9 @@ import org.team2168.Robot;
 import org.team2168.RobotMap;
 import org.team2168.PID.sensors.IMU;
 import org.team2168.subsystems.Drivetrain;
+import org.team2168.subsystems.Indexer;
+import org.team2168.subsystems.IntakeRoller;
+import org.team2168.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Timer;
@@ -111,8 +114,6 @@ public class ConsolePrinter {
 			
 			SmartDashboard.putNumber("ShooterMotorCurrent", Robot.pdp.getChannelCurrent(RobotMap.SHOOTER_MOTOR_PDP));
 
-//			SmartDashboard.putString("AutoName", Robot.getAutoName());
-
 			SmartDashboard.putNumber("Left Stick Raw Value", OI.getInstance().driverJoystick.getLeftStickRaw_Y());
 			SmartDashboard.putNumber("Right Stick Raw Value", OI.getInstance().driverJoystick.getRightStickRaw_Y());
 
@@ -152,17 +153,28 @@ public class ConsolePrinter {
 			// Open Retainer LED Input 5
 			// Close Retainer LED Input 6
 			
-//			SmartDashboard.putBoolean("Left Drive Motor 1 Pass", Robot.drivetrain.leftMotor1Pass);
-//			SmartDashboard.putBoolean("Left Drive Motor 2 Pass", Robot.drivetrain.leftMotor2Pass);
-//			SmartDashboard.putBoolean("Left Drive Motor 3 Pass", Robot.drivetrain.leftMotor3Pass);
-//			SmartDashboard.putBoolean("Right Drive Motor 1 Pass", Robot.drivetrain.rightMotor1Pass);
-//			SmartDashboard.putBoolean("Right Drive Motor 2 Pass", Robot.drivetrain.rightMotor2Pass);
-//			SmartDashboard.putBoolean("Right Drive Motor 3 Pass", Robot.drivetrain.rightMotor3Pass);
-//			SmartDashboard.putBoolean("Indexer Motor Pass", Robot.indexer.indexerPass);
-//			SmartDashboard.putBoolean("Intake Left Motor Pass", Robot.intakeRoller.intakeLeftPass);
-//			SmartDashboard.putBoolean("Intake Right Motor Pass", Robot.intakeRoller.intakeRightPass);
-//			SmartDashboard.putBoolean("Shooter FWD Motor Pass", Robot.shooter.shooterFWDPass);
-//			SmartDashboard.putBoolean("Shooter AFT Motor Pass", Robot.shooter.shooterAFTPass);
+			SmartDashboard.putBoolean("Left Drive Motor 1 Pass", Drivetrain.leftMotor1Pass);
+			SmartDashboard.putBoolean("Left Drive Motor 2 Pass", Drivetrain.leftMotor2Pass);
+			SmartDashboard.putBoolean("Left Drive Motor 3 Pass", Drivetrain.leftMotor3Pass);
+			SmartDashboard.putBoolean("Right Drive Motor 1 Pass", Drivetrain.rightMotor1Pass);
+			SmartDashboard.putBoolean("Right Drive Motor 2 Pass", Drivetrain.rightMotor2Pass);
+			SmartDashboard.putBoolean("Right Drive Motor 3 Pass", Drivetrain.rightMotor3Pass);
+			SmartDashboard.putBoolean("Indexer Motor Pass", Indexer.indexerPass);
+			SmartDashboard.putBoolean("Intake Left Motor Pass", IntakeRoller.intakeLeftPass);
+			SmartDashboard.putBoolean("Intake Right Motor Pass", IntakeRoller.intakeRightPass);
+			SmartDashboard.putBoolean("Shooter FWD Motor Pass", Shooter.shooterFWDPass);
+			SmartDashboard.putBoolean("Shooter AFT Motor Pass", Shooter.shooterAFTPass);
+			
+
+	        SmartDashboard.putNumber("Drivetrain Left Position", Robot.drivetrain.getLeftPosition());
+	        SmartDashboard.putNumber("Drivetrain Right Position", Robot.drivetrain.getRightPosition());
+	        SmartDashboard.putBoolean("Boulder in Intake", Robot.intakeRoller.isBoulderPresent());
+	        SmartDashboard.putBoolean("Boulder in Indexer", Robot.indexer.isBoulderPresent());
+	        SmartDashboard.putNumber("Shooter Speed", Robot.shooter.getSpeed());
+	        SmartDashboard.putBoolean("Intake up", Robot.intakePosition.isIntakeRetracted());
+	        SmartDashboard.putBoolean("Intake down", Robot.intakePosition.isIntakeExtended());
+	        SmartDashboard.putNumber("Boulder Distance Intake", Robot.intakeRoller.getAveragedRawBoulderDistance());
+	        SmartDashboard.putNumber("Boulder Distance Indexer", Robot.indexer.getAveragedRawBoulderDistance());
 			
 			
 			//file log
@@ -170,20 +182,11 @@ public class ConsolePrinter {
 					System.currentTimeMillis() + "\t" +
 					
 					Robot.driverstation.isAutonomous() + "\t" +
-//					Robot.getAutoName() + "\t" + 
 					Robot.driverstation.isOperatorControl() + "\t" +
 					Robot.driverstation.isFMSAttached() + "\t" +
 					Robot.driverstation.getMatchTime() + "\t" +
 					Robot.driverstation.getBatteryVoltage() + "\t" +
 					Robot.driverstation.isBrownedOut() + "\t" +  
-					
-//					Robot.drivetrain.getLeft1MotorVoltage() + "\t" +
-//					Robot.drivetrain.getLeft2MotorVoltage() + "\t" +
-//					Robot.drivetrain.getLeft3MotorVoltage() + "\t" +
-//
-//					Robot.drivetrain.getRight1MotorVoltage() + "\t" +
-//					Robot.drivetrain.getRight2MotorVoltage() + "\t" +
-//					Robot.drivetrain.getRight3MotorVoltage() + "\t" +
 
 					Robot.pdp.getChannelCurrent(RobotMap.DRIVETRAIN_LEFT_MOTOR_1_PDP) + "\t" +
 					Robot.pdp.getChannelCurrent(RobotMap.DRIVETRAIN_LEFT_MOTOR_2_PDP) + "\t" +
@@ -193,20 +196,11 @@ public class ConsolePrinter {
 					Robot.pdp.getChannelCurrent(RobotMap.DRIVETRAIN_RIGHT_MOTOR_2_PDP) + "\t" +
 					Robot.pdp.getChannelCurrent(RobotMap.DRIVETRAIN_RIGHT_MOTOR_3_PDP) + "\t" +
 
-//					Robot.drivetrain.gyroSPI.getRate() + "\t" +
-//					Robot.drivetrain.gyroSPI.getPos() + "\t" +
-
 					Robot.drivetrain.drivetrainLeftEncoder.getPos() + "\t" +
 					Robot.drivetrain.drivetrainLeftEncoder.getRate() + "\t" +
 
 					Robot.drivetrain.drivetrainRightEncoder.getPos() + "\t" +
-					Robot.drivetrain.drivetrainRightEncoder.getRate() + "\t" //+
-
-//					Robot.accel.getX() + "\t" +
-//					Robot.accel.getY() + "\t" +
-//					Robot.accel.getZ() + "\t" +
-//					IMU.getAccPitch() + "\t" +
-//					IMU.getAccRoll() + "\t" +
+					Robot.drivetrain.drivetrainRightEncoder.getRate() + "\t"
 					);
 			log.flush();
 
