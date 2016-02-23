@@ -22,7 +22,8 @@ public class Indexer extends Subsystem {
 	/**
 	 * Values used for motor calibration
 	 * Changed to true when calibration passes
-public static boolean indexerPass = false;
+	 */
+	public static boolean indexerPass = false;
 	 
 	//TODO calibrate values
 	private final double MIN_SENSOR_VOLTAGE = 0.5;

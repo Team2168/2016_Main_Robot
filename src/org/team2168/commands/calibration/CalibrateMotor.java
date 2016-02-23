@@ -2,6 +2,9 @@ package org.team2168.commands.calibration;
 
 import org.team2168.Robot;
 import org.team2168.RobotMap;
+import org.team2168.subsystems.Indexer;
+import org.team2168.subsystems.IntakeRoller;
+import org.team2168.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -58,7 +61,7 @@ public class CalibrateMotor extends Command {
     	
     	if(motorPWMPort == RobotMap.INTAKE_WHEEL_1 ||
     	   motorPWMPort == RobotMap.INTAKE_WHEEL_2) {
-    		requires(Robot.intake);
+    		requires(Robot.intakeRoller);
 			//TODO set this to the speed we want
     		motorSpeed = 0.2;
     		this.motorNumber = motorPWMPort;
@@ -154,10 +157,10 @@ public class CalibrateMotor extends Command {
     			 Robot.shooter.driveAFTShooterWheel(speed);
 				 break;
     		case RobotMap.INTAKE_WHEEL_1:
-    			 Robot.intake.driveIntakeWheelLeft(speed);
+    			 Robot.intakeRoller.driveIntakeWheel1(speed);
     			 break;
     		case RobotMap.INTAKE_WHEEL_2:
-    			 Robot.intake.driveIntakeWheelRight(speed);
+    			 Robot.intakeRoller.driveIntakeWheel2(speed);
 				 break;
     		case RobotMap.INDEXER_WHEEL:
     			 Robot.indexer.setSpeed(speed);
@@ -219,23 +222,23 @@ public class CalibrateMotor extends Command {
     			break;
     		case RobotMap.SHOOTER_WHEEL_FWD:
     			pass = (positionChange >= minPositionChange);
-    			Robot.shooter.shooterFWDPass = pass;
+    			Shooter.shooterFWDPass = pass;
     			break;
     		case RobotMap.SHOOTER_WHEEL_AFT:
     			pass = (positionChange >= minPositionChange);
-    			Robot.shooter.shooterAFTPass = pass;
+    			Shooter.shooterAFTPass = pass;
 				break;
     		case RobotMap.INTAKE_WHEEL_1:
     			pass = (positionChange >= minPositionChange);
-    			Robot.intake.intakeLeftPass = pass;
+    			IntakeRoller.intakeLeftPass = pass;
     			break;
     		case RobotMap.INTAKE_WHEEL_2:
     			pass = (positionChange >= minPositionChange);
-    			Robot.intake.intakeRightPass = pass;
+    			IntakeRoller.intakeRightPass = pass;
 				break;
     		case RobotMap.INDEXER_WHEEL:
     			pass = (positionChange >= minPositionChange);
-    			Robot.indexer.indexerPass = pass;
+    			Indexer.indexerPass = pass;
 	    		break;
     		default:
     			break;
