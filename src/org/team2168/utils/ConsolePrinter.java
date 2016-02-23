@@ -12,7 +12,6 @@ import java.util.TimerTask;
 import org.team2168.OI;
 import org.team2168.Robot;
 import org.team2168.RobotMap;
-import org.team2168.PID.sensors.IMU;
 import org.team2168.subsystems.Drivetrain;
 import org.team2168.subsystems.Indexer;
 import org.team2168.subsystems.IntakeRoller;
@@ -64,33 +63,14 @@ public class ConsolePrinter {
 
 	public void print() {
 		if (RobotMap.PRINT_SD_DEBUG_DATA) {
-//			SmartDashboard.putData("Autonomous Mode Chooser", Robot.autoChooser);
 			SmartDashboard.putNumber("gameClock", (int)DriverStation.getInstance().getMatchTime());
 			
 			SmartDashboard.putNumber("Left Encoder Distance",Drivetrain.getInstance().getLeftPosition());
 			SmartDashboard.putNumber("Right Encoder Distance:",Drivetrain.getInstance().getRightPosition());
-//			SmartDashboard.putBoolean("isPracticeBot", Robot.isPracticeRobot());
 
-//			SmartDashboard.putNumber("GYRO Driftrate:", Robot.drivetrain.gyroSPI.driftRate);
-//			SmartDashboard.putNumber("GYRO Rate:", Robot.drivetrain.gyroSPI.getRate());
-			SmartDashboard.putNumber("GYRO Angle:", Robot.drivetrain.getHeading());
-//			SmartDashboard.putNumber("GYRO reInits:", Robot.gyroReinits);
-//			SmartDashboard.putBoolean("Gyro Cal Status", !Robot.gyroCalibrating);
-//			SmartDashboard.putNumber("GYRO Status:", Robot.drivetrain.gyroSPI.getStatus());
-//			SmartDashboard.putNumber("GYRO Temp:", Robot.drivetrain.gyroSPI.getTemp());
-//
-//
-//			SmartDashboard.putNumber("Accel X:", Robot.accel.getX());
-//			SmartDashboard.putNumber("Accel Y:", Robot.accel.getY());
-//			SmartDashboard.putNumber("Accel Z:", Robot.accel.getZ());
-
-//			SmartDashboard.putNumber("DTRight1MotorVoltage", Robot.drivetrain.getRight1MotorVoltage());
-//			SmartDashboard.putNumber("DTRight2MotorVoltage", Robot.drivetrain.getRight2MotorVoltage());
-//			SmartDashboard.putNumber("DTRight3MotorVoltage", Robot.drivetrain.getRight3MotorVoltage());
-//
-//			SmartDashboard.putNumber("DTLeft1MotorVoltage", Robot.drivetrain.getLeft1MotorVoltage());
-//			SmartDashboard.putNumber("DTLeft2MotorVoltage", Robot.drivetrain.getLeft2MotorVoltage());
-//			SmartDashboard.putNumber("DTLeft3MotorVoltage", Robot.drivetrain.getLeft3MotorVoltage());
+			SmartDashboard.putNumber("Gyro Angle:", Drivetrain.getHeading());
+			SmartDashboard.putNumber("Gyro Pitch", Drivetrain.getPitchAngle());
+			SmartDashboard.putNumber("Gyro Roll", Drivetrain.getRollAngle());
 
 			SmartDashboard.putNumber("Battery Voltage", Robot.pdp.getBatteryVoltage());
 			SmartDashboard.putNumber("totalCurrent", Robot.pdp.getTotalCurrent());
@@ -141,17 +121,6 @@ public class ConsolePrinter {
 
 			SmartDashboard.putBoolean("Intake Exetended", Robot.intakePosition.isIntakeExtended());
 			SmartDashboard.putBoolean("Intake REtracted", Robot.intakePosition.isIntakeRetracted());
-			
-//			SmartDashboard.putBoolean("autoMode", Robot.isAutoMode());
-			
-			// Open Intake LED Input 1
-			// Close Intake LED Input 2
-			
-			// Gripper Open LED Input 3
-			// Gripper Close LED Input 4
-			
-			// Open Retainer LED Input 5
-			// Close Retainer LED Input 6
 			
 			SmartDashboard.putBoolean("Left Drive Motor 1 Pass", Drivetrain.leftMotor1Pass);
 			SmartDashboard.putBoolean("Left Drive Motor 2 Pass", Drivetrain.leftMotor2Pass);
