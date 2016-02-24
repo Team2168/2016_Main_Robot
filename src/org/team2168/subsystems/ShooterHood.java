@@ -5,6 +5,7 @@ import org.team2168.commands.shooter.DriveShooterWithJoysticks;
 import org.team2168.commands.shooterhood.DriveShooterHoodWithJoysticks;
 
 import edu.wpi.first.wpilibj.Servo;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -15,6 +16,13 @@ public class ShooterHood extends Subsystem {
 	private Servo hoodServo;
 
 	private static ShooterHood instance = null;
+	
+	double startAngle;
+	double endAngle;
+	double currentAngle;
+	double startTime;
+	double currentTime;
+	final static double DEGREES_PER_SECOND = 90;
 
 	/**
 	 * Default constructor for ShooterHood subsystem
@@ -39,21 +47,33 @@ public class ShooterHood extends Subsystem {
 	 * Takes in a given angle and moves motor to that angle
 	 * @param degrees angle from 0.0 to 180.0
 	 */
-	public void setAngle(double degrees) {   
-		hoodServo.setAngle(degrees);
+	public void setAngle(double degrees) {  
 		
+		if(startAngle != degrees) {
+			hoodServo.setAngle(degrees); 
+			startAngle = hoodServo.getAngle();
+			startTime = Timer.getFPGATimestamp();
+		}
 	}
 	
 	/**
-	 * Finds the motor's current angle. Note this doesn't reflect the true
-	 *   position of the hood, but the last position the hood was commanded to.
-	 *   It will not account for the time it takes for the mechanism to get to
-	 *   its destination position. Therefore this method SHOULD NOT be used to
-	 *   qualify a command has completed moving the hood.
+	 * Finds the motor's current angle.
+	 * Takes the angle and time from the setAngle command before movement begins
+	 * and after that is called, gets the current system time and angle it is
+	 * moving to and does the math to get an estimate of the current angle
 	 * @return the angle (degrees) the motor was last commanded to.
 	 */
 	public double getAngle() {
-		return hoodServo.getAngle();
+		endAngle = hoodServo.getAngle();
+		double angleDifference = endAngle - startAngle;
+		double timeDifference = Timer.getFPGATimestamp() - startTime;
+		if(angleDifference > 0)
+			currentAngle = (startAngle + (timeDifference * DEGREES_PER_SECOND));
+		else if(angleDifference < 0)
+			currentAngle = (startAngle - (timeDifference * DEGREES_PER_SECOND));
+		else
+			currentAngle = endAngle;
+		return currentAngle;
 	}
   		
 	/**
