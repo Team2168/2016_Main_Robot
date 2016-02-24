@@ -15,6 +15,7 @@ public class ShootFromSpyBox extends CommandGroup {
     
     public  ShootFromSpyBox() {
 
+    	//TODO add method to set shooter hood to correct angle once we test for it
     	addParallel(new DriveShooterWithConstant(1.0));
     	addSequential(new IntakeExtend());
     	addSequential(new Sleep(), 6.0);

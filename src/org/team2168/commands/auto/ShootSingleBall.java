@@ -15,7 +15,7 @@ public class ShootSingleBall extends CommandGroup {
     
     public  ShootSingleBall() {
 
-    	//TODO add method to set shooter hood to correct angle once it is found
+    	//TODO add method to set shooter hood to correct angle once we test for it
     	addParallel(new DriveShooterWithConstant(1.0));
     	addSequential(new IntakeExtend());
     	addSequential(new Sleep(), 6.0);
