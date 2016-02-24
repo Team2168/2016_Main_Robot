@@ -1,87 +1,88 @@
-//package org.team2168.utils;
-//
-//import java.io.File;
-//import java.io.FileNotFoundException;
-//import java.io.PrintWriter;
-//import java.io.UnsupportedEncodingException;
-//import java.text.SimpleDateFormat;
-//import java.util.Date;
-//import java.util.TimeZone;
-//import java.util.TimerTask;
-//
-//import org.team2168.OI;
-//import org.team2168.Robot;
-//import org.team2168.RobotMap;
-//import org.team2168.PID.sensors.IMU;
-//import org.team2168.commands.lift.PIDCommands.LiftPIDPosition;
-//import org.team2168.subsystems.Drivetrain;
-//
-//import edu.wpi.first.wpilibj.DriverStation;
-//import edu.wpi.first.wpilibj.Timer;
-//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-//
-//public class ConsolePrinter {
-//	private java.util.Timer executor;
-//	private long period;
-//
-//	PrintWriter log;
-//
-//	public ConsolePrinter(long period) {
-//		this.period = period;
-//	}
-//
-//	public void startThread() {
-//		this.executor = new java.util.Timer();
-//		this.executor.schedule(new ConsolePrintTask(this), 0L, this.period);
-//
-//		try {
-//			
-//			File file = new File("/home/lvuser/Logs");
-//			if (!file.exists()) {
-//				if (file.mkdir()) {
-//					System.out.println("Log Directory is created!");
-//				} else {
-//					System.out.println("Failed to create Log directory!");
-//				}
-//			}
-//			Date date = new Date() ;
-//			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
-//			dateFormat.setTimeZone(TimeZone.getTimeZone("EST5EDT"));
-//			this.log = new PrintWriter("/home/lvuser/Logs/" + dateFormat.format(date) + "-Log.txt", "UTF-8");
-//			log.println("Time \t TimeofDay \t Disabled \t Enabled \t Auto \t AutoName \t Teleop \t FMS \t MatchTime \t Batt Volt \t isBrownOut\t VoltageL1 \t VoltageL2 \t VoltageL3 \t VoltageR1 \t VoltageR2 \t VoltageR3 \t CurrentL1 \t CurrentL2 \t CurrentL3 \t CurrentR1 \t CurrentR2 \t CurrentR3 \t Gyrot SPI Gyro Angle \t SPI Gyro Rate \t Left Encoder Position \t Left Encoder Rate \t Right Encoder Position \t Right Encoder Rate \t Lift Voltage \t Lift Left Current \t Lift Right Current \t Lift Position \t Lift Raw Rate \t Lift Rate \t Accel X \t Accel Y \t Accel Z \t Accel Pitch \t Accel Roll \t Lift Stall IR \t Raw RC Distance");
-//			log.flush();
-//		} catch (FileNotFoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (UnsupportedEncodingException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-//	}
-//
-//	public void print() {
-//		if (RobotMap.PRINT_SD_DEBUG_DATA) {
-//			SmartDashboard.putData("Autonomous Mode Chooser", Robot.autoChooser);
-//			SmartDashboard.putNumber("gameClock", (int)DriverStation.getInstance().getMatchTime());
-//			
-//			SmartDashboard.putNumber("Left Encoder Distance",Drivetrain.getInstance().getLeftPosition());
-//			SmartDashboard.putNumber("Right Encoder Distance:",Drivetrain.getInstance().getRightPosition());
-//			SmartDashboard.putBoolean("isPracticeBot", Robot.isPracticeRobot());
-//
-//			SmartDashboard.putNumber("GYRO Driftrate:", Robot.drivetrain.gyroSPI.driftRate);
+package org.team2168.utils;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+import java.util.TimerTask;
+
+import org.team2168.OI;
+import org.team2168.Robot;
+import org.team2168.RobotMap;
+import org.team2168.PID.sensors.IMU;
+import org.team2168.subsystems.Drivetrain;
+
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+public class ConsolePrinter {
+	private java.util.Timer executor;
+	private long period;
+
+	PrintWriter log;
+
+	public ConsolePrinter(long period) {
+		this.period = period;
+	}
+
+	public void startThread() {
+		this.executor = new java.util.Timer();
+		this.executor.schedule(new ConsolePrintTask(this), 0L, this.period);
+
+		try {
+			
+			File file = new File("/home/lvuser/Logs");
+			if (!file.exists()) {
+				if (file.mkdir()) {
+					System.out.println("Log Directory is created!");
+				} else {
+					System.out.println("Failed to create Log directory!");
+				}
+			}
+			Date date = new Date() ;
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
+			dateFormat.setTimeZone(TimeZone.getTimeZone("EST5EDT"));
+			this.log = new PrintWriter("/home/lvuser/Logs/" + dateFormat.format(date) + "-Log.txt", "UTF-8");
+			log.println("Time \t TimeofDay \t Disabled \t Enabled \t Auto \t AutoName \t Teleop \t FMS \t MatchTime \t Batt Volt \t isBrownOut\t VoltageL1 \t VoltageL2 \t VoltageL3 \t VoltageR1 \t VoltageR2 \t VoltageR3 \t CurrentL1 \t CurrentL2 \t CurrentL3 \t CurrentR1 \t CurrentR2 \t CurrentR3 \t Gyrot SPI Gyro Angle \t SPI Gyro Rate \t Left Encoder Position \t Left Encoder Rate \t Right Encoder Position \t Right Encoder Rate \t Lift Voltage \t Lift Left Current \t Lift Right Current \t Lift Position \t Lift Raw Rate \t Lift Rate \t Accel X \t Accel Y \t Accel Z \t Accel Pitch \t Accel Roll \t Lift Stall IR \t Raw RC Distance");
+			log.flush();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	public void print() {
+		if (RobotMap.PRINT_SD_DEBUG_DATA) {
+			SmartDashboard.putData("Autonomous Mode Chooser", Robot.autoChooser);
+			SmartDashboard.putNumber("gameClock", (int)DriverStation.getInstance().getMatchTime());
+			
+			SmartDashboard.putNumber("Left Encoder Distance",Drivetrain.getInstance().getLeftPosition());
+			SmartDashboard.putNumber("Right Encoder Distance:",Drivetrain.getInstance().getRightPosition());
+			
+//			SmartDashboard.putNumber("GYRO Driftrate:", Robot.drivetrain.get.driftRate);
 //			SmartDashboard.putNumber("GYRO Rate:", Robot.drivetrain.gyroSPI.getRate());
 //			SmartDashboard.putNumber("GYRO Angle SPI:", Robot.drivetrain.getHeading());
 //			SmartDashboard.putNumber("GYRO reInits:", Robot.gyroReinits);
 //			SmartDashboard.putBoolean("Gyro Cal Status", !Robot.gyroCalibrating);
 //			SmartDashboard.putNumber("GYRO Status:", Robot.drivetrain.gyroSPI.getStatus());
 //			SmartDashboard.putNumber("GYRO Temp:", Robot.drivetrain.gyroSPI.getTemp());
-//
-//
+
+			SmartDashboard.putNumber("GYRO Heading: ", Robot.drivetrain.getHeading());
+			SmartDashboard.putNumber("Gyro Pitch Angle: ", Robot.drivetrain.getPitchAngle());
+			SmartDashboard.putNumber("Gyro Angle: ", Robot.drivetrain.getRollAngle());
+
 //			SmartDashboard.putNumber("Accel X:", Robot.accel.getX());
 //			SmartDashboard.putNumber("Accel Y:", Robot.accel.getY());
 //			SmartDashboard.putNumber("Accel Z:", Robot.accel.getZ());
-//
+
 //			SmartDashboard.putNumber("DTRight1MotorVoltage", Robot.drivetrain.getRight1MotorVoltage());
 //			SmartDashboard.putNumber("DTRight2MotorVoltage", Robot.drivetrain.getRight2MotorVoltage());
 //			SmartDashboard.putNumber("DTRight3MotorVoltage", Robot.drivetrain.getRight3MotorVoltage());
@@ -112,26 +113,24 @@
 //			SmartDashboard.putNumber("Lift Left Motor Current", Robot.pdp.getChannelCurrent(RobotMap.LIFT_LEFT_MOTOR_PDP));
 //			SmartDashboard.putNumber("Lift Right Motor Current", Robot.pdp.getChannelCurrent(RobotMap.LIFT_RIGHT_MOTOR_PDP));
 //			SmartDashboard.putNumber("Lift Motor Voltage", Robot.lift.getMotorVoltage());
-//
-//
-//			SmartDashboard.putString("AutoName", Robot.getAutoName());
-//
-//			SmartDashboard.putNumber("Tote IR (V)", Robot.intake.getAveragedRawToteDistance());
-//			SmartDashboard.putNumber("RC Bin Lift (V)", Robot.intake.getAveragedRawRCDistance());
-//			SmartDashboard.putNumber("RC Bin Auto (V)", Robot.intake.getAveragedRawRCBinAutoDistance());
-//			
-//
-//			SmartDashboard.putNumber("Left Stick Raw Value", OI.getInstance().driverJoystick.getLeftStickRaw_Y());
-//			SmartDashboard.putNumber("Right Stick Raw Value", OI.getInstance().driverJoystick.getRightStickRaw_Y());
-//
-//			SmartDashboard.putNumber("Left Trigger Raw Value", OI.getInstance().driverJoystick.getLeftTriggerAxisRaw());
-//			SmartDashboard.putNumber("Right Trigger Raw Value", OI.getInstance().driverJoystick.getRightTriggerAxisRaw());
-//
-//			SmartDashboard.putNumber("Operator Left Stick Raw Value", OI.getInstance().operatorJoystick.getLeftStickRaw_Y());
-//			SmartDashboard.putNumber("Operator Right Stick Raw Value", OI.getInstance().operatorJoystick.getRightStickRaw_Y());
-//
-//			SmartDashboard.putNumber("Operator Left Trigger Raw Value", OI.getInstance().operatorJoystick.getLeftTriggerAxisRaw());
-//			SmartDashboard.putNumber("Operator Right Trigger Raw Value", OI.getInstance().operatorJoystick.getRightTriggerAxisRaw());
+
+
+			SmartDashboard.putString("AutoName", Robot.getAutoName());
+
+			SmartDashboard.putNumber("Intake IR: ", Robot.intakeRoller.getAveragedRawBoulderDistance());
+			SmartDashboard.putNumber("Index IR: ", Robot.indexer.getAveragedRawBoulderDistance());			
+
+			SmartDashboard.putNumber("Left Stick Raw Value", OI.getInstance().driverJoystick.getLeftStickRaw_Y());
+			SmartDashboard.putNumber("Right Stick Raw Value", OI.getInstance().driverJoystick.getRightStickRaw_Y());
+
+			SmartDashboard.putNumber("Left Trigger Raw Value", OI.getInstance().driverJoystick.getLeftTriggerAxisRaw());
+			SmartDashboard.putNumber("Right Trigger Raw Value", OI.getInstance().driverJoystick.getRightTriggerAxisRaw());
+
+			SmartDashboard.putNumber("Operator Left Stick Raw Value", OI.getInstance().operatorJoystick.getLeftStickRaw_Y());
+			SmartDashboard.putNumber("Operator Right Stick Raw Value", OI.getInstance().operatorJoystick.getRightStickRaw_Y());
+
+			SmartDashboard.putNumber("Operator Left Trigger Raw Value", OI.getInstance().operatorJoystick.getLeftTriggerAxisRaw());
+			SmartDashboard.putNumber("Operator Right Trigger Raw Value", OI.getInstance().operatorJoystick.getRightTriggerAxisRaw());
 //
 //			SmartDashboard.putBoolean("Lift Lowered", Robot.lift.isFullyLowered());
 //			SmartDashboard.putBoolean("Lift Raised", Robot.lift.isFullyRaised());
@@ -150,19 +149,13 @@
 //			SmartDashboard.putBoolean("Intake Left Motor Trip", !Robot.pdp.isIntakeLeftMotorTrip());
 //			SmartDashboard.putBoolean("Intake Right Motor Trip", !Robot.pdp.isIntakeLeftMotorTrip());
 //
-//			SmartDashboard.putBoolean("Brake Enabled", Robot.lift.isBrakeEnabled());
-//			SmartDashboard.putBoolean("Brake Disabled", Robot.lift.isBrakeDisabled());
-//
-//			SmartDashboard.putBoolean("Intake Engaged", Robot.intake.isIntakeEngaged());
-//			SmartDashboard.putBoolean("Intake Disabled", Robot.intake.isIntakeDisengaged());
-//
-//			SmartDashboard.putBoolean("Gripper Engaged", Robot.gripper.isGripperEngaged());
-//			SmartDashboard.putBoolean("Gripper Disable", Robot.gripper.isGripperDisengaged());
-//
+			SmartDashboard.putBoolean("Intake Extended", Robot.intakePosition.isIntakeExtended());
+			SmartDashboard.putBoolean("Intake Retracted", Robot.intakePosition.isIntakeRetracted());
+
 //			SmartDashboard.putBoolean("Intake Wheels In", Robot.intake.isIntakeWheelsIn());
 //			SmartDashboard.putBoolean("Intake Wheels Out", Robot.intake.isIntakeWheelsOut());
-//
-//
+
+
 //			SmartDashboard.putBoolean("DT Left 1 Self Test", Robot.drivetrain.leftSelfTest1);
 //			SmartDashboard.putBoolean("DT Left 2 Self Test", Robot.drivetrain.leftSelfTest2);
 //			SmartDashboard.putBoolean("DT Left 3 Self Test", Robot.drivetrain.leftSelfTest3);
@@ -172,21 +165,21 @@
 //			SmartDashboard.putBoolean("Intake Left Self Test", Robot.intake.leftIntakeSelfTest);
 //			SmartDashboard.putBoolean("Intake Right Self Test", Robot.intake.rightIntakeSelfTest);
 //			SmartDashboard.putBoolean("Lift Self Test", Robot.lift.liftSelfTest);
-//
-//			SmartDashboard.putBoolean("autoMode", Robot.isAutoMode());
+
+			SmartDashboard.putBoolean("autoMode", Robot.isAutoMode());
 //			SmartDashboard.putBoolean("left lift over current", LiftPIDPosition.leftMotorOverCurrent());
 //			SmartDashboard.putBoolean("right lift over current", LiftPIDPosition.rightMotorOverCurrent());
 //			SmartDashboard.putBoolean("lift stalled", LiftPIDPosition.liftStalled());
-//			
-//			// Open Intake LED Input 1
-//			// Close Intake LED Input 2
-//			
-//			// Gripper Open LED Input 3
-//			// Gripper Close LED Input 4
-//			
-//			// Open Retainer LED Input 5
-//			// Close Retainer LED Input 6
-//			
+			
+			// Open Intake LED Input 1
+			// Close Intake LED Input 2
+			
+			// Gripper Open LED Input 3
+			// Gripper Close LED Input 4
+			
+			// Open Retainer LED Input 5
+			// Close Retainer LED Input 6
+			
 //			OI.operatorButtonBox.setDigitalOutput1(!Robot.intake.isIntakeEngaged());
 //			OI.operatorButtonBox.setDigitalOutput2(!Robot.intake.isIntakeDisengaged());
 //			OI.operatorButtonBox.setDigitalOutput3(!Robot.gripper.isGripperEngaged());
@@ -194,10 +187,11 @@
 //			OI.operatorButtonBox.setDigitalOutput5(!Robot.binRetainer.isExtended());
 //			OI.operatorButtonBox.setDigitalOutput6(!Robot.binRetainer.isRetracted());
 //			
-//			
-//			//file log
-//			log.println(Timer.getFPGATimestamp() + "\t" +
-//					System.currentTimeMillis() + "\t" +
+			
+			//file log
+			log.println(
+					Timer.getFPGATimestamp() + "\t" +
+					System.currentTimeMillis() + "\t"
 //					
 //					DriverStation.getInstance().isDisabled() + "\t" +
 //					DriverStation.getInstance().isEnabled() + "\t" +
@@ -247,28 +241,28 @@
 //					IMU.getAccRoll() + "\t" +
 //					Robot.lift.getAveragedLiftStallSensorVoltage() + "\t" +
 //					Robot.intake.getAveragedRawRCDistance()
-//					);
-//			log.flush();
-//
-//
-//		}
-//	}
-//
-//	private class ConsolePrintTask extends TimerTask {
-//		private ConsolePrinter console;
-//
-//		private ConsolePrintTask(ConsolePrinter printer) {
-//			if (printer == null) {
-//				throw new NullPointerException("printer was null");
-//			}
-//			this.console = printer;
-//		}
-//
-//		/**
-//		 * Called periodically in its own thread
-//		 */
-//		public void run() {
-//			console.print();
-//		}
-//	}
-//}
+					);
+			log.flush();
+
+
+		}
+	}
+
+	private class ConsolePrintTask extends TimerTask {
+		private ConsolePrinter console;
+
+		private ConsolePrintTask(ConsolePrinter printer) {
+			if (printer == null) {
+				throw new NullPointerException("printer was null");
+			}
+			this.console = printer;
+		}
+
+		/**
+		 * Called periodically in its own thread
+		 */
+		public void run() {
+			console.print();
+		}
+	}
+}

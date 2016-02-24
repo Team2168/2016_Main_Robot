@@ -16,6 +16,7 @@ import org.team2168.commands.pneumatics.StartCompressor;
 import org.team2168.subsystems.Drivetrain;
 import org.team2168.subsystems.Shooter;
 import org.team2168.subsystems.ShooterHood;
+import org.team2168.utils.ConsolePrinter;
 import org.team2168.subsystems.IntakePosition;
 import org.team2168.subsystems.IntakeRoller;
 import org.team2168.subsystems.Pneumatics;
@@ -44,17 +45,21 @@ public class Robot extends IterativeRobot {
 	public static TCPCamSensor tcpCamSensor;
 	public static Pneumatics pneumatics;
 	
-    Command autonomousCommand;
-    SendableChooser chooser;
+    static Command autonomousCommand;
+    public static SendableChooser autoChooser;
+    
+    static boolean autoMode;
     
     Compressor comp;
+    
+    ConsolePrinter printer; // SmartDash printer
+    
 
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
     public void robotInit() {
-        chooser = new SendableChooser();
     	drivetrain = Drivetrain.getInstance();
     	shooter = Shooter.getInstance();
     	shooterhood = ShooterHood.getInstance();
@@ -64,29 +69,62 @@ public class Robot extends IterativeRobot {
         pneumatics = Pneumatics.getInstance();
 
         tcpCamSensor = new TCPCamSensor(41234, 0);
+
+
+
         
         oi = OI.getInstance();
+    
+        autoSelectInit();
         
-        chooser.addDefault("Default: Do Nothing", new DoNothing());
-        chooser.addObject("Shoot from Spy Box", new ShootFromSpyBox());
-        chooser.addObject("Drive Over Defense", new DriveOverDefense());
-        chooser.addObject("Reach Defense", new ReachDefense());
-        
-        SmartDashboard.putData("Auto mode", chooser);
+        SmartDashboard.putData("Auto mode", autoChooser);
         
         new StartCompressor();
         
+        printer = new ConsolePrinter(RobotMap.SmartDashThreadPeriod);
+		printer.startThread();
         
         System.out.println("Robot Done Loading");
     }
+    
+    /**
+     * Adds the autos to the selector
+     */
+    public void autoSelectInit() {
+        autoChooser = new SendableChooser();
+        autoChooser.addDefault("Default: Do Nothing", new DoNothing());
+        autoChooser.addObject("Shoot from Spy Box", new ShootFromSpyBox());
+        autoChooser.addObject("Drive Over Defense", new DriveOverDefense());
+        autoChooser.addObject("Reach Defense", new ReachDefense());
+    }
 	
+    /**
+	 *
+	 * @return true if the robot is in auto mode
+	 */
+	public static boolean isAutoMode() {
+		return autoMode;
+	}
+    
+    /**
+	 * Get the name of an autonomous mode command.
+	 * @return the name of the auto command.
+	 */
+	public static String getAutoName() {
+		if (autonomousCommand != null) {
+			return autonomousCommand.getName();
+		} else {
+			return "None";
+		}
+	}
+    
 	/**
      * This method is called once each time the robot enters Disabled mode.
      * You can use it to reset any subsystem information you want to clear when
 	 * the robot is disabled.
      */
     public void disabledInit(){
-
+    		autoMode = false;
     }
 	
     /**
@@ -116,18 +154,8 @@ public class Robot extends IterativeRobot {
 	 * or additional comparisons to the switch structure below with additional strings & commands.
 	 */
     public void autonomousInit() {
-        autonomousCommand = (Command) chooser.getSelected();
-        
-		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
-		switch(autoSelected) {
-		case "My Auto":
-			autonomousCommand = new MyAutoCommand();
-			break;
-		case "Default Auto":
-		default:
-			autonomousCommand = new ExampleCommand();
-			break;
-		} */
+    	autoMode = true;
+        autonomousCommand = (Command) autoChooser.getSelected();
     	
     	// schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
@@ -137,6 +165,7 @@ public class Robot extends IterativeRobot {
      * This method is called periodically during autonomous
      */
     public void autonomousPeriodic() {
+    	autoMode = true;
         Scheduler.getInstance().run();
     }
 
@@ -144,6 +173,7 @@ public class Robot extends IterativeRobot {
      * Called once when the robot enters the teloperated mode.
      */
     public void teleopInit() {
+    	autoMode = false;
 		// This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
@@ -155,6 +185,7 @@ public class Robot extends IterativeRobot {
      * This method is called periodically during operator control
      */
     public void teleopPeriodic() {
+    	autoMode = false;
         Scheduler.getInstance().run();
     }
     

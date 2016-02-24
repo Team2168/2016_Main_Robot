@@ -120,7 +120,7 @@ public class RobotMap {
 	public static final int SHOOTER_ENCODER_MIN_RATE = 0;
 	public static final int SHOOTER_ENCODER_MIN_PERIOD = 1;
 	public static final boolean SHOOTER_ENCODER_REVERSE = false;
-	public static final int SHOOTER_AVG_ENCODER_VAL = 1;
+	public static final int SHOOTER_AVG_ENCODER_VAL = 3;
 	public static final double MIN_SHOOTER_SPEED = 0.2;
 	public static final double SHOOTER_AUTO_NORMAL_SPEED = 0.5;
 	public static final double SHOOTER_WHEEL_BASE = 2; //units must match PositionReturnType (feet)
@@ -188,11 +188,11 @@ public class RobotMap {
 	//Shooter PID Speed
 	//Bandwidth =
 	//Phase Margin =
-	public static final double SHOOTER_SPEED_P = 0.4779;
-	public static final double SHOOTER_SPEED_I = 1.0526;
-	public static final double SHOOTER_SPEED_D = 0.0543;
+	public static final double SHOOTER_SPEED_P = 0.002;
+	public static final double SHOOTER_SPEED_I = 0.0001412646174233; 
+	public static final double SHOOTER_SPEED_D = 0.0074778888124088;
 
-
+	
 	/****************************************************************
 	 *                TCP Servers  (ONLY FOR DEBUGGING)             *
 	 ****************************************************************/
@@ -202,10 +202,18 @@ public class RobotMap {
 	public static final int TCP_SERVER_LEFT_DRIVE_TRAIN_SPEED = 1183;
 	public static final int TCP_SERVER_SHOOTER_SPEED = 1184;
 	
+
 	/********************************************
 	 * 				Kevin Parameters			*
 	 * *****************************************/
 	public static final boolean KEVIN_IS_DA_BOMB = true;
 	public static final boolean GUYANA_HAS_SUNK = false;
 	
+	/********************************************
+	 * 				Smart Dashboard Parameters			*
+	 * *****************************************/
+	public static final boolean PRINT_SD_DEBUG_DATA = true;
+	public static final long SmartDashThreadPeriod = 100; //ms
+	
+
 }
