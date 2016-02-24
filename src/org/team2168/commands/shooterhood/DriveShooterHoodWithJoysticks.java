@@ -27,7 +27,7 @@ public class DriveShooterHoodWithJoysticks extends Command {
     	//the right joystick is pushed
     	//TODO calibrate HOOD_JOYSTICK_MULTIPLIER value
     	Robot.shooterhood.setAngle(Robot.shooterhood.getAngle() + (RobotMap.HOOD_JOYSTICK_MULTIPLIER*(Robot.oi.operatorJoystick.getRightStickRaw_Y())));
-    	System.out.println(Robot.shooterhood.getAngle());
+    	System.out.println("Shooter Hood Angle: " + Robot.shooterhood.getAngle());
     }
 
     // Make this return true when this Command no longer needs to run execute()

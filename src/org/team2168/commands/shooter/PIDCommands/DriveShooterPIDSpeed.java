@@ -35,7 +35,6 @@ public class DriveShooterPIDSpeed extends Command {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    
 	protected void execute() {
     	if (setPoint != 0)
     		Robot.shooter.shooterSpeedController.setSetPoint(setPoint);

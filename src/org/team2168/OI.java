@@ -7,6 +7,8 @@ import org.team2168.commands.intakeposition.*;
 import org.team2168.commands.intakeroller.*;
 import org.team2168.commands.pneumatics.*;
 import org.team2168.commands.shooter.*;
+import org.team2168.commands.shooter.PIDCommands.DriveShooterPIDSpeed;
+import org.team2168.commands.shooter.PIDCommands.ShooterPIDPause;
 import org.team2168.utils.F310;
 
 /**
@@ -43,7 +45,7 @@ public class OI {
 	
 	public F310 driverJoystick;
 	public F310 operatorJoystick;
-	//public F310 commandsTestJoystick;
+	public F310 commandsTestJoystick;
 
 	private static OI instance = null;
 	
@@ -53,7 +55,7 @@ public class OI {
 	private OI(){
 		driverJoystick = new F310(RobotMap.DRIVER_JOYSTICK);
 		operatorJoystick = new F310(RobotMap.OPERATOR_JOYSTICK);
-		//commandsTestJoystick = new F310(RobotMap.COMMANDS_TEST_JOYSTICK);
+		commandsTestJoystick = new F310(RobotMap.COMMANDS_TEST_JOYSTICK);
 
 		/********************************************
 		 *         Driver Joystick Buttons          *
@@ -89,6 +91,11 @@ public class OI {
 		 ********************************************/
 //		commandsTestJoystick.ButtonY().whenPressed(new RotateXDistancePIDZZZ(0, 0.325, 0.1, 4));
 //		commandsTestJoystick.ButtonB().whenPressed(new DrivePIDPause());
+	
+		
+		commandsTestJoystick.ButtonY().whenPressed(new DriveShooterPIDSpeed(0));
+		commandsTestJoystick.ButtonB().whenPressed(new ShooterPIDPause());
+		
 		
 	}
 	
