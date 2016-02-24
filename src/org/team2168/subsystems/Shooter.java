@@ -44,13 +44,13 @@ public class Shooter extends Subsystem {
 		
 
 		shooterEncoder = new AverageCounter(RobotMap.SHOOTER_ENCODER_A, 
-				   							   RobotMap.SHOOTER_ENCODER_B, 
+				   							  // RobotMap.SHOOTER_ENCODER_B, //uncomment for encoder
 				   							   RobotMap.SHOOTER_ENCODER_PULSE_PER_ROT,
 				   							   RobotMap.SHOOTER_ENCODER_DIST_PER_TICK,
 				   							   RobotMap.SHOOTER_ENCODER_REVERSE,
-				   							   RobotMap.SHOOTER_ENCODING_TYPE,
-				   							   AverageCounter.SpeedReturnType.RPM,
-				   							   AverageCounter.PositionReturnType.FEET,
+				   							  // RobotMap.SHOOTER_ENCODING_TYPE, //uncomment for encoder
+				   							   RobotMap.SHOOTER_SPEED_RETURN_TYPE,
+				   							   RobotMap.SHOOTER_POS_RETURN_TYPE,
 				   							   RobotMap.SHOOTER_AVG_ENCODER_VAL);
 		
 		//Spawn new PID Controller

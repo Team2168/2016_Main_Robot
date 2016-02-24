@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
- * This class extends the basic WPI encoder class. Its purpose is to provide a
+ * This class extends the basic WPI counter class. Its purpose is to provide a
  * smoother rate output by averaging the rate of N samplesIt Implements the
- * SpeedSensorInterface for use with our custom PID controller. Encoder with N
+ * SpeedSensorInterface for use with our custom PID controller. Counter with N
  * point averager Misspelling intentional.
  *
  * @author Kevin Harrilal, Team 2168 Aluminum Falcons
@@ -37,10 +37,10 @@ public class AverageCounter extends Counter implements PIDSensorInterface {
      * @param n
      *            the size of end point average
      */
-    public AverageCounter(int channelA, int channelB, int PPR,
-            double distPerTick, boolean reverseDirection,
-            EncodingType encoderType, int averageN) {
-        super(channelA);
+    public AverageCounter(int channelA, int PPR,
+            double distPerTick, boolean reverseDirection, int averageN) {
+        
+    	super(channelA);
 
         this.averagorSize = averageN;
         this.averagorArray = new double[averagorSize];
@@ -60,12 +60,12 @@ public class AverageCounter extends Counter implements PIDSensorInterface {
 
     }
 
-    public AverageCounter(int channelA, int channelB, int PPR,
+    public AverageCounter(int channelA, int PPR,
             double distPerTick, boolean reverseDirection,
-            EncodingType encoderType, SpeedReturnType speedReturnType,
+            SpeedReturnType speedReturnType,
             PositionReturnType posReturnType, int averageN) {
-        this(channelA, channelB, PPR, distPerTick, reverseDirection,
-                encoderType, averageN);
+        this(channelA, PPR, distPerTick, reverseDirection,
+                 averageN);
         this.speedReturnType = speedReturnType;
         this.posReturnType = posReturnType;
 
@@ -189,71 +189,5 @@ public class AverageCounter extends Counter implements PIDSensorInterface {
         }
     }
 
-    public static class SpeedReturnType {
-        /**
-         * The integer value representing this enumeration
-         */
-        static final int IPS_val = 0;
-        static final int RPM_val = 1;
-        static final int FPS_val = 2;
-        static final int PERIOD_val = 3;
-        final int value;
-        /**
-         * Count only the rising edge
-         */
-        public static final SpeedReturnType IPS = new SpeedReturnType(IPS_val);
-        /**
-         * Count both the rising and falling edge
-         */
-        public static final SpeedReturnType RPM = new SpeedReturnType(RPM_val);
-        /**
-         * Count rising and falling on both channels
-         */
-        public static final SpeedReturnType FPS = new SpeedReturnType(FPS_val);
 
-        public static final SpeedReturnType PERIOD = new SpeedReturnType(
-                PERIOD_val);
-
-        private SpeedReturnType(int value) {
-            this.value = value;
-        }
-    }
-
-    public static class PositionReturnType {
-        static final int TICKS_val = 0;
-        static final int INCH_val = 1;
-        static final int DEGREE_val = 2;
-        static final int RADIANS_val = 3;
-        static final int FEET_val = 4;
-        public final int value;
-        /**
-         * Count only the rising edge
-         */
-        public static final PositionReturnType TICKS = new PositionReturnType(
-                TICKS_val);
-        /**
-         * Count both the rising and falling edge
-         */
-        public static final PositionReturnType INCH = new PositionReturnType(
-                INCH_val);
-        /**
-         * Count rising and falling on both channels
-         */
-        public static final PositionReturnType DEGREE = new PositionReturnType(
-                DEGREE_val);
-
-        public static final PositionReturnType RADIANS = new PositionReturnType(
-                RADIANS_val);
-        
-        public static final PositionReturnType FEET = new PositionReturnType(
-        		FEET_val);
-
-        private PositionReturnType(int value) {
-            this.value = value;
-        }
-    }
-
-    public void setPosReturnType(PositionReturnType value) {
-        this.posReturnType = value;
-    }
 }
