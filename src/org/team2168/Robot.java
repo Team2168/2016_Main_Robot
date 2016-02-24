@@ -1,7 +1,7 @@
-
 package org.team2168;
 
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -17,6 +17,7 @@ import org.team2168.subsystems.Drivetrain;
 import org.team2168.subsystems.Shooter;
 import org.team2168.subsystems.ShooterHood;
 import org.team2168.utils.ConsolePrinter;
+import org.team2168.utils.PowerDistribution;
 import org.team2168.subsystems.IntakePosition;
 import org.team2168.subsystems.IntakeRoller;
 import org.team2168.subsystems.Pneumatics;
@@ -50,8 +51,11 @@ public class Robot extends IterativeRobot {
     
     static boolean autoMode;
     
-    Compressor comp;
     
+    public static DriverStation driverstation;
+	public static PowerDistribution pdp;
+	
+	Compressor comp;
     ConsolePrinter printer; // SmartDash printer
     
 
@@ -60,6 +64,7 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
+    	//create subsystems
     	drivetrain = Drivetrain.getInstance();
     	shooter = Shooter.getInstance();
     	shooterhood = ShooterHood.getInstance();
@@ -67,44 +72,32 @@ public class Robot extends IterativeRobot {
     	intakeRoller = IntakeRoller.getInstance();
         intakePosition = IntakePosition.getInstance();
         pneumatics = Pneumatics.getInstance();
-
         tcpCamSensor = new TCPCamSensor(41234, 0);
 
-
-
-        
+        //create controls
         oi = OI.getInstance();
     
+        //choose auto
         autoSelectInit();
         
-        SmartDashboard.putData("Auto mode", autoChooser);
-        
+        //run compressor
         new StartCompressor();
+      
+        
+        driverstation = DriverStation.getInstance();
+
+		pdp = new PowerDistribution(RobotMap.PDPThreadPeriod);
+		pdp.startThread();
         
         printer = new ConsolePrinter(RobotMap.SmartDashThreadPeriod);
 		printer.startThread();
+		
+		
         
         System.out.println("Robot Done Loading");
     }
     
-    /**
-     * Adds the autos to the selector
-     */
-    public void autoSelectInit() {
-        autoChooser = new SendableChooser();
-        autoChooser.addDefault("Default: Do Nothing", new DoNothing());
-        autoChooser.addObject("Shoot from Spy Box", new ShootFromSpyBox());
-        autoChooser.addObject("Drive Over Defense", new DriveOverDefense());
-        autoChooser.addObject("Reach Defense", new ReachDefense());
-    }
-	
-    /**
-	 *
-	 * @return true if the robot is in auto mode
-	 */
-	public static boolean isAutoMode() {
-		return autoMode;
-	}
+
     
     /**
 	 * Get the name of an autonomous mode command.
@@ -133,16 +126,7 @@ public class Robot extends IterativeRobot {
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 
-        SmartDashboard.putNumber("Drivetrain Left Position", drivetrain.getLeftPosition());
-        SmartDashboard.putNumber("Drivetrain Right Position", drivetrain.getRightPosition());
-        SmartDashboard.putBoolean("Boulder in Intake", intakeRoller.isBoulderPresent());
-        SmartDashboard.putBoolean("Boulder in Indexer", indexer.isBoulderPresent());
-        SmartDashboard.putNumber("Shooter Speed", shooter.getSpeed());
-        SmartDashboard.putBoolean("Intake up", intakePosition.isIntakeRetracted());
-        SmartDashboard.putBoolean("Intake down", intakePosition.isIntakeExtended());
-        SmartDashboard.putNumber("Boulder Distance Intake", intakeRoller.getAveragedRawBoulderDistance());
-        SmartDashboard.putNumber("Boulder Distance Indexer", indexer.getAveragedRawBoulderDistance());
-	}
+        	}
 
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select between different autonomous modes
@@ -195,4 +179,23 @@ public class Robot extends IterativeRobot {
     public void testPeriodic() {
         LiveWindow.run();
     }
+    
+    /**
+     * Adds the autos to the selector
+     */
+    public void autoSelectInit() {
+        autoChooser = new SendableChooser();
+        autoChooser.addDefault("Default: Do Nothing", new DoNothing());
+        autoChooser.addObject("Shoot from Spy Box", new ShootFromSpyBox());
+        autoChooser.addObject("Drive Over Defense", new DriveOverDefense());
+        autoChooser.addObject("Reach Defense", new ReachDefense());
+    }
+	
+    /**
+	 *
+	 * @return true if the robot is in auto mode
+	 */
+	public static boolean isAutoMode() {
+		return autoMode;
+	}
 }

@@ -1,5 +1,6 @@
 package org.team2168.subsystems;
 
+import org.team2168.Robot;
 import org.team2168.RobotMap;
 import org.team2168.PID.controllers.PIDPosition;
 import org.team2168.PID.controllers.PIDSpeed;
@@ -18,15 +19,15 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * @author Peter Dentch
  */
 public class Drivetrain extends Subsystem {
-	private static Talon leftMotor1;
-	private static Talon leftMotor2;
-	private static Talon leftMotor3;
-	private static Talon rightMotor1;
-	private static Talon rightMotor2;
-	private static Talon rightMotor3;
+	private Talon leftMotor1;
+	private Talon leftMotor2;
+	private Talon leftMotor3;
+	private Talon rightMotor1;
+	private Talon rightMotor2;
+	private Talon rightMotor3;
 	
-	private static BNO055 gyro;
-	private static BNOHeading stupidPIDSensorGyro;
+	private BNO055 gyro;
+	private BNOHeading stupidPIDSensorGyro;
 	public IMU imu;
 
 	public AverageEncoder drivetrainLeftEncoder;
@@ -54,7 +55,10 @@ public class Drivetrain extends Subsystem {
 	TCPSocketSender TCPleftSpeedController;
 	TCPSocketSender TCProtateController;
 	
+	
+	
 	private static Drivetrain instance = null;
+	
 
 	
 	/**
@@ -180,6 +184,13 @@ public class Drivetrain extends Subsystem {
 
 				TCProtateController = new TCPSocketSender(RobotMap.TCP_SERVER_ROTATE_CONTROLLER, rotateController);
 				TCProtateController.start();
+				
+				leftMotor1Voltage = 0;
+				leftMotor2Voltage = 0;
+				leftMotor3Voltage = 0;
+				rightMotor1Voltage = 0;
+				rightMotor2Voltage = 0;
+				rightMotor3Voltage = 0;
 	}
 	
 	/**
@@ -236,6 +247,7 @@ public class Drivetrain extends Subsystem {
 		if(RobotMap.DT_REVERSE_LEFT)
 			speed = -speed;
 		leftMotor1.set(speed);
+		leftMotor1Voltage = Robot.pdp.getBatteryVoltage() * speed;
 	}
 	
 	/**
@@ -247,6 +259,7 @@ public class Drivetrain extends Subsystem {
 		if(RobotMap.DT_REVERSE_LEFT)
 			speed = -speed;
 		leftMotor2.set(speed);
+		leftMotor2Voltage = Robot.pdp.getBatteryVoltage() * speed;
 	}
 	
 	/**
@@ -258,6 +271,7 @@ public class Drivetrain extends Subsystem {
 		if(RobotMap.DT_REVERSE_LEFT)
 			speed = -speed;
 		leftMotor3.set(speed);
+		leftMotor3Voltage = Robot.pdp.getBatteryVoltage() * speed;
 	}
 	
 	/**
@@ -269,6 +283,7 @@ public class Drivetrain extends Subsystem {
 		if(RobotMap.DT_REVERSE_RIGHT)
 			speed = -speed;
 		rightMotor1.set(speed);
+		rightMotor1Voltage = Robot.pdp.getBatteryVoltage() * speed;
 	}
 	
 	/**
@@ -280,6 +295,7 @@ public class Drivetrain extends Subsystem {
 		if(RobotMap.DT_REVERSE_RIGHT)
 			speed = -speed;
 		rightMotor2.set(speed);
+		rightMotor2Voltage = Robot.pdp.getBatteryVoltage() * speed;
 	}
 	
 	/**
@@ -291,6 +307,7 @@ public class Drivetrain extends Subsystem {
 		if(RobotMap.DT_REVERSE_RIGHT)
 			speed = -speed;
 		rightMotor3.set(speed);
+		rightMotor3Voltage = Robot.pdp.getBatteryVoltage() * speed;
 	}
 	
 	/**
@@ -352,14 +369,14 @@ public class Drivetrain extends Subsystem {
      * Get the heading of the robot
      * @return heading in degrees (doesn't roll over at 360)
      */
-    public static double getHeading() {
+    public double getHeading() {
     	return gyro.getHeading();
     }
     
     /**
      * Reset the heading of the IMU to zero degrees
      */
-    public static void reset() {
+    public  void reset() {
     	gyro.resetHeading();
     }
     
@@ -367,7 +384,7 @@ public class Drivetrain extends Subsystem {
      * 
      * @return the robots pitch +/- 180 degrees
      */
-    public static double getPitchAngle() {
+    public  double getPitchAngle() {
     	return gyro.getVector()[2];
     }
     
@@ -375,8 +392,56 @@ public class Drivetrain extends Subsystem {
      * 
      * @return the robots roll +/- 90 degrees
      */
-    public static double getRollAngle() {
+    public double getRollAngle() {
     	return gyro.getVector()[1];
     }
+    
+	/**
+	 * Returns the last commanded voltage to the motor
+	 * @return double in volts representing last commanded voltage to motor
+	 */
+	public double getLeft1MotorVoltage() {
+		return leftMotor1Voltage;
+	}
+
+	/**
+	 * Returns the last commanded voltage to the motor
+	 * @return double in volts representing last commanded voltage to motor
+	 */
+	public double getLeft2MotorVoltage() {
+		return leftMotor2Voltage;
+	}
+
+	/**
+	 * Returns the last commanded voltage to the motor
+	 * @return double in volts representing last commanded voltage to motor
+	 */
+	public double getLeft3MotorVoltage() {
+		return leftMotor3Voltage;
+	}
+
+	/**
+	 * Returns the last commanded voltage to the motor
+	 * @return double in volts representing last commanded voltage to motor
+	 */
+	public double getRight1MotorVoltage() {
+		return rightMotor1Voltage;
+	}
+
+	/**
+	 * Returns the last commanded voltage to the motor
+	 * @return double in volts representing last commanded voltage to motor
+	 */
+	public double getRight2MotorVoltage() {
+		return rightMotor2Voltage;
+	}
+
+	/**
+	 * Returns the last commanded voltage to the motor
+	 * @return double in volts representing last commanded voltage to motor
+	 */
+	public double getRight3MotorVoltage() {
+		return rightMotor3Voltage;
+	}
 }
 
