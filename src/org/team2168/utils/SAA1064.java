@@ -53,7 +53,7 @@ public class SAA1064 {
 	 *
 	 * @value	int addr	The address of the SAA1064 controller
 	 */
-	SAA1064(I2C.Port port, int address) {
+	public SAA1064(I2C.Port port, int address) {
 		_reverse_digit_order = false;
 		_command = brightness_t.BRIGHT_MED.val & ~MULTIPLEX;
 		_digits = 2;
@@ -268,9 +268,9 @@ public class SAA1064 {
 	 */
 	private void write(byte data) {
 		byte[] foo = new byte[1];
-		foo[1] = data;
+		foo[0] = data;
 
-		write(data);
+		write(foo);
 	}
 	
 	/**

@@ -2,6 +2,7 @@
 package org.team2168;
 
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -16,6 +17,7 @@ import org.team2168.commands.pneumatics.StartCompressor;
 import org.team2168.subsystems.Drivetrain;
 import org.team2168.subsystems.Shooter;
 import org.team2168.subsystems.ShooterHood;
+import org.team2168.utils.SAA1064;
 import org.team2168.subsystems.IntakePosition;
 import org.team2168.subsystems.IntakeRoller;
 import org.team2168.subsystems.Pneumatics;
@@ -48,6 +50,9 @@ public class Robot extends IterativeRobot {
     SendableChooser chooser;
     
     Compressor comp;
+    
+    private static SAA1064 digits;
+    float count = 0;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -76,6 +81,10 @@ public class Robot extends IterativeRobot {
         
         new StartCompressor();
         
+        digits = new SAA1064(I2C.Port.kMXP, 0x70);
+        digits.digit_order(true);
+        digits.multiplexOn(); //turn on multiplexing so that we can use more than 2 digits
+        digits.setBrightness(SAA1064.brightness_t.BRIGHT_HI);
         
         System.out.println("Robot Done Loading");
     }
@@ -104,6 +113,10 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putBoolean("Intake down", intakePosition.isIntakeExtended());
         SmartDashboard.putNumber("Boulder Distance Intake", intakeRoller.getAveragedRawBoulderDistance());
         SmartDashboard.putNumber("Boulder Distance Indexer", indexer.getAveragedRawBoulderDistance());
+        
+        digits.setDP(1);
+        count += 0.1;
+        digits.send(count); //send the number to the display
 	}
 
 	/**
