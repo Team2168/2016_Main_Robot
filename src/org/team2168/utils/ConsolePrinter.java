@@ -153,9 +153,13 @@ public class ConsolePrinter {
 	   
 			
 			//file log
-			log.println(Timer.getFPGATimestamp() + "\t" +
+			log.println(
+					
+					//Time
+					Timer.getFPGATimestamp() + "\t" +
 					System.currentTimeMillis() + "\t" +
 					
+					//Robot
 					Robot.driverstation.isDisabled() + "\t" +
 					Robot.driverstation.isEnabled() + "\t" +
 					Robot.driverstation.isAutonomous() + "\t" +
@@ -166,6 +170,13 @@ public class ConsolePrinter {
 					Robot.driverstation.getBatteryVoltage() + "\t" +
 					Robot.driverstation.isBrownedOut() + "\t" +  
 					
+					Robot.drivetrain.getHeading() + "\t" +
+					Robot.drivetrain.getPitchAngle() + "\t" +
+					Robot.drivetrain.getRollAngle() + "\t" +
+					Robot.pneumatics.getPSI() + "\t" +
+					
+					
+					//Drivetrain
 					Robot.drivetrain.getLeft1MotorVoltage() + "\t" +
 					Robot.drivetrain.getLeft2MotorVoltage() + "\t" +
 					Robot.drivetrain.getLeft3MotorVoltage() + "\t" +
@@ -182,31 +193,25 @@ public class ConsolePrinter {
 					Robot.pdp.getChannelCurrent(RobotMap.DRIVETRAIN_RIGHT_MOTOR_2_PDP) + "\t" +
 					Robot.pdp.getChannelCurrent(RobotMap.DRIVETRAIN_RIGHT_MOTOR_3_PDP) + "\t" +
 
-					
-					Robot.drivetrain.getHeading() + "\t" +
-					Robot.drivetrain.getPitchAngle() + "\t" +
-					Robot.drivetrain.getRollAngle() + "\t" +
-			
 
 					Robot.drivetrain.drivetrainLeftEncoder.getPos() + "\t" +
 					Robot.drivetrain.drivetrainLeftEncoder.getRate() + "\t" +
 
 					Robot.drivetrain.drivetrainRightEncoder.getPos() + "\t" +
-					Robot.drivetrain.drivetrainRightEncoder.getRate() 
+					Robot.drivetrain.drivetrainRightEncoder.getRate()  + "\t" +
+					
+					//Shooter
+					Robot.shooter.getFWDMotorVoltage() + "\t" +
+					Robot.shooter.getAFTMotorVoltage() + "\t" +
+					
+					Robot.pdp.getChannelCurrent(RobotMap.SHOOTER_MOTOR_FWD_PDP) + "\t" +
+					Robot.pdp.getChannelCurrent(RobotMap.SHOOTER_MOTOR_AFT_PDP) + "\t" +
+					
+					Robot.shooter.getSpeed() + "\t" +
+					
+					//Hood
+					Robot.shooterhood.getAngle()
 
-//					Robot.shooter.getMotorVoltage() + "\t" +
-//					Robot.pdp.getChannelCurrent(RobotMap.SHOOTER_MOTOR_PDP) + "\t" +
-//					Robot.pdp.getChannelCurrent(RobotMap.LIFT_RIGHT_MOTOR_PDP) + "\t" +
-//					Robot.lift.getPosition() + "\t" +
-//					Robot.lift.liftEncoder.getRawRate() + "\t" +
-//					Robot.lift.liftEncoder.getRate() + "\t" +
-//					Robot.accel.getX() + "\t" +
-//					Robot.accel.getY() + "\t" +
-//					Robot.accel.getZ() + "\t" +
-//					IMU.getAccPitch() + "\t" +
-//					IMU.getAccRoll() + "\t" +
-//					Robot.lift.getAveragedLiftStallSensorVoltage() + "\t" +
-//					Robot.intake.getAveragedRawRCDistance()
 					);
 				
 			log.flush();
@@ -218,8 +223,8 @@ public class ConsolePrinter {
 	private String FileHeading()
 	{
 		return "Time \t TimeofDay \t Disabled \t Enabled \t Auto \t AutoName \t Teleop \t FMS \t MatchTime \t Batt Volt \t isBrownOut\t VoltageL1 \t VoltageL2 \t VoltageL3 \t VoltageR1 \t VoltageR2 \t VoltageR3 \t CurrentL1 \t CurrentL2 \t CurrentL3 \t CurrentR1 \t CurrentR2 \t CurrentR3 \t "
-				+ "Gyro Angle \t Gyro Pitch \t Gyro Roll \t Left Encoder Position \t Left Encoder Rate \t Right Encoder Position \t Right Encoder Rate \t "
-				+ "Lift Voltage \t Lift Left Current \t Lift Right Current \t Lift Position \t Lift Raw Rate \t Lift Rate \t Accel X \t Accel Y \t Accel Z \t Accel Pitch \t Accel Roll \t Lift Stall IR \t Raw RC Distance";
+				+ "Gyro Angle \t Gyro Pitch \t Gyro Roll \t Pneumatics PSI \t Left Encoder Position \t Left Encoder Rate \t Right Encoder Position \t Right Encoder Rate \t "
+				+ "Shooter FWD Voltage \t Shooter AFT Voltage \t Shooter FWD Current \t Shooter AFT Cuttent \t Shooter Rate \t Hood Servo Angle";
 	}
 
 	private class ConsolePrintTask extends TimerTask {

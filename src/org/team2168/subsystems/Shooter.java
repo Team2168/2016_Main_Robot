@@ -29,6 +29,10 @@ public class Shooter extends Subsystem {
 	
 	//declare TCP severs...ONLY FOR DEBUGGING PURPOSES, SHOULD BE REMOVED FOR COMPITITION
 	TCPSocketSender TCPShooterController;
+	
+	//output voltage...ONLY FOR DEBUGGING PURPOSES, SHOULD BE REMOVED FOR COMPITITION
+	private volatile double AFTMotorVoltage;
+	private volatile double FWDMotorVoltage;
 		
 	/**
 	 * Private singleton constructor for the Shooter subsystem
@@ -70,6 +74,9 @@ public class Shooter extends Subsystem {
 		
 		TCPShooterController = new TCPSocketSender(RobotMap.TCP_SERVER_SHOOTER_SPEED, shooterSpeedController);
 		TCPShooterController.start();
+		
+		AFTMotorVoltage = 0;
+		FWDMotorVoltage = 0;
 	}
 	
 	/**
@@ -105,6 +112,7 @@ public class Shooter extends Subsystem {
 			speed = -speed;
 		
 		shooterFWD.set(speed);
+		FWDMotorVoltage = Robot.pdp.getBatteryVoltage() * speed;
 	}
 	
 	/**
@@ -117,6 +125,7 @@ public class Shooter extends Subsystem {
 			speed = -speed;
 			
 		shooterAFT.set(speed);
+		AFTMotorVoltage = Robot.pdp.getBatteryVoltage() * speed;
 	}
 	
 	/**
@@ -133,6 +142,21 @@ public class Shooter extends Subsystem {
 	 */
 	public void resetPosition() {
 		shooterEncoder.reset();
+	}
+	/**
+	 * Returns the last commanded voltage to the motor
+	 * @return double in volts representing last commanded voltage to motor
+	 */
+	public double getAFTMotorVoltage() {
+		return AFTMotorVoltage;
+	}
+
+	/**
+	 * Returns the last commanded voltage to the motor
+	 * @return double in volts representing last commanded voltage to motor
+	 */
+	public double getFWDMotorVoltage() {
+		return FWDMotorVoltage;
 	}
 	
 	

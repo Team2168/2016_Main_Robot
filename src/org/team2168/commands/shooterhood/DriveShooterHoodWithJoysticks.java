@@ -17,7 +17,10 @@ public class DriveShooterHoodWithJoysticks extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.shooterhood.setAngle(0);
+    	//Do not Initialize on Startup, leave hood where it is, but we should always make sure
+    	//it is physically installed at one end of travel.
+    	//Shooter is installed such that 180 deg is hood down position, and decreasing the angle raises hood. 
+    	//Robot.shooterhood.setAngle(0);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -26,7 +29,7 @@ public class DriveShooterHoodWithJoysticks extends Command {
     	//Takes current angle of servo and adds to it based on how far
     	//the right joystick is pushed
     	//TODO calibrate HOOD_JOYSTICK_MULTIPLIER value
-    	Robot.shooterhood.setAngle(Robot.shooterhood.getAngle() + (RobotMap.HOOD_JOYSTICK_MULTIPLIER*(Robot.oi.operatorJoystick.getRightStickRaw_Y())));
+    	Robot.shooterhood.setAngle(Robot.shooterhood.getAngle() - (RobotMap.HOOD_JOYSTICK_MULTIPLIER*(Robot.oi.operatorJoystick.getRightStickRaw_Y())));
     	System.out.println("Shooter Hood Angle: " + Robot.shooterhood.getAngle());
     }
 

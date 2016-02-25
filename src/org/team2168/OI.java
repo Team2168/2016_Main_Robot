@@ -61,8 +61,8 @@ public class OI {
 		 *         Driver Joystick Buttons          *
 		 ********************************************/
 		//TODO create commands for commented out buttons
-		//operatorJoystick.ButtonLeftBumper().whileActive(new LowGear());
-		//operatorJoystick.ButtonRightBumper().whileActive(new HighGear());
+		//driverJoystick.ButtonLeftBumper().whileActive(new LowGear());
+		//driverJoystick.ButtonRightBumper().whileActive(new HighGear());
 
 
 		/********************************************

@@ -1,8 +1,11 @@
 package org.team2168.PID.controllers;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.TimerTask;
 
 import org.team2168.PID.sensors.PIDSensorInterface;
@@ -256,10 +259,24 @@ public class PIDSpeed implements TCPMessageInterface {
 		this.diff = 0;
 		this.n = 0;
 		
-		try {
-			this.log = new PrintWriter("/home/lvuser/"+this.name+".txt", "UTF-8");
-			this.log.println("time: \tcperr: \tsp: \terr: \tpterm: \twindup: \terrsum: \titerm: \tdterm: \toutput \toutputBeforInteg \tcounstat \texctime");
-				} catch (FileNotFoundException e) {
+try {
+			
+			Date date = new Date() ;
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss") ;
+			
+			File file = new File("/home/lvuser/Logs/PID/Speed");
+			if (!file.exists()) {
+				if (file.mkdirs()) {
+					System.out.println("Log Directory is created!");
+				} else {
+					System.out.println("Failed to create Log directory!");
+				}
+			}
+			
+			this.log = new PrintWriter("/home/lvuser/Logs/PID/Speed/"+ dateFormat.format(date)+"-"+this.name+"-Log.txt", "UTF-8");
+			this.log.println("time: \tTimeOfDay: \tcp: \tsp: \terr: \tpterm: \twindup: \terrsum: \titerm: \tdterm: \toutput: \tcounstat: \texctime:");
+			this.log.flush();
+		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (UnsupportedEncodingException e) {
@@ -1155,7 +1172,7 @@ public class PIDSpeed implements TCPMessageInterface {
 			
 
 			//System.out.println("time: " + currentTime + "\tcperr: " + cp + "\tsp: " + sp + "\terr: " + err + "\tpterm: " + prop + "\twindup: " + windup + "\terrsum: " + errsum +"\titerm: " + integ + "\tdterm: " + deriv + "\toutput" + co + "\texctime" + executionTime );
-			log.println(currentTime + "\t" +  System.currentTimeMillis() + "\t"+ cp + "\t" + sp + "\t " + err + "\t" + prop + "\t" + windup + "\t" + errsum +"\t" + integ + "\t" + deriv + "\t" + co + "\t" + executionTime );
+			log.println(currentTime + "\t" +  System.currentTimeMillis() + "\t"+ cp + "\t" + sp + "\t " + err + "\t" + prop + "\t" + windup + "\t" + errsum +"\t" + integ + "\t" + deriv + "\t" + co + "\t" + coNotSaturated + "\t" + executionTime );
 			log.flush();
 		}
 		else
