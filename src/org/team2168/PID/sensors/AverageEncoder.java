@@ -55,6 +55,7 @@ public class AverageEncoder extends Encoder implements PIDSensorInterface {
         this.posReturnType = PositionReturnType.DEGREE;
         this.speedReturnType = SpeedReturnType.RPM;
 
+        super.setSamplesToAverage(averagorSize);
         super.setDistancePerPulse(distPerTick);
 
     }
@@ -135,35 +136,36 @@ public class AverageEncoder extends Encoder implements PIDSensorInterface {
     //
 
     public double getRate() {
-        // getRate
-        timeNow = Timer.getFPGATimestamp();
-        countNow = super.getDistance();
-        rate = (countNow - countBefore) / (timeNow - oldTime); // inch per seconds
-        oldTime = timeNow;
-        countBefore = countNow;
-        
+//        // getRate
+//        timeNow = Timer.getFPGATimestamp();
+//        countNow = super.getDistance();
+//        rate = (countNow - countBefore) / (timeNow - oldTime); // inch per seconds
+//        oldTime = timeNow;
+//        countBefore = countNow;
+//        
+//
+//        switch (speedReturnType.value) {
+//        case SpeedReturnType.IPS_val:
+//        	putData(rate);
+//            break;
+//        case SpeedReturnType.FPS_val:
+//            putData(rate / 12); // feet per second
+//            break;
+//        case SpeedReturnType.RPM_val:
+//            putData(( rate * 60 ) / (PPR * distPerTick)); // ticks per minute... rpm
+//            break;
+//        case SpeedReturnType.PERIOD_val:
+//            putData(super.getPeriod()); // ticks per minute... rpm
+//            break;
+//        default:
+//            // should be unreachable
+//            putData(0);
+//            break;
+//
+//        }
 
-        switch (speedReturnType.value) {
-        case SpeedReturnType.IPS_val:
-        	putData(rate);
-            break;
-        case SpeedReturnType.FPS_val:
-            putData(rate / 12); // feet per second
-            break;
-        case SpeedReturnType.RPM_val:
-            putData(( rate * 60 ) / (PPR * distPerTick)); // ticks per minute... rpm
-            break;
-        case SpeedReturnType.PERIOD_val:
-            putData(super.getPeriod()); // ticks per minute... rpm
-            break;
-        default:
-            // should be unreachable
-            putData(0);
-            break;
-
-        }
-
-        return getAverage(); // ticks per minute... rpm    	
+        return getRawRate();
+       // return getAverage(); // ticks per minute... rpm    	
     }
 
     public double getPos() {
