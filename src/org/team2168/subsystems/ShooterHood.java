@@ -39,8 +39,15 @@ public class ShooterHood extends Subsystem {
 	 * Takes in a given angle and moves motor to that angle
 	 * @param degrees angle from 0.0 to 180.0, where 180 is all the way down, and decreasing angle raises hood. 
 	 */
-	public void setAngle(double degrees) {   
-		hoodServo.setAngle(degrees);
+	public void setAngle(double degrees) { 
+		
+		if (degrees >= RobotMap.MIN_HOOD_VALUE && degrees <= RobotMap.MAX_HOOD_VALUE)
+				hoodServo.setAngle(degrees);
+		else//drive to nearest limit (> because higher angle means hood moves lower)
+			if(Math.abs(getAngle()-RobotMap.MIN_HOOD_VALUE) < Math.abs(getAngle()-RobotMap.MAX_HOOD_VALUE))
+					hoodServo.setAngle(RobotMap.MIN_HOOD_VALUE);
+			else
+				hoodServo.setAngle(RobotMap.MAX_HOOD_VALUE);
 		
 	}
 	

@@ -20,7 +20,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Shooter extends Subsystem {
 	private Talon shooterFWD;
 	private Talon shooterAFT;
-	private AverageCounter shooterEncoder;
+	private AverageEncoder shooterEncoder;
 	
 	static Shooter instance = null;
 	
@@ -47,15 +47,18 @@ public class Shooter extends Subsystem {
 		shooterAFT.setSafetyEnabled(true);
 		
 
-		shooterEncoder = new AverageCounter(RobotMap.SHOOTER_ENCODER_A, 
-				   							  // RobotMap.SHOOTER_ENCODER_B, //uncomment for encoder
+		shooterEncoder = new AverageEncoder(RobotMap.SHOOTER_ENCODER_A, 
+				   							   RobotMap.SHOOTER_ENCODER_B, //uncomment for encoder
 				   							   RobotMap.SHOOTER_ENCODER_PULSE_PER_ROT,
 				   							   RobotMap.SHOOTER_ENCODER_DIST_PER_TICK,
 				   							   RobotMap.SHOOTER_ENCODER_REVERSE,
-				   							  // RobotMap.SHOOTER_ENCODING_TYPE, //uncomment for encoder
+				   							   RobotMap.SHOOTER_ENCODING_TYPE, //uncomment for encoder
 				   							   RobotMap.SHOOTER_SPEED_RETURN_TYPE,
 				   							   RobotMap.SHOOTER_POS_RETURN_TYPE,
 				   							   RobotMap.SHOOTER_AVG_ENCODER_VAL);
+		
+		shooterEncoder.setMinRate(RobotMap.SHOOTER_ENCODER_MIN_RATE);
+		
 		
 		//Spawn new PID Controller
 		shooterSpeedController = new PIDSpeed(
@@ -164,5 +167,10 @@ public class Shooter extends Subsystem {
         // Set the default command for a subsystem here.
     	setDefaultCommand(new DriveShooterWithJoysticks());
     }
+
+	public double getPosition() {
+		// TODO Auto-generated method stub
+		return shooterEncoder.getPos();
+	}
 }
 

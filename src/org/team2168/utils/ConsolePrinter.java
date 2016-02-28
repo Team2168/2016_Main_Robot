@@ -46,7 +46,7 @@ public class ConsolePrinter {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
 			dateFormat.setTimeZone(TimeZone.getTimeZone("EST5EDT"));
 			this.log = new PrintWriter("/home/lvuser/Logs/" + dateFormat.format(date) + "-Log.txt", "UTF-8");
-			log.println();
+			log.println(FileHeading());
 			log.flush();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -141,6 +141,7 @@ public class ConsolePrinter {
 	       	SmartDashboard.putBoolean("Boulder in Intake", Robot.intakeRoller.isBoulderPresent());
 	        SmartDashboard.putBoolean("Boulder in Indexer", Robot.indexer.isBoulderPresent());
 	        SmartDashboard.putNumber("Shooter Speed", Robot.shooter.getSpeed());
+	        SmartDashboard.putNumber("Shooter Position", Robot.shooter.getPosition());
 
 	        SmartDashboard.putNumber("Boulder Distance Intake", Robot.intakeRoller.getAveragedRawBoulderDistance());
 	        SmartDashboard.putNumber("Boulder Distance Indexer", Robot.indexer.getAveragedRawBoulderDistance());
@@ -224,7 +225,7 @@ public class ConsolePrinter {
 	{
 		return "Time \t TimeofDay \t Disabled \t Enabled \t Auto \t AutoName \t Teleop \t FMS \t MatchTime \t Batt Volt \t isBrownOut\t VoltageL1 \t VoltageL2 \t VoltageL3 \t VoltageR1 \t VoltageR2 \t VoltageR3 \t CurrentL1 \t CurrentL2 \t CurrentL3 \t CurrentR1 \t CurrentR2 \t CurrentR3 \t "
 				+ "Gyro Angle \t Gyro Pitch \t Gyro Roll \t Pneumatics PSI \t Left Encoder Position \t Left Encoder Rate \t Right Encoder Position \t Right Encoder Rate \t "
-				+ "Shooter FWD Voltage \t Shooter AFT Voltage \t Shooter FWD Current \t Shooter AFT Cuttent \t Shooter Rate \t Hood Servo Angle";
+				+ "Shooter FWD Voltage \t Shooter AFT Voltage \t Shooter FWD Current \t Shooter AFT Current \t Shooter Rate \t Hood Servo Angle";
 	}
 
 	private class ConsolePrintTask extends TimerTask {

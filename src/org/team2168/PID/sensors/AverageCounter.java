@@ -1,5 +1,7 @@
 package org.team2168.PID.sensors;
 
+import org.team2168.PID.sensors.PIDSensorInterface.SpeedReturnType;
+
 import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Timer;
@@ -74,31 +76,32 @@ public class AverageCounter extends Counter implements PIDSensorInterface {
 
     
 
-    public double getRawRate() {
+    public synchronized double getRawRate() {
     	
     	double rate = super.getRate(); //Inches per second
     	
     	switch (speedReturnType.value) {
         case SpeedReturnType.IPS_val:
-            return rate;
-       
+        	putData (rate);
+        	break;
         case SpeedReturnType.FPS_val:
-            return (rate / 12); // feet per second
-        
+        	putData (rate / 12); // feet per second
+        	break;
         case SpeedReturnType.RPM_val:
-            return ((rate * 60) / (distPerTick*PPR)); // ticks per minute... rpm
+            putData ((rate * 60) / (distPerTick*PPR)); // ticks per minute... rpm
+            break;
            
         case SpeedReturnType.PERIOD_val:
-            return (super.getPeriod()); // ticks per minute... rpm
-     
+        	putData(super.getPeriod()); // ticks per minute... rpm
+        	break;
         default:
             // should be unreachable
             putData(0);
             break;
 
         }
-
-    	return super.getRate();
+    	
+    	 return getAverage();
     }
     
     /**
@@ -106,7 +109,7 @@ public class AverageCounter extends Counter implements PIDSensorInterface {
      *
      * @return the Average
      */
-    private double getAverage() {
+    private synchronized double getAverage() {
         double sum = 0;
 
         for (int i = 0; i < averagorSize; i++)
@@ -123,7 +126,7 @@ public class AverageCounter extends Counter implements PIDSensorInterface {
      *            the value being inserted into the array to be averaged.
      */
 
-    private void putData(double value) {
+    private synchronized void putData(double value) {
 
         averagorArray[arrayPos] = value;
         arrayPos++;
@@ -136,12 +139,10 @@ public class AverageCounter extends Counter implements PIDSensorInterface {
 
     //
 
-    public double getRate() {
-//        // getRate
+    public synchronized double getRate() {
+        // getRate
 //        timeNow = Timer.getFPGATimestamp();
-//        //countNow = super.getDistance();
-//        countNow = super.get();
-//        
+//        countNow = super.getDistance();
 //        rate = (countNow - countBefore) / (timeNow - oldTime); // inch per seconds
 //        oldTime = timeNow;
 //        countBefore = countNow;
@@ -155,9 +156,8 @@ public class AverageCounter extends Counter implements PIDSensorInterface {
 //            putData(rate / 12); // feet per second
 //            break;
 //        case SpeedReturnType.RPM_val:
-//            //putData(( rate * 60 ) / (PPR * distPerTick)); // ticks per minute... rpm
-//        	putData(rate * 60/PPR);
-//        	break;
+//            putData(( rate * 60 ) / (PPR * distPerTick)); // ticks per minute... rpm
+//            break;
 //        case SpeedReturnType.PERIOD_val:
 //            putData(super.getPeriod()); // ticks per minute... rpm
 //            break;
@@ -165,13 +165,16 @@ public class AverageCounter extends Counter implements PIDSensorInterface {
 //            // should be unreachable
 //            putData(0);
 //            break;
+//
 //        }
-        
-        return getRawRate();
-        //return getAverage(); // ticks per minute... rpm   
-    }
 
-    public double getPos() {
+    	
+        return getRawRate();
+//       return getAverage(); // ticks per minute... rpm    	
+    }
+    
+    
+    public synchronized double getPos() {
 
         switch (posReturnType.value) {
         case PositionReturnType.TICKS_val:

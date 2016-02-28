@@ -26,14 +26,14 @@ public class RobotMap {
 	public static final int LEFT_DRIVE_TRAIN_1 = 3;
 	public static final int LEFT_DRIVE_TRAIN_2 = 4;
 	public static final int LEFT_DRIVE_TRAIN_3 = 5;
-	public static final int INTAKE_WHEEL_1= 6;
-	public static final int INTAKE_WHEEL_2= 7;
+	public static final int INTAKE_WHEEL_1= 11;
+	public static final int INTAKE_WHEEL_2= 10;
 	public static final int INDEXER_WHEEL = 8;
 	public static final int SHOOTER_HOOD_SERVO = 9;
 
 	//Channels 10-25 on MXP
-	public static final int SHOOTER_WHEEL_FWD = 10;
-	public static final int SHOOTER_WHEEL_AFT= 11;
+	public static final int SHOOTER_WHEEL_FWD = 7;
+	public static final int SHOOTER_WHEEL_AFT = 6;
 
 
 	//TODO: Confirm PDP Ports
@@ -47,8 +47,8 @@ public class RobotMap {
 	public final static int INTAKE_MOTOR_1_PDP = 2;
 	public final static int INTAKE_MOTOR_2_PDP = 3;
 	public final static int INDEXER_MOTOR_PDP = 4;
-	public final static int SHOOTER_MOTOR_FWD_PDP = 0;
-	public final static int SHOOTER_MOTOR_AFT_PDP = 1;
+	public final static int SHOOTER_MOTOR_FWD_PDP = 13;
+	public final static int SHOOTER_MOTOR_AFT_PDP = 3;
 	public final static int PCM_POWER = 13;
 
 	//Solenoid Channels////////////////////////////////////////////////////////
@@ -120,19 +120,19 @@ public class RobotMap {
 	public static final boolean REVERSE_SHOOTER_WHEEL_FWD= false;
 	public static final boolean REVERSE_SHOOTER_WHEEL_AFT= false;
 	
-	private static final int SHOOTER_PULSE_PER_ROTATION = 1; //encoder ticks per rotation
+	private static final int SHOOTER_PULSE_PER_ROTATION = 360; //encoder ticks per rotation
 	//TODO find ratio
-	private static final double SHOOTER_GEAR_RATIO = 1.0/1.0; //ratio between wheel over encoder
+	private static final double SHOOTER_GEAR_RATIO = 12.0/22.0; //ratio between wheel over encoder
 	private static final double SHOOTER_WHEEL_DIAMETER = 4;
 	public static final int SHOOTER_ENCODER_PULSE_PER_ROT = (int) (SHOOTER_PULSE_PER_ROTATION * SHOOTER_GEAR_RATIO); //pulse per rotation * gear ratio
 	public static final double SHOOTER_ENCODER_DIST_PER_TICK = (Math.PI * SHOOTER_WHEEL_DIAMETER / SHOOTER_ENCODER_PULSE_PER_ROT);
 	public static final CounterBase.EncodingType SHOOTER_ENCODING_TYPE = CounterBase.EncodingType.k1X; //count only the rising edge
 	public static final AverageEncoder.PositionReturnType SHOOTER_POS_RETURN_TYPE = AverageEncoder.PositionReturnType.FEET;
 	public static final AverageEncoder.SpeedReturnType SHOOTER_SPEED_RETURN_TYPE = AverageEncoder.SpeedReturnType.RPM;
-	public static final int SHOOTER_ENCODER_MIN_RATE = 0;
+	public static final double SHOOTER_ENCODER_MIN_RATE = 0.1; //minimum inch per second
 	public static final int SHOOTER_ENCODER_MIN_PERIOD = 1;
 	public static final boolean SHOOTER_ENCODER_REVERSE = false;
-	public static final int SHOOTER_AVG_ENCODER_VAL = 3;
+	public static final int SHOOTER_AVG_ENCODER_VAL = 30;
 	public static final double MIN_SHOOTER_SPEED = 0.2;
 	public static final double SHOOTER_AUTO_NORMAL_SPEED = 0.5;
 	public static final double SHOOTER_WHEEL_BASE = 2; //units must match PositionReturnType (feet)
@@ -160,6 +160,9 @@ public class RobotMap {
 	 *                         Hood PARAMETERS
 	 *************************************************************************/
 	public static final double HOOD_JOYSTICK_MULTIPLIER = 1; //degrees
+	public static final double MIN_HOOD_VALUE = 115;
+	public static final double MAX_HOOD_VALUE = 180;
+	
 	
 	
 	/*************************************************************************
@@ -204,9 +207,9 @@ public class RobotMap {
 	//Shooter PID Speed
 	//Bandwidth =
 	//Phase Margin =
-	public static final double SHOOTER_SPEED_P = 0.002;
-	public static final double SHOOTER_SPEED_I = 0.0001412646174233; 
-	public static final double SHOOTER_SPEED_D = 0.0074778888124088;
+	public static final double SHOOTER_SPEED_P = 0.00045;
+	public static final double SHOOTER_SPEED_I = 0.000028; 
+	public static final double SHOOTER_SPEED_D = 0.0001;
 
 	
 	/****************************************************************

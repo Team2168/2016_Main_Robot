@@ -1,5 +1,7 @@
 package org.team2168.PID.sensors;
 
+import java.util.Arrays;
+
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Timer;
 
@@ -73,31 +75,32 @@ public class AverageEncoder extends Encoder implements PIDSensorInterface {
 
     
 
-    public double getRawRate() {
+    public synchronized double getRawRate() {
     	
     	double rate = super.getRate(); //Inches per second
     	
     	switch (speedReturnType.value) {
         case SpeedReturnType.IPS_val:
-            return rate;
-       
+        	putData (rate);
+        	break;
         case SpeedReturnType.FPS_val:
-            return (rate / 12); // feet per second
-        
+        	putData (rate / 12); // feet per second
+        	break;
         case SpeedReturnType.RPM_val:
-            return ((rate * 60) / (distPerTick*PPR)); // ticks per minute... rpm
+            putData ((rate * 60) / (distPerTick*PPR)); // ticks per minute... rpm
+            break;
            
         case SpeedReturnType.PERIOD_val:
-            return (super.getPeriod()); // ticks per minute... rpm
-     
+        	putData(super.getPeriod()); // ticks per minute... rpm
+        	break;
         default:
             // should be unreachable
             putData(0);
             break;
 
         }
-
-    	return super.getRate();
+    	
+    	 return getAverage();
     }
     
     /**
@@ -105,12 +108,13 @@ public class AverageEncoder extends Encoder implements PIDSensorInterface {
      *
      * @return the Average
      */
-    private double getAverage() {
+    private synchronized double getAverage() {
         double sum = 0;
 
         for (int i = 0; i < averagorSize; i++)
             sum += averagorArray[i];
 
+        //System.out.println("Average: " + Arrays.toString(averagorArray) + (sum / averagorSize));
         return sum / averagorSize;
     }
 
@@ -122,7 +126,7 @@ public class AverageEncoder extends Encoder implements PIDSensorInterface {
      *            the value being inserted into the array to be averaged.
      */
 
-    private void putData(double value) {
+    private synchronized void putData(double value) {
 
         averagorArray[arrayPos] = value;
         arrayPos++;
@@ -135,8 +139,8 @@ public class AverageEncoder extends Encoder implements PIDSensorInterface {
 
     //
 
-    public double getRate() {
-//        // getRate
+    public synchronized double getRate() {
+        // getRate
 //        timeNow = Timer.getFPGATimestamp();
 //        countNow = super.getDistance();
 //        rate = (countNow - countBefore) / (timeNow - oldTime); // inch per seconds
@@ -164,11 +168,12 @@ public class AverageEncoder extends Encoder implements PIDSensorInterface {
 //
 //        }
 
+    	
         return getRawRate();
-       // return getAverage(); // ticks per minute... rpm    	
+//       return getAverage(); // ticks per minute... rpm    	
     }
 
-    public double getPos() {
+    public synchronized double getPos() {
 
         switch (posReturnType.value) {
         case PositionReturnType.TICKS_val:
