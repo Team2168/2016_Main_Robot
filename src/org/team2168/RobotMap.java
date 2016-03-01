@@ -26,14 +26,14 @@ public class RobotMap {
 	public static final int LEFT_DRIVE_TRAIN_1 = 3;
 	public static final int LEFT_DRIVE_TRAIN_2 = 4;
 	public static final int LEFT_DRIVE_TRAIN_3 = 5;
-	public static final int INTAKE_WHEEL_1= 11;
-	public static final int INTAKE_WHEEL_2= 10;
+	public static final int INTAKE_WHEEL_1= 6;
+	public static final int INTAKE_WHEEL_2= 7;
 	public static final int INDEXER_WHEEL = 8;
 	public static final int SHOOTER_HOOD_SERVO = 9;
 
 	//Channels 10-25 on MXP
-	public static final int SHOOTER_WHEEL_FWD = 7;
-	public static final int SHOOTER_WHEEL_AFT = 6;
+	public static final int SHOOTER_WHEEL_FWD = 10;
+	public static final int SHOOTER_WHEEL_AFT = 11;
 
 
 	//TODO: Confirm PDP Ports
@@ -210,6 +210,7 @@ public class RobotMap {
 	public static final double SHOOTER_SPEED_P = 0.00045;
 	public static final double SHOOTER_SPEED_I = 0.000028; 
 	public static final double SHOOTER_SPEED_D = 0.0001;
+	
 
 	
 	/****************************************************************
