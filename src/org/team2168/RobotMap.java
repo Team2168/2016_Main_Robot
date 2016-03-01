@@ -132,14 +132,14 @@ public class RobotMap {
 	public static final double SHOOTER_ENCODER_MIN_RATE = 0.1; //minimum inch per second
 	public static final int SHOOTER_ENCODER_MIN_PERIOD = 1;
 	public static final boolean SHOOTER_ENCODER_REVERSE = false;
-	public static final int SHOOTER_AVG_ENCODER_VAL = 30;
+	public static final int SHOOTER_AVG_ENCODER_VAL = 120;
 	public static final double MIN_SHOOTER_SPEED = 0.2;
 	public static final double SHOOTER_AUTO_NORMAL_SPEED = 0.5;
 	public static final double SHOOTER_WHEEL_BASE = 2; //units must match PositionReturnType (feet)
 	//TODO get correct values
 	public static final double SHOOTER_BOULDER_STOP_VOLTAGE = 0.2;
 	public static final double SHOOTER_CONSTANT_SPEED = 0.2;
-
+	public static double CAMERA_OFFSET_ANGLE = 3.0; //degrees
 
 	/*************************************************************************
 	 *                         Intake PARAMETERS
@@ -233,6 +233,7 @@ public class RobotMap {
 	 ********************************************/
 	public static final boolean KEVIN_IS_DA_BOMB = true;
 	public static final boolean GUYANA_HAS_SUNK = false;
+
 	
 
 	

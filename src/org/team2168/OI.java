@@ -89,8 +89,8 @@ public class OI {
 		/********************************************
 		 *        Command Test  Joystick Buttons         *
 		 ********************************************/
-//		commandsTestJoystick.ButtonY().whenPressed(new RotateXDistancePIDZZZ(0, 0.325, 0.1, 4));
-//		commandsTestJoystick.ButtonB().whenPressed(new DrivePIDPause());
+		commandsTestJoystick.ButtonX().whenPressed(new RotateXDistancePIDZZZ(0, 0.525, 0.2, 0.7));
+		commandsTestJoystick.ButtonA().whenPressed(new DrivePIDPause());
 	
 		
 		commandsTestJoystick.ButtonY().whenPressed(new DriveShooterPIDSpeed(0));

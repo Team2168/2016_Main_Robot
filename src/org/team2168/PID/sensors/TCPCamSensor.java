@@ -140,7 +140,7 @@ public class TCPCamSensor {
 							// split data into array
 							dataReceived = Util.split(sb.toString(), ","); // splits
 							System.out.println(Arrays.toString(dataReceived));
-							//	System.out.println("Match Start: " + isMatchStart()+", " + "Valid Frame: " + isValidFrame()+", " + "Hot: " + isHotInView()+", " + "LorR: " + LeftOrRightHot()+", " + "dist: " + dataReceived[4]+", " + "Count: " + dataReceived[5]);
+								System.out.println("Match Start: " + isMatchStart()+", " + "Target Rotation: " + getRotationAngle() +", " + "Target Distance: " + getTargetDistance());   
 							// create new buffer
 							sb = new StringBuffer();
 						}
