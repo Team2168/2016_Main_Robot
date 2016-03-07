@@ -11,7 +11,10 @@ import org.team2168.commands.drivetrain.DriveWithJoysticks;
 import org.team2168.utils.BNO055;
 import org.team2168.utils.TCPSocketSender;
 
+import edu.wpi.first.wpilibj.SafePWM;
+import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -19,12 +22,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * @author Peter Dentch
  */
 public class Drivetrain extends Subsystem {
-	private Talon leftMotor1;
-	private Talon leftMotor2;
-	private Talon leftMotor3;
-	private Talon rightMotor1;
-	private Talon rightMotor2;
-	private Talon rightMotor3;
+	private SpeedController leftMotor1;
+	private SpeedController leftMotor2;
+	private SpeedController leftMotor3;
+	private SpeedController rightMotor1;
+	private SpeedController rightMotor2;
+	private SpeedController rightMotor3;
 	
 	private BNO055 gyro;
 	private BNOHeading stupidPIDSensorGyro;
@@ -65,30 +68,59 @@ public class Drivetrain extends Subsystem {
 	 * Default constructors for the Drivetrain subsystem
 	 */
 	private Drivetrain(){
-		leftMotor1 = new Talon(RobotMap.LEFT_DRIVE_TRAIN_1);
-		leftMotor1.setExpiration(0.1);
-		leftMotor1.setSafetyEnabled(true);
 		
-		leftMotor2 = new Talon(RobotMap.LEFT_DRIVE_TRAIN_2);
-		leftMotor2.setExpiration(0.1);
-		leftMotor2.setSafetyEnabled(true);
+		if(Robot.isPracticeRobot())
+		{
+		leftMotor1 = new Victor(RobotMap.LEFT_DRIVE_TRAIN_1_PBOT);
+		((Victor) leftMotor1).setExpiration(0.1);
+		((Victor) leftMotor1).setSafetyEnabled(true);
 		
-		leftMotor3 = new Talon(RobotMap.LEFT_DRIVE_TRAIN_3);
-		leftMotor3.setExpiration(0.1);
-		leftMotor3.setSafetyEnabled(true);
+		leftMotor2 = new Victor(RobotMap.LEFT_DRIVE_TRAIN_2_PBOT);
+		((Victor) leftMotor2).setExpiration(0.1);
+		((Victor) leftMotor2).setSafetyEnabled(true);
 		
-		rightMotor1 = new Talon(RobotMap.RIGHT_DRIVE_TRAIN_1);
-		rightMotor1.setExpiration(0.1);
-		rightMotor1.setSafetyEnabled(true);
+		leftMotor3 = new Victor(RobotMap.LEFT_DRIVE_TRAIN_3_PBOT);
+		((Victor) leftMotor3).setExpiration(0.1);
+		((Victor) leftMotor3).setSafetyEnabled(true);
 		
-		rightMotor2 = new Talon(RobotMap.RIGHT_DRIVE_TRAIN_2);
-		rightMotor2.setExpiration(0.1);
-		rightMotor2.setSafetyEnabled(true);
+		rightMotor1 = new Victor(RobotMap.RIGHT_DRIVE_TRAIN_1_PBOT);
+		((Victor) rightMotor1).setExpiration(0.1);
+		((Victor) rightMotor1).setSafetyEnabled(true);
 		
-		rightMotor3 = new Talon(RobotMap.RIGHT_DRIVE_TRAIN_3);
-		rightMotor3.setExpiration(0.1);
-		rightMotor3.setSafetyEnabled(true);
-
+		rightMotor2 = new Victor(RobotMap.RIGHT_DRIVE_TRAIN_2_PBOT);
+		((Victor) rightMotor2).setExpiration(0.1);
+		((Victor) rightMotor2).setSafetyEnabled(true);
+		
+		rightMotor3 = new Victor(RobotMap.RIGHT_DRIVE_TRAIN_3_PBOT);
+		((Victor) rightMotor3).setExpiration(0.1);
+		((Victor) rightMotor3).setSafetyEnabled(true);
+		}
+		else
+		{
+			leftMotor1 = new Talon(RobotMap.LEFT_DRIVE_TRAIN_1);
+			((Talon) leftMotor1).setExpiration(0.1);
+			((Talon) leftMotor1).setSafetyEnabled(true);
+			
+			leftMotor2 = new Talon(RobotMap.LEFT_DRIVE_TRAIN_2);
+			((Talon) leftMotor2).setExpiration(0.1);
+			((Talon) leftMotor2).setSafetyEnabled(true);
+			
+			leftMotor3 = new Talon(RobotMap.LEFT_DRIVE_TRAIN_3);
+			((Talon) leftMotor3).setExpiration(0.1);
+			((Talon) leftMotor3).setSafetyEnabled(true);
+			
+			rightMotor1 = new Talon(RobotMap.RIGHT_DRIVE_TRAIN_1);
+			((Talon) rightMotor1).setExpiration(0.1);
+			((Talon) rightMotor1).setSafetyEnabled(true);
+			
+			rightMotor2 = new Talon(RobotMap.RIGHT_DRIVE_TRAIN_2);
+			((Talon) rightMotor2).setExpiration(0.1);
+			((Talon) rightMotor2).setSafetyEnabled(true);
+			
+			rightMotor3 = new Talon(RobotMap.RIGHT_DRIVE_TRAIN_3);
+			((Talon) rightMotor3).setExpiration(0.1);
+			((Talon) rightMotor3).setSafetyEnabled(true);
+		}
 		
 		drivetrainLeftEncoder = new AverageEncoder(
 				RobotMap.DRIVE_TRAIN_LEFT_ENCODER_A,

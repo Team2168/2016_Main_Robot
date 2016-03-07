@@ -11,9 +11,11 @@ import edu.wpi.first.wpilibj.CounterBase;
  */
 public class RobotMap {
 
-	/*************************************************************************
+	/***************************z**********************************************
 	 *                              ROBORIO WIRING MAP
 	 *************************************************************************/
+
+	
 	// Joysticks/////////////////////////////////////////////////////////////
 	public static final int DRIVER_JOYSTICK = 0;
 	public static final int OPERATOR_JOYSTICK = 1;
@@ -22,18 +24,34 @@ public class RobotMap {
 	// PWM (0 to 9) on RoboRio//////////////////////////////////////////////////
 	public static final int RIGHT_DRIVE_TRAIN_1 = 0;
 	public static final int RIGHT_DRIVE_TRAIN_2 = 1;
-	public static final int RIGHT_DRIVE_TRAIN_3 = 2;
+	public static final int RIGHT_DRIVE_TRAIN_3 =2;
 	public static final int LEFT_DRIVE_TRAIN_1 = 3;
 	public static final int LEFT_DRIVE_TRAIN_2 = 4;
-	public static final int LEFT_DRIVE_TRAIN_3 = 5;
+	public static final int LEFT_DRIVE_TRAIN_3 =5;
 	public static final int INTAKE_WHEEL_1= 6;
 	public static final int INTAKE_WHEEL_2= 7;
 	public static final int INDEXER_WHEEL = 8;
 	public static final int SHOOTER_HOOD_SERVO = 9;
+	
 
 	//Channels 10-25 on MXP
 	public static final int SHOOTER_WHEEL_FWD = 10;
 	public static final int SHOOTER_WHEEL_AFT = 11;
+	
+	
+	// PWM (0 to 9) on RoboRio - PRACTICE BOT//////////////////////////////////////////////////
+	public static final int RIGHT_DRIVE_TRAIN_1_PBOT = 0;
+	public static final int RIGHT_DRIVE_TRAIN_2_PBOT = 1;
+	public static final int RIGHT_DRIVE_TRAIN_3_PBOT =10;
+	public static final int LEFT_DRIVE_TRAIN_1_PBOT = 2;
+	public static final int LEFT_DRIVE_TRAIN_2_PBOT = 3;
+	public static final int LEFT_DRIVE_TRAIN_3_PBOT =11;
+	public static final int INTAKE_WHEEL_1_PBOT= 6;
+	public static final int INTAKE_WHEEL_2_PBOT= 7;
+	public static final int INDEXER_WHEEL_PBOT = 8;
+	public static final int SHOOTER_HOOD_SERVO_PBOT = 9;
+	public static final int SHOOTER_WHEEL_FWD_PBOT = 4;
+	public static final int SHOOTER_WHEEL_AFT_PBOT = 5;
 
 
 	//TODO: Confirm PDP Ports
@@ -68,6 +86,7 @@ public class RobotMap {
 	public static final int DRIVE_TRAIN_LEFT_ENCODER_B = 7;
 	public static final int DRIVE_TRAIN_RIGHT_ENCODER_A = 8;
 	public static final int DRIVE_TRAIN_RIGHT_ENCODER_B = 9;
+	public static final int PRACTICE_BOT_JUMPER = 24;       //MXP pin 32
 	
 	
 	//Analog Input Channels////////////////////////////////////////////////////
@@ -117,8 +136,8 @@ public class RobotMap {
 	 *                         Shooter PARAMETERS
 	 *************************************************************************/
 	//TODO check if the reverse values match the physical robot
-	public static final boolean REVERSE_SHOOTER_WHEEL_FWD= false;
-	public static final boolean REVERSE_SHOOTER_WHEEL_AFT= false;
+	public static final boolean REVERSE_SHOOTER_WHEEL_FWD= true;
+	public static final boolean REVERSE_SHOOTER_WHEEL_AFT= true;
 	
 	private static final int SHOOTER_PULSE_PER_ROTATION = 360; //encoder ticks per rotation
 	//TODO find ratio

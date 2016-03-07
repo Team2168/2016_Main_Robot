@@ -1,6 +1,7 @@
 package org.team2168;
 
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -37,6 +38,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 	public static OI oi;
 
+	private static DigitalInput practiceBot;
+	
 	public static Drivetrain drivetrain;
 	public static Indexer indexer;
 	public static Shooter shooter;
@@ -64,6 +67,8 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
+    	practiceBot = new DigitalInput(RobotMap.PRACTICE_BOT_JUMPER);
+    	
     	//create subsystems
     	drivetrain = Drivetrain.getInstance();
     	shooter = Shooter.getInstance();
@@ -198,4 +203,16 @@ public class Robot extends IterativeRobot {
 	public static boolean isAutoMode() {
 		return autoMode;
 	}
+	
+	/**
+	 * Returns the status of DIO pin 24 on the MXP. Place a jumper between pin
+	 * pin 32 and 30 on the MXP to indicate this RoboRio is installed on the
+	 * practice bot.
+	 *
+	 * @return true if this is the practice robot
+	 */
+	public static boolean isPracticeRobot() {
+		return !practiceBot.get();
+	}
+
 }

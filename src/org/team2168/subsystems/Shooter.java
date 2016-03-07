@@ -38,14 +38,27 @@ public class Shooter extends Subsystem {
 	 * Private singleton constructor for the Shooter subsystem
 	 */
 	private Shooter () {
-		shooterFWD = new Talon (RobotMap.SHOOTER_WHEEL_FWD);
-		shooterFWD.setExpiration(0.1);
-		shooterFWD.setSafetyEnabled(true);
 		
-		shooterAFT = new Talon (RobotMap.SHOOTER_WHEEL_AFT);
-		shooterAFT.setExpiration(0.1);
-		shooterAFT.setSafetyEnabled(true);
-		
+		if(Robot.isPracticeRobot())
+		{
+			shooterFWD = new Talon (RobotMap.SHOOTER_WHEEL_FWD_PBOT);
+			shooterFWD.setExpiration(0.1);
+			shooterFWD.setSafetyEnabled(true);
+			
+			shooterAFT = new Talon (RobotMap.SHOOTER_WHEEL_AFT_PBOT);
+			shooterAFT.setExpiration(0.1);
+			shooterAFT.setSafetyEnabled(true);
+		}
+		else
+		{
+			shooterFWD = new Talon (RobotMap.SHOOTER_WHEEL_FWD);
+			shooterFWD.setExpiration(0.1);
+			shooterFWD.setSafetyEnabled(true);
+			
+			shooterAFT = new Talon (RobotMap.SHOOTER_WHEEL_AFT);
+			shooterAFT.setExpiration(0.1);
+			shooterAFT.setSafetyEnabled(true);	
+		}
 
 		shooterEncoder = new AverageEncoder(RobotMap.SHOOTER_ENCODER_A, 
 				   							   RobotMap.SHOOTER_ENCODER_B, //uncomment for encoder

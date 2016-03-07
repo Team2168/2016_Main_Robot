@@ -64,6 +64,7 @@ public class ConsolePrinter {
 			
 			SmartDashboard.putData("Autonomous Mode Chooser", Robot.autoChooser);
 			SmartDashboard.putNumber("gameClock", (int)DriverStation.getInstance().getMatchTime());
+			SmartDashboard.putBoolean("isPracticeBot", Robot.isPracticeRobot());
 			
 			SmartDashboard.putNumber("Left Encoder Distance",Robot.drivetrain.getLeftPosition());
 			SmartDashboard.putNumber("Right Encoder Distance:",Robot.drivetrain.getRightPosition());
@@ -79,6 +80,7 @@ public class ConsolePrinter {
 			SmartDashboard.putNumber("Raw Intake IR", Robot.intakeRoller.getRawBoulderDistance());
 			SmartDashboard.putNumber("Raw Indexer IR", Robot.indexer.getRawBoulderDistance());
 
+			
 			SmartDashboard.putNumber("DTRight1MotorCurrent", Robot.pdp.getChannelCurrent(RobotMap.DRIVETRAIN_RIGHT_MOTOR_1_PDP));
 			SmartDashboard.putNumber("DTRight2MotorCurrent", Robot.pdp.getChannelCurrent(RobotMap.DRIVETRAIN_RIGHT_MOTOR_2_PDP));
 			SmartDashboard.putNumber("DTRight3MotorCurrent", Robot.pdp.getChannelCurrent(RobotMap.DRIVETRAIN_RIGHT_MOTOR_3_PDP));
@@ -170,6 +172,7 @@ public class ConsolePrinter {
 					Robot.driverstation.getMatchTime() + "\t" +
 					Robot.driverstation.getBatteryVoltage() + "\t" +
 					Robot.driverstation.isBrownedOut() + "\t" +  
+					Robot.isPracticeRobot() + "\t" +  
 					
 					Robot.drivetrain.getHeading() + "\t" +
 					Robot.drivetrain.getPitchAngle() + "\t" +
@@ -223,7 +226,7 @@ public class ConsolePrinter {
 	
 	private String FileHeading()
 	{
-		return "Time \t TimeofDay \t Disabled \t Enabled \t Auto \t AutoName \t Teleop \t FMS \t MatchTime \t Batt Volt \t isBrownOut\t VoltageL1 \t VoltageL2 \t VoltageL3 \t VoltageR1 \t VoltageR2 \t VoltageR3 \t CurrentL1 \t CurrentL2 \t CurrentL3 \t CurrentR1 \t CurrentR2 \t CurrentR3 \t "
+		return "Time \t TimeofDay \t Disabled \t Enabled \t Auto \t AutoName \t Teleop \t FMS \t MatchTime \t Batt Volt \t isBrownOut\t isPBot \t VoltageL1 \t VoltageL2 \t VoltageL3 \t VoltageR1 \t VoltageR2 \t VoltageR3 \t CurrentL1 \t CurrentL2 \t CurrentL3 \t CurrentR1 \t CurrentR2 \t CurrentR3 \t "
 				+ "Gyro Angle \t Gyro Pitch \t Gyro Roll \t Pneumatics PSI \t Left Encoder Position \t Left Encoder Rate \t Right Encoder Position \t Right Encoder Rate \t "
 				+ "Shooter FWD Voltage \t Shooter AFT Voltage \t Shooter FWD Current \t Shooter AFT Current \t Shooter Rate \t Hood Servo Angle";
 	}
