@@ -11,6 +11,7 @@ import org.team2168.commands.drivetrain.DriveWithJoysticks;
 import org.team2168.utils.BNO055;
 import org.team2168.utils.TCPSocketSender;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.SafePWM;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
@@ -28,6 +29,9 @@ public class Drivetrain extends Subsystem {
 	private SpeedController rightMotor1;
 	private SpeedController rightMotor2;
 	private SpeedController rightMotor3;
+	
+	
+	DoubleSolenoid gearShifter;
 	
 	private BNO055 gyro;
 	private BNOHeading stupidPIDSensorGyro;
@@ -151,7 +155,8 @@ public class Drivetrain extends Subsystem {
 		imu = new IMU(drivetrainLeftEncoder,drivetrainRightEncoder,RobotMap.WHEEL_BASE);
 
 
-		
+		//enable shifting solenoids
+		gearShifter = new DoubleSolenoid(RobotMap.DRIVETRAIN_LOW_GEAR, RobotMap.DRIVETRAIN_HIGH_GEAR);
 		
 		//DriveStraight Controller
 				rotateController = new PIDPosition(
@@ -475,5 +480,36 @@ public class Drivetrain extends Subsystem {
 	public double getRight3MotorVoltage() {
 		return rightMotor3Voltage;
 	}
+
+	/**
+	 * Shifts the Drivetrain from High to Low Gear
+	 */
+    public void shiftGearsHighToLow(){
+    	gearShifter.set(DoubleSolenoid.Value.kForward);
+    }
+    
+	/**
+	 * Returns true if last commanded shift was High Gear
+	 */
+    public boolean gearIsHigh()
+    {
+    	return gearShifter.get()==DoubleSolenoid.Value.kReverse;
+    }
+    
+	/**
+	 * Shifts the Drivetrain from Low to High Gear
+	 */
+    public void shiftGearsLowToHigh(){
+    	gearShifter.set(DoubleSolenoid.Value.kReverse);
+    }
+    
+	/**
+	 * Returns true if last commanded shift was Low Gear
+	 */
+    public boolean gearIsLow()
+    {
+    	return gearShifter.get()==DoubleSolenoid.Value.kForward;
+    }
+
 }
 

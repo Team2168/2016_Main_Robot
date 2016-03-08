@@ -20,7 +20,7 @@ public class DriveShooterHoodWithJoysticks extends Command {
     	//Do not Initialize on Startup, leave hood where it is, but we should always make sure
     	//it is physically installed at one end of travel.
     	//Shooter is installed such that 180 deg is hood down position, and decreasing the angle raises hood. 
-    	Robot.shooterhood.setAngle(180);
+    	//Robot.shooterhood.setAngle(180);
     }
 
     // Called repeatedly when this Command is scheduled to run

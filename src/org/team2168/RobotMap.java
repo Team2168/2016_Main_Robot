@@ -56,18 +56,18 @@ public class RobotMap {
 
 	//TODO: Confirm PDP Ports
 	//PDP Channels/////////////////////////////////////////////////////////////
-	public final static int DRIVETRAIN_RIGHT_MOTOR_1_PDP = 8;
-	public final static int DRIVETRAIN_RIGHT_MOTOR_2_PDP = 9;
-	public final static int DRIVETRAIN_RIGHT_MOTOR_3_PDP = 10;
-	public final static int DRIVETRAIN_LEFT_MOTOR_1_PDP = 5;
-	public final static int DRIVETRAIN_LEFT_MOTOR_2_PDP = 6;
-	public final static int DRIVETRAIN_LEFT_MOTOR_3_PDP = 7;
-	public final static int INTAKE_MOTOR_1_PDP = 2;
-	public final static int INTAKE_MOTOR_2_PDP = 3;
-	public final static int INDEXER_MOTOR_PDP = 4;
-	public final static int SHOOTER_MOTOR_FWD_PDP = 13;
-	public final static int SHOOTER_MOTOR_AFT_PDP = 3;
-	public final static int PCM_POWER = 13;
+	public final static int DRIVETRAIN_RIGHT_MOTOR_1_PDP = 13;
+	public final static int DRIVETRAIN_RIGHT_MOTOR_2_PDP = 12;
+	public final static int DRIVETRAIN_RIGHT_MOTOR_3_PDP = 1;
+	public final static int DRIVETRAIN_LEFT_MOTOR_1_PDP = 2;
+	public final static int DRIVETRAIN_LEFT_MOTOR_2_PDP = 3;
+	public final static int DRIVETRAIN_LEFT_MOTOR_3_PDP = 4;
+	public final static int INTAKE_MOTOR_1_PDP = 11;
+	public final static int INTAKE_MOTOR_2_PDP = 5;
+	public final static int INDEXER_MOTOR_PDP = 10;
+	public final static int SHOOTER_MOTOR_FWD_PDP = 0;
+	public final static int SHOOTER_MOTOR_AFT_PDP = 15;
+	public final static int PCM_POWER = 7;
 
 	//Solenoid Channels////////////////////////////////////////////////////////
 	public static final int INTAKE_RETRACT = 0;
@@ -139,9 +139,9 @@ public class RobotMap {
 	public static final boolean REVERSE_SHOOTER_WHEEL_FWD= true;
 	public static final boolean REVERSE_SHOOTER_WHEEL_AFT= true;
 	
-	private static final int SHOOTER_PULSE_PER_ROTATION = 360; //encoder ticks per rotation
+	private static final int SHOOTER_PULSE_PER_ROTATION = 256; //encoder ticks per rotation
 	//TODO find ratio
-	private static final double SHOOTER_GEAR_RATIO = 12.0/22.0; //ratio between wheel over encoder
+	private static final double SHOOTER_GEAR_RATIO = 14.0/28.0; //ratio between wheel over encoder
 	private static final double SHOOTER_WHEEL_DIAMETER = 4;
 	public static final int SHOOTER_ENCODER_PULSE_PER_ROT = (int) (SHOOTER_PULSE_PER_ROTATION * SHOOTER_GEAR_RATIO); //pulse per rotation * gear ratio
 	public static final double SHOOTER_ENCODER_DIST_PER_TICK = (Math.PI * SHOOTER_WHEEL_DIAMETER / SHOOTER_ENCODER_PULSE_PER_ROT);
@@ -164,8 +164,8 @@ public class RobotMap {
 	 *                         Intake PARAMETERS
 	 *************************************************************************/
 	public static final double INTAKE_SPEED_CONSTANT = 0.7;
-	public static final boolean REVERSE_INTAKE_WHEEL_1 = true;
-	public static final boolean REVERSE_INTAKE_WHEEL_2 = false;
+	public static final boolean REVERSE_INTAKE_WHEEL_1 = false;
+	public static final boolean REVERSE_INTAKE_WHEEL_2 = true;
 
 
 	/*************************************************************************

@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  * @author Vittorio
  */
-public class RotateXDistancePIDZZZ extends Command {
+public class RotateXDistancePIDZZZCamera extends Command {
 
 	private double setPoint;
 	private double maxSpeed;
@@ -20,7 +20,7 @@ public class RotateXDistancePIDZZZ extends Command {
 	private double error = 0.5;  // Rotational degree error, default 0 never ends.
 	private boolean absolute = false;
 	
-    public RotateXDistancePIDZZZ() {
+    public RotateXDistancePIDZZZCamera() {
         // Use requires() here to declare subsystem dependencies
     	requires(Robot.drivetrain);
     	this.setPoint = Robot.drivetrain.rotateController.getSetPoint();
@@ -28,27 +28,27 @@ public class RotateXDistancePIDZZZ extends Command {
     	this.minSpeed = 0;
     }
 
-    public RotateXDistancePIDZZZ(double setPoint){
+    public RotateXDistancePIDZZZCamera(double setPoint){
  	   this();
  	   this.setPoint = setPoint;
     }
 
-    public RotateXDistancePIDZZZ(double setPoint, double maxSpeed){
+    public RotateXDistancePIDZZZCamera(double setPoint, double maxSpeed){
   	   this(setPoint);
   	   this.maxSpeed = maxSpeed;
      }
     
-    public RotateXDistancePIDZZZ(double setPoint, double maxSpeed, double minSpeed){
+    public RotateXDistancePIDZZZCamera(double setPoint, double maxSpeed, double minSpeed){
    	   this(setPoint, maxSpeed);
    	   this.minSpeed = minSpeed;
       }    
 
-    public RotateXDistancePIDZZZ(double setPoint, double maxSpeed, double minSpeed, double error) {
+    public RotateXDistancePIDZZZCamera(double setPoint, double maxSpeed, double minSpeed, double error) {
     	this(setPoint, maxSpeed, minSpeed);
     	this.error = error;
     }
     
-    public RotateXDistancePIDZZZ(double setPoint, double maxSpeed, double minSpeed, double error, boolean absolute) {
+    public RotateXDistancePIDZZZCamera(double setPoint, double maxSpeed, double minSpeed, double error, boolean absolute) {
     	this(setPoint, maxSpeed, minSpeed, error);
     	this.absolute = absolute;
     }
@@ -83,7 +83,14 @@ public class RotateXDistancePIDZZZ extends Command {
     
 	protected boolean isFinished() {
 		//TODO Should the command be stopped????????!?!?!?!?!? after PID is tuned
-    	return Robot.drivetrain.rotateController.isFinished();
+    	if( Robot.drivetrain.rotateController.isFinished())
+    	{
+    		setPoint = Robot.drivetrain.getHeading() - Robot.tcpCamSensor.getRotationAngle();
+    		Robot.drivetrain.rotateController.setSetPoint(setPoint);
+    	}
+    	
+    	
+    	return false; //return cam is scorable
 		
     }
 

@@ -61,8 +61,8 @@ public class OI {
 		 *         Driver Joystick Buttons          *
 		 ********************************************/
 		//TODO create commands for commented out buttons
-		//driverJoystick.ButtonLeftBumper().whileActive(new LowGear());
-		//driverJoystick.ButtonRightBumper().whileActive(new HighGear());
+		driverJoystick.ButtonLeftBumper().whileActive(new ShiftGearsLowToHigh());
+		driverJoystick.ButtonRightBumper().whileActive(new ShiftGearsHighToLow());
 
 
 		/********************************************
@@ -89,7 +89,7 @@ public class OI {
 		/********************************************
 		 *        Command Test  Joystick Buttons         *
 		 ********************************************/
-		commandsTestJoystick.ButtonX().whenPressed(new RotateXDistancePIDZZZ(0, 0.525, 0.2, 0.7));
+		commandsTestJoystick.ButtonX().whenPressed(new RotateXDistancePIDZZZCamera(0, 0.525, 0.2, 0.7));
 		commandsTestJoystick.ButtonA().whenPressed(new DrivePIDPause());
 	
 		
