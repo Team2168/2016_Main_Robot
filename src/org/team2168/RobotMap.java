@@ -164,16 +164,17 @@ public class RobotMap {
 	 *                         Intake PARAMETERS
 	 *************************************************************************/
 	public static final double INTAKE_SPEED_CONSTANT = 0.7;
-	public static final boolean REVERSE_INTAKE_WHEEL_1 = false;
-	public static final boolean REVERSE_INTAKE_WHEEL_2 = true;
+	public static final boolean REVERSE_INTAKE_WHEEL_1 = true;
+	public static final boolean REVERSE_INTAKE_WHEEL_2 = false;
 
 
 	/*************************************************************************
 	 *                         Indexer PARAMETERS
 	 *************************************************************************/
-	public static final double INDEXER_SPEED_CONSTANT = 0.5;
+	public static final double INDEXER_SPEED_CONSTANT = 0.18;
 	public static final double INDEXER_SPIT_SPEED_CONSTANT = -1.0;
 	public static final boolean REVERSE_INDEXER_MOTOR = true;
+	public static final double INDEXER_SPEED_CONSTANT_SHOOT = 0.5;
 
 	/*************************************************************************
 	 *                         Hood PARAMETERS
@@ -226,9 +227,10 @@ public class RobotMap {
 	//Shooter PID Speed
 	//Bandwidth =
 	//Phase Margin =
-	public static final double SHOOTER_SPEED_P = 0.00045;
-	public static final double SHOOTER_SPEED_I = 0.000028; 
-	public static final double SHOOTER_SPEED_D = 0.0001;
+	public static final double SHOOTER_SPEED_P = 0.000035;
+	public static final double SHOOTER_SPEED_I = 0.000053; 
+	public static final double SHOOTER_SPEED_D = 0.0000011838;
+	public static final double SHOOTER_SPEED_N = 6.8807;
 	
 
 	
@@ -253,6 +255,7 @@ public class RobotMap {
 	 ********************************************/
 	public static final boolean KEVIN_IS_DA_BOMB = true;
 	public static final boolean GUYANA_HAS_SUNK = false;
+
 
 	
 

@@ -79,6 +79,7 @@ public class Shooter extends Subsystem {
 				RobotMap.SHOOTER_SPEED_P,
 				RobotMap.SHOOTER_SPEED_I,
 				RobotMap.SHOOTER_SPEED_D,
+				RobotMap.SHOOTER_SPEED_N,
 				shooterEncoder,
 				RobotMap.DRIVE_TRAIN_PID_PERIOD);
 		

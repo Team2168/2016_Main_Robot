@@ -65,7 +65,7 @@ public class Indexer extends Subsystem {
 	}
 	
 	public boolean isBoulderPresent() {
-		return Robot.indexer.getAveragedRawBoulderDistance() > BOULDER_PRESENT_VOLTAGE;
+		return Robot.indexer.getAveragedRawBoulderDistance() >= BOULDER_PRESENT_VOLTAGE;
 	}
 	
 	/**

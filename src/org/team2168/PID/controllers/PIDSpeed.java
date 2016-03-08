@@ -187,7 +187,7 @@ public class PIDSpeed implements TCPMessageInterface {
 	 * @throws NullPointerException
 	 *             if the Speed Sensor object passed is null;
 	 */
-	public PIDSpeed(String name, double P, double I, double D,
+	public PIDSpeed(String name, double P, double I, double D, double N,
 			PIDSensorInterface currentPos, long period) {
 
 		if (currentPos == null)
@@ -228,7 +228,7 @@ public class PIDSpeed implements TCPMessageInterface {
 		this.filterDerivOld = 0;
 		this.olderr = 0;
 		this.olderrsum = 0;
-		this.r = 1;
+		this.n = N;
 		this.sp = 0;
 
 		// set Output Limits
@@ -257,7 +257,7 @@ public class PIDSpeed implements TCPMessageInterface {
 		setPointArray = null;
 	
 		this.diff = 0;
-		this.n = 0;
+		
 		
 try {
 			
@@ -333,10 +333,10 @@ try {
 	 *             if the Speed Sensor object passed is null;
 	 */
 
-	public PIDSpeed(String name, double pUp, double iUp, double dUp,
+	public PIDSpeed(String name, double pUp, double iUp, double dUp, double nUp,
 			double pDown, double iDown, double dDown,
 			PIDSensorInterface currentPos, long period) {
-		this(name, pUp, iUp, dUp, currentPos, period);
+		this(name, pUp, iUp, dUp, nUp,currentPos, period);
 		this.pGain2 = pDown;
 		this.iGain2 = iDown;
 		this.dGain2 = dDown;
@@ -958,7 +958,7 @@ try {
 				+ "\"_min Pos Output_init\":" + this.minPosOutput + ","
 				+ "\"_min Neg Output_init\":" + this.minNegOutput + "," +
 
-				"\"_deriv Filter Constant_init\":" + this.r + ","
+				"\"_deriv Filter Constant_init\":" + this.n + ","
 				+ "\"_acceptError_init\":" + this.acceptErrorDiff + ","
 				+ "\"_array_size_init\":" + this.SIZE + "," + "\"_name\":"
 				+ "\"" + this.name + "\"" +
@@ -1163,8 +1163,9 @@ try {
 				this.isFinished = true;
 			}
 			else
+			{
 				this.isFinished = false;
-			
+			}
 			// update clock with current time for next loop
 			clock = currentTime;
 			olderr = err;
@@ -1182,6 +1183,8 @@ try {
 			clock = Timer.getFPGATimestamp();
 			isFinished = true;
 		}
+		
+		//atSpeed();
 
 		runTime = Timer.getFPGATimestamp() - runTime;
 	}

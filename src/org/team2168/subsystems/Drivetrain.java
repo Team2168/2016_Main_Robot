@@ -180,7 +180,7 @@ public class Drivetrain extends Subsystem {
 						"RightSpeedController",
 						RobotMap.DRIVE_TRAIN_RIGHT_SPEED_P,
 						RobotMap.DRIVE_TRAIN_RIGHT_SPEED_I,
-						RobotMap.DRIVE_TRAIN_RIGHT_SPEED_D,
+						RobotMap.DRIVE_TRAIN_RIGHT_SPEED_D, 1,
 						drivetrainRightEncoder,
 						RobotMap.DRIVE_TRAIN_PID_PERIOD);
 
@@ -188,7 +188,7 @@ public class Drivetrain extends Subsystem {
 						"LeftSpeedController",
 						RobotMap.DRIVE_TRAIN_LEFT_SPEED_P,
 						RobotMap.DRIVE_TRAIN_LEFT_SPEED_I,
-						RobotMap.DRIVE_TRAIN_LEFT_SPEED_D,
+						RobotMap.DRIVE_TRAIN_LEFT_SPEED_D, 1,
 						drivetrainLeftEncoder,
 						RobotMap.DRIVE_TRAIN_PID_PERIOD);
 

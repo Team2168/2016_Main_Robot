@@ -69,7 +69,7 @@ public class OI {
 		 *        Operator Joystick Buttons         *
 		 ********************************************/
 		//TODO calibrate values and create commands for commented out buttons
-		operatorJoystick.ButtonA().whileHeld(new DriveIndexerWithConstant(RobotMap.INDEXER_SPEED_CONSTANT));
+		operatorJoystick.ButtonA().whileHeld(new DriveIndexerWithConstant(RobotMap.INDEXER_SPEED_CONSTANT_SHOOT));
 		operatorJoystick.ButtonA().whileHeld(new IntakeWithConstant(RobotMap.INTAKE_SPEED_CONSTANT));
 		//operatorJoystick.ButtonB().whenPressed(new HoodTowerPreset());
 		//operatorJoystick.ButtonX().whenPressed(new HoodDefensePreset());
@@ -80,8 +80,8 @@ public class OI {
 		
 		//operatorJoystick.ButtonStart().whenPressed(new VisionPosition());
 		operatorJoystick.ButtonLeftTrigger().whileHeld(new IntakeWithConstant(-RobotMap.INTAKE_SPEED_CONSTANT));
-		operatorJoystick.ButtonRightTrigger().whileHeld(new IntakeWithConstant(RobotMap.INTAKE_SPEED_CONSTANT));
-//		operatorJoystick.ButtonRightTrigger().whileHeld(new IntakeSingleBall());
+//		operatorJoystick.ButtonRightTrigger().whileHeld(new IntakeWithConstant(RobotMap.INTAKE_SPEED_CONSTANT));
+		operatorJoystick.ButtonRightTrigger().whileHeld(new IndexSingleBall());
 		operatorJoystick.ButtonLeftBumper().whileHeld(new DriveIndexerWithConstant(RobotMap.INDEXER_SPIT_SPEED_CONSTANT));
 		operatorJoystick.ButtonRightBumper().whileHeld(new DriveIndexerWithConstant(RobotMap.INDEXER_SPEED_CONSTANT));
 
