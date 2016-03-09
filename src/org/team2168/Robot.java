@@ -165,18 +165,37 @@ public class Robot extends IterativeRobot {
     
     private static void updateLED() {
     	byte[] data = new byte[8];
+    	
+    	//Will tell the program that these lights are not in use.
+    	//Will be overwritten by a function using the lights.
+    	//If not overwritten, lights will be set to a default state.
+    	boolean range1InUse = false;
+    	boolean range2InUser = false;
+    	
     	if (intakePosition.isIntakeRetracted()) {
     		data[0] = (byte) 255; //red
     		data[1] = (byte) 0; //green
     		data[2] = (byte) 0; //blue
     		data[3] = (byte) 1; //pattern
+    		range1InUse = true;
     	}
-    	else {
+    	
+    	//Calls these if any range of lights are not in use.
+    	if(range1InUse) {
     		data[0] = (byte) 0; //red
     		data[1] = (byte) 0; //green
     		data[2] = (byte) 255; //blue
     		data[3] = (byte) 1; //pattern
     	}
+    	
+    	if(range2InUse){
+    		data[4] = (byte) 0; //red
+    		data[5] = (byte) 0; //green
+    		data[6] = (byte) 255; //blue
+    		data[7] = (byte) 1; //pattern
+    	}
+    	
+    	
     	i2c.writeBulk(data);
     }
 }
