@@ -14,7 +14,7 @@ public class IndexSingleBall extends CommandGroup {
     
     public  IndexSingleBall() {
     	//addSequential(new IntakeExtend());
-    	addParallel(new IntakeWithConstant(-RobotMap.INTAKE_SPEED_CONSTANT));
+    	addParallel(new IntakeWithConstant(RobotMap.INTAKE_SPEED_CONSTANT));
     	addSequential(new RunIndexerUntilBoulderPresent());
     	addSequential(new IntakeWithConstant(0.0));
     	

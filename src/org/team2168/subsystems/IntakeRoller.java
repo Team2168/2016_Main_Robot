@@ -52,8 +52,8 @@ public class IntakeRoller extends Subsystem {
 	 */
 	public void driveIntake(double speed)
 	{
-		intakeWheel1.set(speed);
-		intakeWheel2.set(speed);
+		driveIntakeWheel1(speed);
+		driveIntakeWheel2(speed);
 	}
 	
 	/**

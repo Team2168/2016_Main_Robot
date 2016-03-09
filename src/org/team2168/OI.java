@@ -1,5 +1,7 @@
 package org.team2168;
 
+import org.team2168.commands.autoFire.AutoFireClose;
+import org.team2168.commands.autoFire.AutoFireFar;
 import org.team2168.commands.drivetrain.*;
 import org.team2168.commands.drivetrain.PIDCommands.*;
 import org.team2168.commands.indexer.*;
@@ -9,6 +11,7 @@ import org.team2168.commands.pneumatics.*;
 import org.team2168.commands.shooter.*;
 import org.team2168.commands.shooter.PIDCommands.DriveShooterPIDSpeed;
 import org.team2168.commands.shooter.PIDCommands.ShooterPIDPause;
+import org.team2168.commands.shooterhood.DriveShooterHoodToAngle;
 import org.team2168.utils.F310;
 
 /**
@@ -84,7 +87,13 @@ public class OI {
 		operatorJoystick.ButtonRightTrigger().whileHeld(new IndexSingleBall());
 		operatorJoystick.ButtonLeftBumper().whileHeld(new DriveIndexerWithConstant(RobotMap.INDEXER_SPIT_SPEED_CONSTANT));
 		operatorJoystick.ButtonRightBumper().whileHeld(new DriveIndexerWithConstant(RobotMap.INDEXER_SPEED_CONSTANT));
-
+		//commandsTestJoystick.operatorJoystick.ButtonY().whenPressed(new DriveShooterPIDSpeed(6000));
+		operatorJoystick.ButtonB().whenPressed(new ShooterPIDPause());
+		operatorJoystick.ButtonB().whenPressed(new DriveShooterHoodToAngle(180));
+		operatorJoystick.ButtonY().whenPressed(new AutoFireFar());
+		operatorJoystick.ButtonX().whenPressed(new AutoFireClose());
+		
+		
 		
 		/********************************************
 		 *        Command Test  Joystick Buttons         *

@@ -15,6 +15,8 @@ public class RobotMap {
 	 *                              ROBORIO WIRING MAP
 	 *************************************************************************/
 
+	// Up Close shot 149.4 - 4250
+	// Far shot 120.8 - 6000
 	
 	// Joysticks/////////////////////////////////////////////////////////////
 	public static final int DRIVER_JOYSTICK = 0;
@@ -164,8 +166,8 @@ public class RobotMap {
 	 *                         Intake PARAMETERS
 	 *************************************************************************/
 	public static final double INTAKE_SPEED_CONSTANT = 0.7;
-	public static final boolean REVERSE_INTAKE_WHEEL_1 = true;
-	public static final boolean REVERSE_INTAKE_WHEEL_2 = false;
+	public static final boolean REVERSE_INTAKE_WHEEL_1 = false;
+	public static final boolean REVERSE_INTAKE_WHEEL_2 = true;
 
 
 	/*************************************************************************
@@ -183,7 +185,9 @@ public class RobotMap {
 	public static final double MIN_HOOD_VALUE = 115;
 	public static final double MAX_HOOD_VALUE = 180;
 	
-	
+	// Auto Fire
+	public static final double FAR_SHOT_HOODER_ANGLE = 120.8;
+	public static final double CLOSE_SHOT_HOODER_ANGLE = 149.4;
 	
 	/*************************************************************************
 	 *                         Vision PARAMETERS
