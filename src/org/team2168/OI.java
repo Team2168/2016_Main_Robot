@@ -2,6 +2,7 @@ package org.team2168;
 
 import org.team2168.commands.autoFire.AutoFireClose;
 import org.team2168.commands.autoFire.AutoFireFar;
+import org.team2168.commands.calibration.CalibrateAllMotors;
 import org.team2168.commands.drivetrain.*;
 import org.team2168.commands.drivetrain.PIDCommands.*;
 import org.team2168.commands.indexer.*;
@@ -105,6 +106,8 @@ public class OI {
 		commandsTestJoystick.ButtonY().whenPressed(new DriveShooterPIDSpeed(0));
 		commandsTestJoystick.ButtonB().whenPressed(new ShooterPIDPause());
 		
+		
+		commandsTestJoystick.ButtonRightDPad().whenPressed(new CalibrateAllMotors());
 		
 	}
 	

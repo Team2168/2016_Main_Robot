@@ -63,10 +63,19 @@ public class Drivetrain extends Subsystem {
 	TCPSocketSender TCProtateController;
 	
 	
-	
 	private static Drivetrain instance = null;
 	
-
+	/**
+	 * Values used for motor calibration
+	 * Changed to true when calibration passes
+	 */
+	public static boolean leftMotor1Pass = false;
+	public static boolean leftMotor2Pass = false;
+	public static boolean leftMotor3Pass = false;
+	public static boolean rightMotor1Pass = false;
+	public static boolean rightMotor2Pass = false;
+	public static boolean rightMotor3Pass = false;
+	
 	
 	/**
 	 * Default constructors for the Drivetrain subsystem

@@ -21,6 +21,12 @@ public class Indexer extends Subsystem {
 	
 	private static Indexer instance = null;
 	
+	/**
+	 * Values used for motor calibration
+	 * Changed to true when calibration passes
+	 */
+	public static boolean indexerPass = false;
+	
 	//TODO calibrate values
 	private final double MIN_SENSOR_VOLTAGE = 0.5;
 	private final double BOULDER_PRESENT_VOLTAGE = 2.6;
