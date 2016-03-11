@@ -28,7 +28,7 @@ public class AutoFireFar extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addSequential(new DriveShooterHoodToAngle(RobotMap.FAR_SHOT_HOODER_ANGLE));
+    	//addSequential(new DriveShooterHoodToAngle(RobotMap.FAR_SHOT_HOODER_ANGLE));
     	addParallel(new DriveShooterPIDSpeed(6000));
     }
 }

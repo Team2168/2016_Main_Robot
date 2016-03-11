@@ -78,7 +78,7 @@ public class RobotMap {
 	public static final int DRIVETRAIN_LOW_GEAR = 3;
 
 
-	//Digital IO Channels//////////////////////////////////////////////////////
+ 	//Digital IO Channels//////////////////////////////////////////////////////
 	//Channels 0-9 on RoboRio
 	public static final int SHOOTER_ENCODER_A = 0;
 	public static final int SHOOTER_ENCODER_B = 1;
