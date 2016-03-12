@@ -17,6 +17,7 @@ import org.team2168.commands.pneumatics.StartCompressor;
 import org.team2168.subsystems.Drivetrain;
 import org.team2168.subsystems.Shooter;
 import org.team2168.subsystems.ShooterHood;
+import org.team2168.subsystems.ShooterPneumatics;
 import org.team2168.utils.ConsolePrinter;
 import org.team2168.utils.PowerDistribution;
 import org.team2168.subsystems.IntakePosition;
@@ -48,6 +49,7 @@ public class Robot extends IterativeRobot {
 	public static IntakePosition intakePosition;
 	public static TCPCamSensor tcpCamSensor;
 	public static Pneumatics pneumatics;
+	public static ShooterPneumatics shooterPneumatics;
 	
     static Command autonomousCommand;
     public static SendableChooser autoChooser;
@@ -78,6 +80,7 @@ public class Robot extends IterativeRobot {
         intakePosition = IntakePosition.getInstance();
         pneumatics = Pneumatics.getInstance();
         tcpCamSensor = new TCPCamSensor(41234, 0);
+        shooterPneumatics = ShooterPneumatics.getInstance();
 
         //create controls
         oi = OI.getInstance();

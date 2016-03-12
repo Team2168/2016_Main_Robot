@@ -74,8 +74,10 @@ public class RobotMap {
 	//Solenoid Channels////////////////////////////////////////////////////////
 	public static final int INTAKE_RETRACT = 0;
 	public static final int INTAKE_EXTEND = 1;
-	public static final int DRIVETRAIN_HIGH_GEAR = 2;
-	public static final int DRIVETRAIN_LOW_GEAR = 3;
+	public static final int DRIVETRAIN_HIGH_GEAR = 4;
+	public static final int DRIVETRAIN_LOW_GEAR = 5;
+	public static final int SHOOTER_RETRACT = 2;
+	public static final int SHOOTER_EXTEND = 3;
 
 
  	//Digital IO Channels//////////////////////////////////////////////////////
@@ -167,7 +169,7 @@ public class RobotMap {
 	 *************************************************************************/
 	public static final double INTAKE_SPEED_CONSTANT = 0.7;
 	public static final boolean REVERSE_INTAKE_WHEEL_1 = false;
-	public static final boolean REVERSE_INTAKE_WHEEL_2 = true;
+	public static final boolean REVERSE_INTAKE_WHEEL_2 = false;
 
 
 	/*************************************************************************
