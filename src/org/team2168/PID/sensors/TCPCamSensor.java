@@ -59,7 +59,7 @@ public class TCPCamSensor {
 		this.requestPeriod = requestPeriod;
 
 
-		size = 3;
+		size = 8;
 		
 		// initialize data messageOut 
 		dataReceived = new String[size];
@@ -67,6 +67,11 @@ public class TCPCamSensor {
 		dataReceived[0] = "0";
 		dataReceived[1] = "0";
 		dataReceived[2] = "0";
+		dataReceived[3] = "0";
+		dataReceived[4] = "0";
+		dataReceived[5] = "0";
+		dataReceived[6] = "0";
+		dataReceived[7] = "0";
 		
 		// setup socket to listen on
 		this.port = port;

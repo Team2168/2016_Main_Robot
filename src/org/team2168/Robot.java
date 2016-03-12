@@ -134,8 +134,7 @@ public class Robot extends IterativeRobot {
 	public void disabledPeriodic() {
 		autonomousCommand = (Command) autoChooser.getSelected();
 		// Kill all active commands
-		Scheduler.getInstance().removeAll();
-		Scheduler.getInstance().disable();
+		Scheduler.getInstance().run();
 
 		autoMode = false;
 
@@ -198,8 +197,8 @@ public class Robot extends IterativeRobot {
      */
     public void autoSelectInit() {
         autoChooser = new SendableChooser();
-        autoChooser.addDefault("Default: Do Nothing", new DoNothing());
-        autoChooser.addObject("Shoot from Spy Box", new ShootFromSpyBox());
+        autoChooser.addDefault("Default: Shoot From Spy Box", new ShootFromSpyBox());
+        autoChooser.addObject("Do Nothing", new DoNothing());
       //  autoChooser.addObject("Drive Over Defense", new DriveOverDefense());
       //  autoChooser.addObject("Reach Defense", new ReachDefense());
     }

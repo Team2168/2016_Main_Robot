@@ -108,7 +108,8 @@ public class OI {
 		
 		commandsTestJoystick.ButtonY().whenPressed(new DriveShooterPIDSpeed(0));
 		commandsTestJoystick.ButtonB().whenPressed(new ShooterPIDPause());
-		
+		commandsTestJoystick.ButtonRightBumper().whenPressed(new DriveXDistance(3, 0.5, 0.01));
+		commandsTestJoystick.ButtonLeftBumper().whenPressed(new RotateXDistancePIDZZZ(40, 0.325, 0.1, 4));
 		
 	}
 	
