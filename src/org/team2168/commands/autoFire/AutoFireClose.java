@@ -1,9 +1,7 @@
 package org.team2168.commands.autoFire;
 
-import org.team2168.RobotMap;
 import org.team2168.commands.shooter.PIDCommands.DriveShooterPIDSpeed;
-import org.team2168.commands.shooterhood.DriveShooterHoodToAngle;
-
+import org.team2168.commands.shooterPneumatics.ShooterExtend;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -28,7 +26,7 @@ public class AutoFireClose extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addSequential(new DriveShooterHoodToAngle(RobotMap.CLOSE_SHOT_HOODER_ANGLE));
-    	addParallel(new DriveShooterPIDSpeed(4250));
+    	addSequential(new ShooterExtend());
+    	addParallel(new DriveShooterPIDSpeed(6000));
     }
 }
