@@ -8,7 +8,7 @@ import org.team2168.commands.intakeroller.IntakeWithConstant;
 import org.team2168.commands.shooter.DriveShooterWithConstant;
 import org.team2168.commands.shooter.PIDCommands.DriveShooterPIDSpeed;
 import org.team2168.commands.shooter.PIDCommands.ShooterPIDPause;
-import org.team2168.commands.shooterPneumatics.ShooterRetract;
+import org.team2168.commands.shooterPneumatics.ShooterHoodRetract;
 import org.team2168.commands.shooterhood.DriveShooterHoodToAngle;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -27,7 +27,7 @@ public class ShootFromSpyBox extends CommandGroup {
     	addSequential(new DriveIndexerWithConstant(RobotMap.INDEXER_SPEED_CONSTANT_SHOOT), 1);
     	addParallel(new IntakeWithConstant(RobotMap.INTAKE_SPEED_CONSTANT), 1);
     	addSequential(new Sleep(), 2);
-    	addSequential(new ShooterRetract());
+    	addSequential(new ShooterHoodRetract());
     	addSequential(new ShooterPIDPause());
     	addSequential(new DriveIndexerWithConstant(0));
     	addSequential(new IntakeWithConstant(0));

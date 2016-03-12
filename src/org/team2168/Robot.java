@@ -132,7 +132,12 @@ public class Robot extends IterativeRobot {
      * This method is called repeatedly while the robot is disabled.
      */
 	public void disabledPeriodic() {
-		Scheduler.getInstance().run();
+		autonomousCommand = (Command) autoChooser.getSelected();
+		// Kill all active commands
+		Scheduler.getInstance().removeAll();
+		Scheduler.getInstance().disable();
+
+		autoMode = false;
 
         	}
 
@@ -195,8 +200,8 @@ public class Robot extends IterativeRobot {
         autoChooser = new SendableChooser();
         autoChooser.addDefault("Default: Do Nothing", new DoNothing());
         autoChooser.addObject("Shoot from Spy Box", new ShootFromSpyBox());
-        autoChooser.addObject("Drive Over Defense", new DriveOverDefense());
-        autoChooser.addObject("Reach Defense", new ReachDefense());
+      //  autoChooser.addObject("Drive Over Defense", new DriveOverDefense());
+      //  autoChooser.addObject("Reach Defense", new ReachDefense());
     }
 	
     /**
@@ -206,6 +211,8 @@ public class Robot extends IterativeRobot {
 	public static boolean isAutoMode() {
 		return autoMode;
 	}
+	
+
 	
 	/**
 	 * Returns the status of DIO pin 24 on the MXP. Place a jumper between pin

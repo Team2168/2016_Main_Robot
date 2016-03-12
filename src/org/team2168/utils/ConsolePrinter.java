@@ -63,8 +63,18 @@ public class ConsolePrinter {
 			
 			
 			SmartDashboard.putData("Autonomous Mode Chooser", Robot.autoChooser);
+			SmartDashboard.putString("AutoName", Robot.getAutoName());
 			SmartDashboard.putNumber("gameClock", (int)DriverStation.getInstance().getMatchTime());
 			SmartDashboard.putBoolean("isPracticeBot", Robot.isPracticeRobot());
+			
+			
+			SmartDashboard.putBoolean("Camera Status", Robot.tcpCamSensor.isCameraConnected());
+			SmartDashboard.putBoolean("Bone Status", Robot.tcpCamSensor.isClientConnected());
+			SmartDashboard.putBoolean("Processing Status", Robot.tcpCamSensor.isProcessingTreadRunning());
+			SmartDashboard.putBoolean("MJPEG Status", Robot.tcpCamSensor.isMJPEGConnected());
+			SmartDashboard.putNumber("Vision Target Dist", Robot.tcpCamSensor.getTargetDistance());
+			SmartDashboard.putNumber("Vision Target BEaring", Robot.tcpCamSensor.getRotationAngle());
+			
 			
 			SmartDashboard.putNumber("Left Encoder Distance",Robot.drivetrain.getLeftPosition());
 			SmartDashboard.putNumber("Right Encoder Distance:",Robot.drivetrain.getRightPosition());
@@ -123,8 +133,10 @@ public class ConsolePrinter {
 //			SmartDashboard.putBoolean("Intake Left Motor Trip", !Robot.pdp.isIntakeLeftMotorTrip());
 //			SmartDashboard.putBoolean("Intake Right Motor Trip", !Robot.pdp.isIntakeLeftMotorTrip());
 
-			SmartDashboard.putBoolean("Intake Exetended", Robot.intakePosition.isIntakeExtended());
+			SmartDashboard.putBoolean("Intake Extended", Robot.intakePosition.isIntakeExtended());
 			SmartDashboard.putBoolean("Intake REtracted", Robot.intakePosition.isIntakeRetracted());
+			SmartDashboard.putBoolean("Shooter Hood Extended", Robot.shooterPneumatics.isShooterExtended());
+			SmartDashboard.putBoolean("Shooter Hood Retracted", Robot.shooterPneumatics.isShooterRetracted());
 			
 			//TODO: Make methods to return proper test values
 //			SmartDashboard.putBoolean("Left Drive Motor 1 Pass", Robot.drivetrain.leftMotor1Pass);
@@ -151,6 +163,8 @@ public class ConsolePrinter {
 	        SmartDashboard.putNumber("Robot Pressure", Robot.pneumatics.getPSI());
 	        
 	        SmartDashboard.putNumber("Hood Servo Angle", Robot.shooterhood.getAngle());
+	        
+	        
 			
 	        
 	   

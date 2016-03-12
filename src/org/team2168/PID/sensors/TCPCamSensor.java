@@ -268,4 +268,49 @@ public boolean isClientConnected()
 
 }
 
+
+
+public boolean isProcessingTreadRunning()
+{
+	int message = Integer.valueOf(dataReceived[5]).intValue();
+	
+	if (message == 1)
+		return true;
+	else
+		return false;
+
+}
+
+
+
+public boolean isCameraConnected()
+{
+	int message = Integer.valueOf(dataReceived[6]).intValue();
+	
+	if (message == 1)
+		return true;
+	else
+		return false;
+	
+}
+
+public boolean isMJPEGConnected()
+{
+	int message = Integer.valueOf(dataReceived[7]).intValue();
+	
+	if (message == 1)
+		return true;
+	else
+		return false;
+	
+}
+
+
+
+
+
+
+
+
+
 }

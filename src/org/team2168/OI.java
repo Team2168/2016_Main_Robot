@@ -11,8 +11,8 @@ import org.team2168.commands.pneumatics.*;
 import org.team2168.commands.shooter.*;
 import org.team2168.commands.shooter.PIDCommands.DriveShooterPIDSpeed;
 import org.team2168.commands.shooter.PIDCommands.ShooterPIDPause;
-import org.team2168.commands.shooterPneumatics.ShooterExtend;
-import org.team2168.commands.shooterPneumatics.ShooterRetract;
+import org.team2168.commands.shooterPneumatics.ShooterHoodExtend;
+import org.team2168.commands.shooterPneumatics.ShooterHoodRetract;
 import org.team2168.commands.shooterhood.DriveShooterHoodToAngle;
 import org.team2168.utils.F310;
 
@@ -89,8 +89,8 @@ public class OI {
 //		operatorJoystick.ButtonRightTrigger().whileHeld(new IntakeWithConstant(RobotMap.INTAKE_SPEED_CONSTANT));
 		operatorJoystick.ButtonRightTrigger().whileHeld(new IndexSingleBall());
 		
-		operatorJoystick.ButtonRightBumper().whileHeld(new ShooterExtend());
-		operatorJoystick.ButtonLeftBumper().whileHeld(new ShooterRetract());
+		operatorJoystick.ButtonRightBumper().whileHeld(new ShooterHoodExtend());
+		operatorJoystick.ButtonLeftBumper().whileHeld(new ShooterHoodRetract());
 		//commandsTestJoystick.operatorJoystick.ButtonY().whenPressed(new DriveShooterPIDSpeed(6000));
 		operatorJoystick.ButtonB().whenPressed(new ShooterPIDPause());
 		operatorJoystick.ButtonB().whenPressed(new DriveShooterHoodToAngle(180));

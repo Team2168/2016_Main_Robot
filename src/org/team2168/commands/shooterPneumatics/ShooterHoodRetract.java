@@ -5,11 +5,11 @@ import org.team2168.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Extends Shooter piston
+ * Retracts Shooter piston
  */
-public class ShooterExtend extends Command {
+public class ShooterHoodRetract extends Command {
 
-    public ShooterExtend() {
+    public ShooterHoodRetract() {
     	requires(Robot.shooterPneumatics);
     }
 
@@ -19,12 +19,12 @@ public class ShooterExtend extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.shooterPneumatics.extendShooter();
+    	Robot.shooterPneumatics.retractShooter();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.shooterPneumatics.isShooterExtended();
+        return Robot.shooterPneumatics.isShooterRetracted();
     }
 
     // Called once after isFinished returns true

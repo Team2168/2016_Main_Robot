@@ -1,8 +1,8 @@
 package org.team2168.commands.autoFire;
 
 import org.team2168.commands.shooter.PIDCommands.DriveShooterPIDSpeed;
-import org.team2168.commands.shooterPneumatics.ShooterExtend;
-import org.team2168.commands.shooterPneumatics.ShooterRetract;
+import org.team2168.commands.shooterPneumatics.ShooterHoodExtend;
+import org.team2168.commands.shooterPneumatics.ShooterHoodRetract;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -27,7 +27,7 @@ public class AutoFireFar extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addSequential(new ShooterExtend());
+    	addSequential(new ShooterHoodExtend());
     	addParallel(new DriveShooterPIDSpeed(7000));
     }
 }
