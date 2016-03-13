@@ -20,5 +20,9 @@ public class IntakeSingleBall extends CommandGroup {
     	//Jog the indexer to engage the ball
     	addSequential(new DriveIndexerWithConstant(RobotMap.INDEXER_SPEED_CONSTANT), 0.1);
     	addSequential(new DriveIndexerWithConstant(0.0));
+    	addSequential(new DriveIndexerWithConstant(-RobotMap.INDEXER_SPEED_CONSTANT), 0.1);
+    	addSequential(new DriveIndexerWithConstant(0.0));
+    	
     }
+    
 }
