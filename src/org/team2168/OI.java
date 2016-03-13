@@ -101,7 +101,7 @@ public class OI {
 		operatorJoystick.ButtonLeftBumper().whileHeld(new ShooterHoodRetract());
 		//commandsTestJoystick.operatorJoystick.ButtonY().whenPressed(new DriveShooterPIDSpeed(6000));
 		operatorJoystick.ButtonB().whenPressed(new ShooterPIDPause());
-		operatorJoystick.ButtonB().whenPressed(new DriveShooterHoodToAngle(180));
+		operatorJoystick.ButtonB().whenPressed(new ShooterHoodRetract());
 		operatorJoystick.ButtonB().whenPressed(new DrivePIDPause());
 		operatorJoystick.ButtonY().whenPressed(new AutoFireFarTeleop());
 		operatorJoystick.ButtonX().whenPressed(new AutoFireClose());

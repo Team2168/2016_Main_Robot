@@ -175,7 +175,7 @@ public class RobotMap {
 	/*************************************************************************
 	 *                         Indexer PARAMETERS
 	 *************************************************************************/
-	public static final double INDEXER_SPEED_CONSTANT = 0.10;
+	public static final double INDEXER_SPEED_CONSTANT = 0.09;
 	public static final double INDEXER_SPIT_SPEED_CONSTANT = -1.0;
 	public static final boolean REVERSE_INDEXER_MOTOR = true;
 	public static final double INDEXER_SPEED_CONSTANT_SHOOT = 0.5;
