@@ -16,6 +16,6 @@ public class DriveOverDefense extends CommandGroup {
     public  DriveOverDefense() {
     	addSequential(new IntakeExtend(),3);
     	addSequential(new ShooterHoodRetract());
-    	addSequential(new DriveXDistance(12, 0.4),10);
+    	addSequential(new DriveXDistance(16, 0.7),10);
     }
 }

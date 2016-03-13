@@ -199,7 +199,7 @@ public class Robot extends IterativeRobot {
         autoChooser = new SendableChooser();
         autoChooser.addDefault("Default: Shoot From Spy Box", new ShootFromSpyBox());
         autoChooser.addObject("Do Nothing", new DoNothing());
-      //  autoChooser.addObject("Drive Over Defense", new DriveOverDefense());
+        autoChooser.addObject("Drive Over Defense", new DriveOverDefense());
       //  autoChooser.addObject("Reach Defense", new ReachDefense());
     }
 	

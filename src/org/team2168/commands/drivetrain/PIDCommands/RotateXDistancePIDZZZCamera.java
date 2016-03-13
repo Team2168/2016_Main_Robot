@@ -83,14 +83,15 @@ public class RotateXDistancePIDZZZCamera extends Command {
     
 	protected boolean isFinished() {
 		//TODO Should the command be stopped????????!?!?!?!?!? after PID is tuned
-    	if( Robot.drivetrain.rotateController.isFinished())
-    	{
-    		setPoint = Robot.drivetrain.getHeading() - Robot.tcpCamSensor.getRotationAngle();
-    		Robot.drivetrain.rotateController.setSetPoint(setPoint);
-    	}
+//    	if( Robot.drivetrain.rotateController.isFinished())
+//    	{
+//    		setPoint = Robot.drivetrain.getHeading() - Robot.tcpCamSensor.getRotationAngle();
+//    		Robot.drivetrain.rotateController.setSetPoint(setPoint);
+//    	}
+//    	
     	
-    	
-    	return false; //return cam is scorable
+		return Robot.drivetrain.rotateController.isFinished();
+//    	return false; //return cam is scorable
 		
     }
 

@@ -162,12 +162,12 @@ public class RobotMap {
 	//TODO get correct values
 	public static final double SHOOTER_BOULDER_STOP_VOLTAGE = 0.2;
 	public static final double SHOOTER_CONSTANT_SPEED = 0.2;
-	public static double CAMERA_OFFSET_ANGLE = 3.0; //degrees
+	public static double CAMERA_OFFSET_ANGLE = 0; //degrees
 
 	/*************************************************************************
 	 *                         Intake PARAMETERS
 	 *************************************************************************/
-	public static final double INTAKE_SPEED_CONSTANT = 0.7;
+	public static final double INTAKE_SPEED_CONSTANT = 0.6;
 	public static final boolean REVERSE_INTAKE_WHEEL_1 = false;
 	public static final boolean REVERSE_INTAKE_WHEEL_2 = false;
 
@@ -175,7 +175,7 @@ public class RobotMap {
 	/*************************************************************************
 	 *                         Indexer PARAMETERS
 	 *************************************************************************/
-	public static final double INDEXER_SPEED_CONSTANT = 0.18;
+	public static final double INDEXER_SPEED_CONSTANT = 0.10;
 	public static final double INDEXER_SPIT_SPEED_CONSTANT = -1.0;
 	public static final boolean REVERSE_INDEXER_MOTOR = true;
 	public static final double INDEXER_SPEED_CONSTANT_SHOOT = 0.5;
@@ -226,8 +226,8 @@ public class RobotMap {
 	public static final double DRIVE_TRAIN_RIGHT_POSITION_I = 0.0001412646174233;
 	public static final double DRIVE_TRAIN_RIGHT_POSITION_D = 0.0074778888124088;
 
-	public static final double ROTATE_POSITION_P = 0.045;
-	public static final double ROTATE_POSITION_I = 0.001;
+	public static final double ROTATE_POSITION_P = 0.0045;
+	public static final double ROTATE_POSITION_I = 0.000125;
 	public static final double ROTATE_POSITION_D = 0.0064778888124088;
 
 	//Shooter PID Speed
