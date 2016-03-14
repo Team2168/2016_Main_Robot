@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -63,6 +64,7 @@ public class Robot extends IterativeRobot {
 	Compressor comp;
     ConsolePrinter printer; // SmartDash printer
     
+    Relay flashlight;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -100,8 +102,8 @@ public class Robot extends IterativeRobot {
         printer = new ConsolePrinter(RobotMap.SmartDashThreadPeriod);
 		printer.startThread();
 		
-		
-        
+		flashlight = new Relay(RobotMap.FLASHLIGHT_RELAY);
+        flashlight.set(Relay.Value.kOff);
         System.out.println("Robot Done Loading");
     }
     
@@ -137,8 +139,7 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 
 		autoMode = false;
-
-        	}
+     }
 
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select between different autonomous modes
@@ -162,6 +163,8 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
     	autoMode = true;
+    	setFlashlight();
+    	
         Scheduler.getInstance().run();
     }
 
@@ -182,6 +185,8 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
     	autoMode = false;
+    	setFlashlight();
+    	
         Scheduler.getInstance().run();
     }
     
@@ -222,6 +227,14 @@ public class Robot extends IterativeRobot {
 	 */
 	public static boolean isPracticeRobot() {
 		return !practiceBot.get();
+	}
+	
+	private void setFlashlight() {
+		if(indexer.isBoulderPresent()) {
+    		flashlight.set(Relay.Value.kOn);
+    	} else {
+    		flashlight.set(Relay.Value.kOff);
+    	}
 	}
 
 }

@@ -18,6 +18,10 @@ public class IndexSingleBall extends CommandGroup {
     	addSequential(new RunIndexerUntilBoulderPresent());
     	addSequential(new IntakeWithConstant(0.0));
     	
+    	
+    	addSequential(new DriveIndexerWithConstant(-RobotMap.INDEXER_SPEED_CONSTANT), 0.1);
+    	addSequential(new DriveIndexerWithConstant(0.0));
+    	
 
     }
 }

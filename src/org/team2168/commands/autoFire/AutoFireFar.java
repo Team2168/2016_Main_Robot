@@ -28,6 +28,6 @@ public class AutoFireFar extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	addSequential(new ShooterHoodExtend());
-    	addParallel(new DriveShooterPIDSpeed(6300));
+    	addParallel(new DriveShooterPIDSpeed(4700));
     }
 }
