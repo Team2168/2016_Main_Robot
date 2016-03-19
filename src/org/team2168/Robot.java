@@ -231,7 +231,7 @@ public class Robot extends IterativeRobot {
 	
 	private void setFlashlight() {
 		if(indexer.isBoulderPresent()) {
-    		flashlight.set(Relay.Value.kOn);
+    		flashlight.set(Relay.Value.kForward);
     	} else {
     		flashlight.set(Relay.Value.kOff);
     	}
