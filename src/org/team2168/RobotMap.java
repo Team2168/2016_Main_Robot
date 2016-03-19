@@ -96,7 +96,8 @@ public class RobotMap {
 	//Analog Input Channels////////////////////////////////////////////////////
 	//Channels 0-3 on Roborio
 	public static final int INDEXER_DISTANCE_SENSOR = 0;
-	public static final int INTAKE_DISTANCE_SENSOR = 1;
+	public static final int SHOOTER_DISTANCE_SENSOR = 1;
+	public static final int INTAKE_DISTANCE_SENSOR = 2;
 	public static final int PRESSURE_SENSOR = 3;
 	
 
@@ -169,14 +170,15 @@ public class RobotMap {
 	 *                         Intake PARAMETERS
 	 *************************************************************************/
 	public static final double INTAKE_SPEED_CONSTANT = 0.6;
-	public static final boolean REVERSE_INTAKE_WHEEL_1 = false;
-	public static final boolean REVERSE_INTAKE_WHEEL_2 = false;
+	public static final boolean REVERSE_INTAKE_WHEEL_1 = true;
+	public static final boolean REVERSE_INTAKE_WHEEL_2 = true;
 
 
 	/*************************************************************************
 	 *                         Indexer PARAMETERS
 	 *************************************************************************/
 	public static final double INDEXER_SPEED_CONSTANT = 0.09;
+	public static final double INDEXER_SPEED_REVERSE_CONSTANT = 0.15;
 	public static final double INDEXER_SPIT_SPEED_CONSTANT = -1.0;
 	public static final boolean REVERSE_INDEXER_MOTOR = true;
 	public static final double INDEXER_SPEED_CONSTANT_SHOOT = 0.5;
@@ -262,6 +264,7 @@ public class RobotMap {
 	 ********************************************/
 	public static final boolean KEVIN_IS_DA_BOMB = true;
 	public static final boolean GUYANA_HAS_SUNK = false;
+
 
 
 	

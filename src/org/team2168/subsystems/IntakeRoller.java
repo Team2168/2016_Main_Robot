@@ -3,6 +3,7 @@ package org.team2168.subsystems;
 import org.team2168.Robot;
 import org.team2168.RobotMap;
 import org.team2168.PID.sensors.AverageEncoder;
+import org.team2168.commands.intakeroller.IntakeWithJoystick;
 import org.team2168.utils.Util;
 
 import edu.wpi.first.wpilibj.AnalogInput;
@@ -125,5 +126,6 @@ public class IntakeRoller extends Subsystem {
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
+    	//setDefaultCommand(new IntakeWithJoystick());
     }
 }

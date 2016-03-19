@@ -1,17 +1,18 @@
 package org.team2168.commands.indexer;
 
 import org.team2168.Robot;
+import org.team2168.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Drives the indexer using the right joystick on the operator controller
+ * Runs the indexer until a boulder is detected to be present
+ * @author Ben Waid
  */
-public class DriveIndexerWithJoysticks extends Command {
+public class AvoidShooterJam extends Command {
 
-    public DriveIndexerWithJoysticks() {
-        // Use requires() here to declare subsystem dependencies
-         requires(Robot.indexer);
+    public AvoidShooterJam() {
+        requires(Robot.indexer);
     }
 
     // Called just before this Command runs the first time
@@ -20,16 +21,18 @@ public class DriveIndexerWithJoysticks extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.indexer.setSpeed(Robot.oi.commandsTestJoystick.getRightStickRaw_Y());
+    	if(Robot.shooter.isBoulderPresent())
+    		Robot.indexer.setSpeed(-RobotMap.INDEXER_SPEED_REVERSE_CONSTANT);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        	return !Robot.shooter.isBoulderPresent();
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.indexer.setSpeed(0.0);
     }
 
     // Called when another command which requires one or more of the same

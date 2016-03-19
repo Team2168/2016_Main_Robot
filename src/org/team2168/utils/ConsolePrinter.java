@@ -87,8 +87,9 @@ public class ConsolePrinter {
 			SmartDashboard.putNumber("totalCurrent", Robot.pdp.getTotalCurrent());
 			SmartDashboard.putNumber("pcmCurrent", Robot.pdp.getChannelCurrent(RobotMap.PCM_POWER));
 
-			SmartDashboard.putNumber("Raw Intake IR", Robot.intakeRoller.getRawBoulderDistance());
+			SmartDashboard.putNumber("Raw Shooter IR", Robot.shooter.getRawBoulderDistance());
 			SmartDashboard.putNumber("Raw Indexer IR", Robot.indexer.getRawBoulderDistance());
+			SmartDashboard.putNumber("Raw Intake IR", Robot.intakeRoller.getRawBoulderDistance());
 
 			
 			SmartDashboard.putNumber("DTRight1MotorCurrent", Robot.pdp.getChannelCurrent(RobotMap.DRIVETRAIN_RIGHT_MOTOR_1_PDP));
@@ -152,13 +153,15 @@ public class ConsolePrinter {
 //			SmartDashboard.putBoolean("Shooter AFT Motor Pass", Shooter.shooterAFTPass);
 //			
 
-	       	SmartDashboard.putBoolean("Boulder in Intake", Robot.intakeRoller.isBoulderPresent());
+	       	SmartDashboard.putBoolean("Boulder in Shooter", Robot.shooter.isBoulderPresent());
 	        SmartDashboard.putBoolean("Boulder in Indexer", Robot.indexer.isBoulderPresent());
+	        SmartDashboard.putBoolean("Boulder in Intake", Robot.intakeRoller.isBoulderPresent());
 	        SmartDashboard.putNumber("Shooter Speed", Robot.shooter.getSpeed());
 	        SmartDashboard.putNumber("Shooter Position", Robot.shooter.getPosition());
 
-	        SmartDashboard.putNumber("Boulder Distance Intake", Robot.intakeRoller.getAveragedRawBoulderDistance());
+	        SmartDashboard.putNumber("Boulder Distance Shooter", Robot.shooter.getAveragedRawBoulderDistance());
 	        SmartDashboard.putNumber("Boulder Distance Indexer", Robot.indexer.getAveragedRawBoulderDistance());
+	        SmartDashboard.putNumber("Boulder Distance Intake", Robot.intakeRoller.getAveragedRawBoulderDistance());
 	        
 	        SmartDashboard.putNumber("Robot Pressure", Robot.pneumatics.getPSI());
 	        

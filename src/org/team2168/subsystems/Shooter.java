@@ -21,6 +21,13 @@ public class Shooter extends Subsystem {
 	private Talon shooterFWD;
 	private Talon shooterAFT;
 	private AverageEncoder shooterEncoder;
+	private AnalogInput shooterDistanceSensor;
+	
+	//TODO calibrate values
+	private final double MIN_SENSOR_VOLTAGE = 0.6;
+	private final double BOULDER_PRESENT_VOLTAGE = 0.9;
+	private final double IR_SENSOR_AVG_GAIN = 0.5;
+	private double averagedBoulderDistance = 0.0;
 	
 	static Shooter instance = null;
 	
@@ -48,6 +55,8 @@ public class Shooter extends Subsystem {
 			shooterAFT = new Talon (RobotMap.SHOOTER_WHEEL_AFT_PBOT);
 			shooterAFT.setExpiration(0.1);
 			shooterAFT.setSafetyEnabled(true);
+			
+			shooterDistanceSensor = new AnalogInput(RobotMap.SHOOTER_DISTANCE_SENSOR);
 		}
 		else
 		{
@@ -176,6 +185,31 @@ public class Shooter extends Subsystem {
 		return FWDMotorVoltage;
 	}
 	
+	/**
+	 * Returns true if boulder is within range of the sensor
+	 * @return boolean true if boulder is present
+	 */
+	public boolean isBoulderPresent() {
+		return Robot.shooter.getAveragedRawBoulderDistance() > BOULDER_PRESENT_VOLTAGE;
+	}
+	
+	/**
+	 * Returns the raw voltage from the shooter distance sensor
+	 * @return double voltage
+	 */
+	public double getRawBoulderDistance() {
+		return Util.max(MIN_SENSOR_VOLTAGE, shooterDistanceSensor.getVoltage());
+	}
+	
+	/**
+	 * Note, this method should be called from a loop to prevent data from getting stale.
+	 * @return the average voltage from the shooter distance sensor
+	 */
+	public double getAveragedRawBoulderDistance() {
+		averagedBoulderDistance = Util.runningAverage(getRawBoulderDistance(),
+				averagedBoulderDistance, IR_SENSOR_AVG_GAIN);
+		return averagedBoulderDistance;
+	}
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
