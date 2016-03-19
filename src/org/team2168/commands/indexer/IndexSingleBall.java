@@ -19,7 +19,7 @@ public class IndexSingleBall extends CommandGroup {
     	addSequential(new IntakeWithConstant(0.0), 0.1);
     	
     	addSequential(new AvoidShooterJam());
-    	addSequential(new DriveIndexerWithConstant(0.0));
+    	addSequential(new DriveIndexerWithConstant(0.0),0.1);
     	
 
     }
