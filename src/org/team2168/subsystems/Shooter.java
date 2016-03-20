@@ -56,7 +56,6 @@ public class Shooter extends Subsystem {
 			shooterAFT.setExpiration(0.1);
 			shooterAFT.setSafetyEnabled(true);
 			
-			shooterDistanceSensor = new AnalogInput(RobotMap.SHOOTER_DISTANCE_SENSOR);
 		}
 		else
 		{
@@ -68,6 +67,8 @@ public class Shooter extends Subsystem {
 			shooterAFT.setExpiration(0.1);
 			shooterAFT.setSafetyEnabled(true);	
 		}
+		
+		shooterDistanceSensor = new AnalogInput(RobotMap.SHOOTER_DISTANCE_SENSOR);
 
 		shooterEncoder = new AverageEncoder(RobotMap.SHOOTER_ENCODER_A, 
 				   							   RobotMap.SHOOTER_ENCODER_B, //uncomment for encoder
