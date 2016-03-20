@@ -103,7 +103,8 @@ public class OI {
 		operatorJoystick.ButtonB().whenPressed(new ShooterPIDPause());
 		operatorJoystick.ButtonB().whenPressed(new ShooterHoodRetract());
 		operatorJoystick.ButtonB().whenPressed(new DrivePIDPause());
-		operatorJoystick.ButtonY().whenPressed(new AutoFireFarTeleop());
+		//operatorJoystick.ButtonY().whenPressed(new AutoFireFarTeleop());
+		operatorJoystick.ButtonY().whenPressed(new DriveShooterPIDSpeed(0));
 		operatorJoystick.ButtonX().whenPressed(new AutoFireClose());
 		
 		
@@ -111,8 +112,11 @@ public class OI {
 		/********************************************
 		 *        Command Test  Joystick Buttons         *
 		 ********************************************/
-		commandsTestJoystick.ButtonX().whenPressed(new RotateXDistancePIDZZZCamera(0, 0.725, 0.22, 0.4));
-		commandsTestJoystick.ButtonA().whenPressed(new DrivePIDPause());
+		//commandsTestJoystick.ButtonX().whenPressed(new RotateXDistancePIDZZZCamera(0, 0.725, 0.22, 0.4));
+		//commandsTestJoystick.ButtonA().whenPressed(new DrivePIDPause());
+		
+		commandsTestJoystick.ButtonA().whileHeld(new DriveIndexerWithConstant(RobotMap.INDEXER_SPEED_CONSTANT_SHOOT));
+		commandsTestJoystick.ButtonA().whileHeld(new IntakeWithConstant(RobotMap.INTAKE_SPEED_CONSTANT));
 	
 		
 		commandsTestJoystick.ButtonY().whenPressed(new DriveShooterPIDSpeed(0));

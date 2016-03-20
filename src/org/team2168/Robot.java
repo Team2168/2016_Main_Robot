@@ -20,6 +20,7 @@ import org.team2168.subsystems.Shooter;
 import org.team2168.subsystems.ShooterHood;
 import org.team2168.subsystems.ShooterPneumatics;
 import org.team2168.utils.ConsolePrinter;
+import org.team2168.utils.I2CLights;
 import org.team2168.utils.PowerDistribution;
 import org.team2168.subsystems.IntakePosition;
 import org.team2168.subsystems.IntakeRoller;
@@ -61,6 +62,7 @@ public class Robot extends IterativeRobot {
     public static DriverStation driverstation;
 	public static PowerDistribution pdp;
 	
+	private static I2CLights lights;
 	Compressor comp;
     ConsolePrinter printer; // SmartDash printer
     
@@ -83,6 +85,7 @@ public class Robot extends IterativeRobot {
         pneumatics = Pneumatics.getInstance();
         tcpCamSensor = new TCPCamSensor(41234, 0);
         shooterPneumatics = ShooterPneumatics.getInstance();
+        lights = I2CLights.getInstance();
 
         //create controls
         oi = OI.getInstance();
@@ -137,7 +140,7 @@ public class Robot extends IterativeRobot {
 		autonomousCommand = (Command) autoChooser.getSelected();
 		// Kill all active commands
 		Scheduler.getInstance().run();
-
+		updateLED();
 		autoMode = false;
      }
 
@@ -164,7 +167,7 @@ public class Robot extends IterativeRobot {
     public void autonomousPeriodic() {
     	autoMode = true;
     	setFlashlight();
-    	
+    	updateLED();
         Scheduler.getInstance().run();
     }
 
@@ -186,7 +189,7 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
     	autoMode = false;
     	setFlashlight();
-    	
+    	updateLED();
         Scheduler.getInstance().run();
     }
     
@@ -195,6 +198,7 @@ public class Robot extends IterativeRobot {
      */
     public void testPeriodic() {
         LiveWindow.run();
+        updateLED();
     }
     
     /**
@@ -236,5 +240,29 @@ public class Robot extends IterativeRobot {
     		flashlight.set(Relay.Value.kOff);
     	}
 	}
+	
+	/**
+	 * Update the patterns on the light stip over I2C. 
+	 */
+	private static void updateLED() {
+    	if (isAutoMode()) {
+    		//Lights ALL strips in a rainbow pattern
+    		lights.Rainbow();
+    	} else if(intakePosition.isIntakeExtended() && shooterPneumatics.isShooterExtended()
+    			&& shooter.shooterSpeedController.isFinished()) {
+    		//we are shooting and the shooter is at speed
+    		lights.Solid(0, 255, 0, I2CLights.Range.Intake);
+    	} else if(intakePosition.isIntakeExtended() && shooterPneumatics.isShooterRetracted()) {
+    		//intake and shooter hood are in non-interfering (stowed) position for low bar
+    		lights.SlowBlink(0, 255, 0, I2CLights.Range.Intake);
+    	} else if(intakePosition.isIntakeExtended() || shooterPneumatics.isShooterExtended()) {
+    		//chase red if the shooter or intake are in interfering positions w/ the low bar.
+    		lights.ChaseIn(255, 0, 0, I2CLights.Range.Intake);
+    	} else {
+    		//We shouldn't get here...
+    		lights.Fade(80, 80, 80, I2CLights.Range.Intake);
+    	}
+    	
+    }
 
 }

@@ -107,6 +107,15 @@ public class ConsolePrinter {
 			
 			SmartDashboard.putNumber("ShooterMotor1Current", Robot.pdp.getChannelCurrent(RobotMap.SHOOTER_MOTOR_FWD_PDP));
 			SmartDashboard.putNumber("ShooterMotor2Current", Robot.pdp.getChannelCurrent(RobotMap.SHOOTER_MOTOR_AFT_PDP));
+			
+			SmartDashboard.putNumber("DTLeft1MotorVoltage",Robot.drivetrain.getLeft1MotorVoltage());
+					SmartDashboard.putNumber("DTLeft2MotorVoltage",Robot.drivetrain.getLeft2MotorVoltage());
+							SmartDashboard.putNumber("DTLeft3MotorVoltage",Robot.drivetrain.getLeft3MotorVoltage());
+
+SmartDashboard.putNumber("DTRight1MotorVoltage",Robot.drivetrain.getRight1MotorVoltage());
+		SmartDashboard.putNumber("DTRight2MotorVoltage",Robot.drivetrain.getRight2MotorVoltage());
+				SmartDashboard.putNumber("DTRight3MotorVoltage",Robot.drivetrain.getRight3MotorVoltage());
+
 
 			SmartDashboard.putNumber("Left Stick Raw Value", Robot.oi.driverJoystick.getLeftStickRaw_Y());
 			SmartDashboard.putNumber("Right Stick Raw Value", Robot.oi.driverJoystick.getRightStickRaw_Y());
@@ -243,8 +252,10 @@ public class ConsolePrinter {
 	
 	private String FileHeading()
 	{
-		return "Time \t TimeofDay \t Disabled \t Enabled \t Auto \t AutoName \t Teleop \t FMS \t MatchTime \t Batt Volt \t isBrownOut\t isPBot \t VoltageL1 \t VoltageL2 \t VoltageL3 \t VoltageR1 \t VoltageR2 \t VoltageR3 \t CurrentL1 \t CurrentL2 \t CurrentL3 \t CurrentR1 \t CurrentR2 \t CurrentR3 \t "
-				+ "Gyro Angle \t Gyro Pitch \t Gyro Roll \t Pneumatics PSI \t Left Encoder Position \t Left Encoder Rate \t Right Encoder Position \t Right Encoder Rate \t "
+		return "Time \t TimeofDay \t Disabled \t Enabled \t Auto \t AutoName \t Teleop \t FMS \t MatchTime \t Batt Volt \t isBrownOut\t isPBot \t "
+				+ "Gyro Angle \t Gyro Pitch \t Gyro Roll \t Pneumatics PSI \t"
+				+ "VoltageL1 \t VoltageL2 \t VoltageL3 \t VoltageR1 \t VoltageR2 \t VoltageR3 \t CurrentL1 \t CurrentL2 \t CurrentL3 \t CurrentR1 \t CurrentR2 \t CurrentR3 \t " 
+				+ "Left Encoder Position \t Left Encoder Rate \t Right Encoder Position \t Right Encoder Rate \t "
 				+ "Shooter FWD Voltage \t Shooter AFT Voltage \t Shooter FWD Current \t Shooter AFT Current \t Shooter Rate \t Hood Servo Angle";
 	}
 

@@ -2,6 +2,7 @@ package org.team2168;
 
 import org.team2168.PID.sensors.AverageEncoder;
 import edu.wpi.first.wpilibj.CounterBase;
+import edu.wpi.first.wpilibj.I2C;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -177,11 +178,11 @@ public class RobotMap {
 	/*************************************************************************
 	 *                         Indexer PARAMETERS
 	 *************************************************************************/
-	public static final double INDEXER_SPEED_CONSTANT = 0.09;
+	public static final double INDEXER_SPEED_CONSTANT = 0.12;
 	public static final double INDEXER_SPEED_REVERSE_CONSTANT = 0.15;
 	public static final double INDEXER_SPIT_SPEED_CONSTANT = -1.0;
 	public static final boolean REVERSE_INDEXER_MOTOR = true;
-	public static final double INDEXER_SPEED_CONSTANT_SHOOT = 0.5;
+	public static final double INDEXER_SPEED_CONSTANT_SHOOT = 0.6;
 
 	/*************************************************************************
 	 *                         Hood PARAMETERS
@@ -267,6 +268,11 @@ public class RobotMap {
 
 
 
+	/********************************************
+	 * 				Lights I2C					*
+	 * *****************************************/
+	public static final I2C.Port I2C_PORT = I2C.Port.kOnboard;
+	public static final int I2C_ADDRESS = 10; //probably change this
 	
 
 	
