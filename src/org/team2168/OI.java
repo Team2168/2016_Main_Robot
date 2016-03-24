@@ -78,11 +78,6 @@ public class OI {
 		 *        Operator Joystick Buttons         *
 		 ********************************************/
 		//TODO calibrate values and create commands for commented out buttons
-		operatorJoystick.ButtonA().whileHeld(new DriveIndexerWithConstant(RobotMap.INDEXER_SPEED_CONSTANT_SHOOT));
-		operatorJoystick.ButtonA().whileHeld(new IntakeWithConstant(RobotMap.INTAKE_SPEED_CONSTANT));
-		//operatorJoystick.ButtonB().whenPressed(new HoodTowerPreset());
-		//operatorJoystick.ButtonX().whenPressed(new HoodDefensePreset());
-		//operatorJoystick.ButtonY().whenPressed(new Hood???Preset());
 		operatorJoystick.ButtonLeftDPad().whenPressed(new IntakeRetract());
 		operatorJoystick.ButtonRightDPad().whenPressed(new IntakeExtend());
 		operatorJoystick.ButtonBack().whenPressed(new StowForLowBar());
@@ -94,21 +89,28 @@ public class OI {
 		//operatorJoystick.ButtonStart().whenPressed(new VisionPosition());
 		operatorJoystick.ButtonLeftTrigger().whileHeld(new IntakeWithConstant(-RobotMap.INTAKE_SPEED_CONSTANT));
 		operatorJoystick.ButtonLeftTrigger().whileHeld(new DriveIndexerWithConstant(RobotMap.INDEXER_SPIT_SPEED_CONSTANT));
-//		operatorJoystick.ButtonRightTrigger().whileHeld(new IntakeWithConstant(RobotMap.INTAKE_SPEED_CONSTANT));
+		//operatorJoystick.ButtonRightTrigger().whileHeld(new IntakeWithConstant(RobotMap.INTAKE_SPEED_CONSTANT));
 		operatorJoystick.ButtonRightTrigger().whileHeld(new IndexSingleBall());
 		
 		operatorJoystick.ButtonRightBumper().whileHeld(new ShooterHoodExtend());
 		operatorJoystick.ButtonLeftBumper().whileHeld(new ShooterHoodRetract());
-		//commandsTestJoystick.operatorJoystick.ButtonY().whenPressed(new DriveShooterPIDSpeed(6000));
+		
+		//Shoot Ball (A)
+		operatorJoystick.ButtonA().whileHeld(new DriveIndexerWithConstant(RobotMap.INDEXER_SPEED_CONSTANT_SHOOT));
+		operatorJoystick.ButtonA().whileHeld(new IntakeWithConstant(RobotMap.INTAKE_SPEED_CONSTANT));
+		
+		//Kill Shooter (B)
 		operatorJoystick.ButtonB().whenPressed(new ShooterPIDPause());
 		operatorJoystick.ButtonB().whenPressed(new ShooterHoodRetract());
 		operatorJoystick.ButtonB().whenPressed(new DrivePIDPause());
-		operatorJoystick.ButtonY().whenPressed(new AutoFireFarTeleop());
-		//operatorJoystick.ButtonY().whenPressed(new DriveShooterPIDSpeed(6700));
+		
+		//Shoot Far Preset (Y)
+		operatorJoystick.ButtonY().whenPressed(new DriveShooterPIDSpeed(6700));
 		operatorJoystick.ButtonY().whenPressed(new ShooterHoodExtend());
-		operatorJoystick.ButtonX().whenPressed(new AutoFireClose());
 		
-		
+		//Shoot Close Preset (X)
+		operatorJoystick.ButtonX().whenPressed(new DriveShooterPIDSpeed(4200));
+		operatorJoystick.ButtonX().whenPressed(new ShooterHoodRetract());
 		
 		/********************************************
 		 *        Command Test  Joystick Buttons         *
