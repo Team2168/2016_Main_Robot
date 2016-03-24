@@ -103,9 +103,9 @@ public class OI {
 		operatorJoystick.ButtonB().whenPressed(new ShooterPIDPause());
 		operatorJoystick.ButtonB().whenPressed(new ShooterHoodRetract());
 		operatorJoystick.ButtonB().whenPressed(new DrivePIDPause());
-		//operatorJoystick.ButtonY().whenPressed(new AutoFireFarTeleop());
-		operatorJoystick.ButtonY().whenPressed(new DriveShooterPIDSpeed(4200));
-		operatorJoystick.ButtonY().whenPressed(new ShooterHoodRetract());
+		operatorJoystick.ButtonY().whenPressed(new AutoFireFarTeleop());
+		//operatorJoystick.ButtonY().whenPressed(new DriveShooterPIDSpeed(6700));
+		operatorJoystick.ButtonY().whenPressed(new ShooterHoodExtend());
 		operatorJoystick.ButtonX().whenPressed(new AutoFireClose());
 		
 		

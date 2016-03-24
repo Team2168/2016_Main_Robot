@@ -30,7 +30,7 @@ public class AutoFireClose extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addSequential(new ShooterHoodExtend());
-    	addParallel(new DriveShooterPIDSpeed(3900));
+    	addSequential(new ShooterHoodRetract());
+    	addParallel(new DriveShooterPIDSpeed(4200));
     }
 }
