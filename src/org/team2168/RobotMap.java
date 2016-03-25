@@ -143,8 +143,8 @@ public class RobotMap {
 	 *                         Shooter PARAMETERS
 	 *************************************************************************/
 	//TODO check if the reverse values match the physical robot
-	public static final boolean REVERSE_SHOOTER_WHEEL_FWD= true;
-	public static final boolean REVERSE_SHOOTER_WHEEL_AFT= true;
+	public static final boolean REVERSE_SHOOTER_WHEEL_FWD= false;
+	public static final boolean REVERSE_SHOOTER_WHEEL_AFT= false;
 	
 	private static final int SHOOTER_PULSE_PER_ROTATION = 256; //encoder ticks per rotation
 	//TODO find ratio
