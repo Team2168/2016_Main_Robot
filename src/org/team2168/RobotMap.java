@@ -143,8 +143,8 @@ public class RobotMap {
 	 *                         Shooter PARAMETERS
 	 *************************************************************************/
 	//TODO check if the reverse values match the physical robot
-	public static final boolean REVERSE_SHOOTER_WHEEL_FWD= true;
-	public static final boolean REVERSE_SHOOTER_WHEEL_AFT= true;
+	public static final boolean REVERSE_SHOOTER_WHEEL_FWD= false;
+	public static final boolean REVERSE_SHOOTER_WHEEL_AFT= false;
 	
 	private static final int SHOOTER_PULSE_PER_ROTATION = 256; //encoder ticks per rotation
 	//TODO find ratio
@@ -226,13 +226,18 @@ public class RobotMap {
 	public static final double DRIVE_TRAIN_LEFT_POSITION_I = 0.0001412646174233;
 	public static final double DRIVE_TRAIN_LEFT_POSITION_D = 0.0074778888124088;
 
-	public static final double DRIVE_TRAIN_RIGHT_POSITION_P = 0.2;
+	public static final double DRIVE_TRAIN_RIGHT_POSITION_P = 0.35;
 	public static final double DRIVE_TRAIN_RIGHT_POSITION_I = 0.0001412646174233;
 	public static final double DRIVE_TRAIN_RIGHT_POSITION_D = 0.0074778888124088;
 
-	public static final double ROTATE_POSITION_P = 0.0045;
-	public static final double ROTATE_POSITION_I = 0.000125;
-	public static final double ROTATE_POSITION_D = 0.0064778888124088;
+	public static final double ROTATE_POSITION_P = 0.035;
+	public static final double ROTATE_POSITION_I = 0.0221;
+	public static final double ROTATE_POSITION_D = 0.0067;
+	
+	
+	public static final double ROTATE_POSITION_P_Drive_Straight = 0.045;
+	public static final double ROTATE_POSITION_I_Drive_Straight = 0.00125;
+	public static final double ROTATE_POSITION_D_Drive_Straight = 0.0064778888124088;
 
 	//Shooter PID Speed
 	//Bandwidth =

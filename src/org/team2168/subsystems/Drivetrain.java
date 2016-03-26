@@ -43,6 +43,7 @@ public class Drivetrain extends Subsystem {
 	//declare position/speed controllers
 	public PIDPosition driveTrainPosController;
 	public PIDPosition rotateController;
+	public PIDPosition rotateDriveStraightController;
 
 	//declare speed controllers
 	public PIDSpeed rightSpeedController;
@@ -164,6 +165,14 @@ public class Drivetrain extends Subsystem {
 						RobotMap.ROTATE_POSITION_P,
 						RobotMap.ROTATE_POSITION_I,
 						RobotMap.ROTATE_POSITION_D,
+						stupidPIDSensorGyro,
+						RobotMap.DRIVE_TRAIN_PID_PERIOD);
+				
+				rotateDriveStraightController = new PIDPosition(
+						"RotationStraightController",
+						RobotMap.ROTATE_POSITION_P_Drive_Straight,
+						RobotMap.ROTATE_POSITION_I_Drive_Straight,
+						RobotMap.ROTATE_POSITION_D_Drive_Straight,
 						stupidPIDSensorGyro,
 						RobotMap.DRIVE_TRAIN_PID_PERIOD);
 

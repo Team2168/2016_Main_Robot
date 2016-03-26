@@ -59,18 +59,21 @@ public class DriveXDistance extends Command{
 		//reset controller
 		Robot.drivetrain.imu.reset();
 		Robot.drivetrain.driveTrainPosController.reset();
-		Robot.drivetrain.rotateController.reset();
+		Robot.drivetrain.rotateDriveStraightController.reset();
 
 
 		//drivetrain.resetGyro();
 		endDistance = Robot.drivetrain.getAverageDistance() + distanceGoal;
 		angle = Robot.drivetrain.getHeading();
 
+//		Robot.drivetrain.rotateDriveStraightController.setpGain(RobotMap.ROTATE_POSITION_P_Drive_Straight);
+//		Robot.drivetrain.rotateDriveStraightController.setiGain(RobotMap.ROTATE_POSITION_I_Drive_Straight);
+//		Robot.drivetrain.rotateDriveStraightController.setdGain(RobotMap.ROTATE_POSITION_D_Drive_Straight);
 		Robot.drivetrain.driveTrainPosController.setSetPoint(endDistance);
 		Robot.drivetrain.driveTrainPosController.setMaxPosOutput(speed);
 		Robot.drivetrain.driveTrainPosController.setMinPosOutput(-speed);
 		Robot.drivetrain.driveTrainPosController.setAcceptErrorDiff(error); //feet
-		Robot.drivetrain.rotateController.setSetPoint(angle);
+		Robot.drivetrain.rotateDriveStraightController.setSetPoint(angle);
 		
 		
 		
@@ -90,16 +93,16 @@ public class DriveXDistance extends Command{
 		//			leftSpeed = speed;
 		//		}
 		//
-		//		Robot.drivetrain.rotateController.setSetPoint(Robot.drivetrain.gyroSPI.getAngleDeg());
+		//		Robot.drivetrain.rotateDriveStraightController.setSetPoint(Robot.drivetrain.gyroSPI.getAngleDeg());
 
 		Robot.drivetrain.driveTrainPosController.Enable();
-		Robot.drivetrain.rotateController.Enable();
+		Robot.drivetrain.rotateDriveStraightController.Enable();
 	}
 
 	protected void execute() {
 
-		lastRotateOutput = Robot.drivetrain.rotateController.getControlOutput();
-		double headingCorrection = (Robot.drivetrain.rotateController.getControlOutput()) + lastRotateOutput;
+		lastRotateOutput = Robot.drivetrain.rotateDriveStraightController.getControlOutput();
+		double headingCorrection = (Robot.drivetrain.rotateDriveStraightController.getControlOutput()) + lastRotateOutput;
 
 		Robot.drivetrain.tankDrive(Robot.drivetrain.driveTrainPosController.getControlOutput()+headingCorrection, Robot.drivetrain.driveTrainPosController.getControlOutput()-headingCorrection);
 		//finished = Robot.drivetrain.driveTrainPosController.isFinished();

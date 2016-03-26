@@ -289,7 +289,15 @@ public class PIDPosition implements TCPMessageInterface {
 			e.printStackTrace();
 		}
 	}
+	
+	public PIDPosition(String name, double P, double I, double D, double N,
+			PIDSensorInterface currentPos, long period) {
+		
+		this(name, P,I,D, currentPos, period);
+		this.n = N;
+		this.enDerivFilter = true;
 
+	}
 	/**
 	 * This constructor for the {@link PIDPosition} class allows the user to set
 	 * PID gains for gainScheduling.<br>

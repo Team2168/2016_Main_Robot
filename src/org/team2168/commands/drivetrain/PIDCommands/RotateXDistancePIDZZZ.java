@@ -2,6 +2,7 @@
 package org.team2168.commands.drivetrain.PIDCommands;
 
 import org.team2168.Robot;
+import org.team2168.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -45,6 +46,7 @@ public class RotateXDistancePIDZZZ extends Command {
     public RotateXDistancePIDZZZ(double setPoint, double maxSpeed, double minSpeed, double error) {
     	this(setPoint, maxSpeed, minSpeed);
     	this.error = error;
+    	this.absolute = false;
     }
     
     public RotateXDistancePIDZZZ(double setPoint, double maxSpeed, double minSpeed, double error, boolean absolute) {
@@ -54,10 +56,15 @@ public class RotateXDistancePIDZZZ extends Command {
     // Called just before this Command runs the first time
     
 	protected void initialize() {
+		double sp = 0;
 		if (!absolute)
-			this.setPoint = this.setPoint + Robot.drivetrain.getHeading();
+			sp = this.setPoint + Robot.drivetrain.getHeading();
 		Robot.drivetrain.rotateController.reset();
-		Robot.drivetrain.rotateController.setSetPoint(setPoint);
+
+//		Robot.drivetrain.rotateController.setpGain(RobotMap.ROTATE_POSITION_P);
+//		Robot.drivetrain.rotateController.setiGain(RobotMap.ROTATE_POSITION_I);
+//		Robot.drivetrain.rotateController.setdGain(RobotMap.ROTATE_POSITION_D);
+		Robot.drivetrain.rotateController.setSetPoint(sp);
 		Robot.drivetrain.rotateController.setMaxPosOutput(maxSpeed);
 		Robot.drivetrain.rotateController.setMaxNegOutput(-maxSpeed);
 		Robot.drivetrain.rotateController.setMinPosOutput(minSpeed);
