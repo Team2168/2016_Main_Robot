@@ -895,7 +895,7 @@ try {
 
 		int inRange = 0;
 		for (int j = 1; j < atSpeed.length; j++) {
-			if ((this.cp < this.sp + 10) && (this.cp > this.sp - 10))
+			if ((this.cp < this.sp + 25) && (this.cp > this.sp - 25))
 				inRange++;
 			else
 				inRange = 0;
@@ -1160,11 +1160,11 @@ try {
 			if(Math.abs(err) < acceptErrorDiff)
 			{
 				co = coOld;
-				this.isFinished = true;
+				//this.isFinished = true;
 			}
 			else
 			{
-				this.isFinished = false;
+				//this.isFinished = false;
 			}
 			// update clock with current time for next loop
 			clock = currentTime;
@@ -1181,10 +1181,10 @@ try {
 			cp = encoder.getRate();
 			sp = encoder.getRate();
 			clock = Timer.getFPGATimestamp();
-			isFinished = true;
+			//isFinished = true;
 		}
 		
-		//atSpeed();
+		atSpeed();
 
 		runTime = Timer.getFPGATimestamp() - runTime;
 	}

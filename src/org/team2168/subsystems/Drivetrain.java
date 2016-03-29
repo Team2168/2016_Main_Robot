@@ -207,12 +207,14 @@ public class Drivetrain extends Subsystem {
 				leftSpeedController.setSIZE(RobotMap.DRIVE_TRAIN_PID_ARRAY_SIZE);
 				driveTrainPosController.setSIZE(RobotMap.DRIVE_TRAIN_PID_ARRAY_SIZE);
 				rotateController.setSIZE(RobotMap.DRIVE_TRAIN_PID_ARRAY_SIZE);
+				rotateDriveStraightController.setSIZE(RobotMap.DRIVE_TRAIN_PID_ARRAY_SIZE);
 
 				//start controller threads
 				rightSpeedController.startThread();
 				leftSpeedController.startThread();
 				driveTrainPosController.startThread();
 				rotateController.startThread();
+				rotateDriveStraightController.startThread();
 
 				
 				
@@ -229,6 +231,9 @@ public class Drivetrain extends Subsystem {
 				TCPleftSpeedController.start();
 
 				TCProtateController = new TCPSocketSender(RobotMap.TCP_SERVER_ROTATE_CONTROLLER, rotateController);
+				TCProtateController.start();
+				
+				TCProtateController = new TCPSocketSender(RobotMap.TCP_SERVER_ROTATE_CONTROLLER_STRAIGHT, rotateDriveStraightController);
 				TCProtateController.start();
 				
 				leftMotor1Voltage = 0;
