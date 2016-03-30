@@ -74,7 +74,7 @@ public class OI {
 		//driverJoystick.ButtonRightBumper().whileActive(new ShiftGearsHighToLow());
 		
 		driverJoystick.ButtonLeftBumper().whenPressed(new DrivePIDPause());
-		driverJoystick.ButtonRightBumper().whenPressed(new DriveXDistance(0, 0.7, 0));
+		driverJoystick.ButtonRightBumper().whenPressed(new DriveXDistance(-0.3, 0.7, 0));
 
 
 

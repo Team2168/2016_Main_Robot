@@ -32,9 +32,9 @@ public class RobotMap {
 	public static final int LEFT_DRIVE_TRAIN_2 = 4;
 	public static final int LEFT_DRIVE_TRAIN_3 =5;
 	public static final int INTAKE_WHEEL_1= 6;
-	public static final int INTAKE_WHEEL_2= 7;
+	public static final int INTAKE_WHEEL_2= 15;
 	public static final int INDEXER_WHEEL = 8;
-	public static final int SHOOTER_HOOD_SERVO = 9;
+	public static final int SHOOTER_HOOD_SERVO = 18;
 	
 
 	//Channels 10-25 on MXP
@@ -50,9 +50,9 @@ public class RobotMap {
 	public static final int LEFT_DRIVE_TRAIN_2_PBOT = 3;
 	public static final int LEFT_DRIVE_TRAIN_3_PBOT = 7;
 	public static final int INTAKE_WHEEL_1_PBOT= 6;
-	public static final int INTAKE_WHEEL_2_PBOT= 12;
+	public static final int INTAKE_WHEEL_2_PBOT= 16;
 	public static final int INDEXER_WHEEL_PBOT = 8;
-	public static final int SHOOTER_HOOD_SERVO_PBOT = 13;
+	public static final int SHOOTER_HOOD_SERVO_PBOT = 18;
 	public static final int SHOOTER_WHEEL_FWD_PBOT = 4;
 	public static final int SHOOTER_WHEEL_AFT_PBOT = 5;
 
