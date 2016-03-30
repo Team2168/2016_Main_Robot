@@ -77,7 +77,6 @@ public class OI {
 		driverJoystick.ButtonRightBumper().whenPressed(new DriveXDistance(-0.3, 0.7, 0));
 
 
-
 		/********************************************
 		 *        Operator Joystick Buttons         *
 		 ********************************************/
