@@ -166,6 +166,7 @@ SmartDashboard.putNumber("DTRight1MotorVoltage",Robot.drivetrain.getRight1MotorV
 	        SmartDashboard.putBoolean("Boulder in Indexer", Robot.indexer.isBoulderPresent());
 	        SmartDashboard.putBoolean("Boulder in Intake", Robot.intakeRoller.isBoulderPresent());
 	        SmartDashboard.putNumber("Shooter Speed", Robot.shooter.getSpeed());
+	        SmartDashboard.putBoolean("Shooter AtSpeed", Robot.shooter.shooterSpeedController.isFinished());
 	        SmartDashboard.putNumber("Shooter Position", Robot.shooter.getPosition());
 
 	        SmartDashboard.putNumber("Boulder Distance Shooter", Robot.shooter.getAveragedRawBoulderDistance());

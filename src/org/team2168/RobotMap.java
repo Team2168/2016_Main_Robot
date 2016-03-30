@@ -32,9 +32,9 @@ public class RobotMap {
 	public static final int LEFT_DRIVE_TRAIN_2 = 4;
 	public static final int LEFT_DRIVE_TRAIN_3 =5;
 	public static final int INTAKE_WHEEL_1= 6;
-	public static final int INTAKE_WHEEL_2= 7;
+	public static final int INTAKE_WHEEL_2= 15;
 	public static final int INDEXER_WHEEL = 8;
-	public static final int SHOOTER_HOOD_SERVO = 9;
+	public static final int SHOOTER_HOOD_SERVO = 18;
 	
 
 	//Channels 10-25 on MXP
@@ -45,14 +45,14 @@ public class RobotMap {
 	// PWM (0 to 9) on RoboRio - PRACTICE BOT//////////////////////////////////////////////////
 	public static final int RIGHT_DRIVE_TRAIN_1_PBOT = 0;
 	public static final int RIGHT_DRIVE_TRAIN_2_PBOT = 1;
-	public static final int RIGHT_DRIVE_TRAIN_3_PBOT =10;
+	public static final int RIGHT_DRIVE_TRAIN_3_PBOT = 9;
 	public static final int LEFT_DRIVE_TRAIN_1_PBOT = 2;
 	public static final int LEFT_DRIVE_TRAIN_2_PBOT = 3;
-	public static final int LEFT_DRIVE_TRAIN_3_PBOT =11;
+	public static final int LEFT_DRIVE_TRAIN_3_PBOT = 7;
 	public static final int INTAKE_WHEEL_1_PBOT= 6;
-	public static final int INTAKE_WHEEL_2_PBOT= 7;
+	public static final int INTAKE_WHEEL_2_PBOT= 16;
 	public static final int INDEXER_WHEEL_PBOT = 8;
-	public static final int SHOOTER_HOOD_SERVO_PBOT = 9;
+	public static final int SHOOTER_HOOD_SERVO_PBOT = 18;
 	public static final int SHOOTER_WHEEL_FWD_PBOT = 4;
 	public static final int SHOOTER_WHEEL_AFT_PBOT = 5;
 
@@ -165,12 +165,12 @@ public class RobotMap {
 	//TODO get correct values
 	public static final double SHOOTER_BOULDER_STOP_VOLTAGE = 0.2;
 	public static final double SHOOTER_CONSTANT_SPEED = 0.2;
-	public static double CAMERA_OFFSET_ANGLE = 0; //degrees
+	public static double CAMERA_OFFSET_ANGLE = 2.8; //degrees
 
 	/*************************************************************************
 	 *                         Intake PARAMETERS
 	 *************************************************************************/
-	public static final double INTAKE_SPEED_CONSTANT = 0.6;
+	public static final double INTAKE_SPEED_CONSTANT = 0.6; //0.6
 	public static final boolean REVERSE_INTAKE_WHEEL_1 = true;
 	public static final boolean REVERSE_INTAKE_WHEEL_2 = true;
 
@@ -182,7 +182,8 @@ public class RobotMap {
 	public static final double INDEXER_SPEED_REVERSE_CONSTANT = 0.15;
 	public static final double INDEXER_SPIT_SPEED_CONSTANT = -1.0;
 	public static final boolean REVERSE_INDEXER_MOTOR = true;
-	public static final double INDEXER_SPEED_CONSTANT_SHOOT = 0.6;
+	public static final double INDEXER_SPEED_CONSTANT_SHOOT = 1.0; //0.6
+	public static final double INTAKE_SPEED_CONSTANT_SHOOT = 1.0;
 
 	/*************************************************************************
 	 *                         Hood PARAMETERS
@@ -226,13 +227,20 @@ public class RobotMap {
 	public static final double DRIVE_TRAIN_LEFT_POSITION_I = 0.0001412646174233;
 	public static final double DRIVE_TRAIN_LEFT_POSITION_D = 0.0074778888124088;
 
-	public static final double DRIVE_TRAIN_RIGHT_POSITION_P = 0.2;
+	public static final double DRIVE_TRAIN_RIGHT_POSITION_P = 0.25;
 	public static final double DRIVE_TRAIN_RIGHT_POSITION_I = 0.0001412646174233;
 	public static final double DRIVE_TRAIN_RIGHT_POSITION_D = 0.0074778888124088;
 
-	public static final double ROTATE_POSITION_P = 0.0045;
-	public static final double ROTATE_POSITION_I = 0.000125;
-	public static final double ROTATE_POSITION_D = 0.0064778888124088;
+	public static final double ROTATE_POSITION_P = 0.055;
+	public static final double ROTATE_POSITION_I = 0.0221;
+	public static final double ROTATE_POSITION_D = 0.0067;
+	
+	
+	
+	
+	public static final double ROTATE_POSITION_P_Drive_Straight = 0.045;
+	public static final double ROTATE_POSITION_I_Drive_Straight = 0.00125;
+	public static final double ROTATE_POSITION_D_Drive_Straight = 0.0064778888124088;
 
 	//Shooter PID Speed
 	//Bandwidth =
@@ -252,6 +260,7 @@ public class RobotMap {
 	public static final int TCO_SERVER_RIGHT_DRIVE_TRAIN_SPEED = 1182;
 	public static final int TCP_SERVER_LEFT_DRIVE_TRAIN_SPEED = 1183;
 	public static final int TCP_SERVER_SHOOTER_SPEED = 1184;
+	public static final int TCP_SERVER_ROTATE_CONTROLLER_STRAIGHT = 1185;
 	
 	
 	/******************************************************************
@@ -273,6 +282,7 @@ public class RobotMap {
 	 * *****************************************/
 	public static final I2C.Port I2C_PORT = I2C.Port.kOnboard;
 	public static final int I2C_ADDRESS = 10; //probably change this
+
 	
 
 	

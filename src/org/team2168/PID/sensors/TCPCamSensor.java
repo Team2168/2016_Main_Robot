@@ -171,7 +171,7 @@ public class TCPCamSensor {
 				try {
 					os = sc.getOutputStream();
 
-					while (recvEnable) {
+					while (true) {
 						// we want to send if match has started to camera
 						int matchStart = 0;
 
@@ -181,7 +181,7 @@ public class TCPCamSensor {
 						messageOut = String.valueOf(matchStart) + " " + count
 								+ " \n";
 
-						//System.out.println("Sending Match Start: " + messageOut);
+						System.out.println("Sending Match Start: " + messageOut);
 
 						buf = messageOut.getBytes("US_ASCII");
 
