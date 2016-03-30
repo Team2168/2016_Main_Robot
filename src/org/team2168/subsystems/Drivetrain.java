@@ -84,9 +84,9 @@ public class Drivetrain extends Subsystem {
 		((Victor) leftMotor2).setExpiration(0.1);
 		((Victor) leftMotor2).setSafetyEnabled(true);
 		
-		leftMotor3 = new Victor(RobotMap.LEFT_DRIVE_TRAIN_3_PBOT);
-		((Victor) leftMotor3).setExpiration(0.1);
-		((Victor) leftMotor3).setSafetyEnabled(true);
+		leftMotor3 = new Talon(RobotMap.LEFT_DRIVE_TRAIN_3_PBOT);
+		((Talon) leftMotor3).setExpiration(0.1);
+		((Talon) leftMotor3).setSafetyEnabled(true);
 		
 		rightMotor1 = new Victor(RobotMap.RIGHT_DRIVE_TRAIN_1_PBOT);
 		((Victor) rightMotor1).setExpiration(0.1);
@@ -96,9 +96,9 @@ public class Drivetrain extends Subsystem {
 		((Victor) rightMotor2).setExpiration(0.1);
 		((Victor) rightMotor2).setSafetyEnabled(true);
 		
-		rightMotor3 = new Victor(RobotMap.RIGHT_DRIVE_TRAIN_3_PBOT);
-		((Victor) rightMotor3).setExpiration(0.1);
-		((Victor) rightMotor3).setSafetyEnabled(true);
+		rightMotor3 = new Talon(RobotMap.RIGHT_DRIVE_TRAIN_3_PBOT);
+		((Talon) rightMotor3).setExpiration(0.1);
+		((Talon) rightMotor3).setSafetyEnabled(true);
 		}
 		else
 		{
