@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.I2C;
  */
 public class RobotMap {
 
-	/***************************z**********************************************
+	/*************************************************************************
 	 *                              ROBORIO WIRING MAP
 	 *************************************************************************/
 
@@ -173,6 +173,7 @@ public class RobotMap {
 	public static final double INTAKE_SPEED_CONSTANT = 0.6; //0.6
 	public static final boolean REVERSE_INTAKE_WHEEL_1 = true;
 	public static final boolean REVERSE_INTAKE_WHEEL_2 = true;
+	public static final double CHEVAL_DE_FRISE_DISTANCE_VOLTAGE = 0.85;
 
 
 	/*************************************************************************
