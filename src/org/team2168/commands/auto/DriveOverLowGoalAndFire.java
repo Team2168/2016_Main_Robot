@@ -6,8 +6,7 @@ import org.team2168.commands.drivetrain.PIDCommands.RotateXDistancePIDZZZ;
 import org.team2168.commands.drivetrain.PIDCommands.RotateXDistancePIDZZZCamera;
 import org.team2168.commands.intakeposition.IntakeExtend;
 import org.team2168.commands.shooter.PIDCommands.DriveShooterPIDSpeed;
-import org.team2168.commands.shooterPneumatics.ShooterHoodExtend;
-import org.team2168.commands.shooterPneumatics.ShooterHoodRetract;
+import org.team2168.commands.shooterPneumatics.ShooterHoodCloseShotPosition;
 import org.team2168.commands.shooterhood.DriveShooterHoodToAngle;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -19,7 +18,7 @@ public class DriveOverLowGoalAndFire extends CommandGroup {
     
     public  DriveOverLowGoalAndFire() {
 
-    	addParallel(new ShooterHoodExtend());
+    	addParallel(new ShooterHoodCloseShotPosition());
     	//addSequential(new IntakeExtend(), 3);
 
     	addParallel(new DriveShooterPIDSpeed(6300));

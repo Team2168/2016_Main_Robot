@@ -145,8 +145,10 @@ SmartDashboard.putNumber("DTRight1MotorVoltage",Robot.drivetrain.getRight1MotorV
 
 			SmartDashboard.putBoolean("Intake Extended", Robot.intakePosition.isIntakeExtended());
 			SmartDashboard.putBoolean("Intake REtracted", Robot.intakePosition.isIntakeRetracted());
-			SmartDashboard.putBoolean("Shooter Hood Extended", Robot.shooterPneumatics.isShooterExtended());
-			SmartDashboard.putBoolean("Shooter Hood Retracted", Robot.shooterPneumatics.isShooterRetracted());
+			SmartDashboard.putBoolean("Shooter Hood FWD Extended", Robot.shooterPneumatics.isShooterFWDExtended());
+			SmartDashboard.putBoolean("Shooter Hood FWD Retracted", Robot.shooterPneumatics.isShooterFWDRetracted());
+			SmartDashboard.putBoolean("Shooter Hood AFT Extended", Robot.shooterPneumatics.isShooterAFTExtended());
+			SmartDashboard.putBoolean("Shooter Hood AFT Retracted", Robot.shooterPneumatics.isShooterAFTRetracted());
 			
 			//TODO: Make methods to return proper test values
 //			SmartDashboard.putBoolean("Left Drive Motor 1 Pass", Robot.drivetrain.leftMotor1Pass);
