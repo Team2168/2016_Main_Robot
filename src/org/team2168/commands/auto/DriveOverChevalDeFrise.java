@@ -8,7 +8,7 @@ import org.team2168.commands.intakeroller.WaitUntilCDFPresent;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
- * Drives Robot over defense
+ * Drives Robot over Cheval De Frise
  */
 public class DriveOverChevalDeFrise extends CommandGroup {
     
