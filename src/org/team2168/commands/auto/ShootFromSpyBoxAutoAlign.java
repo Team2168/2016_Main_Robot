@@ -10,7 +10,7 @@ import org.team2168.commands.intakeroller.IntakeWithConstant;
 import org.team2168.commands.shooter.DriveShooterWithConstant;
 import org.team2168.commands.shooter.PIDCommands.DriveShooterPIDSpeed;
 import org.team2168.commands.shooter.PIDCommands.ShooterPIDPause;
-import org.team2168.commands.shooterPneumatics.ShooterHoodRetract;
+import org.team2168.commands.shooterPneumatics.ShooterHoodStowPosition;
 import org.team2168.commands.shooterhood.DriveShooterHoodToAngle;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -37,7 +37,7 @@ public class ShootFromSpyBoxAutoAlign extends CommandGroup {
     	
     	addSequential(new Sleep(), 2);
     	
-    	addParallel(new ShooterHoodRetract());
+    	addParallel(new ShooterHoodStowPosition());
     	addParallel(new DrivePIDPause());
     	addParallel(new ShooterPIDPause());
     	addParallel(new DriveIndexerWithConstant(0));

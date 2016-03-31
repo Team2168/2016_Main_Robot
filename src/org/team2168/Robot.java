@@ -248,14 +248,14 @@ public class Robot extends IterativeRobot {
     	if (isAutoMode()) {
     		//Lights ALL strips in a rainbow pattern
     		lights.Rainbow();
-    	} else if(intakePosition.isIntakeExtended() && shooterPneumatics.isShooterExtended()
+    	} else if(intakePosition.isIntakeExtended() && shooterPneumatics.isShooterFarShotPosition()
     			&& shooter.shooterSpeedController.isFinished()) {
     		//we are shooting and the shooter is at speed
     		lights.Solid(0, 255, 0, I2CLights.Range.Intake);
-    	} else if(intakePosition.isIntakeExtended() && shooterPneumatics.isShooterRetracted()) {
+    	} else if(intakePosition.isIntakeExtended() && shooterPneumatics.isShooterStowPosition()) {
     		//intake and shooter hood are in non-interfering (stowed) position for low bar
     		lights.SlowBlink(0, 255, 0, I2CLights.Range.Intake);
-    	} else if(intakePosition.isIntakeExtended() || shooterPneumatics.isShooterExtended()) {
+    	} else if(intakePosition.isIntakeExtended() || shooterPneumatics.isShooterCloseShotPosition()) {
     		//chase red if the shooter or intake are in interfering positions w/ the low bar.
     		lights.ChaseIn(255, 0, 0, I2CLights.Range.Intake);
     	} else {
