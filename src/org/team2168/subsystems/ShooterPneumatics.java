@@ -21,8 +21,8 @@ public class ShooterPneumatics extends Subsystem {
 	 * Private constructor for ShooterPnematics subsystem
 	 */
 	private ShooterPneumatics() {
-		shooterPistonFWD = new DoubleSolenoid(RobotMap.SHOOTER_FWD_RETRACT, RobotMap.SHOOTER_FWD_EXTEND);
-		shooterPistonAFT = new DoubleSolenoid(RobotMap.SHOOTER_AFT_RETRACT, RobotMap.SHOOTER_AFT_RETRACT);
+		shooterPistonFWD = new DoubleSolenoid(RobotMap.SHOOTER_FWD_EXTEND,RobotMap.SHOOTER_FWD_RETRACT);
+		shooterPistonAFT = new DoubleSolenoid(RobotMap.SHOOTER_AFT_EXTEND, RobotMap.SHOOTER_AFT_RETRACT);
 	}
 	
 	/**
