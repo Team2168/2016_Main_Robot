@@ -6,7 +6,7 @@ import org.team2168.commands.drivetrain.PIDCommands.RotateXDistancePIDZZZ;
 import org.team2168.commands.indexer.DriveIndexerWithConstant;
 import org.team2168.commands.intakeroller.IntakeWithConstant;
 import org.team2168.commands.shooter.PIDCommands.ShooterPIDPause;
-import org.team2168.commands.shooterPneumatics.ShooterHoodRetract;
+import org.team2168.commands.shooterPneumatics.ShooterHoodStowPosition;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -31,7 +31,7 @@ public class DriveOverChevalDeFriseAndFire extends CommandGroup {
 	    	addSequential(new Sleep(), 2);
 	    	addSequential(new DriveIndexerWithConstant(0));
 	    	addSequential(new IntakeWithConstant(0));
-	    	addSequential(new ShooterHoodRetract());
+	    	addSequential(new ShooterHoodStowPosition());
 	    	addSequential(new ShooterPIDPause());
     }
 }
