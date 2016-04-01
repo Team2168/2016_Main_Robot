@@ -31,7 +31,7 @@ public class RobotMap {
 	public static final int LEFT_DRIVE_TRAIN_1 = 3;
 	public static final int LEFT_DRIVE_TRAIN_2 = 4;
 	public static final int LEFT_DRIVE_TRAIN_3 =5;
-	public static final int INTAKE_WHEEL_1= 6;
+	public static final int INTAKE_WHEEL_1= 7;
 	public static final int INTAKE_WHEEL_2= 15;
 	public static final int INDEXER_WHEEL = 8;
 	public static final int SHOOTER_HOOD_SERVO = 18;
@@ -73,14 +73,14 @@ public class RobotMap {
 	public final static int PCM_POWER = 7;
 
 	//Solenoid Channels////////////////////////////////////////////////////////
-	public static final int INTAKE_RETRACT = 0;
-	public static final int INTAKE_EXTEND = 1;
+	public static final int INTAKE_RETRACT = 2;
+	public static final int INTAKE_EXTEND = 3;
 	public static final int DRIVETRAIN_HIGH_GEAR = 4;
 	public static final int DRIVETRAIN_LOW_GEAR = 5;
 	public static final int SHOOTER_FWD_RETRACT = 6;
 	public static final int SHOOTER_FWD_EXTEND = 7;
-	public static final int SHOOTER_AFT_RETRACT = 2;
-	public static final int SHOOTER_AFT_EXTEND = 3;
+	public static final int SHOOTER_AFT_RETRACT = 1;
+	public static final int SHOOTER_AFT_EXTEND = 0;
 	
 
 
@@ -168,21 +168,21 @@ public class RobotMap {
 	//TODO get correct values
 	public static final double SHOOTER_BOULDER_STOP_VOLTAGE = 0.2;
 	public static final double SHOOTER_CONSTANT_SPEED = 0.2;
-	public static double CAMERA_OFFSET_ANGLE = 2.8; //degrees
+	public static double CAMERA_OFFSET_ANGLE = 0; //degrees, camera in center of shooter
 
 	/*************************************************************************
 	 *                         Intake PARAMETERS
 	 *************************************************************************/
 	public static final double INTAKE_SPEED_CONSTANT = 0.6; //0.6
-	public static final boolean REVERSE_INTAKE_WHEEL_1 = true;
-	public static final boolean REVERSE_INTAKE_WHEEL_2 = true;
+	public static final boolean REVERSE_INTAKE_WHEEL_1 = false;
+	public static final boolean REVERSE_INTAKE_WHEEL_2 = false;
 
 
 	/*************************************************************************
 	 *                         Indexer PARAMETERS
 	 *************************************************************************/
-	public static final double INDEXER_SPEED_CONSTANT = 0.12;
-	public static final double INDEXER_SPEED_REVERSE_CONSTANT = 0.12;
+	public static final double INDEXER_SPEED_CONSTANT = 0.18 ;
+	public static final double INDEXER_SPEED_REVERSE_CONSTANT = 0.18;
 	public static final double INDEXER_SPIT_SPEED_CONSTANT = -1.0;
 	public static final boolean REVERSE_INDEXER_MOTOR = false;
 	public static final double INDEXER_SPEED_CONSTANT_SHOOT = 1.0; //0.6
