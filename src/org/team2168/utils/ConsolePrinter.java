@@ -68,12 +68,12 @@ public class ConsolePrinter {
 			SmartDashboard.putBoolean("isPracticeBot", Robot.isPracticeRobot());
 			
 			
-			SmartDashboard.putBoolean("Camera Status", Robot.tcpCamSensor.isCameraConnected());
-			SmartDashboard.putBoolean("Bone Status", Robot.tcpCamSensor.isClientConnected());
-			SmartDashboard.putBoolean("Processing Status", Robot.tcpCamSensor.isProcessingTreadRunning());
-			SmartDashboard.putBoolean("MJPEG Status", Robot.tcpCamSensor.isMJPEGConnected());
-			SmartDashboard.putNumber("Vision Target Dist", Robot.tcpCamSensor.getTargetDistance());
-			SmartDashboard.putNumber("Vision Target BEaring", Robot.tcpCamSensor.getRotationAngle());
+			SmartDashboard.putBoolean("Camera Status", Robot.drivetrain.tcpCamSensor.isCameraConnected());
+			SmartDashboard.putBoolean("Bone Status", Robot.drivetrain.tcpCamSensor.isClientConnected());
+			SmartDashboard.putBoolean("Processing Status", Robot.drivetrain.tcpCamSensor.isProcessingTreadRunning());
+			SmartDashboard.putBoolean("MJPEG Status", Robot.drivetrain.tcpCamSensor.isMJPEGConnected());
+			SmartDashboard.putNumber("Vision Target Dist", Robot.drivetrain.tcpCamSensor.getTargetDistance());
+			SmartDashboard.putNumber("Vision Target BEaring", Robot.drivetrain.tcpCamSensor.getRotationAngle());
 			
 			
 			SmartDashboard.putNumber("Left Encoder Distance",Robot.drivetrain.getLeftPosition());

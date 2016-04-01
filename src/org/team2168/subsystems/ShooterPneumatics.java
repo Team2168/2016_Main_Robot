@@ -105,7 +105,7 @@ public class ShooterPneumatics extends Subsystem {
 	}
 	
 	public boolean isShooterFarShotPosition() {
-		return isShooterFWDExtended() && isShooterAFTExtended();
+		return isShooterFWDRetracted() && isShooterAFTExtended();
 	}
 	
 	public boolean isShooterStowPosition() {

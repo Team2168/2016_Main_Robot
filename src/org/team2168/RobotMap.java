@@ -77,10 +77,10 @@ public class RobotMap {
 	public static final int INTAKE_EXTEND = 1;
 	public static final int DRIVETRAIN_HIGH_GEAR = 4;
 	public static final int DRIVETRAIN_LOW_GEAR = 5;
-	public static final int SHOOTER_FWD_RETRACT = 2;
-	public static final int SHOOTER_FWD_EXTEND = 3;
-	public static final int SHOOTER_AFT_RETRACT = 6;
-	public static final int SHOOTER_AFT_EXTEND = 7;
+	public static final int SHOOTER_FWD_RETRACT = 6;
+	public static final int SHOOTER_FWD_EXTEND = 7;
+	public static final int SHOOTER_AFT_RETRACT = 2;
+	public static final int SHOOTER_AFT_EXTEND = 3;
 	
 
 
@@ -182,9 +182,9 @@ public class RobotMap {
 	 *                         Indexer PARAMETERS
 	 *************************************************************************/
 	public static final double INDEXER_SPEED_CONSTANT = 0.12;
-	public static final double INDEXER_SPEED_REVERSE_CONSTANT = 0.15;
+	public static final double INDEXER_SPEED_REVERSE_CONSTANT = 0.12;
 	public static final double INDEXER_SPIT_SPEED_CONSTANT = -1.0;
-	public static final boolean REVERSE_INDEXER_MOTOR = true;
+	public static final boolean REVERSE_INDEXER_MOTOR = false;
 	public static final double INDEXER_SPEED_CONSTANT_SHOOT = 1.0; //0.6
 	public static final double INTAKE_SPEED_CONSTANT_SHOOT = 1.0;
 
