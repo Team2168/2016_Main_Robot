@@ -213,7 +213,7 @@ public class RobotMap {
 	 *************************************************************************/
 	//period to run PID loops on drive train
 	public static final long DRIVE_TRAIN_PID_PERIOD = 20;//70ms loop
-	public static final int DRIVE_TRAIN_PID_ARRAY_SIZE = 50;
+	public static final int DRIVE_TRAIN_PID_ARRAY_SIZE = 30;
 
 	//PID Gains for Left & Right Speed and Position
 	//Bandwidth =
