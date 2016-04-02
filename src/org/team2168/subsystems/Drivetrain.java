@@ -47,7 +47,7 @@ public class Drivetrain extends Subsystem {
 	public PIDPosition rotateController;
 	public PIDPosition rotateDriveStraightController;
 	public PIDPosition rotateCameraController;	
-
+	
 	//declare speed controllers
 	public PIDSpeed rightSpeedController;
 	public PIDSpeed leftSpeedController;
@@ -65,7 +65,7 @@ public class Drivetrain extends Subsystem {
 	TCPSocketSender TCPrightSpeedController;
 	TCPSocketSender TCPleftSpeedController;
 	TCPSocketSender TCProtateController;
-	
+	TCPSocketSender TCProtateCameraController;
 	
 	
 	private static Drivetrain instance = null;
@@ -249,6 +249,9 @@ public class Drivetrain extends Subsystem {
 				
 				TCProtateController = new TCPSocketSender(RobotMap.TCP_SERVER_ROTATE_CONTROLLER_STRAIGHT, rotateDriveStraightController);
 				TCProtateController.start();
+				
+				TCProtateCameraController = new TCPSocketSender(RobotMap.TCP_SERVER_ROTATE_CAMERA_CONTROLLER, rotateCameraController);
+				TCProtateCameraController.start();
 				
 				leftMotor1Voltage = 0;
 				leftMotor2Voltage = 0;

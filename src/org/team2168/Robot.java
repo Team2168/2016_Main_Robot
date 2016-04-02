@@ -23,6 +23,7 @@ import org.team2168.subsystems.ShooterHood;
 import org.team2168.subsystems.ShooterPneumatics;
 import org.team2168.utils.ConsolePrinter;
 import org.team2168.utils.I2CLights;
+import org.team2168.utils.I2CLights.Range;
 import org.team2168.utils.PowerDistribution;
 import org.team2168.subsystems.IntakePosition;
 import org.team2168.subsystems.IntakeRoller;
@@ -250,16 +251,23 @@ public class Robot extends IterativeRobot {
     	if (isAutoMode()) {
     		//Lights ALL strips in a rainbow pattern
     		lights.Rainbow();
-    	} else if(intakePosition.isIntakeExtended() && shooterPneumatics.isShooterFarShotPosition()
-    			&& shooter.shooterSpeedController.isFinished()) {
-    		//we are shooting and the shooter is at speed
-    		lights.Solid(0, 255, 0, I2CLights.Range.Intake);
-    	} else if(intakePosition.isIntakeExtended() && shooterPneumatics.isShooterStowPosition()) {
-    		//intake and shooter hood are in non-interfering (stowed) position for low bar
-    		lights.SlowBlink(0, 255, 0, I2CLights.Range.Intake);
-    	} else if(intakePosition.isIntakeExtended() || shooterPneumatics.isShooterCloseShotPosition()) {
-    		//chase red if the shooter or intake are in interfering positions w/ the low bar.
-    		lights.ChaseIn(255, 0, 0, I2CLights.Range.Intake);
+    	} else if(Robot.driverstation.isDisabled()) {
+    		//Robot is disabled
+    		lights.Fade(255, 0, 0, I2CLights.Range.Intake);
+		} else if((shooter.getSpeed() > 100) && shooter.shooterSpeedController.isFinished()) {
+    		//shooter is up to speed - slash green
+    		lights.FastBlink(0, 255, 0, I2CLights.Range.Intake);
+    	} else if((shooter.getSpeed() > 100) && !shooter.shooterSpeedController.isFinished()) {
+    		//shooter is running, but not at speed yet
+    		lights.FastBlink(255, 0, 0, I2CLights.Range.Intake);
+    	} else if(indexer.getAveragedRawBoulderDistance() > 1.5
+    			|| shooter.getAveragedRawBoulderDistance() > 1.5) {
+    		//Ball in the robot
+    		lights.Solid(255, 0, 0, I2CLights.Range.Intake);
+    	} else if(indexer.getAveragedRawBoulderDistance() < 1.5
+    			&& shooter.getAveragedRawBoulderDistance() < 1.5) {
+    		//No ball in the robot
+    		lights.Solid(0, 0, 0, I2CLights.Range.Intake);
     	} else {
     		//We shouldn't get here...
     		lights.Fade(80, 80, 80, I2CLights.Range.Intake);

@@ -265,7 +265,7 @@ public class RobotMap {
 	public static final int TCP_SERVER_LEFT_DRIVE_TRAIN_SPEED = 1183;
 	public static final int TCP_SERVER_SHOOTER_SPEED = 1184;
 	public static final int TCP_SERVER_ROTATE_CONTROLLER_STRAIGHT = 1185;
-	
+	public static final int TCP_SERVER_ROTATE_CAMERA_CONTROLLER = 1186;
 	
 	/******************************************************************
 	 *                    ConsolePrinter PARAMETERS                   *

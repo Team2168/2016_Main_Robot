@@ -258,7 +258,7 @@ public boolean isMatchStart()
 }
 
 public double getRotationAngle() {
-	double message = Double.valueOf(dataReceived[1]).doubleValue();
+	double message = -Double.valueOf(dataReceived[1]).doubleValue();
 	return message;
 }
 
