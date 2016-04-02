@@ -147,9 +147,9 @@ public class OI {
 		commandsTestJoystick.ButtonB().whenPressed(new ShooterPIDPause());
 		commandsTestJoystick.ButtonB().whenPressed(new DrivePIDPause());
 
-		commandsTestJoystick.ButtonX().whenPressed(new DriveXDistance(8.5, 0.5, 0.01));
+		commandsTestJoystick.ButtonX().whenPressed(new DriveXDistance(12, 0.5, 0.01));
 		
-		commandsTestJoystick.ButtonY().whenPressed(new RotateXDistancePIDZZZ(-40, 0.7, 0.25, 0));
+		commandsTestJoystick.ButtonY().whenPressed(new RotateXDistancePIDZZZ(-40, 0.7, 0.25, 1));
 		
 		commandsTestJoystick.ButtonRightBumper().whenPressed(new DriveOverLowGoalAndFire());
 		

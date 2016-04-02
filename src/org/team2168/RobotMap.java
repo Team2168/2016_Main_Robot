@@ -243,7 +243,7 @@ public class RobotMap {
 	
 	
 	public static final double ROTATE_POSITION_P_Drive_Straight = 0.045;
-	public static final double ROTATE_POSITION_I_Drive_Straight = 0.00125;
+	public static final double ROTATE_POSITION_I_Drive_Straight = 0.001;
 	public static final double ROTATE_POSITION_D_Drive_Straight = 0.0064778888124088;
 
 	//Shooter PID Speed

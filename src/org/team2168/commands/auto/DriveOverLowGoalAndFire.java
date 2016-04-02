@@ -34,26 +34,26 @@ public class DriveOverLowGoalAndFire extends CommandGroup {
     	addSequential(new DriveXDistance(15, 0.5, 0.1));
     	
     	//Put up hood and rotate
-    	addParallel(new ShooterHoodFarShotPosition());
+//    	addParallel(new ShooterHoodFarShotPosition());
     	addSequential(new RotateXDistancePIDZZZ(57, 0.7, 0.25, 1));
     	
-    	addSequential(new Sleep(),5); // camera lag
-    	addSequential(new RotateXDistancePIDZZZCamera(0, 0.725, 0.35, 0.4));
-    	addSequential(new Sleep(),2);
-    	
-    	
-    	//Fire for 3 seconds
-    	addParallel(new DriveIndexerWithConstant(RobotMap.INDEXER_SPEED_CONSTANT_SHOOT), 1);
-    	addParallel(new IntakeWithConstant(RobotMap.INTAKE_SPEED_CONSTANT_SHOOT), 1);
-    	addSequential(new Sleep(), 3);
-    	
-    	//Clean Up Robot
-    	addParallel(new ShooterHoodStowPosition());
-    	addParallel(new ShooterPIDPause());
-    	addParallel(new DrivePIDPause());
-    	addParallel(new DriveIndexerWithConstant(0));
-    	addParallel(new IntakeWithConstant(0));
-    	
+//    	addSequential(new Sleep(),5); // camera lag
+//    	addSequential(new RotateXDistancePIDZZZCamera(0, 0.725, 0.35, 0.4));
+//    	addSequential(new Sleep(),2);
+//    	
+//    	
+//    	//Fire for 3 seconds
+//    	addParallel(new DriveIndexerWithConstant(RobotMap.INDEXER_SPEED_CONSTANT_SHOOT), 1);
+//    	addParallel(new IntakeWithConstant(RobotMap.INTAKE_SPEED_CONSTANT_SHOOT), 1);
+//    	addSequential(new Sleep(), 3);
+//    	
+//    	//Clean Up Robot
+//    	addParallel(new ShooterHoodStowPosition());
+//    	addParallel(new ShooterPIDPause());
+//    	addParallel(new DrivePIDPause());
+//    	addParallel(new DriveIndexerWithConstant(0));
+//    	addParallel(new IntakeWithConstant(0));
+//    	
     	
     	
     }

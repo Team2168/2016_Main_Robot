@@ -27,7 +27,7 @@ public class RunIndexerUntilBoulderPresent extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        	return Robot.indexer.isBoulderPresent();
+        	return Robot.indexer.isBoulderPresent() || Robot.shooter.isBoulderPresent();
     }
 
     // Called once after isFinished returns true
