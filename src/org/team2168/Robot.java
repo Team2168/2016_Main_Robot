@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.team2168.PID.sensors.TCPCamSensor;
 import org.team2168.commands.auto.DoNothing;
+import org.team2168.commands.auto.DriveOverChevalDeFrise;
+import org.team2168.commands.auto.DriveOverChevalDeFriseAndFire;
 import org.team2168.commands.auto.DriveOverDefense;
 import org.team2168.commands.auto.ReachDefense;
 import org.team2168.commands.auto.ShootFromSpyBox;
@@ -207,6 +209,8 @@ public class Robot extends IterativeRobot {
         autoChooser.addDefault("Default: Shoot From Spy Box", new ShootFromSpyBox());
         autoChooser.addObject("Do Nothing", new DoNothing());
         autoChooser.addObject("Drive Over Defense", new DriveOverDefense());
+        autoChooser.addObject("Drive over CDF", new DriveOverChevalDeFrise());
+        autoChooser.addObject("Drive over CDF and Fire", new DriveOverChevalDeFriseAndFire());
       //  autoChooser.addObject("Reach Defense", new ReachDefense());
     }
 	
