@@ -17,13 +17,12 @@ public class RotateXDistancePIDZZZCamera extends Command {
 	private double setPoint;
 	private double maxSpeed;
 	private double minSpeed;
-	private double error = 0.5;  // Rotational degree error, default 0 never ends.
-	private boolean absolute = false;
+	private double error = 0.3;  // Rotational degree error, default 0 never ends.
 	
     public RotateXDistancePIDZZZCamera() {
         // Use requires() here to declare subsystem dependencies
     	requires(Robot.drivetrain);
-    	this.setPoint = Robot.drivetrain.rotateController.getSetPoint();
+    	this.setPoint = Robot.drivetrain.rotateCameraController.getSetPoint();
     	this.maxSpeed = 1;
     	this.minSpeed = 0;
     }
@@ -48,33 +47,27 @@ public class RotateXDistancePIDZZZCamera extends Command {
     	this.error = error;
     }
     
-    public RotateXDistancePIDZZZCamera(double setPoint, double maxSpeed, double minSpeed, double error, boolean absolute) {
-    	this(setPoint, maxSpeed, minSpeed, error);
-    	this.absolute = absolute;
-    }
     // Called just before this Command runs the first time
     
 	protected void initialize() {
-		if (!absolute)
-			this.setPoint = this.setPoint + Robot.drivetrain.getHeading();
-		Robot.drivetrain.rotateController.reset();
-		setPoint = Robot.drivetrain.getHeading() - Robot.tcpCamSensor.getRotationAngle() + RobotMap.CAMERA_OFFSET_ANGLE;
-		Robot.drivetrain.rotateController.setSetPoint(setPoint);
-		Robot.drivetrain.rotateController.setMaxPosOutput(maxSpeed);
-		Robot.drivetrain.rotateController.setMaxNegOutput(-maxSpeed);
-		Robot.drivetrain.rotateController.setMinPosOutput(minSpeed);
-		Robot.drivetrain.rotateController.setMinNegOutput(-minSpeed);
-		Robot.drivetrain.rotateController.setAcceptErrorDiff(error);
+
+		Robot.drivetrain.rotateCameraController.reset();
+		this.setPoint += RobotMap.CAMERA_OFFSET_ANGLE;
+		Robot.drivetrain.rotateCameraController.setSetPoint(setPoint);
+		Robot.drivetrain.rotateCameraController.setMaxPosOutput(maxSpeed);
+		Robot.drivetrain.rotateCameraController.setMaxNegOutput(-maxSpeed);
+		Robot.drivetrain.rotateCameraController.setMinPosOutput(minSpeed);
+		Robot.drivetrain.rotateCameraController.setMinNegOutput(-minSpeed);
+		Robot.drivetrain.rotateCameraController.setAcceptErrorDiff(error);
 		//Robot.drivetrain.gyroSPI.reset();
-		Robot.drivetrain.rotateController.Enable();
+		Robot.drivetrain.rotateCameraController.Enable();
 		
     }
 
     // Called repeatedly when this Command is scheduled to run
     
 	protected void execute() {
-		setPoint = Robot.drivetrain.getHeading() - Robot.tcpCamSensor.getRotationAngle();
-		Robot.drivetrain.tankDrive(Robot.drivetrain.rotateController.getControlOutput(),-Robot.drivetrain.rotateController.getControlOutput());
+		Robot.drivetrain.tankDrive(Robot.drivetrain.rotateCameraController.getControlOutput(),-Robot.drivetrain.rotateCameraController.getControlOutput());
 	
 		
     }
@@ -83,14 +76,14 @@ public class RotateXDistancePIDZZZCamera extends Command {
     
 	protected boolean isFinished() {
 		//TODO Should the command be stopped????????!?!?!?!?!? after PID is tuned
-//    	if( Robot.drivetrain.rotateController.isFinished())
+//    	if( Robot.drivetrain.rotateCameraController.isFinished())
 //    	{
 //    		setPoint = Robot.drivetrain.getHeading() - Robot.tcpCamSensor.getRotationAngle();
-//    		Robot.drivetrain.rotateController.setSetPoint(setPoint);
+//    		Robot.drivetrain.rotateCameraController.setSetPoint(setPoint);
 //    	}
 //    	
     	
-		return Robot.drivetrain.rotateController.isFinished();
+		return Robot.drivetrain.rotateCameraController.isFinished();
 //    	return false; //return cam is scorable
 		
     }
@@ -98,7 +91,7 @@ public class RotateXDistancePIDZZZCamera extends Command {
     // Called once after isFinished returns true
     
 	protected void end() {
-		Robot.drivetrain.rotateController.Pause();
+		Robot.drivetrain.rotateCameraController.Pause();
     }
 
     // Called when another command which requires one or more of the same

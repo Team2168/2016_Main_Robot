@@ -7,6 +7,7 @@ import org.team2168.PID.controllers.PIDSpeed;
 import org.team2168.PID.sensors.AverageEncoder;
 import org.team2168.PID.sensors.BNOHeading;
 import org.team2168.PID.sensors.IMU;
+import org.team2168.PID.sensors.TCPCamSensor;
 import org.team2168.commands.drivetrain.DriveWithJoysticks;
 import org.team2168.utils.BNO055;
 import org.team2168.utils.TCPSocketSender;
@@ -36,6 +37,7 @@ public class Drivetrain extends Subsystem {
 	private BNO055 gyro;
 	private BNOHeading stupidPIDSensorGyro;
 	public IMU imu;
+	public TCPCamSensor tcpCamSensor;
 
 	public AverageEncoder drivetrainLeftEncoder;
 	public AverageEncoder drivetrainRightEncoder;
@@ -44,6 +46,7 @@ public class Drivetrain extends Subsystem {
 	public PIDPosition driveTrainPosController;
 	public PIDPosition rotateController;
 	public PIDPosition rotateDriveStraightController;
+	public PIDPosition rotateCameraController;	
 
 	//declare speed controllers
 	public PIDSpeed rightSpeedController;
@@ -155,6 +158,7 @@ public class Drivetrain extends Subsystem {
 		
 		imu = new IMU(drivetrainLeftEncoder,drivetrainRightEncoder,RobotMap.WHEEL_BASE);
 
+		tcpCamSensor = new TCPCamSensor(41234, 100);
 
 		//enable shifting solenoids
 		gearShifter = new DoubleSolenoid(RobotMap.DRIVETRAIN_LOW_GEAR, RobotMap.DRIVETRAIN_HIGH_GEAR);
@@ -162,6 +166,14 @@ public class Drivetrain extends Subsystem {
 		//DriveStraight Controller
 				rotateController = new PIDPosition(
 						"RotationController",
+						RobotMap.ROTATE_POSITION_P,
+						RobotMap.ROTATE_POSITION_I,
+						RobotMap.ROTATE_POSITION_D,
+						stupidPIDSensorGyro,
+						RobotMap.DRIVE_TRAIN_PID_PERIOD);
+				
+				rotateCameraController = new PIDPosition(
+						"RotationCameraController",
 						RobotMap.ROTATE_POSITION_P,
 						RobotMap.ROTATE_POSITION_I,
 						RobotMap.ROTATE_POSITION_D,
@@ -208,6 +220,7 @@ public class Drivetrain extends Subsystem {
 				driveTrainPosController.setSIZE(RobotMap.DRIVE_TRAIN_PID_ARRAY_SIZE);
 				rotateController.setSIZE(RobotMap.DRIVE_TRAIN_PID_ARRAY_SIZE);
 				rotateDriveStraightController.setSIZE(RobotMap.DRIVE_TRAIN_PID_ARRAY_SIZE);
+				rotateCameraController.setSIZE(RobotMap.DRIVE_TRAIN_PID_ARRAY_SIZE);
 
 				//start controller threads
 				rightSpeedController.startThread();
@@ -215,6 +228,7 @@ public class Drivetrain extends Subsystem {
 				driveTrainPosController.startThread();
 				rotateController.startThread();
 				rotateDriveStraightController.startThread();
+				rotateCameraController.startThread();
 
 				
 				

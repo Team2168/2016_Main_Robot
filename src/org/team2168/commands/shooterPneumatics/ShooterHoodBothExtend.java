@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ShooterHoodFarShotPosition extends Command {
+public class ShooterHoodBothExtend extends Command {
 
-    public ShooterHoodFarShotPosition() {
+    public ShooterHoodBothExtend() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.shooterPneumatics);
     }
@@ -20,13 +20,13 @@ public class ShooterHoodFarShotPosition extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.shooterPneumatics.retractShooterFWD();
+    	Robot.shooterPneumatics.extendShooterFWD();
     	Robot.shooterPneumatics.extendShooterAFT();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.shooterPneumatics.isShooterFarShotPosition();
+        return (Robot.shooterPneumatics.isShooterAFTExtended() && Robot.shooterPneumatics.isShooterFWDExtended());
     }
 
     // Called once after isFinished returns true

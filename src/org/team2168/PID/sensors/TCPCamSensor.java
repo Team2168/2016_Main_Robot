@@ -21,7 +21,7 @@ import edu.wpi.first.wpilibj.DriverStation;
  * @author HarrilalEngineering
  */
 
-public class TCPCamSensor {
+public class TCPCamSensor implements PIDSensorInterface{
 	private int port;
 	private String messageOut;
 	private byte[] buf;
@@ -308,6 +308,24 @@ public boolean isMJPEGConnected()
 	else
 		return false;
 	
+}
+
+@Override
+public double getRate() {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
+@Override
+public void reset() {
+	// TODO Auto-generated method stub
+	
+}
+
+@Override
+public double getPos() {
+	// TODO Auto-generated method stub
+	return getRotationAngle();
 }
 
 

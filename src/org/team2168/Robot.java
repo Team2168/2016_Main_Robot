@@ -51,7 +51,6 @@ public class Robot extends IterativeRobot {
 	public static ShooterHood shooterhood;
 	public static IntakeRoller intakeRoller;
 	public static IntakePosition intakePosition;
-	public static TCPCamSensor tcpCamSensor;
 	public static Pneumatics pneumatics;
 	public static ShooterPneumatics shooterPneumatics;
 	
@@ -85,7 +84,6 @@ public class Robot extends IterativeRobot {
     	intakeRoller = IntakeRoller.getInstance();
         intakePosition = IntakePosition.getInstance();
         pneumatics = Pneumatics.getInstance();
-        tcpCamSensor = new TCPCamSensor(41234, 0);
         shooterPneumatics = ShooterPneumatics.getInstance();
         lights = I2CLights.getInstance();
 
