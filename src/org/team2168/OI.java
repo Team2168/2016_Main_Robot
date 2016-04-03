@@ -136,10 +136,7 @@ public class OI {
 		
 		
 		
-		
-		
-		
-		
+	
 		/********************************************
 		 *        Command Test  Joystick Buttons         *
 		 ********************************************/
@@ -165,7 +162,7 @@ public class OI {
 		//commandsTestJoystick.ButtonRightTrigger().whenPressed(new ShooterHoodFarShotPosition());
 		//commandsTestJoystick.ButtonLeftTrigger().whenPressed(new ShooterHoodCloseShotPosition());
 		
-		commandsTestJoystick.ButtonStart().whenPressed(new RotateXDistancePIDZZZCameraWithGyro(setPoint));
+		commandsTestJoystick.ButtonStart().whenPressed(new RotateXDistancePIDZZZCameraWithGyro(0, 0.4, 0.22, 0.1));
 		
 //		commandsTestJoystick.ButtonRightBumper().whenPressed(new ShootFromSpyBoxNewHood());
 //		commandsTestJoystick.ButtonLeftBumper().whenPressed(new DriveOverLowGoalAndFire());
