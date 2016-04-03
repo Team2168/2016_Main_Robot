@@ -237,7 +237,7 @@ public class Robot extends IterativeRobot {
 	}
 	
 	private void setFlashlight() {
-		if(indexer.TurnFlashlightOn()) {
+		if(indexer.TurnFlashlightOn() || shooter.isBoulderPresent()) {
     		flashlight.set(Relay.Value.kForward);
     	} else {
     		flashlight.set(Relay.Value.kOff);
@@ -254,10 +254,10 @@ public class Robot extends IterativeRobot {
     	} else if(Robot.driverstation.isDisabled()) {
     		//Robot is disabled
     		lights.Fade(255, 0, 0, I2CLights.Range.Intake);
-		} else if((shooter.getSpeed() > 100) && shooter.shooterSpeedController.isFinished()) {
+		} else if((shooter.getSpeed() > 2000) && shooter.shooterSpeedController.isFinished()) {
     		//shooter is up to speed - slash green
     		lights.FastBlink(0, 255, 0, I2CLights.Range.Intake);
-    	} else if((shooter.getSpeed() > 100) && !shooter.shooterSpeedController.isFinished()) {
+    	} else if((shooter.getSpeed() > 2000) && !shooter.shooterSpeedController.isFinished()) {
     		//shooter is running, but not at speed yet
     		lights.FastBlink(255, 0, 0, I2CLights.Range.Intake);
     	} else if(indexer.getAveragedRawBoulderDistance() > 1.5

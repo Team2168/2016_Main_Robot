@@ -177,7 +177,7 @@ public class Drivetrain extends Subsystem {
 						RobotMap.ROTATE_POSITION_P,
 						RobotMap.ROTATE_POSITION_I,
 						RobotMap.ROTATE_POSITION_D,
-						stupidPIDSensorGyro,
+						tcpCamSensor,
 						RobotMap.DRIVE_TRAIN_PID_PERIOD);
 				
 				rotateDriveStraightController = new PIDPosition(

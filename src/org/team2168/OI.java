@@ -1,5 +1,13 @@
 package org.team2168;
 
+import java.sql.Connection;
+import java.sql.Driver;
+import java.sql.DriverPropertyInfo;
+import java.sql.SQLException;
+import java.sql.SQLFeatureNotSupportedException;
+import java.util.Properties;
+import java.util.logging.Logger;
+
 import org.team2168.commands.auto.DriveOverLowGoalAndFire;
 import org.team2168.commands.auto.ShootFromSpyBoxAutoAlign;
 import org.team2168.commands.auto.ShootFromSpyBoxNewHood;
@@ -92,8 +100,7 @@ public class OI {
 		operatorJoystick.ButtonBack().whenPressed(new DrivePIDPause());
 		
 		//Camera Shot Align (Start Button)
-		operatorJoystick.ButtonStart().whenPressed(new RotateXDistancePIDZZZCamera(0, 0.725, 0.22, 0.1));
-		
+		operatorJoystick.ButtonStart().whenPressed(new RotateXDistancePIDZZZCamera(0.8, 0.4, 0.25, 0.1));
 		
 		//Shoot Ball (A)
 		operatorJoystick.ButtonA().whileHeld(new DriveIndexerWithConstant(RobotMap.INDEXER_SPEED_CONSTANT_SHOOT));
@@ -149,8 +156,8 @@ public class OI {
 
 		commandsTestJoystick.ButtonX().whenPressed(new DriveXDistance(12, 0.5, 0.01));
 		
-		commandsTestJoystick.ButtonY().whenPressed(new RotateXDistancePIDZZZ(-40, 0.7, 0.25, 1));
-		
+		//commandsTestJoystick.ButtonY().whenPressed(new RotateXDistancePIDZZZ(-40, 0.7, 0.25, 1));
+		commandsTestJoystick.ButtonY().whenPressed(new DriveOverLowGoalAndFire());
 		commandsTestJoystick.ButtonRightBumper().whenPressed(new DriveOverLowGoalAndFire());
 		
 		commandsTestJoystick.ButtonStart().whenPressed(new ShooterHoodBothExtend());

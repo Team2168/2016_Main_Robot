@@ -235,8 +235,8 @@ public class RobotMap {
 	public static final double DRIVE_TRAIN_RIGHT_POSITION_I = 0.0001412646174233;
 	public static final double DRIVE_TRAIN_RIGHT_POSITION_D = 0.0074778888124088;
 
-	public static final double ROTATE_POSITION_P = 0.055;
-	public static final double ROTATE_POSITION_I = 0.0221;
+	public static final double ROTATE_POSITION_P = 0.028;
+	public static final double ROTATE_POSITION_I = 0.02;
 	public static final double ROTATE_POSITION_D = 0.0067;
 	
 	
