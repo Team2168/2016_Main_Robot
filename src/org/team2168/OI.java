@@ -160,10 +160,12 @@ public class OI {
 		commandsTestJoystick.ButtonY().whenPressed(new DriveOverLowGoalAndFire());
 		commandsTestJoystick.ButtonRightBumper().whenPressed(new DriveOverLowGoalAndFire());
 		
-		commandsTestJoystick.ButtonStart().whenPressed(new ShooterHoodBothExtend());
-		commandsTestJoystick.ButtonBack().whenPressed(new ShooterHoodStowPosition());
-		commandsTestJoystick.ButtonRightTrigger().whenPressed(new ShooterHoodFarShotPosition());
-		commandsTestJoystick.ButtonLeftTrigger().whenPressed(new ShooterHoodCloseShotPosition());
+		//commandsTestJoystick.ButtonStart().whenPressed(new ShooterHoodBothExtend());
+		//commandsTestJoystick.ButtonBack().whenPressed(new ShooterHoodStowPosition());
+		//commandsTestJoystick.ButtonRightTrigger().whenPressed(new ShooterHoodFarShotPosition());
+		//commandsTestJoystick.ButtonLeftTrigger().whenPressed(new ShooterHoodCloseShotPosition());
+		
+		commandsTestJoystick.ButtonStart().whenPressed(new RotateXDistancePIDZZZCameraWithGyro(setPoint));
 		
 //		commandsTestJoystick.ButtonRightBumper().whenPressed(new ShootFromSpyBoxNewHood());
 //		commandsTestJoystick.ButtonLeftBumper().whenPressed(new DriveOverLowGoalAndFire());
