@@ -27,7 +27,7 @@ public class DriveOverLowGoalAndFire extends CommandGroup {
 
     	//stow hood, lower intake and spin up wheel
     	addParallel(new ShooterHoodStowPosition());
-    	addParallel(new DriveShooterPIDSpeed(6300));
+    	addParallel(new DriveShooterPIDSpeed(6700));
     	addSequential(new IntakeExtend(), 3);
     	
     	//Drive over defense
@@ -38,7 +38,7 @@ public class DriveOverLowGoalAndFire extends CommandGroup {
     	addSequential(new RotateXDistancePIDZZZ(47, 0.5, 0.25, 1));
     	
     	addSequential(new Sleep(),2); // camera lag
-    	addSequential(new RotateXDistancePIDZZZCamera(0.8, 0.5, 0.25, 0.1));
+    	addSequential(new RotateXDistancePIDZZZCamera(0, 0.5, 0.25, 0.1));
     	addSequential(new Sleep(),2);
     	
     	

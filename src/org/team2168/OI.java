@@ -162,7 +162,7 @@ public class OI {
 		//commandsTestJoystick.ButtonRightTrigger().whenPressed(new ShooterHoodFarShotPosition());
 		//commandsTestJoystick.ButtonLeftTrigger().whenPressed(new ShooterHoodCloseShotPosition());
 		
-		commandsTestJoystick.ButtonStart().whenPressed(new RotateXDistancePIDZZZCameraWithGyro(0, 0.4, 0.22, 0.1));
+		commandsTestJoystick.ButtonStart().whenPressed(new RotateXDistancePIDZZZCameraWithGyro(0, 0.5, 0.22, 0.3));
 		
 //		commandsTestJoystick.ButtonRightBumper().whenPressed(new ShootFromSpyBoxNewHood());
 //		commandsTestJoystick.ButtonLeftBumper().whenPressed(new DriveOverLowGoalAndFire());

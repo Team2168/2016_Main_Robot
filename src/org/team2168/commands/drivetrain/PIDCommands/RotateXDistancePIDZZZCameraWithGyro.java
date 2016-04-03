@@ -56,9 +56,8 @@ public class RotateXDistancePIDZZZCameraWithGyro extends Command {
     
 	protected void initialize() {
 		if (!absolute)
-			this.setPoint = this.setPoint + Robot.drivetrain.getHeading();
+			this.setPoint = Robot.drivetrain.getHeading() - Robot.drivetrain.tcpCamSensor.getRotationAngle() + RobotMap.CAMERA_OFFSET_ANGLE;
 		Robot.drivetrain.rotateController.reset();
-		setPoint = Robot.drivetrain.getHeading() - Robot.drivetrain.tcpCamSensor.getRotationAngle() + RobotMap.CAMERA_OFFSET_ANGLE;
 		Robot.drivetrain.rotateController.setSetPoint(setPoint);
 		Robot.drivetrain.rotateController.setMaxPosOutput(maxSpeed);
 		Robot.drivetrain.rotateController.setMaxNegOutput(-maxSpeed);
@@ -73,6 +72,8 @@ public class RotateXDistancePIDZZZCameraWithGyro extends Command {
     // Called repeatedly when this Command is scheduled to run
     
 	protected void execute() {
+		
+		//keep robot moving until we are at center
 		setPoint = Robot.drivetrain.getHeading() - Robot.drivetrain.tcpCamSensor.getRotationAngle();
 		Robot.drivetrain.tankDrive(Robot.drivetrain.rotateController.getControlOutput(),-Robot.drivetrain.rotateController.getControlOutput());
 	
@@ -89,10 +90,10 @@ public class RotateXDistancePIDZZZCameraWithGyro extends Command {
 //    		Robot.drivetrain.rotateController.setSetPoint(setPoint);
 //    	}
 //    	
-    	
-		return Robot.drivetrain.rotateController.isFinished();
-//    	return false; //return cam is scorable
+//		
 		
+//		return Robot.drivetrain.rotateController.isFinished() || Math.abs(Robot.drivetrain.tcpCamSensor.getPos()) < error;
+		return Math.abs(Robot.drivetrain.tcpCamSensor.getPos()) < error;
     }
 
     // Called once after isFinished returns true

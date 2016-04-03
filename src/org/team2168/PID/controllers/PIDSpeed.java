@@ -885,26 +885,32 @@ try {
 	 * Function to see if the wheel is at steady state speed
 	 */
 	private void atSpeed() {
-		// finish is based on verifying the voltage is constant over some length
-		// of time
-		if (count == this.atSpeed.length)
-			count = 0;
-
-		atSpeed[count] = co;
-		count++;
-
-		int inRange = 0;
-		for (int j = 1; j < atSpeed.length; j++) {
-			if ((this.cp < this.sp + 25) && (this.cp > this.sp - 25))
-				inRange++;
-			else
-				inRange = 0;
-		}
-		if (inRange == atSpeed.length - 1)
+//		// finish is based on verifying the voltage is constant over some length
+//		// of time
+//		if (count == this.atSpeed.length)
+//			count = 0;
+//
+//		atSpeed[count] = co;
+//		count++;
+//
+//		int inRange = 0;
+//		for (int j = 1; j < atSpeed.length; j++) {
+//			if ((this.cp < this.sp + 25) && (this.cp > this.sp - 25))
+//				inRange++;
+//			else
+//				inRange = 0;
+//		}
+//		if (inRange == atSpeed.length - 1)
+//			isFinished = true;
+//		else {
+//			isFinished = false;
+//		}
+		
+		
+		if(this.cp >= this.sp - 30)
 			isFinished = true;
-		else {
+		else 
 			isFinished = false;
-		}
 
 	}
 
