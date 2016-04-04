@@ -273,7 +273,16 @@ public boolean isClientConnected()
 
 }
 
+public boolean isTargetScorable()
+{
+	int message = Integer.valueOf(dataReceived[4]).intValue();
+	
+	if (message == 1)
+		return true;
+	else
+		return false;
 
+}
 
 public boolean isProcessingTreadRunning()
 {
@@ -302,6 +311,17 @@ public boolean isCameraConnected()
 public boolean isMJPEGConnected()
 {
 	int message = Integer.valueOf(dataReceived[7]).intValue();
+	
+	if (message == 1)
+		return true;
+	else
+		return false;
+	
+}
+
+public boolean isTargetDetected()
+{
+	int message = Integer.valueOf(dataReceived[6]).intValue();
 	
 	if (message == 1)
 		return true;

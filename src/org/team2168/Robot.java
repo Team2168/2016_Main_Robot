@@ -14,6 +14,8 @@ import org.team2168.commands.auto.DoNothing;
 import org.team2168.commands.auto.DriveOverChevalDeFrise;
 import org.team2168.commands.auto.DriveOverChevalDeFriseAndFire;
 import org.team2168.commands.auto.DriveOverDefense;
+import org.team2168.commands.auto.DriveOverDefenseAndFireCenter;
+import org.team2168.commands.auto.DriveOverDefenseAndRotateFromDifferentPosition;
 import org.team2168.commands.auto.ReachDefense;
 import org.team2168.commands.auto.ShootFromSpyBox;
 import org.team2168.commands.pneumatics.StartCompressor;
@@ -212,6 +214,8 @@ public class Robot extends IterativeRobot {
         autoChooser.addObject("Drive Over Defense", new DriveOverDefense());
         autoChooser.addObject("Drive over CDF", new DriveOverChevalDeFrise());
         autoChooser.addObject("Drive over CDF and Fire", new DriveOverChevalDeFriseAndFire());
+        autoChooser.addObject("Driver Over Defense and Shoot Center", new DriveOverDefenseAndFireCenter());
+        autoChooser.addObject("Drive Over Defense and Shoot From Fourth", new DriveOverDefenseAndRotateFromDifferentPosition(-5));
       //  autoChooser.addObject("Reach Defense", new ReachDefense());
     }
 	
@@ -248,12 +252,12 @@ public class Robot extends IterativeRobot {
 	 * Update the patterns on the light stip over I2C. 
 	 */
 	private static void updateLED() {
-    	if (isAutoMode()) {
+    	//if (isAutoMode()) {
     		//Lights ALL strips in a rainbow pattern
-    		lights.Rainbow();
-    	} else if(Robot.driverstation.isDisabled()) {
+    		//elights.Rainbow();
+    	if(Robot.driverstation.isDisabled()) {
     		//Robot is disabled
-    		lights.Fade(255, 0, 0, I2CLights.Range.Intake);
+    		lights.ChaseAll(I2CLights.Range.Intake);
 		} else if((shooter.getSpeed() > 2000) && shooter.shooterSpeedController.isFinished()) {
     		//shooter is up to speed - slash green
     		lights.FastBlink(0, 255, 0, I2CLights.Range.Intake);
@@ -266,13 +270,13 @@ public class Robot extends IterativeRobot {
     		lights.Solid(255, 0, 0, I2CLights.Range.Intake);
     	} else if(indexer.getAveragedRawBoulderDistance() < 1.5
     			&& shooter.getAveragedRawBoulderDistance() < 1.5) {
-    		//No ball in the robot
-    		lights.Solid(0, 0, 0, I2CLights.Range.Intake);
+    		//No ball in the robot, yellow lights solid
+    		lights.Solid(75, 75, 0, I2CLights.Range.Intake);
     	} else {
     		//We shouldn't get here...
     		lights.Fade(80, 80, 80, I2CLights.Range.Intake);
     	}
-    	
+    
     }
 
 }

@@ -19,7 +19,9 @@ public class I2CLights {
 		SlowBlink (3),
 		Fade (4),
 		Chase (5),
-		Rainbow (6);
+		Rainbow (6),
+		ChaseAll(7);
+		
 		private final int val;
 
 		Pattern(int val) {
@@ -150,5 +152,13 @@ public class I2CLights {
     public void Rainbow(){
     	writeLED(0,0,0,Pattern.Rainbow,Range.Intake);
     	writeLED(0,0,0,Pattern.Rainbow,Range.Shooter);
+    }
+    
+    /**
+     * Chases in red green and blue on range.
+     * @param range
+     */
+    public void ChaseAll(Range range) {
+    	writeLED(0, 0, 0, Pattern.ChaseAll, range);
     }
 }

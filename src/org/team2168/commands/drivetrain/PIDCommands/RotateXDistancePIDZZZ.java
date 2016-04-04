@@ -59,6 +59,8 @@ public class RotateXDistancePIDZZZ extends Command {
 		double sp = 0;
 		if (!absolute)
 			sp = this.setPoint + Robot.drivetrain.getHeading();
+		else
+			sp = this.setPoint;
 		Robot.drivetrain.rotateController.reset();
 
 //		Robot.drivetrain.rotateController.setpGain(RobotMap.ROTATE_POSITION_P);

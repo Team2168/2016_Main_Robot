@@ -76,6 +76,10 @@ public class ConsolePrinter {
 			SmartDashboard.putNumber("Vision Target BEaring", Robot.drivetrain.tcpCamSensor.getRotationAngle());
 			
 			
+			SmartDashboard.putBoolean("Is Target Detected", Robot.drivetrain.tcpCamSensor.isTargetDetected());
+			SmartDashboard.putBoolean("Is Target Scorable", Robot.drivetrain.tcpCamSensor.isTargetScorable());
+			
+			
 			SmartDashboard.putNumber("Left Encoder Distance",Robot.drivetrain.getLeftPosition());
 			SmartDashboard.putNumber("Right Encoder Distance:",Robot.drivetrain.getRightPosition());
 
