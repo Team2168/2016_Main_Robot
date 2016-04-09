@@ -33,18 +33,34 @@ public class IntakeRoller extends Subsystem {
 	 * private constructor for the Singleton intake subsystem
 	 * @author jkaroul
 	 */
-	private IntakeRoller()
-	{
-		intakeWheel1 = new Victor(RobotMap.INTAKE_WHEEL_1);
-		intakeWheel1.setExpiration(0.1);
-		intakeWheel1.setSafetyEnabled(true);
+	private IntakeRoller(){
 		
-		intakeWheel2 = new Victor(RobotMap.INTAKE_WHEEL_2);
-		intakeWheel2.setExpiration(0.1);
-		intakeWheel2.setSafetyEnabled(true);
+		if(Robot.isPracticeRobot())
+		{
+		
+			intakeWheel1 = new Victor(RobotMap.INTAKE_WHEEL_1_PBOT);
+			intakeWheel1.setExpiration(0.1);
+			intakeWheel1.setSafetyEnabled(true);
+		
+			intakeWheel2 = new Victor(RobotMap.INTAKE_WHEEL_2_PBOT);
+			intakeWheel2.setExpiration(0.1);
+			intakeWheel2.setSafetyEnabled(true);	
+		}	
+		else 
+		{
+			
+			intakeWheel1 = new Victor(RobotMap.INTAKE_WHEEL_1);
+			intakeWheel1.setExpiration(0.1);
+			intakeWheel1.setSafetyEnabled(true);
+		
+			intakeWheel2 = new Victor(RobotMap.INTAKE_WHEEL_2);
+			intakeWheel2.setExpiration(0.1);
+			intakeWheel2.setSafetyEnabled(true);	
+		}	
 		
 		intakeDistanceSensor = new AnalogInput(RobotMap.INTAKE_DISTANCE_SENSOR);
 	}
+	
 	
 	/**
 	 * takes in a double as a speed and sets it too the intake wheel motors

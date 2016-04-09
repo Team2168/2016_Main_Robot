@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 import org.team2168.utils.Util;
@@ -171,7 +172,7 @@ public class TCPCamSensor implements PIDSensorInterface{
 				try {
 					os = sc.getOutputStream();
 
-					while (true) {
+					while (sendEnable) {
 						// we want to send if match has started to camera
 						int matchStart = 0;
 
@@ -183,7 +184,7 @@ public class TCPCamSensor implements PIDSensorInterface{
 
 						System.out.println("Sending Match Start: " + messageOut);
 
-						buf = messageOut.getBytes("US_ASCII");
+						buf = messageOut.getBytes(StandardCharsets.US_ASCII);
 
 						count++;
 
