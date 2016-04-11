@@ -63,7 +63,7 @@ public class RotateXDistancePIDZZZCameraWithGyro extends Command {
 		Robot.drivetrain.rotateController.setMaxNegOutput(-maxSpeed);
 		Robot.drivetrain.rotateController.setMinPosOutput(minSpeed);
 		Robot.drivetrain.rotateController.setMinNegOutput(-minSpeed);
-		Robot.drivetrain.rotateController.setAcceptErrorDiff(error);
+		//Robot.drivetrain.rotateController.setAcceptErrorDiff(error);
 		//Robot.drivetrain.gyroSPI.reset();
 		Robot.drivetrain.rotateController.Enable();
 		
@@ -74,7 +74,7 @@ public class RotateXDistancePIDZZZCameraWithGyro extends Command {
 	protected void execute() {
 		
 		//keep robot moving until we are at center
-		setPoint = Robot.drivetrain.getHeading() - Robot.drivetrain.tcpCamSensor.getRotationAngle();
+		Robot.drivetrain.rotateController.setSetPoint(Robot.drivetrain.getHeading() - Robot.drivetrain.tcpCamSensor.getRotationAngle());
 		Robot.drivetrain.tankDrive(Robot.drivetrain.rotateController.getControlOutput(),-Robot.drivetrain.rotateController.getControlOutput());
 	
 		

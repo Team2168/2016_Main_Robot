@@ -24,6 +24,7 @@ import org.team2168.subsystems.Shooter;
 import org.team2168.subsystems.ShooterHood;
 import org.team2168.subsystems.ShooterPneumatics;
 import org.team2168.utils.ConsolePrinter;
+import org.team2168.utils.Debouncer;
 import org.team2168.utils.I2CLights;
 import org.team2168.utils.I2CLights.Range;
 import org.team2168.utils.PowerDistribution;
@@ -61,7 +62,13 @@ public class Robot extends IterativeRobot {
     public static SendableChooser autoChooser;
     
     static boolean autoMode;
-    
+    private static boolean matchStarted = false;
+    public static int gyroReinits;
+	private double lastAngle;
+	private Debouncer gyroDriftDetector = new Debouncer(1.0);
+	public static boolean gyroCalibrating = false;
+	private boolean lastGyroCalibrating = false;
+	private double curAngle = 0.0;
     
     public static DriverStation driverstation;
 	public static PowerDistribution pdp;
@@ -110,6 +117,9 @@ public class Robot extends IterativeRobot {
 		
 		flashlight = new Relay(RobotMap.FLASHLIGHT_RELAY);
         flashlight.set(Relay.Value.kOff);
+        
+        drivetrain.calibrateGyro();
+        
         System.out.println("Robot Done Loading");
     }
     
@@ -134,6 +144,7 @@ public class Robot extends IterativeRobot {
      */
     public void disabledInit(){
     		autoMode = false;
+    		matchStarted = false;
     }
 	
     /**
@@ -145,6 +156,9 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 		updateLED();
 		autoMode = false;
+		
+		// Check to see if the gyro is drifting, if it is re-initialize it.
+		gyroReinit();
      }
 
 	/**
@@ -158,6 +172,11 @@ public class Robot extends IterativeRobot {
 	 */
     public void autonomousInit() {
     	autoMode = true;
+    	
+		matchStarted = true;
+		drivetrain.stopGyroCalibrating();
+		drivetrain.gyroSPI.reset();
+    	
         autonomousCommand = (Command) autoChooser.getSelected();
     	
     	// schedule the autonomous command (example)
@@ -179,6 +198,10 @@ public class Robot extends IterativeRobot {
      */
     public void teleopInit() {
     	autoMode = false;
+    	
+		matchStarted = true;
+		drivetrain.stopGyroCalibrating();
+    	
 		// This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
@@ -278,5 +301,32 @@ public class Robot extends IterativeRobot {
     	}
     
     }
+	
+	/**
+	 * Method which checks to see if gyro drifts and resets the gyro. Call this
+	 * in a loop.
+	 */
+	private void gyroReinit() {
+		//Check to see if the gyro is drifting, if it is re-initialize it.
+		//Thanks FRC254 for orig. idea.
+		curAngle = drivetrain.getHeading();
+		gyroCalibrating = drivetrain.isGyroCalibrating();
+
+		if (lastGyroCalibrating && !gyroCalibrating) {
+			//if we've just finished calibrating the gyro, reset
+			gyroDriftDetector.reset();
+			curAngle = drivetrain.getHeading();
+			System.out.println("Finished auto-reinit gyro");
+		} else if (gyroDriftDetector.update(Math.abs(curAngle - lastAngle) > (0.75 / 50.0))
+				&& !matchStarted && !gyroCalibrating) {
+			//&& gyroReinits < 3) {
+			gyroReinits++;
+			System.out.println("!!! Sensed drift, about to auto-reinit gyro ("+ gyroReinits + ")");
+			drivetrain.calibrateGyro();
+		}
+
+		lastAngle = curAngle;
+		lastGyroCalibrating = gyroCalibrating;
+	}
 
 }

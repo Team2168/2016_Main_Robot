@@ -102,7 +102,7 @@ public class DriveXDistance extends Command{
 	protected void execute() {
 
 		lastRotateOutput = Robot.drivetrain.rotateDriveStraightController.getControlOutput();
-		double headingCorrection = (Robot.drivetrain.rotateDriveStraightController.getControlOutput()) + lastRotateOutput;
+		double headingCorrection = (Robot.drivetrain.rotateDriveStraightController.getControlOutput()) ;
 
 		Robot.drivetrain.tankDrive(Robot.drivetrain.driveTrainPosController.getControlOutput()+headingCorrection, Robot.drivetrain.driveTrainPosController.getControlOutput()-headingCorrection);
 		//finished = Robot.drivetrain.driveTrainPosController.isFinished();

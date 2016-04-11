@@ -1146,14 +1146,28 @@ public class PIDPosition implements TCPMessageInterface {
 			coNotSaturated = co;
 
 			
+//			//deadband compensation
+//			if(co < minPosOutput && co >= 0) //controller in pos deadband
+//			{
+//				errsum = (minPosOutput / i) - prop - deriv;
+//				integ = errsum * i;
+//				co = prop + deriv + integ;
+//			}
+//			else if (co > minNegOutput && co <= 0) //controller in neg deadband)
+//			{
+//				errsum = (minNegOutput / i) - prop - deriv;
+//				integ = errsum * i;
+//				co = prop + deriv + integ;
+//			}
+			
 			//deadband compensation
-			if(co < minPosOutput && co >= 0) //controller in pos deadband
+			if((err >= 0) && (co > minNegOutput && co < minPosOutput) ) //controller in pos deadband
 			{
 				errsum = (minPosOutput / i) - prop - deriv;
 				integ = errsum * i;
 				co = prop + deriv + integ;
 			}
-			else if (co > minNegOutput && co <= 0) //controller in neg deadband)
+			else if((err < 0) && (co > minNegOutput && co < minPosOutput) ) //controller in neg deadband)
 			{
 				errsum = (minNegOutput / i) - prop - deriv;
 				integ = errsum * i;

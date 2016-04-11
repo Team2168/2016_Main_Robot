@@ -4,6 +4,7 @@ import org.team2168.Robot;
 import org.team2168.RobotMap;
 import org.team2168.PID.controllers.PIDPosition;
 import org.team2168.PID.controllers.PIDSpeed;
+import org.team2168.PID.sensors.ADXRS453Gyro;
 import org.team2168.PID.sensors.AverageEncoder;
 import org.team2168.PID.sensors.BNOHeading;
 import org.team2168.PID.sensors.IMU;
@@ -34,6 +35,7 @@ public class Drivetrain extends Subsystem {
 	
 	DoubleSolenoid gearShifter;
 	
+	public ADXRS453Gyro gyroSPI;
 	private BNO055 gyro;
 	private BNOHeading stupidPIDSensorGyro;
 	public IMU imu;
@@ -152,6 +154,9 @@ public class Drivetrain extends Subsystem {
 				RobotMap.DRIVE_POS_RETURN_TYPE,
 				RobotMap.DRIVE_AVG_ENCODER_VAL);
 		
+		gyroSPI = new ADXRS453Gyro();
+		gyroSPI.startThread();
+		
 		gyro = BNO055.getInstance(BNO055.opmode_t.OPERATION_MODE_IMUPLUS,
 				BNO055.vector_type_t.VECTOR_EULER);
 		stupidPIDSensorGyro = new BNOHeading(gyro);
@@ -169,7 +174,7 @@ public class Drivetrain extends Subsystem {
 						RobotMap.ROTATE_POSITION_P,
 						RobotMap.ROTATE_POSITION_I,
 						RobotMap.ROTATE_POSITION_D,
-						stupidPIDSensorGyro,
+						gyroSPI,
 						RobotMap.DRIVE_TRAIN_PID_PERIOD);
 				
 				rotateCameraController = new PIDPosition(
@@ -185,7 +190,7 @@ public class Drivetrain extends Subsystem {
 						RobotMap.ROTATE_POSITION_P_Drive_Straight,
 						RobotMap.ROTATE_POSITION_I_Drive_Straight,
 						RobotMap.ROTATE_POSITION_D_Drive_Straight,
-						stupidPIDSensorGyro,
+						gyroSPI,
 						RobotMap.DRIVE_TRAIN_PID_PERIOD);
 
 				driveTrainPosController = new PIDPosition(
@@ -438,7 +443,7 @@ public class Drivetrain extends Subsystem {
      * @return heading in degrees (doesn't roll over at 360)
      */
     public double getHeading() {
-    	return gyro.getHeading();
+    	return gyroSPI.getPos();
     }
     
     /**
@@ -541,6 +546,42 @@ public class Drivetrain extends Subsystem {
     {
     	return gearShifter.get()==DoubleSolenoid.Value.kForward;
     }
+    
+    /**
+	 * Reset robot heading to zero.
+	 */
+	public void resetGyro() {
+		gyroSPI.reset();
+	}
+
+	/**
+	 * Calibrate gyro.
+	 * This should only be called if the robot will be stationary for the calibration period.
+	 */
+	public void calibrateGyro() {
+		gyroSPI.calibrate();
+	}
+
+	/**
+	 * @return true if the gyro completed its previous calibration sequence.
+	 */
+	public boolean isGyroCalibrated() {
+		return gyroSPI.hasCompletedCalibration();
+	}
+
+	/**
+	 * @return true if the gyro is being calibrated.
+	 */
+	public boolean isGyroCalibrating() {
+		return gyroSPI.isCalibrating();
+	}
+
+	/**
+	 * Call to stop an active gyro calibration sequence.
+	 */
+	public void stopGyroCalibrating() {
+		gyroSPI.stopCalibrating();
+	}
 
 }
 

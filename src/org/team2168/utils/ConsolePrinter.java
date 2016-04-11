@@ -87,6 +87,18 @@ public class ConsolePrinter {
 			SmartDashboard.putNumber("Gyro Pitch", Robot.drivetrain.getPitchAngle());
 			SmartDashboard.putNumber("Gyro Roll", Robot.drivetrain.getRollAngle());
 			
+			
+			SmartDashboard.putNumber("GYRO Driftrate:", Robot.drivetrain.gyroSPI.driftRate);
+			SmartDashboard.putNumber("GYRO Rate:", Robot.drivetrain.gyroSPI.getRate());
+			SmartDashboard.putNumber("GYRO Angle SPI:", Robot.drivetrain.gyroSPI.getAngle());
+			SmartDashboard.putNumber("GYRO reInits:", Robot.gyroReinits);
+			SmartDashboard.putBoolean("Gyro Cal Status", !Robot.gyroCalibrating);
+			SmartDashboard.putNumber("GYRO Status:", Robot.drivetrain.gyroSPI.getStatus());
+			SmartDashboard.putNumber("GYRO Temp:", Robot.drivetrain.gyroSPI.getTemp());
+
+
+			
+			
 			SmartDashboard.putNumber("Battery Voltage", Robot.pdp.getBatteryVoltage());
 			SmartDashboard.putNumber("totalCurrent", Robot.pdp.getTotalCurrent());
 			SmartDashboard.putNumber("pcmCurrent", Robot.pdp.getChannelCurrent(RobotMap.PCM_POWER));

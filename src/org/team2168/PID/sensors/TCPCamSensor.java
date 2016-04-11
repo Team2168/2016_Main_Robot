@@ -29,7 +29,6 @@ public class TCPCamSensor implements PIDSensorInterface{
 	private volatile String[] dataReceived;
 	private StringBuffer sb = new StringBuffer();
 	private volatile boolean sendEnable;
-	private volatile boolean recvEnable;
 	
 	private volatile boolean clientConnected;
 
@@ -111,7 +110,7 @@ public class TCPCamSensor implements PIDSensorInterface{
 
 					// make this true if you want to send data to the tegra
 					// as well
-					recvEnable = true;
+					sendEnable = true;
 
 					listener();
 					sender();
@@ -147,7 +146,8 @@ public class TCPCamSensor implements PIDSensorInterface{
 							dataReceived = Util.split(sb.toString(), ","); // splits
 							System.out.println(Arrays.toString(dataReceived));
 								System.out.println("Match Start: " + isMatchStart()+", " + "Target Rotation: " + getRotationAngle() +", " + "Target Distance: " + getTargetDistance());   
-							// create new buffer
+							System.out.flush();
+								// create new buffer
 							sb = new StringBuffer();
 						}
 					}
@@ -183,7 +183,7 @@ public class TCPCamSensor implements PIDSensorInterface{
 								+ " \n";
 
 						System.out.println("Sending Match Start: " + messageOut);
-
+						System.out.flush();
 						buf = messageOut.getBytes(StandardCharsets.US_ASCII);
 
 						count++;
@@ -194,7 +194,7 @@ public class TCPCamSensor implements PIDSensorInterface{
 							// e.printStackTrace();
 							System.out.println("Appears Client Closed "
 									+ "the Connection");
-
+							System.out.flush();
 							stopThreads();
 
 							// close streams
@@ -229,7 +229,6 @@ public class TCPCamSensor implements PIDSensorInterface{
 private void stopThreads()
 {
 	sendEnable = false;
-	recvEnable = false;
 }
 
 public int getMessageLength()

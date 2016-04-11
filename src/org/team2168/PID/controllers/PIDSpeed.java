@@ -1181,16 +1181,19 @@ try {
 			//System.out.println("time: " + currentTime + "\tcperr: " + cp + "\tsp: " + sp + "\terr: " + err + "\tpterm: " + prop + "\twindup: " + windup + "\terrsum: " + errsum +"\titerm: " + integ + "\tdterm: " + deriv + "\toutput" + co + "\texctime" + executionTime );
 			log.println(currentTime + "\t" +  System.currentTimeMillis() + "\t"+ cp + "\t" + sp + "\t " + err + "\t" + prop + "\t" + windup + "\t" + errsum +"\t" + integ + "\t" + deriv + "\t" + co + "\t" + coNotSaturated + "\t" + executionTime );
 			log.flush();
+			
+			
+			atSpeed();
 		}
 		else
 		{
 			cp = encoder.getRate();
 			sp = encoder.getRate();
 			clock = Timer.getFPGATimestamp();
-			//isFinished = true;
+			isFinished = false;
 		}
 		
-		atSpeed();
+		
 
 		runTime = Timer.getFPGATimestamp() - runTime;
 	}

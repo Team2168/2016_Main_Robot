@@ -100,7 +100,7 @@ public class OI {
 		operatorJoystick.ButtonBack().whenPressed(new DrivePIDPause());
 		
 		//Camera Shot Align (Start Button)
-		operatorJoystick.ButtonStart().whenPressed(new RotateXDistancePIDZZZCameraWithGyro(0, 0.4, 0.22, 0.1));
+		operatorJoystick.ButtonStart().whenPressed(new RotateXDistancePIDZZZCameraWithGyro(0, 0.4, 0.15, 0.5));
 		
 		//Shoot Ball (A)
 		operatorJoystick.ButtonA().whileHeld(new DriveIndexerWithConstant(RobotMap.INDEXER_SPEED_CONSTANT_SHOOT));
@@ -151,7 +151,7 @@ public class OI {
 		commandsTestJoystick.ButtonB().whenPressed(new ShooterPIDPause());
 		commandsTestJoystick.ButtonB().whenPressed(new DrivePIDPause());
 
-		commandsTestJoystick.ButtonX().whenPressed(new DriveXDistance(12, 0.5, 0.01));
+		commandsTestJoystick.ButtonX().whenPressed(new DriveXDistance(12, 0.5, 0.1));
 		
 		//commandsTestJoystick.ButtonY().whenPressed(new RotateXDistancePIDZZZ(-40, 0.7, 0.25, 1));
 		commandsTestJoystick.ButtonY().whenPressed(new DriveOverLowGoalAndFire());

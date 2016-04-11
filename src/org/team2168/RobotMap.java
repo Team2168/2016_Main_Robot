@@ -235,9 +235,9 @@ public class RobotMap {
 	public static final double DRIVE_TRAIN_RIGHT_POSITION_I = 0.0001412646174233;
 	public static final double DRIVE_TRAIN_RIGHT_POSITION_D = 0.0074778888124088;
 
-	public static final double ROTATE_POSITION_P = 0.028;
-	public static final double ROTATE_POSITION_I = 0.015;
-	public static final double ROTATE_POSITION_D = 0.0067;
+	public static final double ROTATE_POSITION_P = 0.018;
+	public static final double ROTATE_POSITION_I = 0.019;
+	public static final double ROTATE_POSITION_D = 0.000000067;
 	
 	
 	
@@ -249,8 +249,13 @@ public class RobotMap {
 	//Shooter PID Speed
 	//Bandwidth =
 	//Phase Margin =
-	public static final double SHOOTER_SPEED_P = 0.000035;
-	public static final double SHOOTER_SPEED_I = 0.000053; 
+//	public static final double SHOOTER_SPEED_P = 0.000035;
+//	public static final double SHOOTER_SPEED_I = 0.000053; 
+//	public static final double SHOOTER_SPEED_D = 0.0000011838;
+//	public static final double SHOOTER_SPEED_N = 6.8807;
+	
+	public static final double SHOOTER_SPEED_P = 0.000037;
+	public static final double SHOOTER_SPEED_I = 0.000083; 
 	public static final double SHOOTER_SPEED_D = 0.0000011838;
 	public static final double SHOOTER_SPEED_N = 6.8807;
 	
