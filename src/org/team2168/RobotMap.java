@@ -73,14 +73,14 @@ public class RobotMap {
 	public final static int PCM_POWER = 7;
 
 	//Solenoid Channels////////////////////////////////////////////////////////
-	public static final int INTAKE_RETRACT = 2;
-	public static final int INTAKE_EXTEND = 3;
+	public static final int INTAKE_RETRACT = 3;
+	public static final int INTAKE_EXTEND = 2;
 	public static final int DRIVETRAIN_HIGH_GEAR = 4;
 	public static final int DRIVETRAIN_LOW_GEAR = 5;
 	public static final int SHOOTER_FWD_RETRACT = 6;
 	public static final int SHOOTER_FWD_EXTEND = 7;
-	public static final int SHOOTER_AFT_RETRACT = 1;
-	public static final int SHOOTER_AFT_EXTEND = 0;
+	public static final int SHOOTER_AFT_RETRACT = 0;
+	public static final int SHOOTER_AFT_EXTEND = 1;
 	
 
 

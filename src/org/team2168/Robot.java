@@ -16,6 +16,7 @@ import org.team2168.commands.auto.DriveOverChevalDeFriseAndFire;
 import org.team2168.commands.auto.DriveOverDefense;
 import org.team2168.commands.auto.DriveOverDefenseAndFireCenter;
 import org.team2168.commands.auto.DriveOverDefenseAndRotateFromDifferentPosition;
+import org.team2168.commands.auto.DriveOverLowGoalAndFire;
 import org.team2168.commands.auto.ReachDefense;
 import org.team2168.commands.auto.ShootFromSpyBox;
 import org.team2168.commands.pneumatics.StartCompressor;
@@ -239,7 +240,8 @@ public class Robot extends IterativeRobot {
         autoChooser.addObject("Drive over CDF and Fire", new DriveOverChevalDeFriseAndFire());
         autoChooser.addObject("Driver Over Defense and Shoot Center", new DriveOverDefenseAndFireCenter());
         autoChooser.addObject("Drive Over Defense and Shoot From Fourth", new DriveOverDefenseAndRotateFromDifferentPosition(-5));
-      //  autoChooser.addObject("Reach Defense", new ReachDefense());
+        autoChooser.addObject("Drive Under Low Bar and Fire", new DriveOverLowGoalAndFire());
+        //  autoChooser.addObject("Reach Defense", new ReachDefense());
     }
 	
     /**
@@ -328,5 +330,7 @@ public class Robot extends IterativeRobot {
 		lastAngle = curAngle;
 		lastGyroCalibrating = gyroCalibrating;
 	}
+	
+	
 
 }

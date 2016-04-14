@@ -23,6 +23,9 @@ import edu.wpi.first.wpilibj.DriverStation;
  */
 
 public class TCPCamSensor implements PIDSensorInterface{
+	
+	public boolean isCloseShot = false;
+	
 	private int port;
 	private String messageOut;
 	private byte[] buf;
@@ -33,7 +36,7 @@ public class TCPCamSensor implements PIDSensorInterface{
 	private volatile boolean clientConnected;
 
 	private DriverStation ds;
-
+	
 	// A TCP Socket Connection
 	private ServerSocket conn = null;
 

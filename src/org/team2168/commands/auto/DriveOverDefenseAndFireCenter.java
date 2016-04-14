@@ -33,14 +33,14 @@ public class DriveOverDefenseAndFireCenter extends CommandGroup {
     	
     	
     	//Drive over defense
-    	addSequential(new DriveXDistance(15, 0.75, 0.1));
-    	addSequential(new DriveXDistance(-1.5, 0.5, 0.1));
+    	addSequential(new DriveXDistance(15, 0.75, 0.3));
+    	addSequential(new DriveXDistance(-1.5, 0.5, 0.3));
     	
     	//Put up hood and rotate
-    	addSequential(new RotateXDistancePIDZZZ(0, 0.5, 0.25, 1, true));
+    	//addSequential(new RotateXDistancePIDZZZ(0, 0.5, 0.25, 1, true));
     	
     	addSequential(new Sleep(),2); // camera lag
-    	addSequential(new RotateXDistancePIDZZZCameraWithGyro(0, 0.4, 0.22, 0.1));
+    	addSequential(new RotateXDistancePIDZZZCameraWithGyro(0, 0.4, 0.19, 0.5));
 //    	addSequential(new Sleep(),2);
     	
  

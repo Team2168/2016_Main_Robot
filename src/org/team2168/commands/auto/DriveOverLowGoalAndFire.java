@@ -31,14 +31,14 @@ public class DriveOverLowGoalAndFire extends CommandGroup {
     	addSequential(new IntakeExtend(), 3);
     	
     	//Drive over defense
-//    	addSequential(new DriveXDistance(15, 0.5, 0.1));
+    	addSequential(new DriveXDistance(18, 0.5, 0.3));
     	
     	//Put up hood and rotate
     	addParallel(new ShooterHoodFarShotPosition());
     	addSequential(new RotateXDistancePIDZZZ(47, 0.5, 0.25, 1));
     	
     	addSequential(new Sleep(),2); // camera lag
-    	addSequential(new RotateXDistancePIDZZZCamera(0, 0.5, 0.25, 0.1));
+    	addSequential(new RotateXDistancePIDZZZCamera(0, 0.4, 0.19, 0.5));
     	addSequential(new Sleep(),2);
     	
     	

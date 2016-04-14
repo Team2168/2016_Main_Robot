@@ -30,6 +30,8 @@ import org.team2168.commands.shooterPneumatics.ShooterHoodStowPosition;
 import org.team2168.commands.shooterhood.DriveShooterHoodToAngle;
 import org.team2168.utils.F310;
 
+import edu.wpi.first.wpilibj.command.Command;
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -100,7 +102,8 @@ public class OI {
 		operatorJoystick.ButtonBack().whenPressed(new DrivePIDPause());
 		
 		//Camera Shot Align (Start Button)
-		operatorJoystick.ButtonStart().whenPressed(new RotateXDistancePIDZZZCameraWithGyro(0, 0.4, 0.15, 0.5));
+		operatorJoystick.ButtonStart().whenPressed(new RotateXDistancePIDZZZCameraWithGyro(0, 0.4, 0.19, 0.5));
+		
 		
 		//Shoot Ball (A)
 		operatorJoystick.ButtonA().whileHeld(new DriveIndexerWithConstant(RobotMap.INDEXER_SPEED_CONSTANT_SHOOT));
@@ -119,7 +122,6 @@ public class OI {
 		//Shoot Close Preset (X)
 		operatorJoystick.ButtonX().whenPressed(new DriveShooterPIDSpeed(3900));
 		operatorJoystick.ButtonX().whenPressed(new ShooterHoodCloseShotPosition());
-		
 		
 		//Intake Ball (Right Trigger)
 		operatorJoystick.ButtonRightTrigger().whileHeld(new IndexSingleBall());

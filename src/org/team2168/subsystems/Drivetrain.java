@@ -582,6 +582,32 @@ public class Drivetrain extends Subsystem {
 	public void stopGyroCalibrating() {
 		gyroSPI.stopCalibrating();
 	}
+	
+	/**
+	 * Sets the shit from the shit
+	 * @param isCloseShot True means its the close shot
+	 */
+	public void setCloseShotTrue() {
+		tcpCamSensor.isCloseShot = true;
+	}
 
+	/**
+	 * Sets the shit from the shit
+	 * @param isCloseShot True means its the close shot
+	 */
+	public void setFarShotTrue() {
+		tcpCamSensor.isCloseShot = false;
+	}
+	
+	/**
+	 * Sets the shit from the shit
+	 * @param isCloseShot True means its the close shot
+	 */
+	public boolean isCloseShot() {
+		return tcpCamSensor.isCloseShot;
+	}
+
+
+	
 }
 
