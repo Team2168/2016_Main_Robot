@@ -44,8 +44,17 @@ public class DriveOverDefenseAndFireCenterThird extends CommandGroup {
 //    	addSequential(new Sleep(),2);
     	
  
+    	//TYBG
+    	//TTWR
+    	//DON'T SLOB THE KNOB
+    	//WIN THE CONTROLS AWARD
+    	//DON'T FUCK UP
+    	//BE GOOD
+    	//STARBUX IS LIFE
+    	
+    	
     	addParallel(new DriveShooterPIDSpeed(6700));
-    	addSequential(new Sleep(), 3.5);
+    	addSequential(new Sleep(), 2.5);
     	
 //    	//Fire for 3 seconds
     	addParallel(new DriveIndexerWithConstant(RobotMap.INDEXER_SPEED_CONSTANT_SHOOT), 1);

@@ -246,8 +246,6 @@ public class Robot extends IterativeRobot {
         autoChooser.addObject("Drive Over Defense", new DriveOverDefense());
         autoChooser.addObject("Drive over CDF", new DriveOverChevalDeFrise());
         autoChooser.addObject("Drive over CDF and Fire", new DriveOverChevalDeFriseAndFire());
-        autoChooser.addObject("3rd - Driver Over Defense and Shoot Center", new DriveOverDefenseAndFireCenter());
-        autoChooser.addObject("Drive Over Defense and Shoot From Fourth", new DriveOverDefenseAndRotateFromDifferentPosition(-5));
         //  autoChooser.addObject("Reach Defense", new ReachDefense());
     }
 	

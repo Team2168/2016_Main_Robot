@@ -30,7 +30,7 @@ public class DriveShooterPIDSpeed extends Command {
 
     // Called just before this Command runs the first time
 	protected void initialize() {
-		Robot.shooter.shooterSpeedController.reset();
+		//Robot.shooter.shooterSpeedController.reset();
 		Robot.shooter.shooterSpeedController.Enable();
     }
 

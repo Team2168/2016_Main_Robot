@@ -103,7 +103,7 @@ public class OI {
 		
 		//Camera Shot Align (Start Button)
 		operatorJoystick.ButtonStart().whenPressed(new RotateXDistancePIDZZZCameraWithGyro(0, 0.4, 0.22, 0.5));
-		
+		//operatorJoystick.ButtonStart().whenPressed(new DriveShooterPIDSpeed(4300));
 		//Shoot Ball (A)
 		operatorJoystick.ButtonA().whileHeld(new DriveIndexerWithConstant(RobotMap.INDEXER_SPEED_CONSTANT_SHOOT));
 		operatorJoystick.ButtonA().whileHeld(new IntakeWithConstant(RobotMap.INTAKE_SPEED_CONSTANT));
@@ -119,7 +119,7 @@ public class OI {
 		operatorJoystick.ButtonY().whenPressed(new ShooterHoodFarShotPosition());
 		
 		//Shoot Close Preset (X)
-		operatorJoystick.ButtonX().whenPressed(new DriveShooterPIDSpeed(3900));
+		operatorJoystick.ButtonX().whenPressed(new DriveShooterPIDSpeed(4200));
 		operatorJoystick.ButtonX().whenPressed(new ShooterHoodCloseShotPosition());
 		
 		//Intake Ball (Right Trigger)
