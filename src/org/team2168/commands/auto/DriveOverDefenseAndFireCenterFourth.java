@@ -12,6 +12,7 @@ import org.team2168.commands.intakeposition.IntakeExtend;
 import org.team2168.commands.intakeroller.IntakeWithConstant;
 import org.team2168.commands.shooter.PIDCommands.DriveShooterPIDSpeed;
 import org.team2168.commands.shooter.PIDCommands.ShooterPIDPause;
+import org.team2168.commands.shooter.PIDCommands.WaitForShooterPIDToFinish;
 import org.team2168.commands.shooterPneumatics.ShooterHoodCloseShotPosition;
 import org.team2168.commands.shooterPneumatics.ShooterHoodFarShotPosition;
 import org.team2168.commands.shooterPneumatics.ShooterHoodStowPosition;
@@ -36,16 +37,13 @@ public class DriveOverDefenseAndFireCenterFourth extends CommandGroup {
     	addSequential(new DriveXDistance(17.5, 0.75, 0.3));
     	addSequential(new DriveXDistance(-1.5, 0.5, 0.3));
     	
-    	//Put up hood and rotate
-    	//addSequential(new RotateXDistancePIDZZZ(-30, 0.5, 0.25, 1));
-    	
-    	addSequential(new Sleep(),2); // camera lag
-    	addSequential(new RotateXDistancePIDZZZCameraWithGyro(0, 0.4, 0.22, 0.5));
-//    	addSequential(new Sleep(),2);
-    	
- 
+    	//Put up hood and DO NOT Rotate)
     	addParallel(new DriveShooterPIDSpeed(6700));
-    	addSequential(new Sleep(), 3.5);
+    	
+    	addSequential(new Sleep(), 0.7); // camera lag
+    	addSequential(new RotateXDistancePIDZZZCameraWithGyro(0, 0.4, 0.22, 0.5));
+
+    	addSequential(new WaitForShooterPIDToFinish());
     	
 //    	//Fire for 3 seconds
     	addParallel(new DriveIndexerWithConstant(RobotMap.INDEXER_SPEED_CONSTANT_SHOOT), 1);
