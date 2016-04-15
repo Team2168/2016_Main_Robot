@@ -9,15 +9,12 @@ import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Relay.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-/**
- * Controls the compressor and reads pressure sensor
- * @author Ben Waid
- */
 public class Flashlight extends Subsystem {
     
     private Relay flashlight;
      
     private static Flashlight instance = null;
+    public boolean isFlashlightSettable = true;
     
     /**
      * Private constructor for the Pneumatics subsystem
@@ -26,10 +23,6 @@ public class Flashlight extends Subsystem {
     	flashlight = new Relay(RobotMap.FLASHLIGHT_RELAY);
     }
     
-    /**
-     * Singleton constructor for Pneumatics subsystem
-     * @return singleton instance of Pneumatics subsystem
-     */
     public static Flashlight getInstance(){
     	if(instance == null)
     		instance = new Flashlight();
@@ -37,15 +30,28 @@ public class Flashlight extends Subsystem {
     }
     
     public void setFlashlightOn() {
-    	flashlight.set(Value.kForward);
+    	if (isFlashlightSettable) {
+    		flashlight.set(Value.kForward);
+    	}
     }
     
     public void setFlashlightOff() {
-    	flashlight.set(Value.kOff);
+    	if (isFlashlightSettable) {
+    		flashlight.set(Value.kOff);
+    	}
     }
     
     public boolean isFlashlightOff() {
     	return (flashlight.get() == Value.kOff);
+    }
+    
+    public void disableFlashlight() {
+    	isFlashlightSettable = false;
+    	flashlight.set(Value.kOff);
+    }
+    
+    public void enableFlashlight() {
+    	isFlashlightSettable = true;
     }
     
 	@Override
