@@ -73,8 +73,9 @@ public class ConsolePrinter {
 			SmartDashboard.putBoolean("Processing Status", Robot.drivetrain.tcpCamSensor.isProcessingTreadRunning());
 			SmartDashboard.putBoolean("MJPEG Status", Robot.drivetrain.tcpCamSensor.isMJPEGConnected());
 			SmartDashboard.putNumber("Vision Target Dist", Robot.drivetrain.tcpCamSensor.getTargetDistance());
-			SmartDashboard.putNumber("Vision Target BEaring", Robot.drivetrain.tcpCamSensor.getRotationAngle());
+			SmartDashboard.putNumber("Vision Target Bearing", Robot.drivetrain.tcpCamSensor.getRotationAngle());
 			
+			SmartDashboard.putBoolean("isBallPresent", Robot.ballPresent);
 			
 			SmartDashboard.putBoolean("Is Target Detected", Robot.drivetrain.tcpCamSensor.isTargetDetected());
 			SmartDashboard.putBoolean("Is Target Scorable", Robot.drivetrain.tcpCamSensor.isTargetScorable());
@@ -146,21 +147,21 @@ SmartDashboard.putNumber("DTRight1MotorVoltage",Robot.drivetrain.getRight1MotorV
 			SmartDashboard.putNumber("Operator Right Trigger Raw Value", Robot.oi.operatorJoystick.getRightTriggerAxisRaw());
 
 			//TODO: FIX PDP Class Current Monitoring functions
-//			SmartDashboard.putBoolean("Left Motor One Trip", !Robot.pdp.isLeftMotorOneTrip());
-//			SmartDashboard.putBoolean("Left Motor Two Trip", !Robot.pdp.isLeftMotorTwoTrip());
-//			SmartDashboard.putBoolean("Left Motor Three Trip", !Robot.pdp.isLeftMotorThreeTrip());
-//
-//			SmartDashboard.putBoolean("Right Motor One Trip", !Robot.pdp.isRightMotorOneTrip());
-//			SmartDashboard.putBoolean("Right Motor Two Trip", !Robot.pdp.isRightMotorTwoTrip());
-//			SmartDashboard.putBoolean("Right Motor Three Trip", !Robot.pdp.isRightMotorThreeTrip());
-//
-//			SmartDashboard.putBoolean("Shooter Fwd Motor Trip", !Robot.pdp.isLiftLeftMotorTrip());
-//			SmartDashboard.putBoolean("Sh0oter Aft Lift Motor Trip", !Robot.pdp.isLiftRightMotorTrip());
-//			SmartDashboard.putBoolean("Intake Left Motor Trip", !Robot.pdp.isIntakeLeftMotorTrip());
-//			SmartDashboard.putBoolean("Intake Right Motor Trip", !Robot.pdp.isIntakeLeftMotorTrip());
+			SmartDashboard.putBoolean("Left Motor One Trip", !Robot.pdp.isLeftMotorOneTrip());
+			SmartDashboard.putBoolean("Left Motor Two Trip", !Robot.pdp.isLeftMotorTwoTrip());
+			SmartDashboard.putBoolean("Left Motor Three Trip", !Robot.pdp.isLeftMotorThreeTrip());
+
+			SmartDashboard.putBoolean("Right Motor One Trip", !Robot.pdp.isRightMotorOneTrip());
+			SmartDashboard.putBoolean("Right Motor Two Trip", !Robot.pdp.isRightMotorTwoTrip());
+			SmartDashboard.putBoolean("Right Motor Three Trip", !Robot.pdp.isRightMotorThreeTrip());
+
+			SmartDashboard.putBoolean("Shooter Fwd Motor Trip", !Robot.pdp.isShooterMotorOneTrip());
+			SmartDashboard.putBoolean("Shooter Aft Motor Trip", !Robot.pdp.isShooterMotorTwoTrip());
+			SmartDashboard.putBoolean("Intake Motor Trip", !Robot.pdp.isIntakeMotorTrip());
+			SmartDashboard.putBoolean("Index Motor Trip", !Robot.pdp.isIndexMotorTrip());
 
 			SmartDashboard.putBoolean("Intake Extended", Robot.intakePosition.isIntakeExtended());
-			SmartDashboard.putBoolean("Intake REtracted", Robot.intakePosition.isIntakeRetracted());
+			SmartDashboard.putBoolean("Intake Retracted", Robot.intakePosition.isIntakeRetracted());
 			SmartDashboard.putBoolean("Shooter Hood FWD Extended", Robot.shooterPneumatics.isShooterFWDExtended());
 			SmartDashboard.putBoolean("Shooter Hood FWD Retracted", Robot.shooterPneumatics.isShooterFWDRetracted());
 			SmartDashboard.putBoolean("Shooter Hood AFT Extended", Robot.shooterPneumatics.isShooterAFTExtended());

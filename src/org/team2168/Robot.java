@@ -15,6 +15,8 @@ import org.team2168.commands.auto.DriveOverChevalDeFrise;
 import org.team2168.commands.auto.DriveOverChevalDeFriseAndFire;
 import org.team2168.commands.auto.DriveOverDefense;
 import org.team2168.commands.auto.DriveOverDefenseAndFireCenter;
+import org.team2168.commands.auto.DriveOverDefenseAndFireCenterFourth;
+import org.team2168.commands.auto.DriveOverDefenseAndFireCenterSecond;
 import org.team2168.commands.auto.DriveOverDefenseAndRotateFromDifferentPosition;
 import org.team2168.commands.auto.DriveOverLowGoalAndFire;
 import org.team2168.commands.auto.ReachDefense;
@@ -48,6 +50,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 	public static OI oi;
 
+	public static boolean ballPresent = false;;
+	
 	private static DigitalInput practiceBot;
 	
 	public static Drivetrain drivetrain;
@@ -189,7 +193,7 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
     	autoMode = true;
-    	setFlashlight();
+    	setFlashlight(true);
     	updateLED();
         Scheduler.getInstance().run();
     }
@@ -215,7 +219,7 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
     	autoMode = false;
-    	setFlashlight();
+    	setFlashlight(false);
     	updateLED();
         Scheduler.getInstance().run();
     }
@@ -234,13 +238,16 @@ public class Robot extends IterativeRobot {
     public void autoSelectInit() {
         autoChooser = new SendableChooser();
         autoChooser.addDefault("Default: Shoot From Spy Box", new ShootFromSpyBox());
+        autoChooser.addObject("1st - Drive Under Low Bar and Fire", new DriveOverLowGoalAndFire());
+        autoChooser.addObject("2nd - Drive Over Second Defense and Shoot Center", new DriveOverDefenseAndFireCenterSecond());
+        autoChooser.addObject("3rd - Driver Over Third Defense and Shoot Center", new DriveOverDefenseAndFireCenter());
+        autoChooser.addObject("4th - Drive Over Fourth Defense and Shoot Center", new DriveOverDefenseAndFireCenterFourth());
         autoChooser.addObject("Do Nothing", new DoNothing());
         autoChooser.addObject("Drive Over Defense", new DriveOverDefense());
         autoChooser.addObject("Drive over CDF", new DriveOverChevalDeFrise());
         autoChooser.addObject("Drive over CDF and Fire", new DriveOverChevalDeFriseAndFire());
-        autoChooser.addObject("Driver Over Defense and Shoot Center", new DriveOverDefenseAndFireCenter());
+        autoChooser.addObject("3rd - Driver Over Defense and Shoot Center", new DriveOverDefenseAndFireCenter());
         autoChooser.addObject("Drive Over Defense and Shoot From Fourth", new DriveOverDefenseAndRotateFromDifferentPosition(-5));
-        autoChooser.addObject("Drive Under Low Bar and Fire", new DriveOverLowGoalAndFire());
         //  autoChooser.addObject("Reach Defense", new ReachDefense());
     }
 	
@@ -265,11 +272,20 @@ public class Robot extends IterativeRobot {
 		return !practiceBot.get();
 	}
 	
-	private void setFlashlight() {
-		if(indexer.TurnFlashlightOn() || shooter.isBoulderPresent()) {
+	/**
+	 * Turn the flashlight on/off
+	 * @param forceOff true to just turn off the light
+	 */
+	private void setFlashlight(boolean forceOff) {
+		if(forceOff) {
+			flashlight.set(Relay.Value.kOff);
+    		ballPresent = false;
+		} else if(indexer.TurnFlashlightOn() || shooter.isBoulderPresent()) {
     		flashlight.set(Relay.Value.kForward);
+    		ballPresent = true;
     	} else {
     		flashlight.set(Relay.Value.kOff);
+    		ballPresent = false;
     	}
 	}
 	

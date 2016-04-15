@@ -61,7 +61,7 @@ public class RobotMap {
 	//PDP Channels/////////////////////////////////////////////////////////////
 	public final static int DRIVETRAIN_RIGHT_MOTOR_1_PDP = 13;
 	public final static int DRIVETRAIN_RIGHT_MOTOR_2_PDP = 12;
-	public final static int DRIVETRAIN_RIGHT_MOTOR_3_PDP = 1;
+	public final static int DRIVETRAIN_RIGHT_MOTOR_3_PDP = 14;
 	public final static int DRIVETRAIN_LEFT_MOTOR_1_PDP = 2;
 	public final static int DRIVETRAIN_LEFT_MOTOR_2_PDP = 3;
 	public final static int DRIVETRAIN_LEFT_MOTOR_3_PDP = 4;
@@ -208,6 +208,8 @@ public class RobotMap {
 	 *                            PDP PARAMETERS
 	 *************************************************************************/
 	public final static long PDPThreadPeriod = 20;
+	public static final double WARNING_CURRENT_LIMIT = 20;
+	public static final double STALL_CURRENT_LIMIT = 35;
 
 	/*************************************************************************
 	 *                            PID PARAMETERS
@@ -235,8 +237,8 @@ public class RobotMap {
 	public static final double DRIVE_TRAIN_RIGHT_POSITION_I = 0.0001412646174233;
 	public static final double DRIVE_TRAIN_RIGHT_POSITION_D = 0.0074778888124088;
 
-	public static final double ROTATE_POSITION_P = 0.018;
-	public static final double ROTATE_POSITION_I = 0.019;
+	public static final double ROTATE_POSITION_P = 0.024;
+	public static final double ROTATE_POSITION_I = 0.027;
 	public static final double ROTATE_POSITION_D = 0.000000067;
 	
 	
@@ -291,6 +293,7 @@ public class RobotMap {
 	 * *****************************************/
 	public static final I2C.Port I2C_PORT = I2C.Port.kOnboard;
 	public static final int I2C_ADDRESS = 10; //probably change this
+
 
 	
 

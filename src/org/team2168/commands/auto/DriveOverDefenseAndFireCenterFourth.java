@@ -22,9 +22,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  * Drives Robot over defense
  */
-public class DriveOverDefenseAndFireCenter extends CommandGroup {
+public class DriveOverDefenseAndFireCenterFourth extends CommandGroup {
     
-    public  DriveOverDefenseAndFireCenter() {
+    public  DriveOverDefenseAndFireCenterFourth() {
 
     	//stow hood, lower intake and spin up wheel
     	addParallel(new ShooterHoodFarShotPosition());
@@ -37,7 +37,7 @@ public class DriveOverDefenseAndFireCenter extends CommandGroup {
     	addSequential(new DriveXDistance(-1.5, 0.5, 0.3));
     	
     	//Put up hood and rotate
-    	//addSequential(new RotateXDistancePIDZZZ(0, 0.5, 0.25, 1, true));
+    	//addSequential(new RotateXDistancePIDZZZ(-30, 0.5, 0.25, 1));
     	
     	addSequential(new Sleep(),2); // camera lag
     	addSequential(new RotateXDistancePIDZZZCameraWithGyro(0, 0.4, 0.22, 0.5));

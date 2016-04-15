@@ -2,6 +2,8 @@ package org.team2168.utils;
 
 import java.util.TimerTask;
 
+import org.team2168.RobotMap;
+
 //import org.team2168.RobotMap;
 
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
@@ -65,11 +67,11 @@ public class PowerDistribution {
 			
 			channelCurrent[i] = pdp.getCurrent(i);
 			channelError[i] = 0; //no Error
-//
-//			if(channelCurrent[i] > RobotMap.WARNING_CURRENT_LIMIT)
-//				channelError[i] = 1; //warning
-//			else if (channelCurrent[i] > RobotMap.STALL_CURRENT_LIMIT)
-//				channelError[i] = 2; //danger
+
+			if(channelCurrent[i] > RobotMap.WARNING_CURRENT_LIMIT)
+				channelError[i] = 1; //warning
+			else if (channelCurrent[i] > RobotMap.STALL_CURRENT_LIMIT)
+				channelError[i] = 2; //danger
 			
 			
 		}
@@ -86,7 +88,7 @@ public class PowerDistribution {
 
 		private PowerDistributionTask(PowerDistribution printer) {
 			if (printer == null) {
-				throw new NullPointerException("printer was null");
+				throw new NullPointerException("PDP was null");
 			}
 			this.console = printer;
 		}
@@ -124,70 +126,71 @@ public class PowerDistribution {
 	}
 	
 	public boolean isRightMotorThreeTrip() {
-		if (channelError[0] == 2)
+		if (channelError[RobotMap.DRIVETRAIN_RIGHT_MOTOR_3_PDP] == 2)
 			return true;
 		else
 			return false;
 	}
 	
 	public boolean isRightMotorTwoTrip() {
-		if (channelError[1] == 2)
+		if (channelError[RobotMap.DRIVETRAIN_RIGHT_MOTOR_2_PDP] == 2)
 			return true;
 		else
 			return false;
 	}
 	
 	public boolean isRightMotorOneTrip() {
-		if (channelError[2] == 2) 
+		if (channelError[RobotMap.DRIVETRAIN_RIGHT_MOTOR_1_PDP] == 2) 
 			return true;
 		else
 			return false;
 	}
 	
-	public boolean isIntakeRightMotorTrip() {
-		if (channelError[4] == 2) 
+	public boolean isIntakeMotorTrip() {
+		if (channelError[RobotMap.INTAKE_MOTOR_1_PDP] == 2) 
 			return true;
 		else
 			return false;
 	}
 	
-	public boolean isIntakeLeftMotorTrip() {
-		if (channelError[11] == 2) 
+	public boolean isIndexMotorTrip() {
+		if (channelError[RobotMap.INDEXER_MOTOR_PDP] == 2) 
 			return true;
 		else
 			return false;
 	}
 	
-	public boolean isLiftLeftMotorTrip() {
-		if (channelError[12] == 2)
+	public boolean isShooterMotorOneTrip() {
+		
+		if (channelError[RobotMap.SHOOTER_MOTOR_FWD_PDP] == 2)
 			return true;
 		else
 			return false;
 	}
 	
-	public boolean isLiftRightMotorTrip() {
-		if (channelError[3] == 2)
+	public boolean isShooterMotorTwoTrip() {
+		if (channelError[RobotMap.SHOOTER_MOTOR_AFT_PDP] == 2)
 			return true;
 		else
 			return false;
 	}
 	
 	public boolean isLeftMotorOneTrip() {
-		if (channelError[13] == 2) 
+		if (channelError[RobotMap.DRIVETRAIN_LEFT_MOTOR_1_PDP] == 2) 
 			return true;
 		else
 			return false;
 	}
 	
 	public boolean isLeftMotorTwoTrip() {
-		if (channelError[14] == 2) 
+		if (channelError[RobotMap.DRIVETRAIN_LEFT_MOTOR_2_PDP] == 2) 
 			return true;
 		else
 			return false;
 	}
 	
 	public boolean isLeftMotorThreeTrip() {
-		if (channelError[15] == 2) 
+		if (channelError[RobotMap.DRIVETRAIN_LEFT_MOTOR_3_PDP] == 2) 
 			return true;
 		else
 			return false;
