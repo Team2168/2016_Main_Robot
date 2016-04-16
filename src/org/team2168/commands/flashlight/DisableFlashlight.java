@@ -8,15 +8,14 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class TurnFlashlightOn extends Command {
+public class DisableFlashlight extends Command {
 
 	Flashlight flashlight;
 	
-    public TurnFlashlightOn() {
+    public DisableFlashlight() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.flashlight);
-    	flashlight = Robot.flashlight;
     }
 
     // Called just before this Command runs the first time
@@ -25,7 +24,7 @@ public class TurnFlashlightOn extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	flashlight.setFlashlightOn();
+    	Robot.flashlight.disableFlashlight();
     }
 
     // Make this return true when this Command no longer needs to run execute()

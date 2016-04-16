@@ -16,7 +16,7 @@ import org.team2168.commands.autoFire.AutoFireFar;
 import org.team2168.commands.autoFire.AutoFireFarTeleop;
 import org.team2168.commands.drivetrain.*;
 import org.team2168.commands.drivetrain.PIDCommands.*;
-import org.team2168.commands.flashlight.TurnFlashlightOff;
+import org.team2168.commands.flashlight.EnableFlashlight;
 import org.team2168.commands.indexer.*;
 import org.team2168.commands.intakeposition.*;
 import org.team2168.commands.intakeroller.*;
@@ -104,7 +104,6 @@ public class OI {
 		
 		//Camera Shot Align (Start Button)
 		operatorJoystick.ButtonStart().whenPressed(new RotateXDistancePIDZZZCameraWithGyro(0, 0.4, 0.22, 0.5));
-		operatorJoystick.ButtonStart().whenPressed(new TurnFlashlightOff());
 		
 		//Shoot Ball (A)
 		operatorJoystick.ButtonA().whileHeld(new DriveIndexerWithConstant(RobotMap.INDEXER_SPEED_CONSTANT_SHOOT));

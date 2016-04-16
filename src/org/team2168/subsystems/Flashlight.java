@@ -1,6 +1,7 @@
 package org.team2168.subsystems;
 
 import org.team2168.RobotMap;
+import org.team2168.commands.flashlight.SetFlashlight;
 import org.team2168.commands.pneumatics.StartCompressor;
 
 import edu.wpi.first.wpilibj.AnalogInput;
@@ -14,7 +15,7 @@ public class Flashlight extends Subsystem {
     private Relay flashlight;
      
     private static Flashlight instance = null;
-    public boolean isFlashlightSettable = true;
+    private boolean isFlashlightSettable = true;
     
     /**
      * Private constructor for the Pneumatics subsystem
@@ -56,7 +57,7 @@ public class Flashlight extends Subsystem {
     
 	@Override
 	protected void initDefaultCommand() {
-		// TODO Auto-generated method stub	
+		setDefaultCommand(new SetFlashlight());
 	}
     
 }

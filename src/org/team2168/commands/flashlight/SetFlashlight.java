@@ -3,6 +3,7 @@ package org.team2168.commands.flashlight;
 import org.team2168.Robot;
 import org.team2168.subsystems.Flashlight;
 
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -10,13 +11,11 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class SetFlashlight extends Command {
 
-	Flashlight flashlight;
 	
     public SetFlashlight() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.flashlight);
-    	flashlight = Robot.flashlight;
     }
 
     // Called just before this Command runs the first time
@@ -25,7 +24,11 @@ public class SetFlashlight extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
+		if(Robot.indexer.TurnFlashlightOn() || Robot.shooter.isBoulderPresent()) {
+    		Robot.flashlight.setFlashlightOn();
+    	} else {
+    		Robot.flashlight.setFlashlightOff();
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
