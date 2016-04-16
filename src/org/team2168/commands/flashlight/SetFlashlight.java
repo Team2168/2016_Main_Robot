@@ -26,8 +26,10 @@ public class SetFlashlight extends Command {
     protected void execute() {
 		if(Robot.indexer.TurnFlashlightOn() || Robot.shooter.isBoulderPresent()) {
     		Robot.flashlight.setFlashlightOn();
+    		Robot.ballPresent = true;
     	} else {
     		Robot.flashlight.setFlashlightOff();
+    		Robot.ballPresent = false;
     	}
     }
 

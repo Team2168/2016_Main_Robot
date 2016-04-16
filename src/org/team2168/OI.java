@@ -16,6 +16,7 @@ import org.team2168.commands.autoFire.AutoFireFar;
 import org.team2168.commands.autoFire.AutoFireFarTeleop;
 import org.team2168.commands.drivetrain.*;
 import org.team2168.commands.drivetrain.PIDCommands.*;
+import org.team2168.commands.flashlight.DisableFlashlight;
 import org.team2168.commands.flashlight.EnableFlashlight;
 import org.team2168.commands.indexer.*;
 import org.team2168.commands.intakeposition.*;
@@ -120,7 +121,7 @@ public class OI {
 		operatorJoystick.ButtonY().whenPressed(new ShooterHoodFarShotPosition());
 		
 		//Shoot Close Preset (X)
-		operatorJoystick.ButtonX().whenPressed(new DriveShooterPIDSpeed(4200));
+		operatorJoystick.ButtonX().whenPressed(new DriveShooterPIDSpeed(3900));
 		operatorJoystick.ButtonX().whenPressed(new ShooterHoodCloseShotPosition());
 		
 		//Intake Ball (Right Trigger)

@@ -41,10 +41,10 @@ public class DriveOverLowGoalAndFire extends CommandGroup {
     	addSequential(new DriveXDistance(2, 0.5, 0.5));
     	
     	//Put up hood and DO NOT Rotate)
-    	addParallel(new DriveShooterPIDSpeed(6700));
+    	addParallel(new DriveShooterPIDSpeed(6500));
     	
     	addSequential(new Sleep(), 0.7); // camera lag
-    	addSequential(new RotateXDistancePIDZZZCamera(0, 0.4, 0.20, 0.5));
+    	addSequential(new RotateXDistancePIDZZZCamera(0, 0.4, 0.23, 0.5));
     	
     	addSequential(new WaitForShooterPIDToFinish());
     	

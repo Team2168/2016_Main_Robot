@@ -181,6 +181,9 @@ public class Robot extends IterativeRobot {
 	 * or additional comparisons to the switch structure below with additional strings & commands.
 	 */
     public void autonomousInit() {
+    	
+    	Robot.flashlight.disableFlashlight();
+    	
     	autoMode = true;
     	
 		matchStarted = true;
@@ -206,6 +209,7 @@ public class Robot extends IterativeRobot {
      * Called once when the robot enters the teloperated mode.
      */
     public void teleopInit() {
+    	Robot.flashlight.enableFlashlight();
     	autoMode = false;
     	
 		matchStarted = true;

@@ -38,10 +38,10 @@ public class DriveOverDefenseAndFireCenterFourth extends CommandGroup {
     	addSequential(new DriveXDistance(-1.5, 0.5, 0.3));
     	
     	//Put up hood and DO NOT Rotate)
-    	addParallel(new DriveShooterPIDSpeed(6700));
+    	addParallel(new DriveShooterPIDSpeed(6500));
     	
     	addSequential(new Sleep(), 0.7); // camera lag
-    	addSequential(new RotateXDistancePIDZZZCameraWithGyro(0, 0.4, 0.22, 0.5));
+    	addSequential(new RotateXDistancePIDZZZCameraWithGyro(0, 0.4, 0.23, 0.5));
 
     	addSequential(new WaitForShooterPIDToFinish());
     	
