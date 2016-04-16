@@ -2,6 +2,7 @@ package org.team2168.subsystems;
 
 import org.team2168.Robot;
 import org.team2168.RobotMap;
+import org.team2168.utils.MomentaryDoubleSolenoid;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
@@ -12,8 +13,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class ShooterPneumatics extends Subsystem {
     
-	private DoubleSolenoid shooterPistonFWD;
-	private DoubleSolenoid shooterPistonAFT;
+	private MomentaryDoubleSolenoid shooterPistonFWD;
+	private MomentaryDoubleSolenoid shooterPistonAFT;
 	
 	private static ShooterPneumatics instance = null;
 	
@@ -21,8 +22,10 @@ public class ShooterPneumatics extends Subsystem {
 	 * Private constructor for ShooterPnematics subsystem
 	 */
 	private ShooterPneumatics() {
-		shooterPistonFWD = new DoubleSolenoid(RobotMap.SHOOTER_FWD_EXTEND,RobotMap.SHOOTER_FWD_RETRACT);
-		shooterPistonAFT = new DoubleSolenoid(RobotMap.SHOOTER_AFT_EXTEND, RobotMap.SHOOTER_AFT_RETRACT);
+		shooterPistonFWD = new MomentaryDoubleSolenoid(RobotMap.SHOOTER_FWD_EXTEND,
+				RobotMap.SHOOTER_FWD_RETRACT, (long) 100);
+		shooterPistonAFT = new MomentaryDoubleSolenoid(RobotMap.SHOOTER_AFT_EXTEND,
+				RobotMap.SHOOTER_AFT_RETRACT, (long) 100);
 	}
 	
 	/**
