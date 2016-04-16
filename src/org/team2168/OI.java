@@ -16,6 +16,7 @@ import org.team2168.commands.autoFire.AutoFireFar;
 import org.team2168.commands.autoFire.AutoFireFarTeleop;
 import org.team2168.commands.drivetrain.*;
 import org.team2168.commands.drivetrain.PIDCommands.*;
+import org.team2168.commands.flashlight.EnableFlashlight;
 import org.team2168.commands.indexer.*;
 import org.team2168.commands.intakeposition.*;
 import org.team2168.commands.intakeroller.*;

@@ -23,6 +23,7 @@ import org.team2168.commands.auto.ReachDefense;
 import org.team2168.commands.auto.ShootFromSpyBox;
 import org.team2168.commands.pneumatics.StartCompressor;
 import org.team2168.subsystems.Drivetrain;
+import org.team2168.subsystems.Flashlight;
 import org.team2168.subsystems.Shooter;
 import org.team2168.subsystems.ShooterHood;
 import org.team2168.subsystems.ShooterPneumatics;
@@ -62,6 +63,8 @@ public class Robot extends IterativeRobot {
 	public static IntakePosition intakePosition;
 	public static Pneumatics pneumatics;
 	public static ShooterPneumatics shooterPneumatics;
+	public static Flashlight flashlight;
+	
 	
     static Command autonomousCommand;
     public static SendableChooser autoChooser;
@@ -82,7 +85,7 @@ public class Robot extends IterativeRobot {
 	Compressor comp;
     ConsolePrinter printer; // SmartDash printer
     
-    Relay flashlight;
+    //Relay flashlight;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -101,7 +104,9 @@ public class Robot extends IterativeRobot {
         pneumatics = Pneumatics.getInstance();
         shooterPneumatics = ShooterPneumatics.getInstance();
         lights = I2CLights.getInstance();
-
+        flashlight = Flashlight.getInstance();
+        
+        
         //create controls
         oi = OI.getInstance();
     
@@ -120,8 +125,8 @@ public class Robot extends IterativeRobot {
         printer = new ConsolePrinter(RobotMap.SmartDashThreadPeriod);
 		printer.startThread();
 		
-		flashlight = new Relay(RobotMap.FLASHLIGHT_RELAY);
-        flashlight.set(Relay.Value.kOff);
+		//flashlight = new Relay(RobotMap.FLASHLIGHT_RELAY);
+        //flashlight.set(Relay.Value.kOff);
         
         drivetrain.calibrateGyro();
         
@@ -193,7 +198,6 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
     	autoMode = true;
-    	setFlashlight(true);
     	updateLED();
         Scheduler.getInstance().run();
     }
@@ -219,7 +223,6 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
     	autoMode = false;
-    	setFlashlight(false);
     	updateLED();
         Scheduler.getInstance().run();
     }
@@ -270,22 +273,7 @@ public class Robot extends IterativeRobot {
 		return !practiceBot.get();
 	}
 	
-	/**
-	 * Turn the flashlight on/off
-	 * @param forceOff true to just turn off the light
-	 */
-	private void setFlashlight(boolean forceOff) {
-		if(forceOff) {
-			flashlight.set(Relay.Value.kOff);
-    		ballPresent = false;
-		} else if(indexer.TurnFlashlightOn() || shooter.isBoulderPresent()) {
-    		flashlight.set(Relay.Value.kForward);
-    		ballPresent = true;
-    	} else {
-    		flashlight.set(Relay.Value.kOff);
-    		ballPresent = false;
-    	}
-	}
+
 	
 	/**
 	 * Update the patterns on the light stip over I2C. 
