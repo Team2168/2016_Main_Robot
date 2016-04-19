@@ -2,23 +2,12 @@ package org.team2168.utils;
 
 /**
  * A class to perform lagrange interpolation
- * given 4 points to produce a 3rd degree polynomial.
+ * given 4 points to produce a 3rd degree polynomial
+ * and a method specifically to change the joystick output
+ * for sending speed values to the drive train
  * @author Peter Dentch
  */
 public class LagrangeInterpolator {
-	
-	static final double MIN_DRIVE_SPEED = 0.22;
-	static final double JOYSTICK_DEADBAND = 0.06;
-	
-	//This array should strictly be only 4 points in ascending order,
-	//forming a curve with positive values to also be reflected to use 
-	//for negative input values
-	static double curvePoints[][] = {
-			{JOYSTICK_DEADBAND , MIN_DRIVE_SPEED},
-			{0.53 , 0.4},
-			{0.765, 0.6},
-			{1 , 1},
-		};
 	
 	/**
 	 * Third degree lagrange interpolation given 4 points.
@@ -26,7 +15,7 @@ public class LagrangeInterpolator {
 	 * @param pts is the array of points to calculate the line
 	 * @return the resulting Y Value of the function
 	 */
-	private double lagrInterpolate(double input, double[][] pts){
+	private static double lagrInterpolate(double input, double[][] pts){
 		
 		//taking the values from the array to plug into the interpolation,
 		//also now made more simple for less space and a more math-like form
@@ -52,11 +41,12 @@ public class LagrangeInterpolator {
 	 * and will calculate the value to output to the motors from the
 	 * equation for a curved line formed by given points and lagrange interpolation.
 	 * @param input is the value to plug into the calculated line
+	 * @param pts is the array of points to interpolate a curved line from
 	 * @return is the final value from the function modified for motor driving 
 	 */
-	public double interpolatedJoystickVal(double input){
+	public static double interpolatedJoystickVal(double input, double pts[][]){
 		
-		//Instantiating the return value
+		//Initializing the return value for testing purposes
 		double retVal = -0.0;
 		
 		//Making sure the input is between 1 and -1
@@ -67,12 +57,12 @@ public class LagrangeInterpolator {
 				
 		//Accounting for the joystick values that wouldn't normally start the motors,
 		//making the minimum output of the joystick after 0 set the motors to their minimum speed
-		if(input < JOYSTICK_DEADBAND && input > -JOYSTICK_DEADBAND)
+		if(input < pts[0][0] && input > -pts[0][0])
 			retVal = 0.0;
 				
 		//Using lagrange interpolation to then find the needed value, using the absolute value
 		//of the input because only the positive section of the graph applies to the desired curve
-		else retVal = lagrInterpolate(Math.abs(input), curvePoints);
+		else retVal = lagrInterpolate(Math.abs(input), pts);
 				
 		//Reflecting the curve for backwards driving from negative controller values
 		if(input < 0.0 && retVal != 0.0)
