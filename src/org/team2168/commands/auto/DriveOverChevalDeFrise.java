@@ -14,14 +14,16 @@ public class DriveOverChevalDeFrise extends CommandGroup {
     
     public  DriveOverChevalDeFrise() {
     	//Drive slow until we see the CDF
-    	addParallel(new DriveXDistance(3, 0.4, 0.1), 4);
+    	addParallel(new DriveXDistance(3.0, 0.3, 0.3), 4);
+    	
+    	//addSequential(new Sleep(), 3);
     	addSequential(new WaitUntilCDFPresent(), 15); //If we don't detect the CDF, waste the clock.
     	
     	//CDF detected. Stop driving, lower intake
-    	addSequential(new DriveWithConstant(0.0, 0.0));
+    	addSequential(new DriveWithConstant(0.0, 0.0), 0.1);
     	addSequential(new IntakeExtend(), 3);
     	
     	//Drive remaining distance over CDF
-    	addSequential(new DriveXDistance(8, 0.5, 0.1), 5);
+    	addSequential(new DriveXDistance(8, 0.5, 0.3), 5);
     }
 }

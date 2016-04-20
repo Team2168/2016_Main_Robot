@@ -26,12 +26,13 @@ public class DriveOverChevalDeFriseAndFire extends CommandGroup {
 	    	addSequential(new RotateXDistancePIDZZZ(-30.0, 0.7, 0.25, 1), 2);
 	    	
 	    	//Fire - why isn't this in some command group we can call from all auto modes - ugly
-	    	addParallel(new DriveIndexerWithConstant(RobotMap.INDEXER_SPEED_CONSTANT_SHOOT));
-	    	addParallel(new IntakeWithConstant(RobotMap.INTAKE_SPEED_CONSTANT));
-	    	addSequential(new Sleep(), 2);
-	    	addSequential(new DriveIndexerWithConstant(0));
-	    	addSequential(new IntakeWithConstant(0));
-	    	addSequential(new ShooterHoodStowPosition());
-	    	addSequential(new ShooterPIDPause());
+	    	//ADD CODE FOR FIRING THE BALL
+//	    	addParallel(new DriveIndexerWithConstant(RobotMap.INDEXER_SPEED_CONSTANT_SHOOT));
+//	    	addParallel(new IntakeWithConstant(RobotMap.INTAKE_SPEED_CONSTANT));
+//	    	addSequential(new Sleep(), 2);
+//	    	addSequential(new DriveIndexerWithConstant(0));
+//	    	addSequential(new IntakeWithConstant(0));
+//	    	addSequential(new ShooterHoodStowPosition());
+//	    	addSequential(new ShooterPIDPause());
     }
 }

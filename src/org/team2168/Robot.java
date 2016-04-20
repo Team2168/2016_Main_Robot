@@ -14,6 +14,8 @@ import org.team2168.commands.auto.DoNothing;
 import org.team2168.commands.auto.DriveOverChevalDeFrise;
 import org.team2168.commands.auto.DriveOverChevalDeFriseAndFire;
 import org.team2168.commands.auto.DriveOverDefense;
+import org.team2168.commands.auto.DriveOverDefenseAndFireCenterFifth;
+import org.team2168.commands.auto.DriveOverDefenseAndFireCenterFifth_MoteOnly;
 import org.team2168.commands.auto.DriveOverDefenseAndFireCenterFourth;
 import org.team2168.commands.auto.DriveOverDefenseAndFireCenterSecond;
 import org.team2168.commands.auto.DriveOverDefenseAndFireCenterThird;
@@ -249,6 +251,8 @@ public class Robot extends IterativeRobot {
         autoChooser.addObject("2nd - Drive Over Second Defense and Shoot Center", new DriveOverDefenseAndFireCenterSecond());
         autoChooser.addObject("3rd - Driver Over Third Defense and Shoot Center", new DriveOverDefenseAndFireCenterThird());
         autoChooser.addObject("4th - Drive Over Fourth Defense and Shoot Center", new DriveOverDefenseAndFireCenterFourth());
+        autoChooser.addObject("5th - Driver Over Fifth Defense and Shoot Center", new DriveOverDefenseAndFireCenterFifth());
+        autoChooser.addObject("5th Moat Only- Drive OVer Fifth and Shooter Center" , new DriveOverDefenseAndFireCenterFifth_MoteOnly());
         autoChooser.addObject("Do Nothing", new DoNothing());
         autoChooser.addObject("Drive Over Defense", new DriveOverDefense());
         autoChooser.addObject("Drive over CDF", new DriveOverChevalDeFrise());
