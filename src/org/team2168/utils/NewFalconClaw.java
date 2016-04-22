@@ -31,7 +31,7 @@ public class NewFalconClaw {
 	 * @param triggerBreak is the controller trigger value to set the dimming amount
 	 * @return the adjusted value from the breaking to be sent to the drive motors 
 	 */
-	public static double FalconClaw(double inputSpeed, double triggerBreak){
+	public static double getAdjustedJoystickValue(double inputSpeed, double triggerBreak){
 		
 		//TODO: effectively explain what is being done here...
 		
