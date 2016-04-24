@@ -182,6 +182,7 @@ public class RobotMap {
 	/*************************************************************************
 	 *                         Indexer PARAMETERS
 	 *************************************************************************/
+	//public static final double INDEXER_SPEED_CONSTANT = 0.20 ;
 	public static final double INDEXER_SPEED_CONSTANT = 0.20 ;
 	public static final double INDEXER_SPEED_REVERSE_CONSTANT = 0.20;
 	public static final double INDEXER_SPIT_SPEED_CONSTANT = -1.0;
@@ -240,6 +241,11 @@ public class RobotMap {
 	public static final double ROTATE_POSITION_P = 0.024;
 	public static final double ROTATE_POSITION_I = 0.027;
 	public static final double ROTATE_POSITION_D = 0.000000067;
+	
+	
+	public static final double ROTATE_POSITION_P_CAM = 0.024;
+	public static final double ROTATE_POSITION_I_CAM = 0.027;
+	public static final double ROTATE_POSITION_D_CAM = 0.000000067;
 	
 	
 	
