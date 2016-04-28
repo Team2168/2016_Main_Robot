@@ -80,6 +80,8 @@ public class ConsolePrinter {
 			SmartDashboard.putBoolean("Is Target Detected", Robot.drivetrain.tcpCamSensor.isTargetDetected());
 			SmartDashboard.putBoolean("Is Target Scorable", Robot.drivetrain.tcpCamSensor.isTargetScorable());
 			
+			SmartDashboard.putBoolean("Is Portcullus Down", Robot.portCullus.isPortCullusExtended());
+			SmartDashboard.putBoolean("Is PortCullus Up", Robot.portCullus.isPortCulluseRetracted());
 			
 			SmartDashboard.putNumber("Left Encoder Distance",Robot.drivetrain.getLeftPosition());
 			SmartDashboard.putNumber("Right Encoder Distance:",Robot.drivetrain.getRightPosition());

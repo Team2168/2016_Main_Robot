@@ -75,8 +75,8 @@ public class RobotMap {
 	//Solenoid Channels////////////////////////////////////////////////////////
 	public static final int INTAKE_RETRACT = 3;
 	public static final int INTAKE_EXTEND = 2;
-	public static final int DRIVETRAIN_HIGH_GEAR = 4;
-	public static final int DRIVETRAIN_LOW_GEAR = 5;
+	public static final int PORTCULLUS_EXTEND = 4;
+	public static final int PORTCULLUS_REVERSE = 5;
 	public static final int SHOOTER_FWD_RETRACT = 6;
 	public static final int SHOOTER_FWD_EXTEND = 7;
 	public static final int SHOOTER_AFT_RETRACT = 0;
@@ -90,6 +90,8 @@ public class RobotMap {
 	public static final int SHOOTER_ENCODER_B = 1;
 	public static final int INTAKE_POSITION_SENSOR_UP = 2;
 	public static final int INTAKE_POSITION_SENSOR_DOWN = 3;
+	public static final int PORTICULLUS_POSITION_SENSOR_DOWN = 4;
+	public static final int PORTICULLUS_POSITION_SENSOR_UP = 5;
 	public static final int DRIVE_TRAIN_LEFT_ENCODER_A = 6;
 	public static final int DRIVE_TRAIN_LEFT_ENCODER_B = 7;
 	public static final int DRIVE_TRAIN_RIGHT_ENCODER_A = 8;

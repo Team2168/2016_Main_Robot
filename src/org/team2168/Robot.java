@@ -37,6 +37,7 @@ import org.team2168.utils.PowerDistribution;
 import org.team2168.subsystems.IntakePosition;
 import org.team2168.subsystems.IntakeRoller;
 import org.team2168.subsystems.Pneumatics;
+import org.team2168.subsystems.Port_de_cleullus;
 import org.team2168.subsystems.Indexer;
 
 
@@ -66,7 +67,7 @@ public class Robot extends IterativeRobot {
 	public static Pneumatics pneumatics;
 	public static ShooterPneumatics shooterPneumatics;
 	public static Flashlight flashlight;
-	
+	public static Port_de_cleullus portCullus;
 	
     static Command autonomousCommand;
     public static SendableChooser autoChooser;
@@ -107,7 +108,7 @@ public class Robot extends IterativeRobot {
         shooterPneumatics = ShooterPneumatics.getInstance();
         lights = I2CLights.getInstance();
         flashlight = Flashlight.getInstance();
-        
+        portCullus = Port_de_cleullus.getInstance();
         
         //create controls
         oi = OI.getInstance();

@@ -166,7 +166,7 @@ public class Drivetrain extends Subsystem {
 		tcpCamSensor = new TCPCamSensor(41234, 100);
 
 		//enable shifting solenoids
-		gearShifter = new DoubleSolenoid(RobotMap.DRIVETRAIN_LOW_GEAR, RobotMap.DRIVETRAIN_HIGH_GEAR);
+		//gearShifter = new DoubleSolenoid(RobotMap.DRIVETRAIN_LOW_GEAR, RobotMap.DRIVETRAIN_HIGH_GEAR);
 		
 		//DriveStraight Controller
 				rotateController = new PIDPosition(
