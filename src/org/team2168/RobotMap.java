@@ -176,8 +176,8 @@ public class RobotMap {
 	 *                         Intake PARAMETERS
 	 *************************************************************************/
 	public static final double INTAKE_SPEED_CONSTANT = 0.5; //0.6
-	public static final boolean REVERSE_INTAKE_WHEEL_1 = true;
-	public static final boolean REVERSE_INTAKE_WHEEL_2 = true;
+	public static final boolean REVERSE_INTAKE_WHEEL_1 = false;
+	public static final boolean REVERSE_INTAKE_WHEEL_2 = false;
 	public static final double CHEVAL_DE_FRISE_DISTANCE_VOLTAGE = 0.74;
 
 
