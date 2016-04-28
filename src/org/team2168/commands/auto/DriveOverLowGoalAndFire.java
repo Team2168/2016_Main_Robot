@@ -48,7 +48,7 @@ public class DriveOverLowGoalAndFire extends CommandGroup {
     	addParallel(new DriveShooterPIDSpeed(6500));
     	
     	addSequential(new Sleep(), 1.2); // camera lag
-    	addSequential(new RotateXDistancePIDZZZCamera(0, 0.55, 0.25, 0.5));
+    	addSequential(new RotateXDistancePIDZZZCamera(0, 0.42, 0.25, 0.5));
     	
     	addSequential(new WaitForShooterPIDToFinish());
     	
