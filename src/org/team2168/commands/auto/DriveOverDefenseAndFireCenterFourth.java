@@ -34,8 +34,8 @@ public class DriveOverDefenseAndFireCenterFourth extends CommandGroup {
     	
     	
     	//Drive over defense
-    	addSequential(new DriveXDistance(17.5, 0.8, 0.3));
-    	addSequential(new DriveXDistance(-1.5, 0.8, 0.3));
+    	addSequential(new DriveXDistance(17.5, 0.8, 0.5));
+    	addSequential(new DriveXDistance(-1.5, 0.8, 0.5));
     	
     	//Put up hood and DO NOT Rotate)
     	addParallel(new DriveShooterPIDSpeed(6500));

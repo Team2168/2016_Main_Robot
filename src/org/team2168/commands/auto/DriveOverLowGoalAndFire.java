@@ -9,6 +9,8 @@ import org.team2168.commands.drivetrain.PIDCommands.RotateXDistancePIDZZZCamera;
 import org.team2168.commands.indexer.DriveIndexerWithConstant;
 import org.team2168.commands.intakeposition.IntakeExtend;
 import org.team2168.commands.intakeroller.IntakeWithConstant;
+import org.team2168.commands.portCullus.PCManipulatorExtend;
+import org.team2168.commands.portCullus.PCManipulatorRetract;
 import org.team2168.commands.shooter.PIDCommands.DriveShooterPIDSpeed;
 import org.team2168.commands.shooter.PIDCommands.ShooterPIDPause;
 import org.team2168.commands.shooter.PIDCommands.WaitForShooterPIDToFinish;
@@ -29,15 +31,17 @@ public class DriveOverLowGoalAndFire extends CommandGroup {
     	//stow hood, lower intake and spin up wheel
     	addParallel(new ShooterHoodStowPosition());
     	//addParallel(new DriveShooterPIDSpeed(6700));
-    	addSequential(new IntakeExtend(), 3);
+    	addParallel(new PCManipulatorExtend());
+    	addSequential(new IntakeExtend());
+    	
     	
     	//Drive over defense
     	addSequential(new DriveXDistance(18, 0.8, 0.5));
+    	addSequential(new PCManipulatorRetract());
     	
     	//Put up hood and rotate
     	addParallel(new ShooterHoodFarShotPosition());
     	addSequential(new RotateXDistancePIDZZZ(55, 0.8, 0.25, 1));
-    	
     	addSequential(new DriveXDistance(1.5, 0.8, 0.5));
     	
     	//Put up hood and DO NOT Rotate)

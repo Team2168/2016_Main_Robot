@@ -34,15 +34,15 @@ public class DriveOverDefenseAndFireCenterFifth_MoteOnly extends CommandGroup {
     	
     	
     	//Drive over defense
-    	addSequential(new DriveXDistance(20.5, 0.8, 0.3));
-    	addSequential(new DriveXDistance(-1.5, 0.8, 0.3));
+    	addSequential(new DriveXDistance(20.5, 0.8, 0.5));
+    	addSequential(new DriveXDistance(-1.5, 0.8, 0.5));
     	
     	//Put up hood and rotate
     	addSequential(new RotateXDistancePIDZZZ(-20, 0.8, 0.25, 1));
     	addParallel(new DriveShooterPIDSpeed(6500));
     	
     	addSequential(new Sleep(), 0.7); // camera lag
-    	addSequential(new RotateXDistancePIDZZZCameraWithGyro(0, 0.4, 0.22, 0.5));
+    	addSequential(new RotateXDistancePIDZZZCameraWithGyro(0, 0.8, 0.25, 0.5));
 //    	addSequential(new Sleep(),2);
     	
     	addSequential(new WaitForShooterPIDToFinish());
