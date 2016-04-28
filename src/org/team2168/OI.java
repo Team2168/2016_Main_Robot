@@ -131,7 +131,7 @@ public class OI {
 		operatorJoystick.ButtonY().whenPressed(new PCManipulatorRetract());
 		
 		//Shoot Close Preset (X)
-		operatorJoystick.ButtonX().whenPressed(new DriveShooterPIDSpeed(3900));
+		operatorJoystick.ButtonX().whenPressed(new DriveShooterPIDSpeed(3750));
 		operatorJoystick.ButtonX().whenPressed(new ShooterHoodCloseShotPosition());
 		operatorJoystick.ButtonX().whenPressed(new PCManipulatorRetract());
 		
