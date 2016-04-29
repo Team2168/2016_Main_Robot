@@ -42,7 +42,7 @@ public class DriveOverDefenseAndFireCenterFifth_MoteOnly extends CommandGroup {
     	addParallel(new DriveShooterPIDSpeed(6500));
     	
     	addSequential(new Sleep(), 0.7); // camera lag
-    	addSequential(new RotateXDistancePIDZZZCameraWithGyro(0, 0.55, 0.25, 0.5));
+    	addSequential(new RotateXDistancePIDZZZCameraWithGyro(0, RobotMap.ROTATE_POSITION_CAMERA_MAX, RobotMap.ROTATE_POSITION_CAMERA_MIN, 0.5));
 //    	addSequential(new Sleep(),2);
     	
     	addSequential(new WaitForShooterPIDToFinish());

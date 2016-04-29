@@ -6,6 +6,7 @@ import org.team2168.commands.drivetrain.PIDCommands.DrivePIDPause;
 import org.team2168.commands.drivetrain.PIDCommands.DriveXDistance;
 import org.team2168.commands.drivetrain.PIDCommands.RotateXDistancePIDZZZ;
 import org.team2168.commands.drivetrain.PIDCommands.RotateXDistancePIDZZZCamera;
+import org.team2168.commands.drivetrain.PIDCommands.RotateXDistancePIDZZZCameraWithGyro;
 import org.team2168.commands.indexer.DriveIndexerWithConstant;
 import org.team2168.commands.intakeposition.IntakeExtend;
 import org.team2168.commands.intakeroller.IntakeWithConstant;
@@ -48,7 +49,7 @@ public class DriveOverLowGoalAndFire extends CommandGroup {
     	addParallel(new DriveShooterPIDSpeed(6500));
     	
     	addSequential(new Sleep(), 1.2); // camera lag
-    	addSequential(new RotateXDistancePIDZZZCamera(0, 0.42, 0.25, 0.5));
+    	addSequential(new RotateXDistancePIDZZZCameraWithGyro(0, RobotMap.ROTATE_POSITION_CAMERA_MAX, RobotMap.ROTATE_POSITION_CAMERA_MIN, 0.5));
     	
     	addSequential(new WaitForShooterPIDToFinish());
     	

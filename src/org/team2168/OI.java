@@ -107,13 +107,16 @@ public class OI {
 		operatorJoystick.ButtonUpDPad().whenPressed(new PCManipulatorRetract());
 		operatorJoystick.ButtonDownDPad().whenPressed(new PCManipulatorExtend());
 		
+		
 		//Kill Drivetrain PID (Back Button)
 		operatorJoystick.ButtonBack().whenPressed(new StowForLowBar());
 		operatorJoystick.ButtonBack().whenPressed(new DrivePIDPause());
 		
 		//Camera Shot Align (Start Button)
 		//operatorJoystick.ButtonStart().whenPressed(new RotateXDistancePIDZZZCameraWithGyro(0, 0.4, 0.22, 0.5));
-		operatorJoystick.ButtonStart().whenPressed(new RotateXDistancePIDZZZCameraWithGyro(0, 0.55, 0.25, 0.5));
+		operatorJoystick.ButtonStart().whenPressed(new RotateXDistancePIDZZZCameraWithGyro(0, RobotMap.ROTATE_POSITION_CAMERA_MAX, RobotMap.ROTATE_POSITION_CAMERA_MIN, 0.5));
+		
+		
 		//operatorJoystick.ButtonStart().whenPressed(new DriveShooterPIDSpeed(4300));
 		//Shoot Ball (A)
 		operatorJoystick.ButtonA().whileHeld(new DriveIndexerWithConstant(RobotMap.INDEXER_SPEED_CONSTANT_SHOOT));
@@ -131,7 +134,7 @@ public class OI {
 		operatorJoystick.ButtonY().whenPressed(new PCManipulatorRetract());
 		
 		//Shoot Close Preset (X)
-		operatorJoystick.ButtonX().whenPressed(new DriveShooterPIDSpeed(3750));
+		operatorJoystick.ButtonX().whenPressed(new DriveShooterPIDSpeed(3825));
 		operatorJoystick.ButtonX().whenPressed(new ShooterHoodCloseShotPosition());
 		operatorJoystick.ButtonX().whenPressed(new PCManipulatorRetract());
 		
