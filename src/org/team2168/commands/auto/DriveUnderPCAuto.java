@@ -35,8 +35,8 @@ public class DriveUnderPCAuto extends CommandGroup {
     	addParallel(new ShooterHoodStowPosition());
     	addSequential(new IntakeExtend());  //no timeout, if it  doesn't lower, don't proceed
     	
-    	//Drive under the PC
-    	addSequential(new DriveXDistance(17.5, 0.5, 0.5));
-    	addSequential(new DriveXDistance(-1.5, 0.5, 0.5));
+    	//Drive under the PC backwards
+    	addSequential(new DriveXDistance(-17.5, 0.5, 0.5));
+    	addSequential(new DriveXDistance(+1.5, 0.5, 0.5));
     }
 }
