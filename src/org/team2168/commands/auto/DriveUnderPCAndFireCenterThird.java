@@ -30,7 +30,7 @@ public class DriveUnderPCAndFireCenterThird extends CommandGroup {
     	addSequential(new DriveUnderPCAuto());
     	addSequential(new RotateXDistancePIDZZZ(-180 + 13, 0.8, 0.25, 1));
     	
-    	//THE REST IS THE SAME AS THE VANILLA CenterSecond AUTO
+    	//THE REST IS THE SAME AS THE VANILLA CenterThird AUTO
     	
     	addParallel(new DriveShooterPIDSpeed(6500));
     	
