@@ -21,24 +21,17 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 
 /**
- * Drives Robot over defense
+ * Drives Robot under the PC from the third defensive position
  */
 public class DriveUnderPCAndFireCenterThird extends CommandGroup {
     
     public  DriveUnderPCAndFireCenterThird() {
 
-    	//stow hood, lower intake and spin up wheel
-    	addParallel(new ShooterHoodFarShotPosition());
-    	addSequential(new IntakeExtend(), 3);
-    	//addParallel(new DriveShooterPIDSpeed(6700));
+    	addSequential(new DriveUnderPCAuto());
+    	addSequential(new RotateXDistancePIDZZZ(-180 + 13, 0.8, 0.25, 1));
     	
+    	//THE REST IS THE SAME AS THE VANILLA CenterSecond AUTO
     	
-    	//Drive over defense
-    	addSequential(new DriveXDistance(17.5, 0.8, 0.5));
-    	addSequential(new DriveXDistance(-1.5, 0.8, 0.5));              
-    	
-    	//Put up hood and rotate
-    	addSequential(new RotateXDistancePIDZZZ(13, 0.8, 0.25, 1));
     	addParallel(new DriveShooterPIDSpeed(6500));
     	
     	addSequential(new Sleep(), 0.7); // camera lag
@@ -66,8 +59,5 @@ public class DriveUnderPCAndFireCenterThird extends CommandGroup {
     	addParallel(new DrivePIDPause());
     	addParallel(new DriveIndexerWithConstant(0));
     	addParallel(new IntakeWithConstant(0));
-    	
-    	
-    	
     }
 }
