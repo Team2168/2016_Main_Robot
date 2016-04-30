@@ -15,13 +15,13 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 
 /**
- * Drives Robot over defense
+ * Drives Robot under the pc from the 2nd defense position
  */
 public class DriveUnderPCAndFireCenterSecond extends CommandGroup {
     
     public  DriveUnderPCAndFireCenterSecond() {
     	addSequential(new DriveUnderPCAuto());
-    	addSequential(new RotateXDistancePIDZZZ(180 + 30, 0.8, 0.25, 1));
+    	addSequential(new RotateXDistancePIDZZZ(-180 + 30, 0.8, 0.25, 1));
     	
     	//THE REST IS THE SAME AS THE VANILLA CenterSecond AUTO
     	
