@@ -20,14 +20,11 @@ public class DriveWithJoysticks extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Robot.oi.driverJoystick.getLeftTriggerAxisRaw() > 0.5) {
-    		Robot.drivetrain.driveLeft(Robot.oi.driverJoystick.getLeftStickRaw_Y() * 0.5);
-        	Robot.drivetrain.driveRight(Robot.oi.driverJoystick.getRightStickRaw_Y() * 0.5);
-    	}
-    	else {
-    	Robot.drivetrain.driveLeft(Robot.oi.driverJoystick.getLeftStickRaw_Y());
-    	Robot.drivetrain.driveRight(Robot.oi.driverJoystick.getRightStickRaw_Y());
-    	}
+    	Robot.drivetrain.tankDrive(Robot.oi.driverJoystick.getRightTriggerAxisRaw(), Robot.oi.driverJoystick.getRightTriggerAxisRaw());
+    	Robot.drivetrain.tankDrive(-Robot.oi.driverJoystick.getLeftTriggerAxisRaw(), -Robot.oi.driverJoystick.getLeftTriggerAxisRaw());
+    	Robot.drivetrain.driveLeft(Robot.oi.driverJoystick.getRightStickRaw_X());
+    	Robot.drivetrain.driveRight(Robot.oi.driverJoystick.getRightStickRaw_X());
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
