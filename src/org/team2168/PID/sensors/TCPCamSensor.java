@@ -75,6 +75,8 @@ public class TCPCamSensor implements PIDSensorInterface{
 		dataReceived[5] = "0";
 		dataReceived[6] = "0";
 		dataReceived[7] = "0";
+		dataReceived[8] = "0";
+		dataReceived[9] = "0";
 		
 		// setup socket to listen on
 		this.port = port;
@@ -331,6 +333,12 @@ public boolean isTargetDetected()
 	else
 		return false;
 	
+}
+
+public double getVerticalAngle() {
+//	double message = -Double.valueOf(dataReceived[9]).doubleValue();
+//	return message;
+	return 0;
 }
 
 @Override

@@ -105,7 +105,7 @@ public class OI {
 		operatorJoystick.ButtonLeftDPad().whenPressed(new IntakeRetract());
 		operatorJoystick.ButtonRightDPad().whenPressed(new IntakeExtend());
 		operatorJoystick.ButtonUpDPad().whenPressed(new PCManipulatorRetract());
-		operatorJoystick.ButtonDownDPad().whenPressed(new PCManipulatorExtend());
+		operatorJoystick.ButtonDownDPad().whenPressed(new DriveAlign());
 		
 		
 		//Kill Drivetrain PID (Back Button)
