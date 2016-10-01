@@ -200,7 +200,7 @@ SmartDashboard.putNumber("DTRight1MotorVoltage",Robot.drivetrain.getRight1MotorV
 	        
 	        SmartDashboard.putNumber("Hood Servo Angle", Robot.shooterhood.getAngle());
 	        
-	        
+	        SmartDashboard.putNumber("Vertical Angle", Robot.drivetrain.tcpCamSensor.getVerticalAngle());
 			
 	        
 	   

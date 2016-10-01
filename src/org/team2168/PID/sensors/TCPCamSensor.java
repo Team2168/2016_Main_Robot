@@ -62,7 +62,7 @@ public class TCPCamSensor implements PIDSensorInterface{
 		this.requestPeriod = requestPeriod;
 
 
-		size = 8;
+		size = 10;
 		
 		// initialize data messageOut 
 		dataReceived = new String[size];
@@ -336,9 +336,8 @@ public boolean isTargetDetected()
 }
 
 public double getVerticalAngle() {
-//	double message = -Double.valueOf(dataReceived[9]).doubleValue();
-//	return message;
-	return 0;
+	double message = Double.valueOf(dataReceived[9]).doubleValue();
+	return message;
 }
 
 @Override

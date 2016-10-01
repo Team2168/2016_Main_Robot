@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  * @author Vittorio
  */
-public class DriveXDistancePIDZZZCameraWithGyro extends Command {
+public class DriveXDistancePIDZZZCameraWithGyroV2 extends Command {
 
 	private double setPoint;
 	private double maxSpeed;
@@ -21,7 +21,7 @@ public class DriveXDistancePIDZZZCameraWithGyro extends Command {
 	private boolean absolute = false;
 	private double driveSpeed;
 	
-    public DriveXDistancePIDZZZCameraWithGyro() {
+    public DriveXDistancePIDZZZCameraWithGyroV2() {
         // Use requires() here to declare subsystem dependencies
     	requires(Robot.drivetrain);
     	this.setPoint = Robot.drivetrain.driveTrainPosController.getSetPoint();
@@ -34,44 +34,42 @@ public class DriveXDistancePIDZZZCameraWithGyro extends Command {
 // 	   this.setPoint = setPoint;
 //    }
     
-    public DriveXDistancePIDZZZCameraWithGyro(double driveSpeed){
+    public DriveXDistancePIDZZZCameraWithGyroV2(double driveSpeed){
   	   this();
   	   this.driveSpeed = driveSpeed;
      }
 
-    public DriveXDistancePIDZZZCameraWithGyro(double setPoint, double maxSpeed){
+    public DriveXDistancePIDZZZCameraWithGyroV2(double setPoint, double maxSpeed){
   	   this(setPoint);
   	   this.maxSpeed = maxSpeed;
      }
     
-    public DriveXDistancePIDZZZCameraWithGyro(double setPoint, double maxSpeed, double minSpeed){
+    public DriveXDistancePIDZZZCameraWithGyroV2(double setPoint, double maxSpeed, double minSpeed){
    	   this(setPoint, maxSpeed);
    	   this.minSpeed = minSpeed;
       }    
 
-    public DriveXDistancePIDZZZCameraWithGyro(double setPoint, double maxSpeed, double minSpeed, double error) {
+    public DriveXDistancePIDZZZCameraWithGyroV2(double setPoint, double maxSpeed, double minSpeed, double error) {
     	this(setPoint, maxSpeed, minSpeed);
     	this.error = error;
     }
     
-    public DriveXDistancePIDZZZCameraWithGyro(double setPoint, double maxSpeed, double minSpeed, double error, boolean absolute) {
+    public DriveXDistancePIDZZZCameraWithGyroV2(double setPoint, double maxSpeed, double minSpeed, double error, boolean absolute) {
     	this(setPoint, maxSpeed, minSpeed, error);
     	this.absolute = absolute;
     }
     // Called just before this Command runs the first time
     
 	protected void initialize() {
-//		if (!absolute)
-//			this.setPoint = Robot.drivetrain.getHeading() - Robot.drivetrain.tcpCamSensor.getRotationAngle() + RobotMap.CAMERA_OFFSET_ANGLE;
-//		Robot.drivetrain.driveTrainPosController.reset();
-//		Robot.drivetrain.driveTrainPosController.setSetPoint(setPoint);
-//		Robot.drivetrain.driveTrainPosController.setMaxPosOutput(maxSpeed);
-//		Robot.drivetrain.driveTrainPosController.setMaxNegOutput(-maxSpeed);
-//		Robot.drivetrain.driveTrainPosController.setMinPosOutput(minSpeed);
-//		Robot.drivetrain.driveTrainPosController.setMinNegOutput(-minSpeed);
-//		//Robot.drivetrain.driveTrainPosController.setAcceptErrorDiff(error);
-//		//Robot.drivetrain.gyroSPI.reset();
-//		Robot.drivetrain.driveTrainPosController.Enable();
+		Robot.drivetrain.driveTrainPosController.reset();
+		Robot.drivetrain.driveTrainPosController.setSetPoint(setPoint);
+		Robot.drivetrain.driveTrainPosController.setMaxPosOutput(maxSpeed);
+		Robot.drivetrain.driveTrainPosController.setMaxNegOutput(-maxSpeed);
+		Robot.drivetrain.driveTrainPosController.setMinPosOutput(minSpeed);
+		Robot.drivetrain.driveTrainPosController.setMinNegOutput(-minSpeed);
+		//Robot.drivetrain.driveTrainPosController.setAcceptErrorDiff(error);
+		//Robot.drivetrain.gyroSPI.reset();
+		Robot.drivetrain.driveTrainPosController.Enable();
 		
     }
 
@@ -81,14 +79,14 @@ public class DriveXDistancePIDZZZCameraWithGyro extends Command {
 		
 		Robot.flashlight.disableFlashlight();
 		//keep robot moving until we are at center
-//		Robot.drivetrain.driveTrainPosController.setSetPoint(Robot.drivetrain.getHeading() - Robot.drivetrain.tcpCamSensor.getRotationAngle());
-//		Robot.drivetrain.tankDrive(Robot.drivetrain.driveTrainPosController.getControlOutput(),-Robot.drivetrain.driveTrainPosController.getControlOutput());
 		
 		if(Robot.drivetrain.tcpCamSensor.getVerticalAngle() > 3){
-			Robot.drivetrain.tankDrive(driveSpeed, driveSpeed);
+			Robot.drivetrain.driveTrainPosController.setSetPoint(setPoint);
+			Robot.drivetrain.tankDrive(Robot.drivetrain.driveTrainPosController.getControlOutput(),-Robot.drivetrain.driveTrainPosController.getControlOutput());
 		}
 		else if(Robot.drivetrain.tcpCamSensor.getVerticalAngle() < -0.5){
-			Robot.drivetrain.tankDrive(-driveSpeed, -driveSpeed);
+			Robot.drivetrain.driveTrainPosController.setSetPoint(-setPoint);
+			Robot.drivetrain.tankDrive(Robot.drivetrain.driveTrainPosController.getControlOutput(),-Robot.drivetrain.driveTrainPosController.getControlOutput());
 		}
 		else{
 			//do nothing
@@ -109,7 +107,7 @@ public class DriveXDistancePIDZZZCameraWithGyro extends Command {
 //		
 		
 //		return Robot.drivetrain.driveTrainPosController.isFinished() || Math.abs(Robot.drivetrain.tcpCamSensor.getPos()) < error;
-		return (Robot.drivetrain.tcpCamSensor.getVerticalAngle() > 1 && Robot.drivetrain.tcpCamSensor.getVerticalAngle() < 3.5);
+		return (Robot.drivetrain.tcpCamSensor.getVerticalAngle() > -0.5 && Robot.drivetrain.tcpCamSensor.getVerticalAngle() < 3);
     }
 
     // Called once after isFinished returns true

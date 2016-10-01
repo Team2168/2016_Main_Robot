@@ -251,7 +251,7 @@ public class RobotMap {
 	
 
 	public static final double ROTATE_POSITION_CAMERA_MAX = 0.28;
-	public static final double ROTATE_POSITION_CAMERA_MIN = 0.15;
+	public static final double ROTATE_POSITION_CAMERA_MIN = 0.16; //0.15
 	
 	public static final double ROTATE_POSITION_P_Drive_Straight = 0.045;
 	public static final double ROTATE_POSITION_I_Drive_Straight = 0.001;

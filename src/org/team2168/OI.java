@@ -104,7 +104,7 @@ public class OI {
 		//D Pad
 		operatorJoystick.ButtonLeftDPad().whenPressed(new IntakeRetract());
 		operatorJoystick.ButtonRightDPad().whenPressed(new IntakeExtend());
-		operatorJoystick.ButtonUpDPad().whenPressed(new PCManipulatorRetract());
+		operatorJoystick.ButtonUpDPad().whenPressed(new DriveAlignV2());
 		operatorJoystick.ButtonDownDPad().whenPressed(new DriveAlign());
 		
 		
