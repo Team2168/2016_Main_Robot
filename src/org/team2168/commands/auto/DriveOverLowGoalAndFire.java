@@ -32,13 +32,13 @@ public class DriveOverLowGoalAndFire extends CommandGroup {
     	//stow hood, lower intake and spin up wheel
     	addParallel(new ShooterHoodStowPosition());
     	//addParallel(new DriveShooterPIDSpeed(6700));
-    	addParallel(new PCManipulatorExtend());
+    	//addParallel(new PCManipulatorExtend());
     	addSequential(new IntakeExtend());
     	
     	
     	//Drive over defense
     	addSequential(new DriveXDistance(18, 0.8, 0.5));
-    	addSequential(new PCManipulatorRetract());
+    	//addSequential(new PCManipulatorRetract());
     	
     	//Put up hood and rotate
     	addParallel(new ShooterHoodFarShotPosition());
