@@ -22,7 +22,7 @@ public class DriveWithJoysticksArcade extends Command {
     protected void execute() {
     	Robot.drivetrain.tankDrive(Robot.oi.driverJoystick.getRightTriggerAxisRaw(), Robot.oi.driverJoystick.getRightTriggerAxisRaw());
     	Robot.drivetrain.tankDrive(-Robot.oi.driverJoystick.getLeftTriggerAxisRaw(), -Robot.oi.driverJoystick.getLeftTriggerAxisRaw());
-    	Robot.drivetrain.driveLeft(Robot.oi.driverJoystick.getRightStickRaw_X());
+    	Robot.drivetrain.driveLeft(-Robot.oi.driverJoystick.getRightStickRaw_X());
     	Robot.drivetrain.driveRight(Robot.oi.driverJoystick.getRightStickRaw_X());
     }
 
