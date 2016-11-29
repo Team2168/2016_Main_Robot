@@ -31,26 +31,27 @@ public class ControllerStyleSwitch extends Command {
 
     //TODO NEEDS TESTING ON ACTUAL ROBOT
     protected void execute() {
+    	
+    	switch(ctrlStyle){
     	/**
     	 *Tank Drive
     	 */
-    	if(ctrlStyle == 0){
-        	Robot.drivetrain.driveLeft(Robot.oi.driverJoystick.getLeftStickRaw_Y());
+    	case 0:
+    		Robot.drivetrain.driveLeft(Robot.oi.driverJoystick.getLeftStickRaw_Y());
         	Robot.drivetrain.driveRight(Robot.oi.driverJoystick.getRightStickRaw_Y());
-    	}
-    	
-    	/**
-    	 * Arcade Drive
-    	 */
-    	else if(ctrlStyle == 1) {
+        	break;
+        
+        /**
+        * Arcade Drive
+        */
+    	case 1:
     		Robot.drivetrain.driveLeft(Robot.oi.driverJoystick.getLeftStickRaw_Y() + Robot.oi.driverJoystick.getRightStickRaw_X());
     		Robot.drivetrain.driveRight(Robot.oi.driverJoystick.getLeftStickRaw_Y() - Robot.oi.driverJoystick.getRightStickRaw_X());
-    	}
-    	
+    		break;
     	/**
-    	 * GTA Drive
-    	 */
-    	else if(ctrlStyle == 2) {
+    	* GTA Drive
+    	*/
+    	case 2:
     		double fwdSpeed = Robot.oi.driverJoystick.getRightTriggerAxisRaw();
     		double revSpeed = Robot.oi.driverJoystick.getLeftTriggerAxisRaw();
     		double speed = fwdSpeed - revSpeed;
@@ -64,15 +65,15 @@ public class ControllerStyleSwitch extends Command {
     			Robot.drivetrain.driveLeft(Robot.oi.driverJoystick.getRightStickRaw_X());
     			Robot.drivetrain.driveRight(-(Robot.oi.driverJoystick.getRightStickRaw_X()));
     		}
-    	}
-    	
+    		break;
     	/**
-    	 * Default back to tank drive if input is invalid
+    	 *Defaults to Tank Drive
     	 */
-    	else {
-    		ctrlStyle = 0;
+    	default:
+    		Robot.drivetrain.driveLeft(Robot.oi.driverJoystick.getLeftStickRaw_Y());
+        	Robot.drivetrain.driveRight(Robot.oi.driverJoystick.getRightStickRaw_Y());
+        	break;
     	}
-    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
