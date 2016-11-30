@@ -33,6 +33,7 @@ import org.team2168.commands.shooterPneumatics.ShooterHoodFarShotPosition;
 import org.team2168.commands.shooterPneumatics.ShooterHoodStowPosition;
 import org.team2168.commands.shooterhood.DriveShooterHoodToAngle;
 import org.team2168.utils.F310;
+import org.team2168.commands.drivetrain.ControllerStyleSwitch;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -90,6 +91,14 @@ public class OI {
 		
 		//Right Bumper
 		driverJoystick.ButtonRightBumper().whenPressed(new DriveXDistance(-0.3, 0.7, 0.1));
+		
+		//Controller Styles
+		//Tank
+		driverJoystick.ButtonA().whenPressed(new ControllerStyleSwitch(0));
+		//Arcade
+		driverJoystick.ButtonB().whenPressed(new ControllerStyleSwitch(1));
+		//GTA
+		driverJoystick.ButtonX().whenPressed(new ControllerStyleSwitch(2));
 
 
 		/********************************************
