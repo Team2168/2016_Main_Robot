@@ -23,6 +23,7 @@ import org.team2168.commands.auto.DriveOverDefenseAndRotateFromDifferentPosition
 import org.team2168.commands.auto.DriveOverLowGoalAndFire;
 import org.team2168.commands.auto.ReachDefense;
 import org.team2168.commands.auto.ShootFromSpyBox;
+import org.team2168.commands.drivetrain.ControllerStyleSwitch;
 import org.team2168.commands.pneumatics.StartCompressor;
 import org.team2168.subsystems.Drivetrain;
 import org.team2168.subsystems.Flashlight;
@@ -72,6 +73,8 @@ public class Robot extends IterativeRobot {
     static Command autonomousCommand;
     public static SendableChooser autoChooser;
     
+    public static SendableChooser controlStyleChooser;
+    
     static boolean autoMode;
     private static boolean matchStarted = false;
     public static int gyroReinits;
@@ -115,6 +118,7 @@ public class Robot extends IterativeRobot {
     
         //choose auto
         autoSelectInit();
+        
         
         //run compressor
         new StartCompressor();
@@ -259,6 +263,15 @@ public class Robot extends IterativeRobot {
         autoChooser.addObject("Drive over CDF", new DriveOverChevalDeFrise());
         autoChooser.addObject("Drive over CDF and Fire", new DriveOverChevalDeFriseAndFire());
         //  autoChooser.addObject("Reach Defense", new ReachDefense());
+    }
+    
+    /**
+     * Adds control styles to the selector
+     */
+    public void controlStyleSelectInit(){
+    	controlStyleChooser.addDefault("Tank Drive", new ControllerStyleSwitch(0));
+    	controlStyleChooser.addObject("Arcade Drive", new ControllerStyleSwitch(1));
+    	controlStyleChooser.addObject("GTA Drive", new ControllerStyleSwitch(2));
     }
 	
     /**

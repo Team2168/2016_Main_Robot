@@ -63,6 +63,7 @@ public class ConsolePrinter {
 			
 			
 			SmartDashboard.putData("Autonomous Mode Chooser", Robot.autoChooser);
+			SmartDashboard.putData("Controller Style Chooser", Robot.controlStyleChooser);
 			SmartDashboard.putString("AutoName", Robot.getAutoName());
 			SmartDashboard.putNumber("gameClock", (int)DriverStation.getInstance().getMatchTime());
 			SmartDashboard.putBoolean("isPracticeBot", Robot.isPracticeRobot());
