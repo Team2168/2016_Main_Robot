@@ -4,29 +4,75 @@ import org.team2168.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-/**
- *
+
+
+/**Choose and use a certain control style.
+ *@author Ben Waid, Elijah Reeds, Peter Dentch
  */
 public class DriveWithJoysticks extends Command {
-
-    public DriveWithJoysticks() {
-        // Use requires() here to declare subsystem dependencies
+	
+	int ctrlStyle;
+	
+	/**
+	 * Controller Styles
+	 * 0 = Tank Drive
+	 * 1 = Arcade Drive
+	 * 2 = GTA
+	 * @param inputStyle
+	 */
+    public DriveWithJoysticks(int inputStyle) {
         requires(Robot.drivetrain);
+        ctrlStyle = inputStyle;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     }
 
-    // Called repeatedly when this Command is scheduled to run
+    //TODO NEEDS TESTING ON ACTUAL ROBOT
     protected void execute() {
-    	if(Robot.oi.driverJoystick.getLeftTriggerAxisRaw() > 0.5) {
-    		Robot.drivetrain.driveLeft(Robot.oi.driverJoystick.getLeftStickRaw_Y() * 0.5);
-        	Robot.drivetrain.driveRight(Robot.oi.driverJoystick.getRightStickRaw_Y() * 0.5);
-    	}
-    	else {
-    	Robot.drivetrain.driveLeft(Robot.oi.driverJoystick.getLeftStickRaw_Y());
-    	Robot.drivetrain.driveRight(Robot.oi.driverJoystick.getRightStickRaw_Y());
+    	
+    	switch(ctrlStyle){
+    	/**
+    	 *Tank Drive
+    	 */
+    	case 0:
+    		Robot.drivetrain.driveLeft(Robot.oi.driverJoystick.getLeftStickRaw_Y());
+        	Robot.drivetrain.driveRight(Robot.oi.driverJoystick.getRightStickRaw_Y());
+        	break;
+        
+        /**
+        * Arcade Drive
+        */
+    	case 1:
+    		Robot.drivetrain.driveLeft(Robot.oi.driverJoystick.getLeftStickRaw_Y() + Robot.oi.driverJoystick.getRightStickRaw_X());
+    		Robot.drivetrain.driveRight(Robot.oi.driverJoystick.getLeftStickRaw_Y() - Robot.oi.driverJoystick.getRightStickRaw_X());
+    		break;
+    	/**
+    	* GTA Drive
+    	*/
+    	case 2:
+    		double fwdSpeed = Robot.oi.driverJoystick.getRightTriggerAxisRaw();
+    		double revSpeed = Robot.oi.driverJoystick.getLeftTriggerAxisRaw();
+    		double speed = fwdSpeed - revSpeed;
+    		
+    		//Allows Robot to spin in place without needing to press in triggers
+    		if(speed != 0){
+    			Robot.drivetrain.driveLeft(Robot.oi.driverJoystick.getRightStickRaw_X() * speed);
+    			Robot.drivetrain.driveRight(-(Robot.oi.driverJoystick.getRightStickRaw_X()) * speed);
+    		}
+    		else if(speed == 0) {
+    			Robot.drivetrain.driveLeft(Robot.oi.driverJoystick.getRightStickRaw_X());
+    			Robot.drivetrain.driveRight(-(Robot.oi.driverJoystick.getRightStickRaw_X()));
+    		}
+    		break;
+    	/**
+    	 *Defaults to Tank Drive
+    	 */
+    	default:
+    		Robot.drivetrain.driveLeft(Robot.oi.driverJoystick.getLeftStickRaw_Y());
+        	Robot.drivetrain.driveRight(Robot.oi.driverJoystick.getRightStickRaw_Y());
+        	break;
     	}
     }
 

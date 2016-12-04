@@ -294,14 +294,14 @@ public class RobotMap {
 	 ********************************************/
 	public static final boolean KEVIN_IS_DA_BOMB = true;
 	public static final boolean GUYANA_HAS_SUNK = false;
-
+	public static final String WEBSITE_FOR_OUR_LORD_AND_SAVIOR = "http://thebomb.comxa.com/";
 
 
 	/********************************************
 	 * 				Lights I2C					*
 	 * *****************************************/
 	public static final I2C.Port I2C_PORT = I2C.Port.kOnboard;
-	public static final int I2C_ADDRESS = 10; //probably change this
+	public static final int I2C_ADDRESS = 10; //probably change this <--- That never happened, lol.
 
 
 	
