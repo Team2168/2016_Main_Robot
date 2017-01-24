@@ -168,7 +168,7 @@ public class Robot extends IterativeRobot {
      * This method is called repeatedly while the robot is disabled.
      */
 	public void disabledPeriodic() {
-		autonomousCommand = (Command) autoChooser.getSelected();
+//		autonomousCommand = (Command) autoChooser.getSelected();
 		// Kill all active commands
 		Scheduler.getInstance().run();
 		updateLED();
@@ -176,6 +176,8 @@ public class Robot extends IterativeRobot {
 		
 		// Check to see if the gyro is drifting, if it is re-initialize it.
 		gyroReinit();
+		
+		System.out.println("X Axis: " + Robot.oi.driverJoystick.getLeftStickRaw_X());
      }
 
 	/**

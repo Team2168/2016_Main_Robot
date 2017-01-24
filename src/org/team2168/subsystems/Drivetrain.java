@@ -10,6 +10,7 @@ import org.team2168.PID.sensors.BNOHeading;
 import org.team2168.PID.sensors.IMU;
 import org.team2168.PID.sensors.TCPCamSensor;
 import org.team2168.commands.drivetrain.DriveWithJoysticks;
+import org.team2168.commands.drivetrain.PIDCommands.DriveXDistanceWithJoystick;
 import org.team2168.utils.BNO055;
 import org.team2168.utils.TCPSocketSender;
 
@@ -435,7 +436,7 @@ public class Drivetrain extends Subsystem {
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        setDefaultCommand(new DriveWithJoysticks(0));
+        setDefaultCommand(new DriveXDistanceWithJoystick(1));
     }
 
     /**

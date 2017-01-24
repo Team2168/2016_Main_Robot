@@ -14,8 +14,8 @@ import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.SensorBase;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.communication.UsageReporting;
-import edu.wpi.first.wpilibj.communication.FRCNetworkCommunicationsLibrary.tResourceType;
+//import edu.wpi.first.wpilibj.communication.UsageReporting;
+//import edu.wpi.first.wpilibj.communication.FRCNetworkCommunicationsLibrary.tResourceType;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.livewindow.LiveWindowSendable;
 import edu.wpi.first.wpilibj.tables.ITable;
@@ -85,7 +85,7 @@ public class FalconGyro extends SensorBase implements PIDSensorInterface, PIDSou
 		
 //		setPIDSourceParameter(PIDSourceParameter.kAngle);
 
-		UsageReporting.report(tResourceType.kResourceType_Gyro, m_analog.getChannel());
+//		UsageReporting.report(tResourceType.kResourceType_Gyro, m_analog.getChannel());
 		LiveWindow.addSensor("Gyro", m_analog.getChannel(), this);
 	}
 
