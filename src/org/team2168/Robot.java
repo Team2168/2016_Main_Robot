@@ -71,9 +71,10 @@ public class Robot extends IterativeRobot {
 	public static Port_de_cleullus portCullus;
 	
     static Command autonomousCommand;
-    public static SendableChooser autoChooser;
+    public static SendableChooser<Command> autoChooser;
     
-    public static SendableChooser controlStyleChooser;
+    static Number controlStyle;
+    public static SendableChooser<Number> controlStyleChooser;
     
     static boolean autoMode;
     private static boolean matchStarted = false;
@@ -223,6 +224,8 @@ public class Robot extends IterativeRobot {
     	
 		matchStarted = true;
 		drivetrain.stopGyroCalibrating();
+		
+		controlStyle = (Number) controlStyleChooser.getSelected();
     	
 		// This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to 
@@ -252,7 +255,7 @@ public class Robot extends IterativeRobot {
      * Adds the autos to the selector
      */
     public void autoSelectInit() {
-        autoChooser = new SendableChooser();
+        autoChooser = new SendableChooser<>();
         autoChooser.addDefault("Default: Shoot From Spy Box", new ShootFromSpyBox());
         autoChooser.addObject("1st - Drive Under Low Bar and Fire", new DriveOverLowGoalAndFire());
         autoChooser.addObject("2nd - Drive Over Second Defense and Shoot Center", new DriveOverDefenseAndFireCenterSecond());
@@ -271,9 +274,11 @@ public class Robot extends IterativeRobot {
      * Adds control styles to the selector
      */
     public void controlStyleSelectInit(){
-    	controlStyleChooser.addDefault("Tank Drive", new DriveWithJoysticks(0));
-    	controlStyleChooser.addObject("Arcade Drive", new DriveWithJoysticks(1));
-    	controlStyleChooser.addObject("GTA Drive", new DriveWithJoysticks(2));
+    	controlStyleChooser = new SendableChooser<>();
+    	controlStyleChooser.addDefault("Tank Drive", 0);
+    	controlStyleChooser.addObject("Arcade Drive",1);
+    	controlStyleChooser.addObject("GTA Drive", 2);
+    	controlStyleChooser.addObject("Gun Style Controller", 3);
     }
 	
     /**
