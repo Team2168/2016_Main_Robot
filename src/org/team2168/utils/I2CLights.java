@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.I2C;
 public class I2CLights {
 	private I2C i2c;
 	private static I2CLights instance = null;
+	private byte[] data = new byte[8];
 	
 	public enum Pattern {
 		Off (0),
@@ -59,8 +60,7 @@ public class I2CLights {
      * @param rang Range value between either 1 or 2.
      * @author Elijah
      */
-    public void writeLED(int r, int g, int b, Pattern pat, Range range){
-    	byte[] data = new byte[8];
+    public void writeLED(int r, int g, int b, Pattern pat, Range range) {
     	if(range == Range.Intake){
     		data[0] = (byte) r;
     		data[1] = (byte) g;
